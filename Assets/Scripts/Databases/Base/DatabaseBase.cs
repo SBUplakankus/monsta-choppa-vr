@@ -54,10 +54,7 @@ namespace Databases.Base
         {
             if (_lookup == null) BuildLookup();
             
-            if (_lookup.TryGetValue(id, out var value)) return value;
-            
-            Debug.LogError($"Entry '{id}' not found in {name}");
-            return default;
+            return _lookup.GetValueOrDefault(id);
         }
     }
 }

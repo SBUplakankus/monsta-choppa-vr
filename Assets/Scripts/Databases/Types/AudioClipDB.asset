@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4b54ea40b2c9e4aa87fc33d357c61a, type: 3}
   m_Name: AudioClipDB
   m_EditorClassIdentifier: Assembly-CSharp::Databases.Base.AudioClipDatabase
-  entries: []
+  entries:
+  - {fileID: 11400000, guid: 03b89107c17e17d43a4587ec02920e8a, type: 2}
+  - {fileID: 11400000, guid: 8873c6754ef87e946b79d59b2046e81e, type: 2}

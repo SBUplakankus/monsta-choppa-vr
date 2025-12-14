@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc43671fb5b13ea49aa22e60438f9ba2, type: 3}
-  m_Name: OnPlayerHit
-  m_EditorClassIdentifier: Assembly-CSharp::Events.Base.VoidEventChannel
+  m_Script: {fileID: 11500000, guid: e989dd56495192745a037a408f8b11d7, type: 3}
+  m_Name: OnMusicRequested
+  m_EditorClassIdentifier: Assembly-CSharp::Events.Base.StringEventChannel

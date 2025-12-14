@@ -1,5 +1,4 @@
 using UnityEngine;
-using static Databases.Base.DataTypes;
 
 namespace Databases.Base
 {
