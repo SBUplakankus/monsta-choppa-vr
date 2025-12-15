@@ -27,13 +27,13 @@ All custom systems documented here are designed to:
 
 ## 🗂️ Documentation Index
 
-| 📄 Document | 📝 Description |
-|-----------|---------------|
-| [Architecture Overview](Docs/Architecture.md) | High-level architectural philosophy and system relationships |
+| 📄 Document                                    | 📝 Description |
+|------------------------------------------------|---------------|
+| [Architecture Overview](Docs/Architecture.md)  | High-level architectural philosophy and system relationships |
 | [Event Channel System](Docs/Event_Channels.md) | ScriptableObject-based event system for decoupled communication |
-| [Data & Database System](Docs/Databases.md) | ScriptableObject databases for items, configuration, and runtime data |
-| [VR Systems](Docs/VR_Systems.md) | How XR interactions hook into gameplay systems |
-| [References](Docs/VR_Systems.md) | Links to content used in project |
+| [Data & Database System](Docs/Databases.md)    | ScriptableObject databases for items, configuration, and runtime data |
+| [VR Systems](Docs/VR_Systems.md)               | How XR interactions hook into gameplay systems |
+| [References](Docs/References.md)               | Links to content used in project |
 
 ---
 
