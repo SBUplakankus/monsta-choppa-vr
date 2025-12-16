@@ -1,0 +1,65 @@
+:root{
+    --border-width: 2px;
+}
+
+Label{
+    color: whitesmoke;
+}
+
+.container{
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.bordered-box{
+    border-width: 4px;
+    border-color: cornflowerblue;
+    border-radius: 20px;
+}
+
+.view-box{
+    width: 80%;
+    height: 45%;
+}
+
+.control-box{
+    flex-direction: row;
+    margin-top: 10px;
+    padding: 10px;
+    width: 80%;
+}
+
+.control-box Button{
+    width: 70px;
+    height: 70px;
+    background-color: cornflowerblue;
+    border-width: var(--border-width);
+    border-color: whitesmoke;
+    transition: 0.25s all;
+    color: whitesmoke;
+    -unity-font-style: bold;
+}
+
+.control-box Button:hover{
+    background-color: lightskyblue;
+    border-radius: 10px;
+    scale: 1.05;
+}
+
+.control-box Slider{
+    flex-grow: 1;
+}
+
+.unity-base-slider__dragger{
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    border-width:  var(--border-width);
+    border-color: whitesmoke;
+    background-color: cornflowerblue;
+    margin-top: -15px;
+}

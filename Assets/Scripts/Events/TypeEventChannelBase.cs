@@ -10,24 +10,7 @@ namespace Events
         /// <summary>
         /// Call the events handlers
         /// </summary>
-        public void Raise(T value)
-        { 
-            var handlers = Handlers;
-            if (handlers == null) return;
-
-            foreach (var @delegate in handlers.GetInvocationList())
-            {
-                var handler = (Action<T>)@delegate;
-                try
-                {
-                    handler(value);
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogException(ex);
-                }
-            }
-        }
+        public void Raise(T value) => Handlers?.Invoke(value);
         
         /// <summary>
         /// Subscribe an Action to be called with the event

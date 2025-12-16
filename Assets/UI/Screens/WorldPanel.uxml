@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/World%20Panels/WorldPanelStyle.uss?fileID=7433441132597879392&amp;guid=717f5fba1acb1824ea99a45aa5c7dfde&amp;type=3#WorldPanelStyle"/>
-    <ui:VisualElement name="spatial_panel_root" class="background" style="height: 450px;">
+    <ui:VisualElement name="spatial_panel_root" class="background" style="height: 450px; transition-duration: 0.25s;">
         <ui:Label text="World Panel" name="header" class="header" style="margin-top: 15px; margin-bottom: 13px; margin-left: 3px;"/>
         <ui:Button text="Continue" name="ContinueButton" class="button" style="align-self: center; margin-bottom: 18px; margin-top: 18px; bottom: auto;"/>
     </ui:VisualElement>

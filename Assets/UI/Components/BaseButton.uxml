@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Styles/MainGameStyle.uss?fileID=7433441132597879392&amp;guid=717f5fba1acb1824ea99a45aa5c7dfde&amp;type=3#MainGameStyle"/>
+    <ui:Button text="Button" name="Button" style="height: 74px; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-items: center; justify-content: center; align-self: center; align-content: center; -unity-text-generator: standard; -unity-text-auto-size: none;"/>
+</ui:UXML>

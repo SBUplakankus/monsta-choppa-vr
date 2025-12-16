@@ -9,7 +9,7 @@ namespace Audio
     {
         [Header("Audio Sources")] 
         [SerializeField] private AudioSource musicSource;
-        [SerializeField] private AudioSource masterSource;
+        [SerializeField] private AudioSource sfxSource;
         
         [Header("Audio Database")]
         private AudioClipDatabase _audioDatabase;
@@ -24,6 +24,13 @@ namespace Audio
         {
             musicSource.clip = _audioDatabase.TryGet(GameConstants.MainMusicKey).clip;
             musicSource.Play();
+        }
+
+        public void PlaySfx(string key)
+        {
+            var sfx = _audioDatabase.TryGet(key).clip;
+            if (sfx == null) return;
+            sfxSource.PlayOneShot(sfx);
         }
 
         private AudioClip TryGet(string key)
