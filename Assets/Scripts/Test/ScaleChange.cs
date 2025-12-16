@@ -9,7 +9,7 @@ namespace Test
         public VoidEventChannel spinClicked;
 
         private float _targetScale = 1;
-        private Vector3 scaleVel;
+        private Vector3 _scaleVel;
         private Quaternion _targetRotation;
 
         private void OnEnable()
@@ -39,7 +39,7 @@ namespace Test
             transform.localScale = 
                 Vector3.SmoothDamp(transform.localScale,
                     _targetScale * Vector3.one,
-                    ref scaleVel,
+                    ref _scaleVel,
                     0.15f);
             
             transform.rotation = Quaternion.Slerp(transform.rotation, 
