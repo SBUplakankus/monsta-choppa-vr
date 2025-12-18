@@ -14,5 +14,13 @@ namespace Constants
         public const string ContinueButtonName = "ContinueButton";
         
         #endregion
+        
+        #region Attribute Keys
+        
+        public const string PlayerGoldKey = "PlayerGold";
+        public const string PlayerExperienceKey = "PlayerExperience";
+        public const string PlayerLevelKey = "PlayerLevel";
+        
+        #endregion
     }
 }
