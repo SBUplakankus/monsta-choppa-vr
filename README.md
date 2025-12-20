@@ -35,6 +35,7 @@ All custom systems documented here are designed to:
 | [Event Channel System](Docs/Event_Channels.md) | ScriptableObject-based event system for decoupled communication       |
 | [Data & Database System](Docs/Databases.md)    | ScriptableObject databases for items, configuration, and runtime data |
 | [VR Systems](Docs/VR_Systems.md)               | How XR interactions hook into gameplay systems                        |
+| [UI Factory](Docs/Factories.md)                | Factory class for creating elements through the UI Toolkit in C#      |
 | [Weapons](Docs/Weapons.md)                     | How the weapons system is structured                                  |
 | [Enemies](Docs/Enemies.md)                     | How the enemy system is structured                                    |
 | [Localisation](Docs/Localisation.md)           | How the localisation is handled in game                               |
