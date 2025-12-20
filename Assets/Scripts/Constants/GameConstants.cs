@@ -24,6 +24,8 @@ namespace Constants
         public const string StatStyle = "stat-label";
         public const string HealthBarStyle = "health-bar";
         public const string HealthBarContainerStyle = "health-bar-container";
+        public const string HealthBarBackgroundStyle = "health-bar-background";
+        public const string HealthBarFillStyle = "health-bar-fill";
         
         #endregion
         
