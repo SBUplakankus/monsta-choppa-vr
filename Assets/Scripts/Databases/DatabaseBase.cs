@@ -3,15 +3,16 @@ using UnityEngine;
 
 namespace Databases
 {
-    /// <summary>
+     /// <summary>
     /// Base Class for storing game data through scriptable objects
     /// </summary>
     /// <typeparam name="T">Data stored in Database</typeparam>
     public abstract class DatabaseBase<T> : ScriptableObject
     {
-        [SerializeField] private List<T> entries = new();
+        [SerializeField] private T[] entries;
         
         private Dictionary<string, T> _lookup;
+        private bool _isLookupBuilt;
         
         /// <summary>
         /// Get the Database Specific Key
@@ -25,19 +26,18 @@ namespace Databases
         /// </summary>
         private void BuildLookup()
         {
-            if (entries == null || entries.Count == 0)
-            {
-                // Debug.LogWarning($"Database {name} is empty");
-                return;
-            }
+            if (_isLookupBuilt) return;
             
-            _lookup = new Dictionary<string, T>();
-
-            foreach (var entry in entries)
+            _lookup = new Dictionary<string, T>(entries.Length);
+            
+            for (var i = 0; i < entries.Length; i++)
             {
+                var entry = entries[i];
                 var key = GetKey(entry);
                 _lookup[key] = entry;
             }
+            
+            _isLookupBuilt = true;
         }
         
         protected virtual void OnEnable()
@@ -45,16 +45,46 @@ namespace Databases
             BuildLookup();
         }
         
+        protected virtual void OnDisable()
+        {
+            _isLookupBuilt = false;
+            _lookup = null; 
+        }
+        
         /// <summary>
         /// Try to fetch an entry from the database
         /// </summary>
         /// <param name="id">ID of the entry</param>
-        /// <returns>Data attached to the ID</returns>
-        public T TryGet(string id)
+        /// <param name="entry">Output parameter for data</param>
+        /// <returns>True if entry was found</returns>
+        public bool TryGet(string id, out T entry)
         {
-            if (_lookup == null) BuildLookup();
+            if (!_isLookupBuilt) BuildLookup();
             
-            return _lookup.GetValueOrDefault(id);
+            return _lookup.TryGetValue(id, out entry);
         }
+        
+        /// <summary>
+        /// Get entry without output parameter for cleaner syntax when you know it exists
+        /// </summary>
+        public T Get(string id)
+        {
+            if (!_isLookupBuilt) BuildLookup();
+            
+            return _lookup[id];
+        }
+        
+        #region Editor-Only Methods
+        #if UNITY_EDITOR
+        /// <summary>
+        /// Rebuild lookup in Editor mode (useful when entries change)
+        /// </summary>
+        public void EditorRebuildLookup()
+        {
+            _isLookupBuilt = false;
+            BuildLookup();
+        }
+        #endif
+        #endregion
     }
 }
