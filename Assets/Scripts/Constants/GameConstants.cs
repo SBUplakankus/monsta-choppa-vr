@@ -22,6 +22,8 @@ namespace Constants
         public const string ControlBoxStyle = "control-box";
         public const string HeaderStyle = "header-label";
         public const string StatStyle = "stat-label";
+        public const string HealthBarStyle = "health-bar";
+        public const string HealthBarContainerStyle = "health-bar-container";
         
         #endregion
         
