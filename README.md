@@ -1,6 +1,6 @@
 # 📘 Project Documentation
 
-**A lot of this is AI Generated at the moment for placeholder info**
+**A lot of this is AI Generated at the moment for placeholder info while I develop the game**
 
 This folder contains high-level technical documentation for the Unity VR project.  
 The goal of these documents is to explain **how systems are structured**, **why architectural decisions were made**, and **how different systems communicate**.
