@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Constants;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -8,6 +9,18 @@ using UnityEngine.UIElements;
 
 namespace Factories
 {
+    /// <summary>
+    /// Holds references to all VisualElements that make up a health bar.
+    /// Allows external systems to update visuals (e.g. fill width) without
+    /// knowing how the health bar hierarchy is constructed.
+    /// </summary>
+    public struct HealthBarElements
+    {
+        public VisualElement Container;
+        public VisualElement Background;
+        public VisualElement Fill;
+    }
+    
     /// <summary>
     /// Static factory class for creating and configuring UI Toolkit elements.
     /// Provides standardized methods for element creation with optional styling and event handling.
@@ -41,8 +54,38 @@ namespace Factories
         
         #endregion
         
-        #region Control Factories
+        #region Struct Factories
+        
+        /// <summary>
+        /// Creates a complete health bar UI hierarchy.
+        /// Structure:
+        /// Container -> Background -> Fill
+        /// </summary>
+        /// <returns>
+        /// A <see cref="HealthBarElements"/> struct containing references
+        /// to the container, background, and fill elements.
+        /// </returns>
+        public static HealthBarElements CreateHealthBar()
+        {
+            var container = CreateContainer(GameConstants.HealthBarContainerStyle);
+            var background = CreateContainer(GameConstants.HealthBarBackgroundStyle);
+            var fill = CreateContainer(GameConstants.HealthBarFillStyle);
 
+            background.Add(fill);
+            container.Add(background);
+
+            return new HealthBarElements
+            {
+                Container = container,
+                Background = background,
+                Fill = fill
+            };
+        }
+        
+        #endregion
+        
+        #region Control Factories
+        
         /// <summary>
         /// Creates a Button with text and optional click handler.
         /// </summary>

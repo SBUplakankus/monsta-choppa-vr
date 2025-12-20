@@ -47,14 +47,13 @@ namespace UI.Game
             if (!root.styleSheets.Contains(styleSheet))
                 root.styleSheets.Add(styleSheet);
 
-            _healthBarContainer = UIToolkitFactory.CreateContainer(GameConstants.HealthBarContainerStyle);
-            
-            _healthBarBg = UIToolkitFactory.CreateContainer(GameConstants.HealthBarBackgroundStyle);
-            _healthBarFill = UIToolkitFactory.CreateContainer(GameConstants.HealthBarFillStyle);
+            var healthBar = UIToolkitFactory.CreateHealthBar();
+
+            _healthBarContainer = healthBar.Container;
+            _healthBarBg = healthBar.Background;
+            _healthBarFill = healthBar.Fill;
             _healthBarFillStyle = _healthBarFill.style;
-            _healthBarBg.Add(_healthBarFill);
-            
-            _healthBarContainer.Add(_healthBarBg);
+
             root.Add(_healthBarContainer);
         }
 
