@@ -9,7 +9,7 @@ namespace Databases
     /// <typeparam name="T">Data stored in Database</typeparam>
     public abstract class DatabaseBase<T> : ScriptableObject
     {
-        [SerializeField] private T[] entries;
+        [SerializeField] protected T[] entries;
         
         private Dictionary<string, T> _lookup;
         private bool _isLookupBuilt;

@@ -1,25 +1,32 @@
+using System;
 using UnityEngine;
 
 namespace Characters.Base
 {
     public abstract class HealthComponent : MonoBehaviour
     {
+        protected event Action OnDeath;
         private int _currentHealth;
         private int _maxHealth;
-        
+
         /// <summary>
         /// Initialise the Health Component
         /// </summary>
         /// <param name="maxHealth">Max Health</param>
-        public void InitHealth(int maxHealth)
+        /// <param name="onDeathHandler">Function to call on death</param>
+        public virtual void InitHealth(int maxHealth, Action onDeathHandler)
         {
             _currentHealth = maxHealth;
             _maxHealth = maxHealth;
+            OnDeath += onDeathHandler;
         }
 
-        public void ResetHealth() => _currentHealth = _maxHealth;
-        
-        protected abstract void HandleDeath();
+        public virtual void ResetHealth(Action onDeathHandler)
+        {
+            _currentHealth = 0;
+            _maxHealth = 0;
+            OnDeath -= onDeathHandler;
+        }
         
         /// <summary>
         /// Damage the health component and check to see if dead
@@ -29,7 +36,7 @@ namespace Characters.Base
         {
             _currentHealth -= damage;
             if (_currentHealth <= 0)
-                HandleDeath();
+                OnDeath?.Invoke();
         }
     }
 }

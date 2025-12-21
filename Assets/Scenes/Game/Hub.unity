@@ -622,6 +622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bootstrapper
       objectReference: {fileID: 0}
+    - target: {fileID: 1725519543086852879, guid: a69adf73dc5d858449d31f17ea029ab1, type: 3}
+      propertyPath: enemyDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 214a0531867fda44e8055b603b0795cf, type: 2}
     - target: {fileID: 8608510862946139203, guid: a69adf73dc5d858449d31f17ea029ab1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5361805
@@ -3334,8 +3338,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8347129919413940679, guid: fa8ab08ec5adc5743a5f0ebc3fb94583, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9038041944622165895}
   m_SourcePrefab: {fileID: 100100000, guid: fa8ab08ec5adc5743a5f0ebc3fb94583, type: 3}
+--- !u!1 &9038041944622165894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8347129919413940679, guid: fa8ab08ec5adc5743a5f0ebc3fb94583, type: 3}
+  m_PrefabInstance: {fileID: 9038041944622165893}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9038041944622165895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038041944622165894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9080f2ac03f8eb04a94d8d90aa2f8b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Characters.Enemies.EnemyController
 --- !u!4 &9065830248193931036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2470351362714782603, guid: 81bdda8183ea1944eaa4125db8261f08, type: 3}

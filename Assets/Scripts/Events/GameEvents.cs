@@ -21,6 +21,8 @@ namespace Events
         #region Game Events
 
         public static StringEventChannel OnEnemyDeath;
+        public static EnemyEventChannel OnEnemySpawned;
+        public static EnemyEventChannel OnEnemyDespawned;
 
         #endregion
     }

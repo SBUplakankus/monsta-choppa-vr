@@ -1,12 +1,8 @@
-using System;
-using Events.Data;
 using UnityEngine;
 using UnityEngine.Pool;
 using System.Collections.Generic;
 using Characters.Enemies;
-using PrimeTween;
-using Unity.Tutorials.Core.Editor;
-using UnityEngine.Localization;
+using Databases;
 
 namespace Pooling
 {
@@ -19,39 +15,107 @@ namespace Pooling
         #endregion
         
         #region Performance Settings
+        
+        [Header("Pool Load Settings")]
+        [SerializeField] private int prewarmCount = 20;
+        
         [Header("VR Performance Settings")]
         [SerializeField] private bool enableCollectionCheck = false;
         [SerializeField] private int poolSize = 50;
         [SerializeField] private int maxPoolSize = 100;
+        
         #endregion
         
         #region Pools
-        private ObjectPool<DamageEventData> _damagePool;
-        private ObjectPool<LocalizedString> _localizedStringPool;
-        private ObjectPool<EnemyController> _enemyPool;
         
-        private readonly Dictionary<Type, object> _poolDictionary = new();
+        private readonly Dictionary<EnemyData, ObjectPool<GameObject>> _enemyPoolDictionary = new();
+        
         #endregion
         
-        #region Methods
+        #region Pool Creation Methods
+        
+        private ObjectPool<GameObject> CreateEnemyPrefabPool(EnemyData data)
+        {
+            return new ObjectPool<GameObject>(
+                createFunc: () =>
+                {
+                    var obj = Instantiate(data.Prefab);
+                    obj.SetActive(false);
+                    return obj;
+                },
+                actionOnGet: obj =>
+                {
+                    obj.SetActive(true);
+                },
+                actionOnRelease: obj =>
+                {
+                    obj.GetComponent<EnemyController>()?.ResetEnemy();
+                    obj.SetActive(false);
+                },
+                actionOnDestroy: Destroy,
+                collectionCheck: enableCollectionCheck && Application.isEditor,
+                defaultCapacity: poolSize,
+                maxSize: maxPoolSize
+            );
+        }
+
+        private void CreateEnemyPools()
+        {
+            foreach (var enemyData in GameDatabases.EnemyDatabase.Enemies)
+            {
+                if (_enemyPoolDictionary.ContainsKey(enemyData)) continue;
+
+                var pool = CreateEnemyPrefabPool(enemyData);
+                _enemyPoolDictionary[enemyData] = pool;
+
+                var temp = new List<GameObject>();
+                for (int i = 0; i < prewarmCount; i++)
+                    temp.Add(pool.Get());
+
+                foreach (var obj in temp)
+                    pool.Release(obj);
+            }
+        }
+        
         private void InitPools()
         {
-            // Damage Event Pool - medium frequency
-            _damagePool = new ObjectPool<DamageEventData>(
-                createFunc: () => new DamageEventData(),
-                actionOnGet: null, // No extra work on get
-                actionOnRelease: data => data.Reset(),
-                actionOnDestroy: null, // No destruction logging
-                collectionCheck: enableCollectionCheck && Application.isEditor, // Editor only!
-                defaultCapacity: poolSize,
-                maxSize: poolSize * 10 // Allow growth but with limit
-            );
-            
-            // Register pools for easy access
-            _poolDictionary[typeof(DamageEventData)] = _damagePool;
-
-            
+            CreateEnemyPools();
         }
+        
+        #endregion
+        
+        #region Pool Access Methods
+
+        public GameObject GetEnemyPrefab(EnemyData data, Vector3 position, Quaternion rotation)
+        {
+            if (!_enemyPoolDictionary.TryGetValue(data, out var pool))
+            {
+                Debug.LogError($"No enemy pool found for {data.name}");
+                return null;
+            }
+
+            var obj = pool.Get();
+            obj.transform.SetPositionAndRotation(position, rotation);
+
+            var controller = obj.GetComponent<EnemyController>();
+            controller.InitEnemy(data);
+
+            return obj;
+        }
+        
+        public void ReturnEnemyPrefab(EnemyController enemy)
+        {
+            var data = enemy.Data;
+
+            if (_enemyPoolDictionary.TryGetValue(data, out var pool))
+                pool.Release(enemy.gameObject);
+            else
+                Destroy(enemy.gameObject);
+        }
+        
+        #endregion
+        
+        #region Unity Methods
         
         private void Awake()
         {
@@ -66,43 +130,7 @@ namespace Pooling
                 Destroy(gameObject);
             }
         }
-        
-        // Generic method for any pool
-        public T GetFromPool<T>() where T : class, new()
-        {
-            if (_poolDictionary.TryGetValue(typeof(T), out var poolObj))
-            {
-                return ((ObjectPool<T>)poolObj).Get();
-            }
-            
-            // Auto-create pool if it doesn't exist (lazy initialization)
-            Debug.LogWarning($"Pool for {typeof(T).Name} not found, creating default");
-            return CreateDefaultPool<T>().Get();
-        }
-        
-        public void ReturnToPool<T>(T item) where T : class
-        {
-            if (!_poolDictionary.TryGetValue(typeof(T), out var poolObj)) return;
-            var pool = poolObj as ObjectPool<T>;
-            pool?.Release(item);
-        }
-        
-        private ObjectPool<T> CreateDefaultPool<T>() where T : class, new()
-        {
-            var pool = new ObjectPool<T>(
-                createFunc: () => new T(),
-                actionOnGet: null,
-                actionOnRelease: null,
-                actionOnDestroy: null,
-                collectionCheck: false,
-                defaultCapacity: 20,
-                maxSize: 200
-            );
-            
-            _poolDictionary[typeof(T)] = pool;
-            return pool;
-        }
-        
+
         #endregion
     }
 }

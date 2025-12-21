@@ -7,5 +7,7 @@ namespace Databases
     public class EnemyDatabase : DatabaseBase<EnemyData>
     {
         protected override string GetKey(EnemyData entry) => entry.EnemyId;
+        
+        public EnemyData[] Enemies => entries;
     }
 }

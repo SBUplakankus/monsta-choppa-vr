@@ -1,4 +1,6 @@
 using Databases;
+using Events;
+using Pooling;
 using UnityEngine;
 
 namespace Characters.Enemies
@@ -15,22 +17,49 @@ namespace Characters.Enemies
         private EnemyData _enemyData;
         private EnemyId _enemyId;
 
+        [Header("Enemy Events")] 
+        private EnemyEventChannel _onEnemySpawned;
+        private EnemyEventChannel _onEnemyDespawned;
+
+        #endregion
+        
+        #region Properties
+
+        public EnemyData Data => _enemyData;
+        
         #endregion
         
         #region Class Functions
-        
-        public void Initialise(string id)
+
+        private void HandleEnemyDeath()
         {
-            _enemyData = GameDatabases.EnemyDatabase.Get(id);
+            GamePoolManager.Instance.ReturnEnemyPrefab(this);
+        }
+        
+        public void InitEnemy(EnemyData data)
+        {
+            _enemyData = data;
             
             _enemyId.ID = _enemyData.EnemyId;
-            _enemyHealth.InitHealth(_enemyData.MaxHealth);
+            _enemyHealth.InitHealth(_enemyData.MaxHealth, HandleEnemyDeath);
             _enemyMovement.InitMovement(_enemyData.MoveSpeed);
             _enemyAttack.InitAttack(10, 2);
             _enemyAnimator.InitAnimator();
+            
+            _onEnemySpawned.Raise(this);
         }
 
-        public void Reset()
+        public void ResetEnemy()
+        {
+            _enemyAnimator.ResetAnimator();
+            _enemyMovement.ResetMovement();
+            _enemyAttack.ResetAttack();
+            _enemyHealth.ResetHealth(HandleEnemyDeath);
+            
+            _onEnemyDespawned.Raise(this);
+        }
+
+        public void UpdateEnemy()
         {
             
         }

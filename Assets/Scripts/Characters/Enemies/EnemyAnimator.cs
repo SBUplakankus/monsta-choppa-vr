@@ -15,7 +15,12 @@ namespace Characters.Enemies
         #endregion
         
         #region Methods
-
+        
+        public void ResetAnimator()
+        {
+            
+        }
+        
         public void InitAnimator()
         {
             SetBool(IsMovingHash, true);

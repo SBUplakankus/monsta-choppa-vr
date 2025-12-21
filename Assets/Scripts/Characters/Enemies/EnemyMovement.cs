@@ -12,6 +12,11 @@ namespace Characters.Enemies
         {
             _navMeshAgent.speed = speed;
         }
+
+        public void ResetMovement()
+        {
+            
+        }
         
         private void Awake()
         {

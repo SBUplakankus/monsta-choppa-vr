@@ -1,19 +1,63 @@
+using System.Collections.Generic;
+using Characters.Enemies;
+using Events;
 using UnityEngine;
 
 namespace Systems
 {
-    public class EnemyManager : MonoBehaviour
+    public class EnemyManager : MonoBehaviour, IUpdateable
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
+        #region Fields
         
+        [Header("Enemy Events")]
+        private EnemyEventChannel _onEnemySpawned;
+        private EnemyEventChannel _onEnemyDespawned;
+        
+        private readonly HashSet<EnemyController> _activeEnemies = new();
+
+        #endregion
+        
+        #region Event Handlers
+
+        private void HandleEnemyEnable(EnemyController enemyController) => _activeEnemies.Add(enemyController);
+        private void HandleEnemyDisable(EnemyController enemyController) => _activeEnemies.Remove(enemyController);
+        
+        #endregion
+        
+        
+        #region Unity Functions
+
+        public void OnUpdate(float deltaTime)
+        {
+            if(_activeEnemies.Count == 0) return;
+            
+            foreach (var enemy in _activeEnemies)
+                enemy.UpdateEnemy();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Awake()
         {
-        
+            _onEnemySpawned = GameEvents.OnEnemySpawned;
+            _onEnemyDespawned = GameEvents.OnEnemyDespawned;
         }
+        
+        private void OnEnable()
+        { 
+            GameUpdateManager.Instance.Register(this, UpdatePriority.High);
+            
+            _onEnemySpawned.Subscribe(HandleEnemyEnable);
+            _onEnemyDespawned.Subscribe(HandleEnemyDisable);
+        }
+        private void OnDisable()
+        { 
+            GameUpdateManager.Instance.Unregister(this);
+            
+            _onEnemySpawned.Unsubscribe(HandleEnemyEnable);
+            _onEnemyDespawned.Unsubscribe(HandleEnemyDisable);
+        }
+
+        #endregion
+        
+        
     }
 }

@@ -19,6 +19,8 @@ namespace Systems
 
         [Header("Game Events")] 
         [SerializeField] private StringEventChannel onEnemyDeath;
+        [SerializeField] private EnemyEventChannel onEnemySpawned;
+        [SerializeField] private EnemyEventChannel onEnemyDespawned;
         
         [Header("Audio Events")]
         [SerializeField] private StringEventChannel onMusicRequested;
@@ -51,6 +53,8 @@ namespace Systems
         private void SetGameEvents()
         {
             GameEvents.OnEnemyDeath = onEnemyDeath;
+            GameEvents.OnEnemySpawned = onEnemySpawned;
+            GameEvents.OnEnemyDespawned = onEnemyDespawned;
         }
 
         private void SetAudioEvents()

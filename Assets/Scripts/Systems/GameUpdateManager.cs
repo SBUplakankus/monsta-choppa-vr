@@ -91,6 +91,10 @@ namespace Systems
             }
         }
         
+        /// <summary>
+        /// Remove a component from the manager
+        /// </summary>
+        /// <param name="updateable">Component to Remove</param>
         public void Unregister(IUpdateable updateable)
         {
             _highPriorityUpdates.Remove(updateable);
