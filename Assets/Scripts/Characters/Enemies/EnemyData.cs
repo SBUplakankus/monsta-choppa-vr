@@ -1,4 +1,5 @@
 using UnityEngine;
+using Weapons;
 
 namespace Characters.Enemies
 {
@@ -17,6 +18,9 @@ namespace Characters.Enemies
         [Header("Presentation")]
         [SerializeField] private GameObject prefab;
         [SerializeField] private AudioClip deathSfx;
+
+        [Header("Combat")] 
+        [SerializeField] private WeaponData weapon;
 
         #endregion
         

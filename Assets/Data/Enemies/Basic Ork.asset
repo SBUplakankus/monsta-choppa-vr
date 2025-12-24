@@ -15,5 +15,6 @@ MonoBehaviour:
   enemyId: basic-ork
   maxHealth: 100
   moveSpeed: 3.5
-  prefab: {fileID: 0}
+  prefab: {fileID: 8347129919413940679, guid: fa8ab08ec5adc5743a5f0ebc3fb94583, type: 3}
   deathSfx: {fileID: 0}
+  weapon: {fileID: 0}

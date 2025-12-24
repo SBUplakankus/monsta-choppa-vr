@@ -18,7 +18,6 @@ namespace Systems
         [SerializeField] private IntEventChannel onLevelChanged;
 
         [Header("Game Events")] 
-        [SerializeField] private StringEventChannel onEnemyDeath;
         [SerializeField] private EnemyEventChannel onEnemySpawned;
         [SerializeField] private EnemyEventChannel onEnemyDespawned;
         
@@ -52,7 +51,6 @@ namespace Systems
 
         private void SetGameEvents()
         {
-            GameEvents.OnEnemyDeath = onEnemyDeath;
             GameEvents.OnEnemySpawned = onEnemySpawned;
             GameEvents.OnEnemyDespawned = onEnemyDespawned;
         }
@@ -93,20 +91,18 @@ namespace Systems
         
         private void Awake()
         {
-            // Prevent duplicate initialization across scenes
             if (_isInitialized)
             {
                 Destroy(gameObject);
                 return;
             }
             
-            // Optional: Make persistent across scenes
-            // DontDestroyOnLoad(gameObject);
-            
             SetPlayerEvents();
             SetGameEvents();
             SetAudioEvents();
             SetDatabases();
+            
+            DontDestroyOnLoad(gameObject);
             
             _isInitialized = true;
         }
@@ -115,7 +111,6 @@ namespace Systems
         {
             if (!_isInitialized) return;
             
-            // Clear references when destroyed
             GameDatabases.Clear();
             _isInitialized = false;
         }

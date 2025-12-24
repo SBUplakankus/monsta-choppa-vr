@@ -15,6 +15,7 @@ namespace Systems
     /// Replaces the Unity Update function for better performance. Register components based on their update priority,
     /// High - Every Frame, Medium - Every 20ms, Low - Every 40ms
     /// </summary>
+    [DefaultExecutionOrder(-99)]
     public class GameUpdateManager : MonoBehaviour
     {
         #region Fields

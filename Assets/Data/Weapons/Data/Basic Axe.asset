@@ -16,9 +16,9 @@ MonoBehaviour:
   displayName: Basic Axe
   category: 3
   rarity: 0
-  weaponPrefab: {fileID: 3693600064260503846, guid: cf7e71931226c5f4382a9d550a0d48a3, type: 3}
-  baseDamage: 10
-  attackSpeed: 1
+  weaponPrefab: {fileID: 2272350488490601113, guid: 6314a63a91757b4478c09b6c19d3c7c8, type: 3}
+  baseDamage: 15
+  attackCooldown: 0.5
   range: 2
   staminaCost: 10
   damageType: 0

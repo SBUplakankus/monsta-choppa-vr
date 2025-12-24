@@ -4,14 +4,18 @@ namespace Databases
 {
     public static class GameDatabases
     {
-         // Use readonly fields for thread safety and JIT optimization
+        #region Databases
+
         private static AudioClipDatabase _audioClipDatabase;
         private static WeaponDatabase _weaponDatabase;
         private static TMPFontDatabase _tmpFontDatabase;
         private static SpriteDatabase _spriteDatabase;
         private static EnemyDatabase _enemyDatabase;
+
+        #endregion
         
-        // Properties with null checks
+        #region Properties
+        
         public static AudioClipDatabase AudioClipDatabase 
         {
             get
@@ -67,6 +71,10 @@ namespace Databases
             internal set => _enemyDatabase = value;
         }
         
+        #endregion
+        
+        #region Methods
+        
         /// <summary>
         /// Clear all database references (useful for scene transitions or tests)
         /// </summary>
@@ -78,5 +86,7 @@ namespace Databases
             _spriteDatabase = null;
             _enemyDatabase = null;
         }
+        
+        #endregion
     }
 }

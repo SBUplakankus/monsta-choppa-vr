@@ -16,13 +16,17 @@ namespace Characters.Enemies
         
         #region Methods
         
-        public void ResetAnimator()
+        public void OnDespawn()
         {
-            
+            Animator.enabled = false;
         }
         
-        public void InitAnimator()
+        public void OnSpawn()
         {
+            if(!Animator)
+                Animator = GetComponent<Animator>();
+            
+            Animator.enabled = true;
             SetBool(IsMovingHash, true);
         }
         

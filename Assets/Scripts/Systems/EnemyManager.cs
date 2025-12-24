@@ -32,19 +32,19 @@ namespace Systems
             if(_activeEnemies.Count == 0) return;
             
             foreach (var enemy in _activeEnemies)
-                enemy.UpdateEnemy();
+                enemy.HighPriorityUpdate();
         }
 
         private void Awake()
         {
             _onEnemySpawned = GameEvents.OnEnemySpawned;
             _onEnemyDespawned = GameEvents.OnEnemyDespawned;
+            
+            GameUpdateManager.Instance.Register(this, UpdatePriority.High);
         }
         
         private void OnEnable()
         { 
-            GameUpdateManager.Instance.Register(this, UpdatePriority.High);
-            
             _onEnemySpawned.Subscribe(HandleEnemyEnable);
             _onEnemyDespawned.Subscribe(HandleEnemyDisable);
         }

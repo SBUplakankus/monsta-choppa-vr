@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Weapons
 {
@@ -17,7 +18,7 @@ namespace Weapons
 
         [Header("Base Stats")]
         [SerializeField] private int baseDamage = 10;
-        [SerializeField] private float attackSpeed = 1f;
+        [SerializeField] private float attackCooldown = 1f;
         [SerializeField] private int range = 2;
         [SerializeField] private int staminaCost = 10;
         [SerializeField] private DamageType damageType;
@@ -49,7 +50,7 @@ namespace Weapons
 
         // Base Stats
         public int BaseDamage => baseDamage;
-        public float AttackSpeed => attackSpeed;
+        public float AttackCooldown => attackCooldown;
         public int Range => range;
         public int StaminaCost => staminaCost;
         public DamageType DamageType => damageType;

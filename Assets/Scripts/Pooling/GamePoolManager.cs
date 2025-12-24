@@ -3,6 +3,7 @@ using UnityEngine.Pool;
 using System.Collections.Generic;
 using Characters.Enemies;
 using Databases;
+using Weapons;
 
 namespace Pooling
 {
@@ -17,7 +18,8 @@ namespace Pooling
         #region Performance Settings
         
         [Header("Pool Load Settings")]
-        [SerializeField] private int prewarmCount = 20;
+        [SerializeField] private int prewarmCount = 5;
+        private bool _isPrewarming;
         
         [Header("VR Performance Settings")]
         [SerializeField] private bool enableCollectionCheck = false;
@@ -29,6 +31,7 @@ namespace Pooling
         #region Pools
         
         private readonly Dictionary<EnemyData, ObjectPool<GameObject>> _enemyPoolDictionary = new();
+        private readonly Dictionary<WeaponData, ObjectPool<GameObject>> _weaponPoolDictionary = new();
         
         #endregion
         
@@ -43,15 +46,26 @@ namespace Pooling
                     obj.SetActive(false);
                     return obj;
                 },
-                actionOnGet: obj =>
+                actionOnGet: OnGet,
+                actionOnRelease: OnEnemyRelease,
+                actionOnDestroy: Destroy,
+                collectionCheck: enableCollectionCheck && Application.isEditor,
+                defaultCapacity: poolSize,
+                maxSize: maxPoolSize
+            );
+        }
+
+        private ObjectPool<GameObject> CreateWeaponPrefabPool(WeaponData data)
+        {
+            return new ObjectPool<GameObject>(
+                createFunc: () =>
                 {
-                    obj.SetActive(true);
-                },
-                actionOnRelease: obj =>
-                {
-                    obj.GetComponent<EnemyController>()?.ResetEnemy();
+                    var obj = Instantiate(data.WeaponPrefab);
                     obj.SetActive(false);
+                    return obj;
                 },
+                actionOnGet: OnGet,
+                actionOnRelease: OnWeaponRelease,
                 actionOnDestroy: Destroy,
                 collectionCheck: enableCollectionCheck && Application.isEditor,
                 defaultCapacity: poolSize,
@@ -76,16 +90,55 @@ namespace Pooling
                     pool.Release(obj);
             }
         }
-        
-        private void InitPools()
+
+        private void CreateWeaponPools()
         {
+            foreach (var weaponData in GameDatabases.WeaponDatabase.Weapons)
+            {
+                if(_weaponPoolDictionary.ContainsKey(weaponData)) continue;
+
+                var pool = CreateWeaponPrefabPool(weaponData);
+                _weaponPoolDictionary[weaponData] = pool;
+                
+                var temp = new List<GameObject>();
+                for (int i = 0; i < prewarmCount; i++)
+                    temp.Add(pool.Get());
+
+                foreach (var obj in temp)
+                    pool.Release(obj);
+            }
+        }
+        
+        private void PrewarmPools()
+        {
+            _isPrewarming = true;
             CreateEnemyPools();
+            CreateWeaponPools();
+            _isPrewarming = false;
         }
         
         #endregion
         
         #region Pool Access Methods
 
+        private static void OnGet(GameObject obj) { }
+
+        private void OnEnemyRelease(GameObject obj)
+        {
+            if (!_isPrewarming)
+                obj.GetComponent<EnemyController>()?.OnDespawn();
+            
+            obj.SetActive(false);
+        }
+
+        private void OnWeaponRelease(GameObject obj)
+        {
+            // if (!_isPrewarming)
+                // TODO: Weapon Controller
+                
+            obj.SetActive(false);
+        }
+        
         public GameObject GetEnemyPrefab(EnemyData data, Vector3 position, Quaternion rotation)
         {
             if (!_enemyPoolDictionary.TryGetValue(data, out var pool))
@@ -98,8 +151,9 @@ namespace Pooling
             obj.transform.SetPositionAndRotation(position, rotation);
 
             var controller = obj.GetComponent<EnemyController>();
-            controller.InitEnemy(data);
-
+            controller.OnSpawn(data);
+            
+            obj.SetActive(true);
             return obj;
         }
         
@@ -112,7 +166,7 @@ namespace Pooling
             else
                 Destroy(enemy.gameObject);
         }
-        
+
         #endregion
         
         #region Unity Methods
@@ -123,7 +177,7 @@ namespace Pooling
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
-                InitPools();
+                PrewarmPools();
             }
             else
             {

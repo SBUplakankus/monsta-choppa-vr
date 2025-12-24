@@ -2,6 +2,7 @@ using Databases;
 using Events;
 using Pooling;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Enemies
 {
@@ -10,11 +11,10 @@ namespace Characters.Enemies
         #region Fields
 
         [Header("Components")] 
+        [SerializeField] private EnemyData enemyData;
         private EnemyMovement _enemyMovement;
         private EnemyAnimator _enemyAnimator;
-        private EnemyAttack _enemyAttack;
         private EnemyHealth _enemyHealth;
-        private EnemyData _enemyData;
         private EnemyId _enemyId;
 
         [Header("Enemy Events")] 
@@ -25,8 +25,12 @@ namespace Characters.Enemies
         
         #region Properties
 
-        public EnemyData Data => _enemyData;
-        
+        public EnemyData Data
+        {
+            get => enemyData;
+            set => enemyData = value;
+        }
+
         #endregion
         
         #region Class Functions
@@ -35,31 +39,39 @@ namespace Characters.Enemies
         {
             GamePoolManager.Instance.ReturnEnemyPrefab(this);
         }
-        
-        public void InitEnemy(EnemyData data)
+
+        private void InitEnemy()
         {
-            _enemyData = data;
-            
-            _enemyId.ID = _enemyData.EnemyId;
-            _enemyHealth.InitHealth(_enemyData.MaxHealth, HandleEnemyDeath);
-            _enemyMovement.InitMovement(_enemyData.MoveSpeed);
-            _enemyAttack.InitAttack(10, 2);
-            _enemyAnimator.InitAnimator();
+            _enemyId.ID = enemyData.EnemyId;
+            _enemyHealth.OnSpawn(enemyData.MaxHealth, HandleEnemyDeath);
+            _enemyMovement.OnSpawn(enemyData.MoveSpeed);
+            _enemyAnimator.OnSpawn();
             
             _onEnemySpawned.Raise(this);
         }
-
-        public void ResetEnemy()
+        
+        public void OnSpawn(EnemyData data)
         {
-            _enemyAnimator.ResetAnimator();
-            _enemyMovement.ResetMovement();
-            _enemyAttack.ResetAttack();
-            _enemyHealth.ResetHealth(HandleEnemyDeath);
+            enemyData = data;
+            ValidateRequiredComponents();
+            InitEnemy();
+        }
+
+        public void OnDespawn()
+        {
+            _enemyAnimator.OnDespawn();
+            _enemyMovement.OnDespawn();
+            _enemyHealth.OnDespawn(HandleEnemyDeath);
             
             _onEnemyDespawned.Raise(this);
         }
 
-        public void UpdateEnemy()
+        public void HighPriorityUpdate()
+        {
+            
+        }
+
+        public void MediumPriorityUpdate()
         {
             
         }
@@ -75,11 +87,14 @@ namespace Characters.Enemies
             if (!GetComponent<EnemyMovement>())
                 gameObject.AddComponent<EnemyMovement>();
             
-            if (!GetComponent<EnemyAttack>())
-                gameObject.AddComponent<EnemyAttack>();
-            
             if (!GetComponent<EnemyAnimator>())
                 gameObject.AddComponent<EnemyAnimator>();
+
+            if (!_onEnemySpawned)
+                _onEnemySpawned = GameEvents.OnEnemySpawned;
+
+            if (!_onEnemyDespawned)
+                _onEnemyDespawned = GameEvents.OnEnemyDespawned;
         }
     
         private void CacheComponents()
@@ -87,7 +102,6 @@ namespace Characters.Enemies
             _enemyHealth = GetComponent<EnemyHealth>();
             _enemyId = GetComponent<EnemyId>();
             _enemyMovement = GetComponent<EnemyMovement>();
-            _enemyAttack = GetComponent<EnemyAttack>();
             _enemyAnimator = GetComponent<EnemyAnimator>();
         }
         
@@ -99,6 +113,11 @@ namespace Characters.Enemies
         {
             ValidateRequiredComponents();
             CacheComponents();
+        }
+
+        private void OnEnable()
+        {
+            InitEnemy();
         }
         
         #endregion

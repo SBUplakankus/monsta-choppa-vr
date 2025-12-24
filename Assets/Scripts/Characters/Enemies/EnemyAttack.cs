@@ -1,21 +1,21 @@
 using UnityEngine;
+using Weapons;
 
 namespace Characters.Enemies
 {
     public class EnemyAttack : MonoBehaviour
     {
-        private int _damage;
-        private float _attackRate;
+        [SerializeField] private Transform weaponSocket;
+        private WeaponData _weapon;
 
         public void ResetAttack()
         {
             
         }
         
-        public void InitAttack(int damage, int attackRate)
+        public void InitAttack(WeaponData weaponData)
         {
-            _damage = damage;
-            _attackRate = attackRate;
+            _weapon = weaponData;
         }
     }
 }
