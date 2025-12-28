@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.Pool;
 using System.Collections.Generic;
+using Audio;
 using Characters.Enemies;
 using Databases;
+using NUnit.Framework;
 using Systems;
 using Visual_Effects;
 using Weapons;
 
 namespace Pooling
 {
+    [RequireComponent(typeof(VFXPriorityRouter),  typeof(AudioPriorityRouter))]
     public class GamePoolManager : MonoBehaviour
     {
         #region Singleton
@@ -29,6 +32,7 @@ namespace Pooling
         [SerializeField] private int maxPoolSize = 100;
         
         private VFXPriorityRouter _vfxRouter;
+        private AudioPriorityRouter _audioRouter;
         
         #endregion
         
@@ -37,6 +41,7 @@ namespace Pooling
         private readonly Dictionary<EnemyData, ObjectPool<GameObject>> _enemyPoolDictionary = new();
         private readonly Dictionary<WeaponData, ObjectPool<GameObject>> _weaponPoolDictionary = new();
         private readonly Dictionary<ParticleData, ObjectPool<GameObject>> _particlePoolDictionary = new();
+        private readonly Dictionary<WorldAudioData, ObjectPool<GameObject>> _worldAudioPoolDictionary = new();
         
         #endregion
         
@@ -90,7 +95,27 @@ namespace Pooling
                     return obj;
                 },
                 actionOnGet: OnGet,
-                actionOnRelease: OnParticleRelease,
+                actionOnRelease: OnRelease,
+                actionOnDestroy: Destroy,
+                collectionCheck: enableCollectionCheck && Application.isEditor,
+                defaultCapacity: poolSize,
+                maxSize: maxPoolSize
+            );
+        }
+
+        private ObjectPool<GameObject> CreateWorldAudioPool(WorldAudioData data)
+        {
+            return new ObjectPool<GameObject>(
+                createFunc: () =>
+                {
+                    var obj = Instantiate(data.Prefab);
+                    var controller = obj.GetComponent<WorldAudioController>();
+                    controller.Initialise(data);
+                    obj.SetActive(false);
+                    return obj;
+                },
+                actionOnGet: OnGet,
+                actionOnRelease: OnRelease,
                 actionOnDestroy: Destroy,
                 collectionCheck: enableCollectionCheck && Application.isEditor,
                 defaultCapacity: poolSize,
@@ -151,6 +176,24 @@ namespace Pooling
                     pool.Release(obj);
             }
         }
+
+        private void CreateWorldAudioPools()
+        {
+            foreach (var worldAudioData in GameDatabases.WorldAudioDatabase.Entries)
+            {
+                if(_worldAudioPoolDictionary.ContainsKey(worldAudioData)) continue;
+                
+                var pool = CreateWorldAudioPool(worldAudioData);
+                _worldAudioPoolDictionary[worldAudioData] = pool;
+
+                var temp = new List<GameObject>();
+                for(var i = 0; i < prewarmCount; i++)
+                    temp.Add(pool.Get());
+                
+                foreach (var obj in temp)
+                    pool.Release(obj);
+            }
+        }
         
         private void PrewarmPools()
         {
@@ -158,6 +201,7 @@ namespace Pooling
             CreateEnemyPools();
             CreateWeaponPools();
             CreateParticlePools();
+            CreateWorldAudioPools();
             _isPrewarming = false;
         }
         
@@ -166,6 +210,7 @@ namespace Pooling
         #region Pool Access Methods
 
         private static void OnGet(GameObject obj) { }
+        private static void OnRelease(GameObject obj) => obj.SetActive(false);
 
         private void OnEnemyRelease(GameObject obj)
         {
@@ -247,6 +292,35 @@ namespace Pooling
             else
                 Destroy(particle.gameObject);
         }
+        
+        public GameObject GetWorldAudioPrefab(WorldAudioData data, Vector3 position)
+        {
+            if (!_audioRouter.CanSpawn(data.Priority))
+                return null;
+
+            if (!_worldAudioPoolDictionary.TryGetValue(data, out var pool))
+                return null;
+
+            _audioRouter.RegisterSpawn();
+            
+            var obj = pool.Get();
+            var controller = obj.GetComponent<WorldAudioController>();
+            
+            obj.SetActive(true);
+            controller.PlayAtPosition(position);
+            return obj;
+        }
+
+        public void ReturnWorldAudioPrefab(WorldAudioController worldAudio)
+        {
+            var data = worldAudio.Data;
+            _audioRouter.RegisterDespawn();
+            
+            if (_worldAudioPoolDictionary.TryGetValue(data, out var pool))
+                pool.Release(worldAudio.gameObject);
+            else
+                Destroy(worldAudio.gameObject);
+        }
 
         #endregion
         
@@ -259,7 +333,8 @@ namespace Pooling
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
                 PrewarmPools();
-                _vfxRouter = GetComponentInChildren<VFXPriorityRouter>();
+                _vfxRouter = GetComponent<VFXPriorityRouter>();
+                _audioRouter = GetComponent<AudioPriorityRouter>();
             }
             else
             {

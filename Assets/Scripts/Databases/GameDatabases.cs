@@ -7,6 +7,7 @@ namespace Databases
         #region Databases
 
         private static AudioClipDatabase _audioClipDatabase;
+        private static WorldAudioDatabase _worldAudioDatabase; 
         private static WeaponDatabase _weaponDatabase;
         private static TMPFontDatabase _tmpFontDatabase;
         private static SpriteDatabase _spriteDatabase;
@@ -26,6 +27,17 @@ namespace Databases
                 return _audioClipDatabase;
             }
             internal set => _audioClipDatabase = value;
+        }
+        
+        public static WorldAudioDatabase WorldAudioDatabase 
+        {
+            get
+            {
+                if (_worldAudioDatabase == null)
+                    Debug.LogError($"{nameof(WorldAudioDatabase)} not initialized!");
+                return _worldAudioDatabase;
+            }
+            internal set => _worldAudioDatabase = value;
         }
         
         public static WeaponDatabase WeaponDatabase 
@@ -93,6 +105,7 @@ namespace Databases
         public static void Clear()
         {
             _audioClipDatabase = null;
+            _worldAudioDatabase = null;
             _weaponDatabase = null;
             _tmpFontDatabase = null;
             _spriteDatabase = null;

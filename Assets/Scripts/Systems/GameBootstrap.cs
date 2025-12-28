@@ -27,6 +27,7 @@ namespace Systems
         
         [Header("Databases")]
         [SerializeField] private AudioClipDatabase audioDatabase;
+        [SerializeField] private WorldAudioDatabase worldAudioDatabase;
         [SerializeField] private WeaponDatabase weaponDatabase;
         [SerializeField] private EnemyDatabase enemyDatabase;
         [SerializeField] private ParticleDatabase particleDatabase;
@@ -68,6 +69,11 @@ namespace Systems
                 GameDatabases.AudioClipDatabase = audioDatabase;
             else
                 Debug.LogError($"{nameof(audioDatabase)} not assigned in {name}", this);
+            
+            if(worldAudioDatabase != null)
+                GameDatabases.WorldAudioDatabase = worldAudioDatabase;
+            else 
+                Debug.LogError($"{nameof(worldAudioDatabase)} not assigned in {name}", this);
                 
             if (weaponDatabase != null)
                 GameDatabases.WeaponDatabase = weaponDatabase;

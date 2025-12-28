@@ -31,6 +31,7 @@ namespace Visual_Effects
 
         private void OnEnable() => GameUpdateManager.Instance.Register(this, UpdatePriority.Low);
         private void OnDisable() => GameUpdateManager.Instance.Unregister(this);
+        private void OnDestroy() => GameUpdateManager.Instance.Unregister(this);
 
         public void OnUpdate(float deltaTime)
         {
