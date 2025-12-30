@@ -52,7 +52,7 @@ MonoBehaviour:
     _UniqueID: 3
   m_DefaultRaymarchingQualityUniqueID: 2
   pluginVersion: 20205
-  _DummyMaterial: {fileID: 2100000, guid: c26e51d278f40c0409d695201c103632, type: 2}
-  _DummyMaterialHD: {fileID: 2100000, guid: d39b403c27d438647830510254c51749, type: 2}
-  _BeamShader: {fileID: 4800000, guid: 3275722e5b7dcf848908792857d61b1b, type: 3}
-  _BeamShaderHD: {fileID: 4800000, guid: bd90f2f5593f53f4db58acb4fc24e23b, type: 3}
+  _DummyMaterial: {fileID: 2100000, guid: e5cc803e72f540c4d8d3e2b9317e1f18, type: 2}
+  _DummyMaterialHD: {fileID: 2100000, guid: d6e290246fc1d844d9b45daf76c0ce31, type: 2}
+  _BeamShader: {fileID: 4800000, guid: 86f8aad04a2c6aa47938d6c707925dfc, type: 3}
+  _BeamShaderHD: {fileID: 4800000, guid: d10fef567f125074393b75624bfa88cc, type: 3}
