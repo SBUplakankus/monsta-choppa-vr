@@ -9,8 +9,6 @@ namespace Databases
         private static AudioClipDatabase _audioClipDatabase;
         private static WorldAudioDatabase _worldAudioDatabase; 
         private static WeaponDatabase _weaponDatabase;
-        private static TMPFontDatabase _tmpFontDatabase;
-        private static SpriteDatabase _spriteDatabase;
         private static EnemyDatabase _enemyDatabase;
         private static ParticleDatabase _particleDatabase;
 
@@ -51,28 +49,6 @@ namespace Databases
             internal set => _weaponDatabase = value;
         }
         
-        public static TMPFontDatabase TMPFontDatabase 
-        {
-            get
-            {
-                if (_tmpFontDatabase == null)
-                    Debug.LogError($"{nameof(TMPFontDatabase)} not initialized!");
-                return _tmpFontDatabase;
-            }
-            internal set => _tmpFontDatabase = value;
-        }
-        
-        public static SpriteDatabase SpriteDatabase 
-        {
-            get
-            {
-                if (_spriteDatabase == null)
-                    Debug.LogError($"{nameof(SpriteDatabase)} not initialized!");
-                return _spriteDatabase;
-            }
-            internal set => _spriteDatabase = value;
-        }
-        
         public static EnemyDatabase EnemyDatabase 
         {
             get
@@ -107,8 +83,6 @@ namespace Databases
             _audioClipDatabase = null;
             _worldAudioDatabase = null;
             _weaponDatabase = null;
-            _tmpFontDatabase = null;
-            _spriteDatabase = null;
             _enemyDatabase = null;
             _particleDatabase = null;
         }

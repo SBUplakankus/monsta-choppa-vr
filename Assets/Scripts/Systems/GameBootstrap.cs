@@ -31,8 +31,6 @@ namespace Systems
         [SerializeField] private WeaponDatabase weaponDatabase;
         [SerializeField] private EnemyDatabase enemyDatabase;
         [SerializeField] private ParticleDatabase particleDatabase;
-        [SerializeField] private SpriteDatabase spriteDatabase; // Added missing database
-        [SerializeField] private TMPFontDatabase tmpFontDatabase; // Added missing database
         
         [Header("UI Toolkit")]
         [SerializeField] private StyleSheet styleSheet;
@@ -84,12 +82,6 @@ namespace Systems
                 GameDatabases.EnemyDatabase = enemyDatabase;
             else
                 Debug.LogError($"{nameof(enemyDatabase)} not assigned in {name}", this);
-            
-            if (spriteDatabase != null)
-                GameDatabases.SpriteDatabase = spriteDatabase;
-                
-            if (tmpFontDatabase != null)
-                GameDatabases.TMPFontDatabase = tmpFontDatabase;
             
             if (particleDatabase != null)
                 GameDatabases.ParticleDatabase = particleDatabase;

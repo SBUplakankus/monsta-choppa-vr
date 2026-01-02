@@ -11,11 +11,19 @@ using Weapons;
 
 namespace Pooling
 {
+    /// <summary>
+    /// Central manager for object pooling of game entities (enemies, weapons, particles, audio).
+    /// Implements priority-based spawning through <see cref="VFXPriorityRouter"/> and <see cref="AudioPriorityRouter"/>.
+    /// </summary>
     [RequireComponent(typeof(VFXPriorityRouter),  typeof(AudioPriorityRouter))]
     public class GamePoolManager : MonoBehaviour
     {
         #region Singleton
 
+        /// <summary>
+        /// Gets the singleton instance of the GamePoolManager.
+        /// </summary>
+        /// <value>The global <see cref="GamePoolManager"/> instance.</value>
         public static GamePoolManager Instance { get; private set; }
 
         #endregion
@@ -234,6 +242,13 @@ namespace Pooling
             obj.SetActive(false);
         }
         
+        /// <summary>
+        /// Retrieves an enemy instance from the pool or creates a new one.
+        /// </summary>
+        /// <param name="data">The <see cref="EnemyData"/> defining the enemy type.</param>
+        /// <param name="position">World position to spawn the enemy.</param>
+        /// <param name="rotation">World rotation to spawn the enemy.</param>
+        /// <returns>The spawned enemy GameObject, or null if pool not found.</returns>
         public GameObject GetEnemyPrefab(EnemyData data, Vector3 position, Quaternion rotation)
         {
             if (!_enemyPoolDictionary.TryGetValue(data, out var pool))
@@ -252,6 +267,10 @@ namespace Pooling
             return obj;
         }
         
+        /// <summary>
+        /// Returns an enemy instance to the pool for reuse.
+        /// </summary>
+        /// <param name="enemy">The <see cref="EnemyController"/> to return to the pool.</param>
         public void ReturnEnemyPrefab(EnemyController enemy)
         {
             var data = enemy.Data;
@@ -262,6 +281,13 @@ namespace Pooling
                 Destroy(enemy.gameObject);
         }
 
+        /// <summary>
+        /// Retrieves a particle effect instance from the pool, checking priority limits.
+        /// </summary>
+        /// <param name="data">The <see cref="ParticleData"/> defining the effect.</param>
+        /// <param name="position">World position to spawn the effect.</param>
+        /// <param name="rotation">World rotation to spawn the effect.</param>
+        /// <returns>The spawned particle GameObject, or null if priority limit reached.</returns>
         public GameObject GetParticlePrefab(ParticleData data, Vector3 position, Quaternion rotation)
         {
             if (!_vfxRouter.CanSpawn(data.Priority))
@@ -282,6 +308,10 @@ namespace Pooling
             return obj;
         }
 
+        /// <summary>
+        /// Returns a particle effect instance to the pool for reuse.
+        /// </summary>
+        /// <param name="particle">The <see cref="ParticleController"/> to return to the pool.</param>
         public void ReturnParticlePrefab(ParticleController particle)
         {
             var data = particle.Data;
@@ -293,6 +323,12 @@ namespace Pooling
                 Destroy(particle.gameObject);
         }
         
+        /// <summary>
+        /// Retrieves a world audio instance from the pool, checking priority limits.
+        /// </summary>
+        /// <param name="data">The <see cref="WorldAudioData"/> defining the audio.</param>
+        /// <param name="position">World position to play the audio.</param>
+        /// <returns>The spawned audio GameObject, or null if priority limit reached.</returns>
         public GameObject GetWorldAudioPrefab(WorldAudioData data, Vector3 position)
         {
             if (!_audioRouter.CanSpawn(data.Priority))
@@ -311,6 +347,10 @@ namespace Pooling
             return obj;
         }
 
+        /// <summary>
+        /// Returns a world audio instance to the pool for reuse.
+        /// </summary>
+        /// <param name="worldAudio">The <see cref="WorldAudioController"/> to return to the pool.</param>
         public void ReturnWorldAudioPrefab(WorldAudioController worldAudio)
         {
             var data = worldAudio.Data;

@@ -8,6 +8,7 @@ namespace Constants
         public const string StartGame = "start-game";
         public const string Resume = "resume";
         public const string Pause = "pause";
+        public const string Controls = "controls";
         public const string Quit = "quit";
         public const string ExitGame = "exit-game";
 

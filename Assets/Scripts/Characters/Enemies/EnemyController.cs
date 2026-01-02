@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 namespace Characters.Enemies
 {
+    /// <summary>
+    /// Main controller for enemy entities, coordinating health, movement, animation, and events.
+    /// </summary>
     public class EnemyController : MonoBehaviour
     {
         #region Fields
@@ -25,6 +28,10 @@ namespace Characters.Enemies
         
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the enemy configuration data.
+        /// </summary>
+        /// <value>The <see cref="EnemyData"/> containing enemy stats and settings.</value>
         public EnemyData Data
         {
             get => enemyData;
@@ -52,6 +59,10 @@ namespace Characters.Enemies
             _onEnemySpawned.Raise(this);
         }
         
+        /// <summary>
+        /// Initializes the enemy with specific configuration data when spawned from pool.
+        /// </summary>
+        /// <param name="data">The <see cref="EnemyData"/> to configure this enemy.</param>
         public void OnSpawn(EnemyData data)
         {
             enemyData = data;
@@ -59,6 +70,9 @@ namespace Characters.Enemies
             InitEnemy();
         }
 
+        /// <summary>
+        /// Cleans up the enemy when returning to the object pool.
+        /// </summary>
         public void OnDespawn()
         {
             _enemyAnimator.OnDespawn();
@@ -68,11 +82,17 @@ namespace Characters.Enemies
             _onEnemyDespawned.Raise(this);
         }
 
+        /// <summary>
+        /// High priority update method for critical enemy logic.
+        /// </summary>
         public void HighPriorityUpdate()
         {
             
         }
 
+        /// <summary>
+        /// Medium priority update method for non-critical enemy logic.
+        /// </summary>
         public void MediumPriorityUpdate()
         {
             

@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Audio
 {
+    /// <summary>
+    /// Controls spatial audio playback in the game world with support for following transforms.
+    /// Implements <see cref="IUpdateable"/> for frame-by-frame updates.
+    /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class WorldAudioController : MonoBehaviour, IUpdateable
     {
@@ -23,12 +27,20 @@ namespace Audio
         
         #region Properties
         
+        /// <summary>
+        /// Gets the audio configuration data for this controller.
+        /// </summary>
+        /// <value>The <see cref="WorldAudioData"/> containing audio settings.</value>
         public WorldAudioData Data { get; private set; }
         
         #endregion
         
         #region Initialisation
         
+        /// <summary>
+        /// Initializes the controller with audio configuration data.
+        /// </summary>
+        /// <param name="data">The <see cref="WorldAudioData"/> containing audio settings.</param>
         public void Initialise(WorldAudioData data)
         {
             Data = data;
@@ -39,6 +51,10 @@ namespace Audio
         
         #region Playback Methods
         
+        /// <summary>
+        /// Plays the audio at a fixed world position.
+        /// </summary>
+        /// <param name="position">World position to play the audio.</param>
         public void PlayAtPosition(Vector3 position)
         {
             transform.position = position;
@@ -46,6 +62,11 @@ namespace Audio
             PlayInternal();
         }
 
+        /// <summary>
+        /// Plays the audio attached to a transform with local offset.
+        /// </summary>
+        /// <param name="target">Transform to follow during playback.</param>
+        /// <param name="localOffset">Local offset relative to the target transform.</param>
         public void PlayAttached(Transform target, Vector3 localOffset)
         {
             _followTarget = target;
@@ -61,6 +82,9 @@ namespace Audio
             _endTime = Time.time + _audioSource.clip.length + 0.1f;
         }
 
+        /// <summary>
+        /// Stops audio playback and returns the object to the pool.
+        /// </summary>
         public void Stop()
         {
             _audioSource.Stop();
@@ -104,6 +128,7 @@ namespace Audio
         
         #region IUpdateable Implementation
         
+        /// <inheritdoc cref="IUpdateable.OnUpdate"/>
         public void OnUpdate(float deltaTime)
         {
             if (_followTarget)

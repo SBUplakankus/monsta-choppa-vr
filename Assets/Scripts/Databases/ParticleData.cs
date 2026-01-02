@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Databases
 {
-    [CreateAssetMenu(menuName = "Scriptable Objects/Data/Particle Data")]
+    [CreateAssetMenu(menuName = "Scriptable Objects/Data/Particles")]
     public class ParticleData : ScriptableObject
     {
         [SerializeField] private string particleId;

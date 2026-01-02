@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 
 namespace UI.Game
 {
+    /// <summary>
+    /// Manages the enemy health bar UI with visual feedback effects.
+    /// </summary>
     public class EnemyHealthBar : MonoBehaviour
     {
         #region Fields
@@ -33,6 +36,10 @@ namespace UI.Game
             _shakeTween = Tween.ShakeLocalPosition(transform, shakeSettings);
         }
         
+        /// <summary>
+        /// Updates the health bar fill amount with visual feedback.
+        /// </summary>
+        /// <param name="value">Health percentage (0.0 to 1.0).</param>
         public void UpdateHealthBarValue(float value)
         {
             _healthBarFillStyle.width = new Length(value * 100f, LengthUnit.Percent);

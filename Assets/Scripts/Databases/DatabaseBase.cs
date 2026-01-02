@@ -35,7 +35,7 @@ namespace Databases
             for (var i = 0; i < entries.Length; i++)
             {
                 var entry = entries[i];
-                var key = GetKey(entry);
+                var key = GetKey(entry).Trim().ToLower();
                 _lookup[key] = entry;
             }
             
@@ -63,7 +63,7 @@ namespace Databases
         {
             if (!_isLookupBuilt) BuildLookup();
             
-            return _lookup.TryGetValue(id, out entry);
+            return _lookup.TryGetValue(id.Trim().ToLower(), out entry);
         }
         
         /// <summary>
@@ -73,7 +73,7 @@ namespace Databases
         {
             if (!_isLookupBuilt) BuildLookup();
             
-            return _lookup[id];
+            return _lookup[id.Trim().ToLower()];
         }
         
         #region Editor-Only Methods
