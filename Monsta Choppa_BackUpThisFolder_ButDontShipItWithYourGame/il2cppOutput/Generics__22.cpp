@@ -5796,7 +5796,7 @@ IL_001f:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 93030
+// Method Definition Index: 93073
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorBlockFormatter_1_Read_m46579AE8964729E0F782318649DDD01F83F39B80_gshared (ColorBlockFormatter_1_t67F9EE3F5DEF62DE4E546C7286CD7096F595EE28* __this, Il2CppFullySharedGenericAny* ___0_value, RuntimeObject* ___1_reader, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5889,7 +5889,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorBlockFormatter_1_Read_m46579AE89647
 		return;
 	}
 }
-// Method Definition Index: 93031
+// Method Definition Index: 93074
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorBlockFormatter_1_Write_mB3CD165226CD815419565C248AD2EA5E0C2C9671_gshared (ColorBlockFormatter_1_t67F9EE3F5DEF62DE4E546C7286CD7096F595EE28* __this, Il2CppFullySharedGenericAny* ___0_value, RuntimeObject* ___1_writer, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5978,7 +5978,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorBlockFormatter_1_Write_mB3CD165226C
 		return;
 	}
 }
-// Method Definition Index: 93032
+// Method Definition Index: 93075
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorBlockFormatter_1__ctor_mA633CEEABC916C51C3978D499EDD60F91F8B7C66_gshared (ColorBlockFormatter_1_t67F9EE3F5DEF62DE4E546C7286CD7096F595EE28* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5987,7 +5987,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorBlockFormatter_1__ctor_mA633CEEABC9
 		return;
 	}
 }
-// Method Definition Index: 93033
+// Method Definition Index: 93076
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColorBlockFormatter_1__cctor_m8F9B83BE5D3D85E088743CB867BF34FF97AB4F99_gshared (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;

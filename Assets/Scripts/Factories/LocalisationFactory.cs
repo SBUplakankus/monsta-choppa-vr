@@ -16,12 +16,10 @@ namespace Factories
         /// <returns>A configured <see cref="LocalizedString"/> instance.</returns>
         public static LocalizedString CreateString(string key)
         {
-#if UNITY_EDITOR
             if (string.IsNullOrEmpty(key))
                 Debug.LogWarning("Localization key is null or empty");
             
             var trimKey = key?.Trim().ToLower();
-#endif
             return new LocalizedString(LocalizationKeys.MainTable, trimKey);
         }
     }

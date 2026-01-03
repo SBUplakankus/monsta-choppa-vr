@@ -37,7 +37,7 @@ namespace UI.Views
             var container = UIToolkitFactory.CreateContainer(UIToolkitStyles.SettingsSliderRow);
 
             container.Add(
-                UIToolkitFactory.CreateLabel(LocalizationFactory.CreateString(key))
+                UIToolkitFactory.CreateLabel(LocalizationFactory.CreateString(key), UIToolkitStyles.SliderTitle)
             );
 
             slider = UIToolkitFactory.CreateSlider(classNames: UIToolkitStyles.SettingsSlider);

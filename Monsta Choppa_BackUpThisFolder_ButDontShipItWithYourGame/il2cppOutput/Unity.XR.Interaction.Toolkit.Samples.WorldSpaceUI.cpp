@@ -967,7 +967,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MonoBehaviour__ctor_m592DB0105CA0BC97AA1
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 126725
+// Method Definition Index: 126930
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_tEE13FCD38044EA49B98AA309AFD00316E8CD9275 UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m0D94823F6215CFE6D94D60BA166B5EA2E4109D02 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1001,7 +1001,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_tEE13FCD38044EA49B98AA309AFD00
 		return L_6;
 	}
 }
-// Method Definition Index: 126726
+// Method Definition Index: 126931
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_m2B233C35E06E7F16D87EEF20F3574FFED5B1727B (UnitySourceGeneratedAssemblyMonoScriptTypes_v1_tB73732EB7B7492A15E256532CC9CCC863223BB08* __this, const RuntimeMethod* method) 
 {
 	{
@@ -1087,7 +1087,7 @@ IL2CPP_EXTERN_C void MonoScriptData_tEE13FCD38044EA49B98AA309AFD00316E8CD9275_ma
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 126727
+// Method Definition Index: 126932
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR UnityEvent_tDC2C3548799DBC91D1E3F3DE60083A66F4751977* ButtonEventSample_get_onButtonClicked_mE5B610F4610D5E8F9F9E91451E316880367B1A70 (ButtonEventSample_t583B886F0C8D48EB0AFF212A1C5B5C009FE2B2FD* __this, const RuntimeMethod* method) 
 {
 	{
@@ -1096,7 +1096,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR UnityEvent_tDC2C3548799DBC91D1E3F3DE60083A66F
 		return L_0;
 	}
 }
-// Method Definition Index: 126728
+// Method Definition Index: 126933
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ButtonEventSample_set_onButtonClicked_mE698CC23F702133DA81646CDA12DCD4E8AF142E2 (ButtonEventSample_t583B886F0C8D48EB0AFF212A1C5B5C009FE2B2FD* __this, UnityEvent_tDC2C3548799DBC91D1E3F3DE60083A66F4751977* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -1107,7 +1107,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ButtonEventSample_set_onButtonClicked_mE
 		return;
 	}
 }
-// Method Definition Index: 126729
+// Method Definition Index: 126934
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ButtonEventSample_Start_m9D86C6005FC5D94727F262A200B26F7D0FBF5C8B (ButtonEventSample_t583B886F0C8D48EB0AFF212A1C5B5C009FE2B2FD* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1187,7 +1187,7 @@ IL_0056:
 		return;
 	}
 }
-// Method Definition Index: 126730
+// Method Definition Index: 126935
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ButtonEventSample_HandleButtonClicked_mB8DCA50E771EA6623E1C504F41B9E5EE45398EBA (ButtonEventSample_t583B886F0C8D48EB0AFF212A1C5B5C009FE2B2FD* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1241,7 +1241,7 @@ IL_003d:
 		return;
 	}
 }
-// Method Definition Index: 126731
+// Method Definition Index: 126936
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ButtonEventSample__ctor_m420A3FCD2739419CEA47DC14E3258161233F6207 (ButtonEventSample_t583B886F0C8D48EB0AFF212A1C5B5C009FE2B2FD* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;

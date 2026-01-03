@@ -364,9 +364,7 @@
           },
           {
             "name": "Light",
-            "scenes": [
-              "Assets/Scenes/Game/Hub.unity"
-            ],
+            "scenes": [],
             "dependencyType": 0,
             "icon": null
           },

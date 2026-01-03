@@ -24,12 +24,12 @@ static Il2CppMethodPointer s_methodPointers[6] =
 };
 static const int32_t s_InvokerIndices[6] = 
 {
-	35147,
-	20636,
-	35077,
-	20366,
-	6866,
-	20636,
+	35174,
+	20652,
+	35101,
+	20382,
+	6873,
+	20652,
 };
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Sirenix_OdinInspector_Modules_UnityLocalization_CodeGenModule;
 const Il2CppCodeGenModule g_Sirenix_OdinInspector_Modules_UnityLocalization_CodeGenModule = 

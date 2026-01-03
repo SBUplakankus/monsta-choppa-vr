@@ -11,6 +11,9 @@ namespace UI.Hosts
         [Header("UI Toolkit")] 
         [SerializeField] private UIDocument uiDocument;
         [SerializeField] private StyleSheet styleSheet;
+        
+        [Header("Panel Hosts")]
+        [SerializeField] private AudioSettingsPanelHost audioSettingsPanelHost;
 
         private SettingsPanelView _settingsView;
         private AudioSettingsPanelView _audioSettingsView;
@@ -33,6 +36,7 @@ namespace UI.Hosts
 
         private void DisposeTabViews()
         {
+            audioSettingsPanelHost.Dispose();
             _audioSettingsView?.Dispose();
             _audioSettingsView = null;
         }
@@ -41,6 +45,7 @@ namespace UI.Hosts
         {
             DisposeTabViews();
             _audioSettingsView = new AudioSettingsPanelView(_contentRoot, styleSheet);
+            audioSettingsPanelHost.BindViewSliders(_audioSettingsView);
         }
 
         private void ShowVideoTab()

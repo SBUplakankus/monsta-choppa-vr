@@ -9,10 +9,6 @@ namespace UI.Hosts
     public class AudioSettingsPanelHost : MonoBehaviour
     {
         #region Fields
-
-        [Header("UI Toolkit")] 
-        [SerializeField] private UIDocument uiDocument;
-        [SerializeField] private StyleSheet styleSheet;
         
         [Header("Audio Settings")]
         [SerializeField] private FloatAttribute masterVolume;
@@ -25,13 +21,7 @@ namespace UI.Hosts
 
         #endregion
 
-        #region View
-
-        private AudioSettingsPanelView _view;
-
-        #endregion
-
-        #region Private Methods
+        #region Methods
 
         private static Action BindSlider(Slider slider, FloatAttribute attribute)
         {
@@ -52,51 +42,24 @@ namespace UI.Hosts
             };
         }
         
-        private void Generate()
+        public void BindViewSliders(AudioSettingsPanelView view)
         {
-            DisposeView();
-
-            _view = new AudioSettingsPanelView(
-                uiDocument.rootVisualElement,
-                styleSheet
-            );
-            
             _unbindAll = () => { };
 
-            _unbindAll += BindSlider(_view.MasterVolume, masterVolume);
-            _unbindAll += BindSlider(_view.MusicVolume, musicVolume);
-            _unbindAll += BindSlider(_view.AmbienceVolume, ambienceVolume);
-            _unbindAll += BindSlider(_view.SfxVolume, sfxVolume);
-            _unbindAll += BindSlider(_view.UIVolume, uiVolume);
+            _unbindAll += BindSlider(view.MasterVolume, masterVolume);
+            _unbindAll += BindSlider(view.MusicVolume, musicVolume);
+            _unbindAll += BindSlider(view.AmbienceVolume, ambienceVolume);
+            _unbindAll += BindSlider(view.SfxVolume, sfxVolume);
+            _unbindAll += BindSlider(view.UIVolume, uiVolume);
         }
 
-        private void DisposeView()
+        public void Dispose()
         {
             _unbindAll?.Invoke();
             _unbindAll = null;
-            
-            _view?.Dispose();
-            _view = null;
         }
 
-        #endregion
-
-        #region Unity Lifecycle
-
-        private void OnEnable() => Generate();
-
-        private void OnDisable() => DisposeView();
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (Application.isPlaying) return;
-            if (uiDocument == null) return;
-            if (uiDocument.rootVisualElement == null) return;
-
-            Generate();
-        }
-#endif
+        private void OnDisable() => Dispose();
 
         #endregion
     }

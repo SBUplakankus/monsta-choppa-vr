@@ -422,6 +422,7 @@ UnityEngine.Audio.AudioClipPlayable::SetSpatialBlendInternal
 UnityEngine.Audio.AudioClipPlayable::SetStartDelayInternal
 UnityEngine.Audio.AudioClipPlayable::SetStereoPanInternal
 UnityEngine.Audio.AudioClipPlayable::SetVolumeInternal
+UnityEngine.Audio.AudioMixer::SetFloat_Injected
 UnityEngine.Audio.AudioMixerPlayable::CreateAudioMixerPlayableInternal
 UnityEngine.Audio.AudioPlayableGraphExtensions::InternalCreateAudioOutput_Injected
 UnityEngine.Audio.AudioPlayableOutput::InternalSetEvaluateOnSeek
@@ -847,6 +848,7 @@ UnityEngine.Gizmos::DrawCube_Injected
 UnityEngine.Gizmos::DrawIcon_Injected
 UnityEngine.Gizmos::DrawLine_Injected
 UnityEngine.Gizmos::DrawSphere_Injected
+UnityEngine.Gizmos::DrawWireCube_Injected
 UnityEngine.Gizmos::DrawWireSphere_Injected
 UnityEngine.Gizmos::set_color_Injected
 UnityEngine.Gizmos::set_matrix_Injected
@@ -1075,6 +1077,7 @@ UnityEngine.Light::get_areaSize_Injected
 UnityEngine.Light::get_bakingOutput_Injected
 UnityEngine.Light::get_color_Injected
 UnityEngine.Light::get_cookieSize2D_Injected
+UnityEngine.Light::set_bakingOutput_Injected
 UnityEngine.Light::set_color_Injected
 UnityEngine.Light::set_cullingMask_Injected
 UnityEngine.Light::set_intensity_Injected
@@ -1086,6 +1089,9 @@ UnityEngine.Light::set_type_Injected
 UnityEngine.Light::get_shadows_Injected
 UnityEngine.Light::get_type_Injected
 UnityEngine.Light::get_ShadowResolution_Injected
+UnityEngine.LightmapSettings::set_lightmaps
+UnityEngine.LightmapSettings::set_lightmapsMode
+UnityEngine.LightmapSettings::get_lightmaps
 UnityEngine.LightProbesQuery::Create
 UnityEngine.LightProbesQuery::CalculateInterpolatedLightAndOcclusionProbes
 UnityEngine.LightProbesQuery::Destroy
@@ -1288,6 +1294,7 @@ UnityEngine.MeshFilter::get_mesh_Injected
 UnityEngine.MeshFilter::get_sharedMesh_Injected
 UnityEngine.MeshFilter::set_mesh_Injected
 UnityEngine.MeshFilter::set_sharedMesh_Injected
+UnityEngine.MeshRenderer::set_additionalVertexStreams_Injected
 UnityEngine.MonoBehaviour::Internal_IsInvokingAll_Injected
 UnityEngine.MonoBehaviour::IsInvoking_Injected
 UnityEngine.MonoBehaviour::IsObjectMonoBehaviour_Injected
@@ -1611,6 +1618,8 @@ UnityEngine.RenderAs2DUtil::DisposeCanRenderAs2D
 UnityEngine.RenderAs2DUtil::InitializeCanRenderAs2D
 UnityEngine.RenderBuffer::GetNativeRenderBufferPtr
 UnityEngine.Renderer::get_enabled_Injected
+UnityEngine.Renderer::get_isPartOfStaticBatch_Injected
+UnityEngine.Renderer::GetLightmapIndex_Injected
 UnityEngine.Renderer::GetMaterialCount_Injected
 UnityEngine.Renderer::get_sortingGroupID_Injected
 UnityEngine.Renderer::get_sortingGroupOrder_Injected
@@ -1625,8 +1634,10 @@ UnityEngine.Renderer::Internal_GetPropertyBlock_Injected
 UnityEngine.Renderer::Internal_SetPropertyBlockMaterialIndex_Injected
 UnityEngine.Renderer::Internal_SetPropertyBlock_Injected
 UnityEngine.Renderer::Internal_SetSpriteMaskInteraction_Injected
+UnityEngine.Renderer::SetLightmapIndex_Injected
 UnityEngine.Renderer::SetMaterialArray_Injected
 UnityEngine.Renderer::SetMaterial_Injected
+UnityEngine.Renderer::SetStaticLightmapST_Injected
 UnityEngine.Renderer::get_bounds_Injected
 UnityEngine.Renderer::set_allowGPUDrivenRendering_Injected
 UnityEngine.Renderer::set_enabled_Injected
@@ -1914,6 +1925,7 @@ UnityEngine.RenderSettings::get_ambientSkyColor_Injected
 UnityEngine.RenderSettings::get_subtractiveShadowColor_Injected
 UnityEngine.RenderSettings::set_defaultReflectionMode
 UnityEngine.RenderSettings::set_skybox_Injected
+UnityEngine.RenderSettings::get_ambientMode
 UnityEngine.RenderTexture::Create_Injected
 UnityEngine.RenderTexture::get_bindTextureMS_Injected
 UnityEngine.RenderTexture::get_enableShadingRate_Injected
@@ -1996,10 +2008,12 @@ UnityEngine.ScalableBufferManager::get_heightScaleFactor
 UnityEngine.ScalableBufferManager::get_widthScaleFactor
 UnityEngine.ScalableBufferManager::ResizeBuffers
 UnityEngine.SceneManagement.Scene::GetIsLoadedInternal_Injected
+UnityEngine.SceneManagement.Scene::IsSubScene_Injected
 UnityEngine.SceneManagement.Scene::IsValidInternal_Injected
 UnityEngine.SceneManagement.Scene::GetRootCountInternal_Injected
 UnityEngine.SceneManagement.Scene::GetGUIDInternal_Injected
 UnityEngine.SceneManagement.Scene::GetRootGameObjectsInternal_Injected
+UnityEngine.SceneManagement.SceneManager::SetActiveScene_Injected
 UnityEngine.SceneManagement.SceneManager::get_sceneCount
 UnityEngine.SceneManagement.SceneManager::UnloadSceneAsyncInternal_Injected
 UnityEngine.SceneManagement.SceneManager::GetActiveScene_Injected
@@ -2028,6 +2042,7 @@ UnityEngine.Shader::SetGlobalFloatImpl
 UnityEngine.Shader::SetGlobalGraphicsBufferImpl_Injected
 UnityEngine.Shader::SetGlobalIntImpl
 UnityEngine.Shader::SetGlobalMatrixArrayImpl_Injected
+UnityEngine.Shader::SetGlobalMatrixImpl_Injected
 UnityEngine.Shader::SetGlobalTextureImpl_Injected
 UnityEngine.Shader::SetGlobalVectorImpl_Injected
 UnityEngine.Shader::get_keywordSpace_Injected
@@ -2123,8 +2138,12 @@ UnityEngine.SystemInfo::GetFoveatedRenderingCaps
 UnityEngine.SystemInfo::GetGraphicsDeviceType
 UnityEngine.Terrain::get_allowAutoConnect_Injected
 UnityEngine.Terrain::get_groupingID_Injected
+UnityEngine.Terrain::get_lightmapIndex_Injected
 UnityEngine.Terrain::get_terrainData_Injected
 UnityEngine.Terrain::SetNeighbors_Injected
+UnityEngine.Terrain::SetSplatMaterialPropertyBlock_Injected
+UnityEngine.Terrain::set_lightmapIndex_Injected
+UnityEngine.Terrain::set_lightmapScaleOffset_Injected
 UnityEngine.Terrain::get_activeTerrains
 UnityEngine.TerrainData::Internal_GetHoles_Injected
 UnityEngine.TerrainData::GetBoundaryValue
@@ -2269,6 +2288,7 @@ UnityEngine.Texture2DArray::get_allSlices
 UnityEngine.Texture2DArray::ApplyImpl_Injected
 UnityEngine.Texture3D::Internal_CreateImpl
 UnityEngine.Texture3D::get_isReadable_Injected
+UnityEngine.Texture3D::get_depth_Injected
 UnityEngine.Texture3D::GetImageData_Injected
 UnityEngine.Texture3D::ApplyImpl_Injected
 UnityEngine.Texture3D::SetPixelImpl_Injected

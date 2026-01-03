@@ -103,3 +103,10 @@ crashlytics-build.properties
 # !/[Aa]ssets/_ThirdParty/README.md
 # !/[Aa]ssets/_ThirdParty/.gitkeep
 # !/[Aa]ssets/Plugins/README.md
+
+/[Aa]ssets/Editor/
+/[Aa]ssets/Editor.meta
+/[Aa]ssets/Editor.x86/
+/[Aa]ssets/Editor.x86_64/
+/[Aa]ssets/Editor.x86.meta
+/[Aa]ssets/Editor.x86_64.meta
