@@ -140,7 +140,7 @@ namespace Audio
 
         private void Start()
         {
-            musicVolume.Value = 0.2f;
+            musicVolume.Value = 0.5f;
             ambienceVolume.Value = 0.7f;
         }
 

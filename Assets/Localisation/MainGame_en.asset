@@ -67,11 +67,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4785094159216640
-    m_Localized: Audio
+    m_Localized: Audio Settings
     m_Metadata:
       m_Items: []
   - m_Id: 4785147527540736
-    m_Localized: Video
+    m_Localized: Video Settings
     m_Metadata:
       m_Items: []
   - m_Id: 4785218168008704
@@ -116,6 +116,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5450435990368256
     m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457511319842816
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457533939724288
+    m_Localized: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457554743472128
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457578755862528
+    m_Localized: Language Settings
     m_Metadata:
       m_Items: []
   references:

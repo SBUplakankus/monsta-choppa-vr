@@ -5,12 +5,13 @@
 :root{
     --border-width: 2px;
     --button-hover-scale: 1.05;
-    --button-hover-border-radius: 7px;
-    --tween-duration: 0.25s all;
+    --button-hover-border-radius: 8px;
+    --button-border-radius: 4px;
+    --tween-duration: 0.3s all;
 
     --button-bg-colour: cornflowerblue;
     --button-bg-colour-hover: lightskyblue;
-    --hub-colour-primary: rgba(207,255,238,255);
+    --hub-colour-primary: darkseagreen;
     --button-border-colour: whitesmoke;
     --button-text-colour: grey;
     --button-text-colour-hover: whitesmoke;
@@ -32,16 +33,16 @@ Label{
 /* ===================== */
 
 Button{
-    background-color: transparent;
-    border-color: rgb(20,20,20);
+    border-radius: var(--button-border-radius);
     transition: var(--tween-duration);
-    color: var(--button-text-colour);
-    -unity-font-style: bold;
 }
 
 Button:hover{
-    color: var(--hub-colour-primary);
-    border-color: var(--hub-colour-primary);
+    border-radius: var(--button-hover-border-radius);
+    transition: var(--tween-duration);
+}
+
+Button:focus{
     border-radius: var(--button-hover-border-radius);
     transition: var(--tween-duration);
 }
@@ -149,7 +150,10 @@ Button:hover{
     width: 50%; 
 }
 
-.button-container Button {
+.button-container Button{
+    background-color: transparent;
+    border-color: rgb(20,20,20);
+    color: gray;
     width: 100%;
     height: 80px;
     margin-top: 10px;
@@ -160,4 +164,9 @@ Button:hover{
 .button-container Button:hover{
     color: var(--hub-colour-primary);
     border-color: var(--hub-colour-primary);
+}
+
+.button-container Button:focus{
+    color: aquamarine;
+    border-color: aquamarine;
 }

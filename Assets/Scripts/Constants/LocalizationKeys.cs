@@ -17,6 +17,10 @@ namespace Constants
         public const string Settings = "settings";
         public const string AudioSettings = "audio-settings";
         public const string VideoSettings = "video-settings";
+        public const string LanguageSettings = "language-settings";
+        public const string Audio = "audio";
+        public const string Video = "video";
+        public const string Language = "language";
 
         public const string Welcome = "welcome";
         public const string Game = "game";

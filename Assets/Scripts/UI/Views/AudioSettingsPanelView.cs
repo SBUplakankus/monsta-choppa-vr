@@ -10,7 +10,6 @@ namespace UI.Views
         #region Fields
 
         private VisualElement _container;
-        public Button CloseButton { get; private set; }
         public Slider MasterVolume {get; private set;}
         public Slider MusicVolume {get; private set;}
         public Slider AmbienceVolume {get; private set;}
@@ -60,9 +59,6 @@ namespace UI.Views
                 LocalizationFactory.CreateString(LocalizationKeys.AudioSettings),
                 UIToolkitStyles.PanelTitle);
             header.Add(title);
-            
-            CloseButton = UIToolkitFactory.CreateButton(LocalizationFactory.CreateString(LocalizationKeys.Close));
-            header.Add(CloseButton);
             
             _container.Add(header);
             

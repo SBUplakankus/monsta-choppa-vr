@@ -115,6 +115,22 @@ MonoBehaviour:
     m_Key: settings
     m_Metadata:
       m_Items: []
+  - m_Id: 5457511319842816
+    m_Key: audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457533939724288
+    m_Key: video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457554743472128
+    m_Key: language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457578755862528
+    m_Key: language-settings
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -45,8 +45,7 @@ namespace UI.Views
         {
             var button = UIToolkitFactory.CreateButton(
                 LocalizationFactory.CreateString(key), 
-                () => onClick?.Invoke(),
-                UIToolkitStyles.MenuButton);
+                () => onClick?.Invoke());
             
             _buttonContainer.Add(button);
         }
