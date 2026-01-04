@@ -9,5 +9,14 @@ namespace Constants
         public const string PlayerLevelKey = "PlayerLevel";
         
         #endregion
+
+        #region Scene Names
+
+        public const string Bootstrapper = "Bootstrapper";
+        public const string StartMenu = "StartMenu";
+        public const string Hub = "Hub";
+
+
+        #endregion
     }
 }

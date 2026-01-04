@@ -41,10 +41,26 @@ namespace UI.Views
 
         #region Methods
 
-        private void CreateButton(string key, Action onClick)
+        private Button CreateButton(string key)
         {
-            var button = UIToolkitFactory.CreateButton(key,() => onClick?.Invoke());
+            var button = UIToolkitFactory.CreateButton(key, null);
             _buttonContainer.Add(button);
+            return button;
+        }
+
+        private void CreateButtons()
+        {
+            CreateButton(LocalizationKeys.Play)
+                .clicked += () => OnPlayClicked?.Invoke();
+
+            CreateButton(LocalizationKeys.Settings)
+                .clicked += () => OnSettingsClicked?.Invoke();
+
+            CreateButton(LocalizationKeys.Controls)
+                .clicked += () => OnControlsClicked?.Invoke();
+
+            CreateButton(LocalizationKeys.Quit)
+                .clicked += () => OnQuitClicked?.Invoke();
         }
 
         private void GenerateUI(VisualElement root)
@@ -56,10 +72,7 @@ namespace UI.Views
             
             _buttonContainer = UIToolkitFactory.CreateContainer(UIToolkitStyles.ButtonContainer);
             
-            CreateButton(LocalizationKeys.Play, OnPlayClicked);
-            CreateButton(LocalizationKeys.Settings, OnSettingsClicked);
-            CreateButton(LocalizationKeys.Controls, OnControlsClicked);
-            CreateButton(LocalizationKeys.Quit, OnQuitClicked);
+            CreateButtons();
             
             _container.Add(_buttonContainer);
             root.Add(_container);

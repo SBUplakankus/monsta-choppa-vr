@@ -75,7 +75,7 @@ namespace UI.Hosts
             localizationPanelHost.BindPanel(_languageView);
         }
 
-        private void Generate()
+        public void Generate()
         {
             DisposeView();
 
@@ -90,7 +90,6 @@ namespace UI.Hosts
             _contentRoot = _settingsView.Content;
             
             BindTabs();
-            ShowLanguageTab();
         }
 
         private void BindTabs()
@@ -111,8 +110,6 @@ namespace UI.Hosts
         #endregion
 
         #region Unity Lifecycle
-
-        private void OnEnable() => Generate();
 
         private void OnDisable() => DisposeView();
 

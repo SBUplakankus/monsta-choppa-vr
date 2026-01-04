@@ -30,7 +30,7 @@ namespace UI.Hosts
         private void OnSettings() => OnSettingsClicked?.Invoke();
         private void OnQuit() => OnQuitClicked?.Invoke();
 
-        private void SubscribeEvents()
+        public void SubscribeEvents()
         {
             if(_view == null) return;
             _view.OnPlayClicked += OnPlay;
@@ -48,7 +48,7 @@ namespace UI.Hosts
             _view.OnQuitClicked -= OnQuit;
         }
         
-        private void Generate()
+        public void Generate()
         {
             DisposeView();
             
@@ -70,8 +70,6 @@ namespace UI.Hosts
         #endregion
 
         #region Unity Methods
-
-        private void OnEnable() => Generate();
 
         private void OnDisable() => DisposeView();
 
