@@ -40,5 +40,8 @@ namespace Constants
         public const string TabBar = "tab-bar";
         public const string TabContent = "tab-content";
         public const string Tab = "tab";
+
+        public const string LanguageScroll = "language-scroll";
+        public const string LanguageRow = "language-row";
     }
 }

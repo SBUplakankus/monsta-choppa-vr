@@ -1,5 +1,6 @@
 using UI.Views;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 namespace UI.Hosts
@@ -15,10 +16,12 @@ namespace UI.Hosts
         [Header("Panel Hosts")]
         [SerializeField] private AudioSettingsPanelHost audioSettingsPanelHost;
         [SerializeField] private VideoSettingsPanelHost videoSettingsPanelHost;
+        [SerializeField] private LocalizationPanelHost localizationPanelHost;
 
         private SettingsPanelView _settingsView;
         private AudioSettingsPanelView _audioSettingsView;
         private VideoSettingsPanelView _videoSettingsView;
+        private LocalizationPanelView _languageView;
 
         private Button _audioTab;
         private Button _videoTab;
@@ -45,6 +48,10 @@ namespace UI.Hosts
             videoSettingsPanelHost.DisposeView();
             _videoSettingsView?.Dispose();
             _videoSettingsView = null;
+            
+            localizationPanelHost.DisposeView();
+            _languageView?.Dispose();
+            _languageView = null;
         }
 
         private void ShowAudioTab()
@@ -64,6 +71,8 @@ namespace UI.Hosts
         private void ShowLanguageTab()
         {
             DisposeTabViews();
+            _languageView = new LocalizationPanelView(_contentRoot, styleSheet, LocalizationSettings.AvailableLocales.Locales);
+            localizationPanelHost.BindPanel(_languageView);
         }
 
         private void Generate()
@@ -81,7 +90,7 @@ namespace UI.Hosts
             _contentRoot = _settingsView.Content;
             
             BindTabs();
-            ShowVideoTab();
+            ShowLanguageTab();
         }
 
         private void BindTabs()

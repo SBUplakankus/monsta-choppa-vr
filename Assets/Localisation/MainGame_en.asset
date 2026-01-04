@@ -162,6 +162,42 @@ MonoBehaviour:
     m_Localized: Render Scale
     m_Metadata:
       m_Items: []
+  - m_Id: 5869164842692609
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692610
+    m_Localized: Czech
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692611
+    m_Localized: German
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692612
+    m_Localized: Irish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692613
+    m_Localized: Italian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692614
+    m_Localized: Lithuanian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692615
+    m_Localized: Polish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692616
+    m_Localized: Spanish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692617
+    m_Localized: Ukrainian
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

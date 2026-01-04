@@ -1,200 +1,223 @@
 /* ===================== */
-/* ROOT VARIABLES        */
+/* ROOT VARIABLES */
 /* ===================== */
 
-:root{
+:root {
+    /* Dimensions */
     --border-width: 2px;
-    --button-hover-scale: 1.05;
-    --button-hover-border-radius: 8px;
+    --border-width-medium: 3px;
+    --border-width-large: 4px;
+    --border-width-panel: 5px;
+    /* Border Radius */
     --button-border-radius: 4px;
+    --button-hover-border-radius: 8px;
+    --panel-border-radius: 20px;
+    --tab-border-radius: 6px;
+    --element-border-radius: 2px;
+
+    /* Transitions */
     --tween-duration: 0.3s all;
 
-    --button-bg-colour: transparent;
-    --button-bg-colour-hover: lightskyblue;
+    /* Colors - General */
+    --background-dark: rgba(0, 0, 0, 0.9);
+    --background-semi-dark: rgba(0, 0, 0, 0.5);
+    --background-semi-transparent: rgba(0, 0, 0, 0.6);
+    --border-dark: rgb(20, 20, 20);
+    --border-light: rgba(255, 255, 255, 0.15);
+    --text-white: whitesmoke;
+    --text-gray: grey;
+
+    /* Colors - Theme */
     --hub-colour-primary: darkseagreen;
-    --button-border-colour: rgb(20,20,20);
-    --button-text-colour: grey;
-    --button-text-colour-hover: whitesmoke;
+    --button-hover-colour: lightskyblue;
+    --button-focus-colour: aquamarine;
+
+    /* Font Sizes */
+    --font-size-header: 60px;
+    --font-size-stat: 100px;
+    --font-size-button-large: 40px;
+    --font-size-tab: 30px;
+    --font-size-label: 20px;
+    --font-size-small: 18px;
+
+    /* Spacing */
+    --spacing-small: 5px;
+    --spacing-medium: 10px;
+    --spacing-large: 15px;
+    --spacing-xlarge: 35px;
+
+    /* Sizes */
+    --button-height: 80px;
+    --control-button-size: 70px;
+    --slider-dragger-width: 35px;
+    --slider-dragger-height: 22px;
+    --slider-track-height: 27px;
+    --tab-padding: 30px;
 }
 
 /* ===================== */
-/* BASE ELEMENTS         */
+/* BASE ELEMENTS */
 /* ===================== */
 
-VisualElement{
+VisualElement {
 }
 
-Label{
-    color: whitesmoke;
+Label {
+    color: var(--text-white);
 }
 
 /* ===================== */
-/* BUTTONS               */
+/* BUTTONS */
 /* ===================== */
 
-Button{
+Button {
     border-radius: var(--button-border-radius);
     transition: var(--tween-duration);
 }
 
-Button:hover{
+Button:hover,
+Button:focus {
     border-radius: var(--button-hover-border-radius);
     transition: var(--tween-duration);
 }
 
-Button:focus{
-    border-radius: var(--button-hover-border-radius);
-    transition: var(--tween-duration);
+.button-body {
 }
 
-.button-body{
-}
-
-.panel-button{
+.panel-button {
     width: 95%;
     height: 95%;
 }
 
-.menu-button{
+.menu-button {
 }
 
 /* ===================== */
-/* CONTAINERS & PANELS   */
+/* CONTAINERS & PANELS */
 /* ===================== */
 
-.container{
+.container {
     height: 100%;
     width: 100%;
 }
 
-.button-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-    width: 60%;
-}
-
-.panel-body{
-    background-color: rgba(0,0,0,0.9);
+.panel-body {
+    background-color: var(--background-dark);
     border-color: var(--hub-colour-primary);
-    border-width: 5px;
-    border-radius: 20px;
+    border-width: var(--border-width-panel);
+    border-radius: var(--panel-border-radius);
     justify-content: center;
     align-items: center;
 }
 
-.bordered-box{
-    border-width: 4px;
+.bordered-box {
+    border-width: var(--border-width-large);
     border-color: var(--hub-colour-primary);
-    border-radius: 20px;
+    border-radius: var(--panel-border-radius);
 }
 
-.view-box{
+.view-box {
     width: 80%;
     height: 45%;
 }
 
 /* ===================== */
-/* CONTROLS (SETTINGS)   */
+/* BUTTON CONTAINER */
 /* ===================== */
 
-.control-box{
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    width: 50%;
+}
+
+.button-container Button {
+    background-color: transparent;
+    border-color: var(--border-dark);
+    color: var(--text-gray);
+    width: 100%;
+    height: var(--button-height);
+    margin-top: var(--spacing-medium);
+    font-size: var(--font-size-button-large);
+    border-width: var(--border-width-medium);
+}
+
+.button-container Button:hover {
+    color: var(--hub-colour-primary);
+    border-color: var(--hub-colour-primary);
+}
+
+.button-container Button:focus {
+    color: var(--button-focus-colour);
+    border-color: var(--button-focus-colour);
+}
+
+/* ===================== */
+/* CONTROLS (SETTINGS) */
+/* ===================== */
+
+.control-box {
     flex-direction: row;
-    margin-top: 10px;
-    padding: 10px;
+    margin-top: var(--spacing-medium);
+    padding: var(--spacing-medium);
     width: 80%;
 }
 
-.control-box Button{
-    width: 70px;
-    height: 70px;
+.control-box Button {
+    width: var(--control-button-size);
+    height: var(--control-button-size);
 }
 
-.control-box Slider{
+.control-box Slider {
     flex-grow: 1;
 }
-
-
 
 /* ===================== */
 /* TEXT / LABEL VARIANTS */
 /* ===================== */
 
-.header-label{
+.header-label {
     -unity-font-style: bold;
     color: var(--hub-colour-primary);
-    margin-bottom: 35px;
-    font-size: 60px;
+    margin-bottom: var(--spacing-xlarge);
+    font-size: var(--font-size-header);
 }
 
-.stat-label{
+.stat-label {
     -unity-font-style: bold;
-    color: whitesmoke;
-    font-size: 100px;
+    color: var(--text-white);
+    font-size: var(--font-size-stat);
 }
 
-.button-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60%;
-    width: 50%; 
-}
+/* ===================== */
+/* TAB BAR */
+/* ===================== */
 
-.button-container Button{
-    background-color: transparent;
-    border-color: rgb(20,20,20);
-    color: gray;
-    width: 100%;
-    height: 80px;
-    margin-top: 10px;
-    font-size: 40px;
-    border-width: 3px;
-}
-
-.button-container Button:hover{
-    color: var(--hub-colour-primary);
-    border-color: var(--hub-colour-primary);
-}
-
-.button-container Button:focus{
-    color: aquamarine;
-    border-color: aquamarine;
-}
-
-.tab-bar{
+.tab-bar {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
-    
     height: 10%;
     width: 100%;
-
     margin-bottom: 12px;
-    
     padding-left: 5%;
-
-    border-bottom-width: 2px;
-    border-bottom-color: rgba(255,255,255,0.15);
+    border-bottom-width: var(--border-width);
+    border-bottom-color: var(--border-light);
 }
 
-.tab{
+.tab {
     min-height: 90%;
-    
     background-color: transparent;
-    color: var(--button-text-colour);
-    font-size: 30px;
-
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-
-    border-width: 3px;
-    border-color: var(--button-border-colour);
-
-    padding: 30px;
-
+    color: var(--text-gray);
+    font-size: var(--font-size-tab);
+    border-top-left-radius: var(--tab-border-radius);
+    border-top-right-radius: var(--tab-border-radius);
+    border-width: var(--border-width-medium);
+    border-color: var(--border-dark);
+    padding: var(--tab-padding);
     -unity-font-style: normal;
     -unity-text-align: middle-center;
 }
@@ -205,11 +228,11 @@ Button:focus{
 }
 
 .tab:focus {
-    border-color: aquamarine;
-    color: aquamarine;
+    border-color: var(--button-focus-colour);
+    color: var(--button-focus-colour);
 }
 
-.tab-content{
+.tab-content {
     width: 80%;
     height: 75%;
     display: flex;
@@ -217,150 +240,264 @@ Button:focus{
     align-items: flex-start;
     flex-direction: column;
     padding-top: 5%;
-    
 }
 
-.panel-title{
+.panel-title {
     color: var(--hub-colour-primary);
-    font-size: 30px;    
+    font-size: var(--font-size-tab);
 }
+
+/* ===================== */
+/* SETTINGS SLIDER */
+/* ===================== */
 
 .settings-slider-row {
     height: 80px;
     width: 100%;
-    margin-top: 15px;
+    margin-top: var(--spacing-large);
     display: flex;
     overflow: hidden;
 }
-.slider-title{
-    color: whitesmoke;
-    font-size: 20px;
+
+.slider-title {
+    color: var(--text-white);
+    font-size: var(--font-size-label);
 }
 
-/* The track (the "box" the dragger slides in) */
 .settings-slider-row .unity-base-slider__tracker {
-    background-color: rgba(0,0,0,0.5);
+    background-color: var(--background-semi-dark);
     border-color: var(--hub-colour-primary);
-    border-width: 3px;
-    height: 27px;
-    border-radius: 2px;
+    border-width: var(--border-width-medium);
+    height: var(--slider-track-height);
+    border-radius: var(--element-border-radius);
 }
 
-/* The dragger (the handle you slide) */
 .settings-slider-row .unity-base-slider__dragger {
-    width: 35px;
-    height: 22px;
+    width: var(--slider-dragger-width);
+    height: var(--slider-dragger-height);
     background-color: var(--hub-colour-primary);
-    border-radius: 2px;
+    border-radius: var(--element-border-radius);
     border-width: 0px;
     margin-top: 0px;
 }
 
-/* ============================= */
-/* SETTINGS DROPDOWN ROW         */
-/* ============================= */
+/* ===================== */
+/* SETTINGS DROPDOWN */
+/* ===================== */
 
 .settings-dropdown-row {
     height: 30%;
     width: 100%;
 }
 
-
-/* ============================= */
-/* POPUP FIELD (COLLAPSED)       */
-/* ============================= */
-
-/* Left label */
 .unity-base-popup-field__label {
-    color: whitesmoke;
-    font-size: 20px;
+    color: var(--text-white);
+    font-size: var(--font-size-label);
     margin-right: 30px;
 }
 
-
-/* ============================= */
-/* INPUT FIELD (IDLE)            */
-/* ============================= */
-
 .unity-base-popup-field__input {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: grey;
-    font-size: 20px;
-
-    border-width: 2px;
-    border-color: rgb(20, 20, 20);
-    border-radius: 4px;
-
+    background-color: var(--background-semi-dark);
+    color: var(--text-gray);
+    font-size: var(--font-size-label);
+    border-width: var(--border-width);
+    border-color: var(--border-dark);
+    border-radius: var(--button-border-radius);
     transition: 0.3s;
 }
-
-
-/* ============================= */
-/* INPUT FIELD (HOVER + FOCUS)   */
-/* ============================= */
 
 .unity-base-popup-field:hover .unity-base-popup-field__input {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--background-dark);
     color: var(--hub-colour-primary);
     border-color: var(--hub-colour-primary);
-
     transition: 0.3s;
 }
-
-
-/* ============================= */
-/* DROPDOWN ARROW (IDLE)         */
-/* ============================= */
 
 .unity-base-popup-field__arrow {
-    -unity-background-image-tint-color: rgb(20, 20, 20);
+    -unity-background-image-tint-color: var(--border-dark);
     transition: 0.3s;
 }
-
-
-/* ============================= */
-/* DROPDOWN ARROW (HOVER/FOCUS)  */
-/* ============================= */
 
 .unity-base-popup-field:hover .unity-base-popup-field__arrow {
     -unity-background-image-tint-color: var(--hub-colour-primary);
-
     transition: 0.3s;
 }
-
-
-/* ============================= */
-/* POPUP MENU CONTAINER          */
-/* ============================= */
 
 .unity-base-popup-menu {
-    background-color: rgba(0, 0, 0, 0.9);
-    border-width: 2px;
-    border-color: rgb(20, 20, 20);
-    border-radius: 6px;
+    background-color: var(--background-dark);
+    border-width: var(--border-width);
+    border-color: var(--border-dark);
+    border-radius: var(--tab-border-radius);
 }
 
-
-/* POPUP MENU ITEMS (IDLE) */
 .unity-base-popup-menu__item {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: grey;
-    font-size: 18px;
-
+    background-color: var(--background-semi-transparent);
+    color: var(--text-gray);
+    font-size: var(--font-size-small);
     transition: 0.3s;
 }
 
-/* POPUP MENU ITEM (HOVER / KEYBOARD NAV) */
 .unity-base-popup-menu__item:hover {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--background-dark);
     color: var(--hub-colour-primary);
 }
 
-/* POPUP MENU ITEM (CHECKED / CURRENT VALUE) */
 .unity-base-popup-menu__item--checked {
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: var(--background-dark);
     color: var(--hub-colour-primary);
 }
 
+/* Text display area inside the dropdown */
+.unity-base-popup-field__text {
+    color: var(--text-gray);
+    font-size: var(--font-size-label);
+    -unity-text-align: middle-left;
+    padding: 8px 4px;
+}
 
+/* The input container that holds the text */
+.unity-base-popup-field__input {
+    background-color: transparent;
+    border-color: var(--border-dark);
+    border-width: var(--border-width);
+    border-radius: var(--button-border-radius);
+    padding: 4px;
+}
 
+/* Hover state for the input container */
+.unity-base-popup-field__input:hover {
+    background-color: var(--background-dark);
+    border-color: var(--hub-colour-primary);
+}
+
+/* Alternate class name (some versions use this) */
+.unity-popup-field__input {
+    background-color: transparent;
+    border-color: var(--border-dark);
+    border-width: var(--border-width);
+    border-radius: var(--button-border-radius);
+    padding: 4px;
+}
+
+/* Main dropdown container (outer wrapper) */
+.unity-base-dropdown {
+    background-color: var(--background-semi-dark);
+    border-color: var(--border-dark);
+    border-width: var(--border-width);
+    border-radius: var(--button-border-radius);
+    color: var(--text-gray);
+    font-size: var(--font-size-label);
+    min-height: 40px;
+    padding: 0 12px;
+    transition: var(--tween-duration);
+}
+
+/* Outer container for dropdown elements */
+.unity-base-dropdown__container-outer {
+    /* This is typically a layout container */
+    background-color: black;
+    border-color: var(--border-dark);
+}
+
+/* Inner container for dropdown content */
+.unity-base-dropdown__container-inner {
+    /* This contains the text and arrow */
+    background-color: black;
+    border-color: var(--border-dark);
+    font-size: 18px;
+    padding: 4px;
+}
+
+.unity-base-dropdown__container-inner:hover {
+    background-color: black;
+    color: var(--hub-colour-primary);
+    transition: var(--tween-duration);
+    padding: 4px;
+}
+
+.unity-base-dropdown__item-content:hover{
+    color: var(--hub-colour-primary);
+    transition: var(--tween-duration);
+    background-color: black;
+}
+
+.unity-base-dropdown__item:hover {
+    color: grey;
+    transition: var(--tween-duration);
+    background-color: grey;
+}
+
+.unity-base-dropdown__label{
+    color: var(--hub-colour-primary);
+    transition: var(--tween-duration);
+}
+
+.unity-base-dropdown__label:hover{
+    color: var(--hub-colour-primary);
+    transition: var(--tween-duration);
+}
+
+.unity-base-dropdown__item:hover > .unity-base-dropdown__label {
+    color: var(--hub-colour-primary); /* This should change your text color */
+}
+
+/* ===================== */
+/* LANGUAGE */
+/* ===================== */
+
+.language-scroll {
+    margin-top: 40px;
+    width: 100%;
+    height: 85%;
+}
+
+.language-row {
+    background-color: transparent;
+    color: var(--text-gray);
+    border-color: var(--border-dark);
+    border-radius: var(--element-border-radius);
+    width: 90%;
+    height: 60px;
+    font-size: var(--font-size-label);
+    margin-top: var(--spacing-medium);
+}
+
+.language-row:hover {
+    color: var(--hub-colour-primary);
+    border-color: var(--hub-colour-primary);
+}
+
+.language-row:focus {
+    color: var(--button-focus-colour);
+    border-color: var(--button-focus-colour);
+}
+
+/* Target the vertical scrollbar's TRACK (background) inside .language-scroll */
+.unity-base-slider__tracker {
+    background-color: transparent;
+    border-color: var(--border-dark);
+    border-radius: 10px;
+}
+
+/* Target the vertical scrollbar's DRAGGER (thumb) inside .language-scroll */
+.unity-base-slider__dragger {
+    background-color: grey;
+    border-radius: 2px;
+    border-color: var(--border-dark);
+}
+
+/* Hover state for the dragger (thumb) */
+.unity-base-slider__dragger:hover {
+    background-color: var(--hub-colour-primary);
+    transition: var(--tween-duration);
+}
+
+/* OPTIONAL: Style the dragger border if you wish */
+.unity-base-slider__dragger-border {
+    border-color: transparent; /* Or your preferred color */
+}
+
+.unity-scroller__low-button,
+.unity-scroller__high-button {
+    display: none;
+}

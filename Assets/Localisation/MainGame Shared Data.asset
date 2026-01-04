@@ -76,7 +76,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4785248534769664
-    m_Key: "start-game\t"
+    m_Key: start-game
     m_Metadata:
       m_Items: []
   - m_Id: 5438223171170304
@@ -157,6 +157,42 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5869164842692608
     m_Key: render-scale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692609
+    m_Key: english (en)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692610
+    m_Key: czech (cs)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692611
+    m_Key: german (de)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692612
+    m_Key: irish (ga)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692613
+    m_Key: italian (it)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692614
+    m_Key: lithuanian (lt)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692615
+    m_Key: polish (pl)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692616
+    m_Key: spanish (es)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692617
+    m_Key: ukrainian (uk)
     m_Metadata:
       m_Items: []
   m_Metadata:
