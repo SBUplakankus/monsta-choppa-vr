@@ -14,9 +14,11 @@ namespace UI.Hosts
         
         [Header("Panel Hosts")]
         [SerializeField] private AudioSettingsPanelHost audioSettingsPanelHost;
+        [SerializeField] private VideoSettingsPanelHost videoSettingsPanelHost;
 
         private SettingsPanelView _settingsView;
         private AudioSettingsPanelView _audioSettingsView;
+        private VideoSettingsPanelView _videoSettingsView;
 
         private Button _audioTab;
         private Button _videoTab;
@@ -39,6 +41,10 @@ namespace UI.Hosts
             audioSettingsPanelHost.Dispose();
             _audioSettingsView?.Dispose();
             _audioSettingsView = null;
+            
+            videoSettingsPanelHost.DisposeView();
+            _videoSettingsView?.Dispose();
+            _videoSettingsView = null;
         }
 
         private void ShowAudioTab()
@@ -51,6 +57,8 @@ namespace UI.Hosts
         private void ShowVideoTab()
         {
             DisposeTabViews();
+            _videoSettingsView = new VideoSettingsPanelView(_contentRoot, styleSheet);
+            videoSettingsPanelHost.BindPanel(_videoSettingsView);
         }
 
         private void ShowLanguageTab()
@@ -73,7 +81,7 @@ namespace UI.Hosts
             _contentRoot = _settingsView.Content;
             
             BindTabs();
-            ShowAudioTab();
+            ShowVideoTab();
         }
 
         private void BindTabs()

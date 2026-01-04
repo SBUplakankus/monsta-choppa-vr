@@ -19,6 +19,7 @@ namespace Attributes
         
         /// <inheritdoc cref="INotifyBindablePropertyChanged.propertyChanged"/>
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
+        public event Action<int> OnValueChanged;
 
         #endregion
         
@@ -37,6 +38,7 @@ namespace Attributes
             {
                 if (this.value == value) return;
                 this.value = value;
+                OnValueChanged?.Invoke(this.value);
                 Notify();
             }
         }

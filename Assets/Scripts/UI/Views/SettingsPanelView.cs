@@ -44,18 +44,9 @@ namespace UI.Views
             );
             
             var tabs = UIToolkitFactory.CreateContainer(UIToolkitStyles.TabBar);
-            
-            AudioTab = UIToolkitFactory.CreateButton(
-                LocalizationFactory.CreateString(LocalizationKeys.Audio), 
-                classNames: UIToolkitStyles.Tab);
-            
-            VideoTab = UIToolkitFactory.CreateButton(
-                LocalizationFactory.CreateString(LocalizationKeys.Video), 
-                classNames: UIToolkitStyles.Tab);
-            
-            LanguageTab = UIToolkitFactory.CreateButton(
-                LocalizationFactory.CreateString(LocalizationKeys.Language), 
-                classNames: UIToolkitStyles.Tab);
+            AudioTab = UIToolkitFactory.CreateButton(LocalizationKeys.Audio, classNames: UIToolkitStyles.Tab);
+            VideoTab = UIToolkitFactory.CreateButton(LocalizationKeys.Video, classNames: UIToolkitStyles.Tab);
+            LanguageTab = UIToolkitFactory.CreateButton(LocalizationKeys.Language, classNames: UIToolkitStyles.Tab);
 
             tabs.Add(AudioTab);
             tabs.Add(VideoTab);

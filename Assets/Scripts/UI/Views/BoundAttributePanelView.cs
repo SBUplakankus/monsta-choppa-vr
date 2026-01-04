@@ -36,8 +36,7 @@ namespace UI.Views
             
             _container = UIToolkitFactory.CreateContainer(UIToolkitStyles.Container, UIToolkitStyles.PanelBody);
 
-            var headerText = LocalizationFactory.CreateString(attribute.AttributeName);
-            var header = UIToolkitFactory.CreateLabel(headerText, UIToolkitStyles.Header);
+            var header = UIToolkitFactory.CreateLabel(attribute.AttributeName, UIToolkitStyles.Header);
             _container.Add(header);
             
             var stat =  UIToolkitFactory.CreateBoundLabel(attribute, nameof(attribute.Value), UIToolkitStyles.Stat);

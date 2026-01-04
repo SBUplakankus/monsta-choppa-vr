@@ -90,16 +90,19 @@ namespace Factories
         /// <summary>
         /// Creates a Button with text and optional click handler.
         /// </summary>
-        /// <param name="localizedString">Key for localisation</param>
+        /// <param name="localizationKey">Localization key for button text (optional).</param>
         /// <param name="onClick">Callback invoked on button click.</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Configured Button element.</returns>
-        public static Button CreateButton(LocalizedString localizedString = null, Action onClick = null, params string[] classNames)
+        public static Button CreateButton(string localizationKey = null, Action onClick = null, params string[] classNames)
         {
             var button = CreateElement<Button>(classNames);
             
-            if(localizedString != null)
+            if(!string.IsNullOrEmpty(localizationKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(localizationKey);
                 button.SetBinding("text", localizedString);
+            }
             
             if (onClick != null)
                 button.clicked += onClick;
@@ -111,13 +114,18 @@ namespace Factories
         /// <summary>
         /// Creates a Label with specified text.
         /// </summary>
-        /// <param name="localizedString">Label display key</param>
+        /// <param name="localizationKey">Localization key for label text</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Configured Label element.</returns>
-        public static Label CreateLabel(LocalizedString localizedString, params string[] classNames)
+        public static Label CreateLabel(string localizationKey, params string[] classNames)
         {
             var label = CreateElement<Label>(classNames);
-            label.SetBinding("text", localizedString);
+            
+            if(!string.IsNullOrEmpty(localizationKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(localizationKey);
+                label.SetBinding("text", localizedString);
+            }
             
             return label;
         }
@@ -170,20 +178,28 @@ namespace Factories
         /// <param name="min">Minimum slider value.</param>
         /// <param name="max">Maximum slider value.</param>
         /// <param name="value">Initial slider value.</param>
+        /// <param name="labelKey">Localization key for slider label (optional).</param>
         /// <param name="onValueChanged">Callback invoked when slider value changes.</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Configured Slider element.</returns>
         public static Slider CreateSlider(float min = 0, float max = 1, float value = 1, 
-            Action<float> onValueChanged = null, params string[] classNames)
+            string labelKey = null, Action<float> onValueChanged = null, params string[] classNames)
         {
             var slider = CreateElement<Slider>(classNames);
             slider.lowValue = min;
             slider.highValue = max;
             slider.value = value;
             
+            if(!string.IsNullOrEmpty(labelKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(labelKey);
+                slider.SetBinding("label", localizedString);
+            }
+            
             if (onValueChanged != null)
                 slider.RegisterValueChangedCallback(evt => onValueChanged?.Invoke(evt.newValue));
-                
+            
+            slider.AddAudioEvents();
             return slider;
         }
         
@@ -193,16 +209,23 @@ namespace Factories
         /// <param name="min">Minimum integer value.</param>
         /// <param name="max">Maximum integer value.</param>
         /// <param name="value">Initial integer value.</param>
+        /// <param name="labelKey">Localization key for slider label (optional).</param>
         /// <param name="onValueChanged">Callback invoked when value changes.</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Configured SliderInt element.</returns>
         public static SliderInt CreateSliderInt(int min, int max, int value,
-            Action<int> onValueChanged = null, params string[] classNames)
+            string labelKey = null, Action<int> onValueChanged = null, params string[] classNames)
         {
             var slider = CreateElement<SliderInt>(classNames);
             slider.lowValue = min;
             slider.highValue = max;
             slider.value = value;
+            
+            if(!string.IsNullOrEmpty(labelKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(labelKey);
+                slider.SetBinding("label", localizedString);
+            }
             
             if (onValueChanged != null)
                 slider.RegisterValueChangedCallback(evt => onValueChanged?.Invoke(evt.newValue));
@@ -213,16 +236,22 @@ namespace Factories
         /// <summary>
         /// Creates a Toggle (checkbox) with label and state change callback.
         /// </summary>
-        /// <param name="label">Toggle display label.</param>
+        /// <param name="localizationKey">Localization key for toggle label.</param>
         /// <param name="value">Initial toggle state.</param>
         /// <param name="onValueChanged">Callback invoked when toggle state changes.</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Configured Toggle element.</returns>
-        public static Toggle CreateToggle(string label, bool value = false,
+        public static Toggle CreateToggle(string localizationKey, bool value = false,
             Action<bool> onValueChanged = null, params string[] classNames)
         {
             var toggle = CreateElement<Toggle>(classNames);
-            toggle.label = label;
+            
+            if(!string.IsNullOrEmpty(localizationKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(localizationKey);
+                toggle.SetBinding("label", localizedString);
+            }
+            
             toggle.value = value;
             
             if (onValueChanged != null)
@@ -234,17 +263,23 @@ namespace Factories
         /// <summary>
         /// Creates a TextField for text input with optional label and change callback.
         /// </summary>
-        /// <param name="label">Field label text.</param>
+        /// <param name="labelKey">Localization key for field label (optional).</param>
         /// <param name="value">Initial field value.</param>
         /// <param name="isMultiline">Whether the field supports multiline input.</param>
         /// <param name="onValueChanged">Callback invoked when text changes.</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Configured TextField element.</returns>
-        public static TextField CreateTextField(string label = "", string value = "", bool isMultiline = false,
+        public static TextField CreateTextField(string labelKey = null, string value = "", bool isMultiline = false,
             Action<string> onValueChanged = null, params string[] classNames)
         {
             var textField = CreateElement<TextField>(classNames);
-            textField.label = label;
+            
+            if(!string.IsNullOrEmpty(labelKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(labelKey);
+                textField.SetBinding("label", localizedString);
+            }
+            
             textField.value = value;
             textField.multiline = isMultiline;
             
@@ -257,23 +292,31 @@ namespace Factories
         /// <summary>
         /// Creates a DropdownField with specified options and selection callback.
         /// </summary>
-        /// <param name="label">Dropdown label text.</param>
+        /// <param name="labelKey">Localization key for dropdown label.</param>
         /// <param name="choices">List of available options.</param>
         /// <param name="defaultIndex">Index of initially selected option.</param>
         /// <param name="onValueChanged">Callback invoked when selection changes.</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Configured DropdownField element.</returns>
-        public static DropdownField CreateDropdown(string label, List<string> choices, int defaultIndex = 0,
+        public static DropdownField CreateDropdown(string labelKey, List<string> choices, int defaultIndex = 0,
             Action<string> onValueChanged = null, params string[] classNames)
         {
             var dropdown = CreateElement<DropdownField>(classNames);
-            dropdown.label = label;
+            
+            if(!string.IsNullOrEmpty(labelKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(labelKey);
+                dropdown.SetBinding("label", localizedString);
+            }
+            
             dropdown.choices = choices;
             dropdown.index = defaultIndex;
             
             if (onValueChanged != null)
                 dropdown.RegisterValueChangedCallback(evt => onValueChanged?.Invoke(evt.newValue));
                 
+            dropdown.AddAudioEvents();
+            
             return dropdown;
         }
         
@@ -346,9 +389,11 @@ namespace Factories
         /// Creates a simple progress bar element.
         /// </summary>
         /// <param name="progress">Initial progress value (0 to 1).</param>
+        /// <param name="labelKey">Localization key for progress bar label (optional).</param>
         /// <param name="classNames">CSS class names for styling.</param>
         /// <returns>Progress bar container with inner fill element.</returns>
-        public static (VisualElement container, VisualElement fill) CreateProgressBar(float progress = 0f, params string[] classNames)
+        public static (VisualElement container, VisualElement fill) CreateProgressBar(float progress = 0f, 
+            string labelKey = null, params string[] classNames)
         {
             var container = CreateElement<VisualElement>(classNames);
             container.style.height = 20;
@@ -360,11 +405,16 @@ namespace Factories
             fill.style.width = Length.Percent(progress * 100);
             
             container.Add(fill);
+            
+            if(!string.IsNullOrEmpty(labelKey))
+            {
+                var label = CreateLabel(labelKey);
+                container.Add(label);
+            }
+            
             return (container, fill);
         }
 
-        
-        
         #endregion
         
         #region Extension Methods (Fluent API)
@@ -393,6 +443,19 @@ namespace Factories
         public static T WithText<T>(this T element, string text) where T : TextElement
         {
             element.text = text;
+            return element;
+        }
+        
+        /// <summary>
+        /// Sets a localized text binding on a TextElement.
+        /// </summary>
+        public static T WithLocalizedText<T>(this T element, string localizationKey) where T : TextElement
+        {
+            if(!string.IsNullOrEmpty(localizationKey))
+            {
+                var localizedString = LocalizationFactory.CreateString(localizationKey);
+                element.SetBinding("text", localizedString);
+            }
             return element;
         }
         

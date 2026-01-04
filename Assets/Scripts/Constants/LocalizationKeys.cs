@@ -21,6 +21,10 @@ namespace Constants
         public const string Audio = "audio";
         public const string Video = "video";
         public const string Language = "language";
+        public const string Quality = "quality";
+        public const string AntiAliasing = "anti-aliasing";
+        public const string Shadows = "shadows";
+        public const string RenderScale = "render-scale";
 
         public const string Welcome = "welcome";
         public const string Game = "game";
@@ -38,5 +42,16 @@ namespace Constants
         public const string Ambience = "ambience";
         public const string SFX = "sfx";
         public const string UI = "ui";
+
+        public const string VeryLow = "Very Low";
+        public const string Low = "Low";
+        public const string Medium = "Medium";
+        public const string High = "High";
+        public const string VeryHigh = "Very High";
+        public const string Ultra = "Ultra";
+        public const string Off= "0ff";
+        public const string TimesTwo = "2x";
+        public const string TimesFour = "4x";
+        public const string TimesEight = "8x";
     }
 }

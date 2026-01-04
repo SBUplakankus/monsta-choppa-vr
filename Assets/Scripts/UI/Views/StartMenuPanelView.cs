@@ -43,10 +43,7 @@ namespace UI.Views
 
         private void CreateButton(string key, Action onClick)
         {
-            var button = UIToolkitFactory.CreateButton(
-                LocalizationFactory.CreateString(key), 
-                () => onClick?.Invoke());
-            
+            var button = UIToolkitFactory.CreateButton(key,() => onClick?.Invoke());
             _buttonContainer.Add(button);
         }
 
@@ -54,10 +51,7 @@ namespace UI.Views
         {
             _container = UIToolkitFactory.CreateContainer(UIToolkitStyles.Container, UIToolkitStyles.PanelBody);
 
-            var gameTitle = UIToolkitFactory.CreateLabel(
-                LocalizationFactory.CreateString(LocalizationKeys.GameTitle),
-                UIToolkitStyles.Header);
-            
+            var gameTitle = UIToolkitFactory.CreateLabel(LocalizationKeys.GameTitle, UIToolkitStyles.Header);
             _container.Add(gameTitle);
             
             _buttonContainer = UIToolkitFactory.CreateContainer(UIToolkitStyles.ButtonContainer);

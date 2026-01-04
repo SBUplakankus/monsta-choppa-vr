@@ -1,6 +1,7 @@
 using System;
 using Constants;
 using Factories;
+using UI.Extensions;
 using UnityEngine.UIElements;
 
 namespace UI.Views
@@ -37,12 +38,12 @@ namespace UI.Views
             var container = UIToolkitFactory.CreateContainer(UIToolkitStyles.SettingsSliderRow);
 
             container.Add(
-                UIToolkitFactory.CreateLabel(LocalizationFactory.CreateString(key), UIToolkitStyles.SliderTitle)
+                UIToolkitFactory.CreateLabel(key, UIToolkitStyles.SliderTitle)
             );
 
             slider = UIToolkitFactory.CreateSlider(classNames: UIToolkitStyles.SettingsSlider);
             container.Add(slider);
-
+            
             return container;
         }
 
@@ -55,7 +56,7 @@ namespace UI.Views
             var header = UIToolkitFactory.CreateContainer(UIToolkitStyles.PanelHeader);
             
             var title = UIToolkitFactory.CreateLabel(
-                LocalizationFactory.CreateString(LocalizationKeys.AudioSettings),
+                LocalizationKeys.AudioSettings,
                 UIToolkitStyles.PanelTitle);
             header.Add(title);
             

@@ -134,6 +134,34 @@ MonoBehaviour:
     m_Localized: Language Settings
     m_Metadata:
       m_Items: []
+  - m_Id: 5868980876324864
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869050279473152
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869063059517440
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869073322979328
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869084534353920
+    m_Localized: Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869140243099648
+    m_Localized: Anti Aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692608
+    m_Localized: Render Scale
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

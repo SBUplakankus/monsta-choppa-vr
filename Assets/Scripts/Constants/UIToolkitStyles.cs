@@ -32,6 +32,9 @@ namespace Constants
         
         public const string SettingsSlider = "settings-slider";
         public const string SettingsSliderRow = "settings-slider-row";
+        public const string SettingsDropdownRow = "settings-dropdown-row";
+        public const string SettingsDropdown = "settings-dropdown";
+        public const string SettingsToggle = "settings-toggle";
         public const string SliderTitle = "slider-title";
         
         public const string TabBar = "tab-bar";
