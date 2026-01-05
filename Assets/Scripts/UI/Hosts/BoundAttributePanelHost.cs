@@ -5,13 +5,9 @@ using UnityEngine.UIElements;
 
 namespace UI.Hosts
 {
-    public class BoundAttributePanelHost : MonoBehaviour
+    public class BoundAttributePanelHost : BasePanelHost
     {
         #region Fields
-        
-        [Header("UI Toolkit")]
-        [SerializeField] private UIDocument uiDocument;
-        [SerializeField] private StyleSheet styleSheet;
         
         [Header("Attribute")]
         [SerializeField] private IntAttribute attribute;
@@ -22,26 +18,22 @@ namespace UI.Hosts
         
         #region Class Functions
 
-        private void Generate()
+        public override void Generate()
         {
             _boundAttributePanelView = new BoundAttributePanelView(uiDocument.rootVisualElement,  styleSheet, attribute);
             attribute.Refresh();
         }
-        
+
+        public override void Dispose()
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
         
         #region Unity Functions
         
         private void OnEnable() => Generate();
-        
-        private void OnValidate()
-        {
-            if (Application.isPlaying) return;
-            if (uiDocument == null || attribute == null) return;
-            if (uiDocument.rootVisualElement == null) return;
-            
-            Generate();
-        }
         
         #endregion
     }

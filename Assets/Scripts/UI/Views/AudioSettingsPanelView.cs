@@ -6,11 +6,10 @@ using UnityEngine.UIElements;
 
 namespace UI.Views
 {
-    public class AudioSettingsPanelView : IDisposable
+    public class AudioSettingsPanelView : BasePanelView
     {
         #region Fields
 
-        private VisualElement _container;
         public Slider MasterVolume {get; private set;}
         public Slider MusicVolume {get; private set;}
         public Slider AmbienceVolume {get; private set;}
@@ -47,9 +46,9 @@ namespace UI.Views
             return container;
         }
 
-        private void GenerateUI(VisualElement root)
+        protected sealed override void GenerateUI(VisualElement root)
         {
-            _container = UIToolkitFactory.CreateContainer(
+            Container = UIToolkitFactory.CreateContainer(
                 UIToolkitStyles.Container
             );
             
@@ -60,7 +59,7 @@ namespace UI.Views
                 UIToolkitStyles.PanelTitle);
             header.Add(title);
             
-            _container.Add(header);
+            Container.Add(header);
             
             var content = UIToolkitFactory.CreateContainer(UIToolkitStyles.PanelContent);
 
@@ -76,19 +75,9 @@ namespace UI.Views
             SfxVolume = sfx;
             UIVolume = ui;
             
-            _container.Add(content);
+            Container.Add(content);
 
-            root.Add(_container);
-        }
-
-        #endregion
-
-        #region IDisposable
-
-        public void Dispose()
-        {
-            _container?.RemoveFromHierarchy();
-            _container = null;
+            root.Add(Container);
         }
 
         #endregion

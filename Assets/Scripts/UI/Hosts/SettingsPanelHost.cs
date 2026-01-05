@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UI.Extensions;
 using UI.Views;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
@@ -5,14 +7,10 @@ using UnityEngine.UIElements;
 
 namespace UI.Hosts
 {
-    public class SettingsPanelHost : MonoBehaviour
+    public class SettingsPanelHost : BasePanelHost
     {
         #region Fields
 
-        [Header("UI Toolkit")] 
-        [SerializeField] private UIDocument uiDocument;
-        [SerializeField] private StyleSheet styleSheet;
-        
         [Header("Panel Hosts")]
         [SerializeField] private AudioSettingsPanelHost audioSettingsPanelHost;
         [SerializeField] private VideoSettingsPanelHost videoSettingsPanelHost;
@@ -26,13 +24,12 @@ namespace UI.Hosts
         private Button _audioTab;
         private Button _videoTab;
         private Button _languageTab;
-        private VisualElement _contentRoot;
-
+        
         #endregion
 
         #region Methods
 
-        private void DisposeView()
+        public override void Dispose()
         {
             UnbindTabs();
             _settingsView?.Dispose();
@@ -57,27 +54,27 @@ namespace UI.Hosts
         private void ShowAudioTab()
         {
             DisposeTabViews();
-            _audioSettingsView = new AudioSettingsPanelView(_contentRoot, styleSheet);
+            _audioSettingsView = new AudioSettingsPanelView(ContentRoot, styleSheet);
             audioSettingsPanelHost.BindViewSliders(_audioSettingsView);
         }
 
         private void ShowVideoTab()
         {
             DisposeTabViews();
-            _videoSettingsView = new VideoSettingsPanelView(_contentRoot, styleSheet);
+            _videoSettingsView = new VideoSettingsPanelView(ContentRoot, styleSheet);
             videoSettingsPanelHost.BindPanel(_videoSettingsView);
         }
 
         private void ShowLanguageTab()
         {
             DisposeTabViews();
-            _languageView = new LocalizationPanelView(_contentRoot, styleSheet, LocalizationSettings.AvailableLocales.Locales);
+            _languageView = new LocalizationPanelView(ContentRoot, styleSheet, LocalizationSettings.AvailableLocales.Locales);
             localizationPanelHost.BindPanel(_languageView);
         }
 
-        public void Generate()
+        public override void Generate()
         {
-            DisposeView();
+            Dispose();
 
             _settingsView = new SettingsPanelView(
                 uiDocument.rootVisualElement,
@@ -87,7 +84,7 @@ namespace UI.Hosts
             _audioTab = _settingsView.AudioTab;
             _videoTab = _settingsView.VideoTab;
             _languageTab = _settingsView.LanguageTab;
-            _contentRoot = _settingsView.Content;
+            ContentRoot = _settingsView.Content;
             
             BindTabs();
         }
@@ -107,23 +104,6 @@ namespace UI.Hosts
             _languageTab.clicked -= ShowLanguageTab;
         }
         
-        #endregion
-
-        #region Unity Lifecycle
-
-        private void OnDisable() => DisposeView();
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (Application.isPlaying) return;
-            if (uiDocument == null) return;
-            if (uiDocument.rootVisualElement == null) return;
-
-            Generate();
-        }
-#endif
-
         #endregion
     }
 }

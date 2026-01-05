@@ -6,18 +6,15 @@ using UnityEngine.UIElements;
 
 namespace UI.Views
 {
-    public class SettingsPanelView : IDisposable
+    public class SettingsPanelView : BasePanelView
     {
         #region Fields
         
-        public Button CloseButton { get; private set; }
         public Button AudioTab { get; private set; }
         public Button VideoTab { get; private set; }
         public Button LanguageTab { get; private set; }
 
         public VisualElement Content { get; private set; }
-
-        private VisualElement _container;
 
         #endregion
 
@@ -34,11 +31,10 @@ namespace UI.Views
         #endregion
 
         #region Methods
-        
 
-        private void GenerateUI(VisualElement root)
+        protected sealed override void GenerateUI(VisualElement root)
         {
-            _container = UIToolkitFactory.CreateContainer(
+            Container = UIToolkitFactory.CreateContainer(
                 UIToolkitStyles.Container,
                 UIToolkitStyles.PanelBody
             );
@@ -51,24 +47,12 @@ namespace UI.Views
             tabs.Add(AudioTab);
             tabs.Add(VideoTab);
             tabs.Add(LanguageTab);
-            _container.Add(tabs);
+            Container.Add(tabs);
 
             Content = UIToolkitFactory.CreateContainer(UIToolkitStyles.TabContent);
-            _container.Add(Content);
+            Container.Add(Content);
             
-            root.Add(_container);
-        }
-
-        #endregion
-
-        #region IDisposable
-
-        public void Dispose()
-        {
-            if (_container == null) return;
-
-            _container.RemoveFromHierarchy();
-            _container = null;
+            root.Add(Container);
         }
 
         #endregion

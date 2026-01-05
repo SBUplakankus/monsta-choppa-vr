@@ -6,11 +6,10 @@ using UnityEngine.UIElements;
 
 namespace UI.Views
 {
-    public class VideoSettingsPanelView : IDisposable
+    public class VideoSettingsPanelView : BasePanelView
     {
         #region Fields
         
-        private VisualElement _container;
         public DropdownField Quality {get; private set;}
         public DropdownField AntiAliasing {get; private set;}
         public DropdownField RenderScale {get; private set;}
@@ -61,16 +60,16 @@ namespace UI.Views
         {
             return UIToolkitFactory.CreateDropdown(key, options, index, classNames: UIToolkitStyles.SettingsDropdown);
         }
-        
-        private void GenerateUI(VisualElement root)
+
+        protected sealed override void GenerateUI(VisualElement root)
         {
-            _container = UIToolkitFactory.CreateContainer(UIToolkitStyles.Container);
+            Container = UIToolkitFactory.CreateContainer(UIToolkitStyles.Container);
             
             var header = UIToolkitFactory.CreateContainer(UIToolkitStyles.PanelHeader);
             
             var title = UIToolkitFactory.CreateLabel(LocalizationKeys.VideoSettings, UIToolkitStyles.PanelTitle);
             header.Add(title);
-            _container.Add(header);
+            Container.Add(header);
             
             var content = UIToolkitFactory.CreateContainer(UIToolkitStyles.TabContent);
 
@@ -89,20 +88,8 @@ namespace UI.Views
             row.Add(RenderScale);
             content.Add(row);
             
-            _container.Add(content);
-            root.Add(_container);
-        }
-
-        #endregion
-
-        #region IDisposable
-
-        public void Dispose()
-        {
-            if (_container == null) return;
-
-            _container.RemoveFromHierarchy();
-            _container = null;
+            Container.Add(content);
+            root.Add(Container);
         }
 
         #endregion

@@ -6,13 +6,9 @@ using UnityEngine.UIElements;
 
 namespace UI.Hosts
 {
-    public class StartMenuPanelHost : MonoBehaviour
+    public class StartMenuPanelHost : BasePanelHost
     {
         #region Fields
-
-        [Header("UI Toolkit")] 
-        [SerializeField] private UIDocument uiDocument;
-        [SerializeField] private StyleSheet styleSheet;
         
         public event Action OnPlayClicked;
         public event Action OnControlsClicked;
@@ -48,9 +44,9 @@ namespace UI.Hosts
             _view.OnQuitClicked -= OnQuit;
         }
         
-        public void Generate()
+        public override void Generate()
         {
-            DisposeView();
+            Dispose();
             
             _view = new StartMenuPanelView(
                 uiDocument.rootVisualElement,
@@ -60,29 +56,12 @@ namespace UI.Hosts
             SubscribeEvents();
         }
 
-        private void DisposeView()
+        public override void Dispose()
         {
             UnsubscribeEvents();
             _view?.Dispose();
             _view = null;
         }
-
-        #endregion
-
-        #region Unity Methods
-
-        private void OnDisable() => DisposeView();
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (Application.isPlaying) return;
-            if (uiDocument == null) return;
-            if (uiDocument.rootVisualElement == null) return;
-
-            Generate();
-        }
-#endif
 
         #endregion
     }
