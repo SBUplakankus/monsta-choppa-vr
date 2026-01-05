@@ -1,131 +1,224 @@
-# ⚔️ Enemy System: High-Level Architecture
+# ⚔️ Enemy System Architecture
 
 ## 🎯 **System Purpose**
-This is a **modular, data-driven enemy system** designed for VR combat. It separates enemy definition (data), behavior (logic), and visual feedback (UI/effects) into independent, reusable components. While currently focused on the health bar UI, the architecture is built to support complete enemy configurations.
-
-## 🏗️ **Planned Architecture Overview**
+A modular, data-driven enemy system for VR combat that separates configuration (data), behavior (logic), and visual feedback (UI/effects) into independent, reusable components.
 
 ```mermaid
-flowchart TD
-    A[EnemyData<br/>ScriptableObject] --> B[Core Enemy Prefab]
+graph TD
+    A[EnemyData ScriptableObject] --> B[EnemyController]
+    B --> C[EnemyHealth]
+    B --> D[EnemyMovement]
+    B --> E[EnemyAnimator]
+    B --> F[EnemyAttack]
     
-    A -->|Defines| C[Base Stats]
-    A -->|References| D[Visual/Feedback Assets]
-    A -->|Contains list of| E[Behavior Modules]
+    C --> G[EnemyHealthBar UI]
+    C --> H[Death VFX]
     
-    C --> F[Health, Damage, Speed, etc.]
-    D --> G[Model, Sounds, VFX Keys]
-    E --> H[Aggro, Patrol, Attack, etc.]
-    
-    B -->|Has component| I[EnemyController<br/>MonoBehaviour]
-    I -->|Manages| J[Current State<br/>Health, Status]
-    I -->|Updates| K[EnemyHealthBar UI]
-    I -->|Triggers| L[Feedback Systems]
-    
-    K -->|Visualizes| M[Health Value]
-    L -->|Plays| N[Sound, VFX, Haptics]
-    
-    O[Combat/Weapon System] -->|Applies damage| I
-    I -->|Fires events| P[Game Events<br/>OnEnemyHit, OnEnemyDied]
+    I[Player/Weapon] -->|Damage| C
+    J[GameEvents] -->|Notifications| B
+    K[PoolManager] -->|Spawning| B
 ```
 
-## 🧩 **Core Components (Current & Planned)**
+## 🧩 **Core Components**
 
-### **1. Current: `EnemyHealthBar` (Visual UI)**
-- **Purpose**: Real-time health visualization with combat feedback
-- **Key Features**:
-    - UI Toolkit-based runtime health bar
-    - PrimeTween screen shake on damage
-    - Style-driven visual design (USS)
-    - Clean component separation from enemy logic
+### **1. 📊 EnemyData (ScriptableObject)**
+Central configuration asset for enemy types.
 
-### **2. Planned: `EnemyData` (ScriptableObject Configuration)**
-This would define all configurable enemy properties:
-- **Base Stats**: Health, damage, movement speed, attack range
-- **Combat Profile**: Attack patterns, defense type, weaknesses
-- **VR Interactions**: Haptic feedback strength, hit reaction intensity
-- **Visual/Audio**: Model prefab, hit sounds, death VFX keys
-- **Behavior References**: AI state machines or behavior modules
+| Field | Type | Description |
+|-------|------|-------------|
+| `EnemyId` | `string` | Unique identifier for this enemy type |
+| `MaxHealth` | `int` | Base health points |
+| `MoveSpeed` | `float` | Movement speed |
+| `Prefab` | `GameObject` | Visual model and components |
+| `Weapon` | `WeaponData` | Enemy's weapon configuration |
+| `AmbientSfx` | `WorldAudioData[]` | Random ambient sounds |
+| `HitSfx` | `WorldAudioData[]` | Random hit sounds |
+| `DeathSfx` | `WorldAudioData[]` | Random death sounds |
+| `DeathVFX` | `ParticleData` | Death visual effects |
 
-### **3. Planned: `EnemyController` (MonoBehaviour Logic)**
-The brain of the enemy that would:
-- Manage current health state
-- Handle damage intake from VR weapons
-- Update the `EnemyHealthBar` component
-- Trigger visual/audio feedback
-- Control AI behavior based on `EnemyData`
-- Fire game events (enemy hit, enemy died)
-
-### **4. Planned: `EnemyBehavior` Modules (AI/Logic)**
-Reusable behavior components that could be mixed and matched:
-- **PatrolBehavior**: Waypoint-based movement
-- **AggroBehavior**: Player detection and pursuit
-- **AttackBehavior**: VR-compatible attack patterns
-- **FleeBehavior**: Health-based retreat logic
-
-## 🔄 **How It Would Work Together**
-
-### **📊 Data Flow Example**
-1. **Designer Creates Enemy**: Makes `GoblinData.asset` with 100 health, fast speed, weak to fire
-2. **Artist Provides Assets**: Assigns goblin model, "goblin_hit" sound key
-3. **Assembly**: Prefab with `EnemyController` + `EnemyHealthBar` + `EnemyData` reference
-4. **Runtime Combat**: Player hits goblin with fire sword:
-    - `WeaponSystem` calculates 25 fire damage
-    - `EnemyController` reduces health to 75
-    - `EnemyHealthBar.UpdateHealthBarValue(0.75f)` updates UI with shake
-    - Audio system plays "goblin_hit" at enemy position
-    - AI switches from Patrol to Aggro behavior
-
-## 💡 **Integration with Existing Systems**
-
-### **With Your Weapon System**
+**Usage:**
 ```csharp
-// When weapon hits enemy:
-int damage = weaponData.GetTotalDamage();
-enemyController.TakeDamage(damage, weaponData.damageType);
-
-// EnemyController would:
-// 1. Apply damage (considering weaknesses/resistances)
-// 2. Update health bar via UpdateHealthBarValue(currentHealth/maxHealth)
-// 3. Trigger hit reactions (sound, VFX, haptic feedback on controller)
-// 4. Check for death and trigger OnEnemyDied event
+// Designer creates in Unity Editor
+// ScriptableObject -> Create -> Characters -> EnemyData
+// Configure stats, assign prefab, sounds, weapon
 ```
 
-### **With Your Event System**
-- `OnEnemyHit` event with enemy reference and damage amount
-- `OnEnemyDied` event for quest/achievement systems
-- `OnPlayerDamaged` event for player health updates
-- Decoupled communication between combat systems
+### **2. 🎮 EnemyController (Main Coordinator)**
+The brain that manages all enemy components.
 
-### **With Your Localization System**
-- Enemy names and descriptions from localization tables
-- UI labels for enemy health ("Health", "Armor", "Weakness:")
-- Damage type names for combat feedback
+| Method | Purpose | Called By |
+|--------|---------|-----------|
+| `OnSpawn(EnemyData)` | Initialize enemy with data | PoolManager |
+| `OnDespawn()` | Clean up for pooling | PoolManager |
+| `HighPriorityUpdate()` | Critical logic (AI, combat) | EnemyManager |
+| `MediumPriorityUpdate()` | Less critical updates | EnemyManager |
 
-## ✅ **Design Benefits**
+**Lifecycle:**
+1. **Spawn**: PoolManager calls `OnSpawn()` with EnemyData
+2. **Initialize**: Components get their data, events registered
+3. **Update**: Manager calls priority updates
+4. **Death**: Health reaches 0 → triggers despawn
+5. **Despawn**: Return to pool, clean up
 
-### **🌟 Advantages of This Approach**
-- **Data-Driven Design**: Tweak enemy balance without code changes
-- **Component Reusability**: Same `EnemyHealthBar` works for all enemies
-- **VR-Optimized**: Built-in consideration for haptics and spatial feedback
-- **Modular AI**: Mix-and-match behaviors for enemy variety
-- **Performance**: UI Toolkit is lightweight, ScriptableObjects are asset-based
+### **3. ❤️ EnemyHealth (HealthComponent)**
+Manages health, damage, and death effects.
 
-### **🔧 Extensibility Points**
-1. **Status Effects**: Poison, slow, stun systems
-2. **Difficulty Scaling**: Data-driven stat modifiers per difficulty
-3. **Enemy Variants**: Base goblin + "fire goblin" modifier (like weapon system)
-4. **VR Interactions**: Grabbable enemies, physics-based reactions
-5. **Multiplayer**: Networked health syncing with existing architecture
+| Feature | Implementation | Result |
+|---------|----------------|--------|
+| **Damage Interface** | Implements `IDamageable` | Can be hit by any weapon |
+| **Health Bar UI** | Updates `EnemyHealthBar` | Visual health feedback |
+| **Death Effects** | Spawns VFX via PoolManager | Visual death feedback |
+| **Sound Events** | Plays random hit/death sounds | Audio feedback |
 
-## 🚀 **Next Steps from Current Implementation**
+### **4. 🚶 EnemyMovement (NavMesh Based)**
+Handles navigation and physics.
 
-Your current `EnemyHealthBar` is an excellent foundation. To build out the full system:
+| State | NavMeshAgent | Rigidbody | Purpose |
+|-------|--------------|-----------|---------|
+| **Active** | Enabled, pathfinding | Kinematic false | Normal movement |
+| **Inactive** | Disabled, no path | Kinematic true | Pooled/pre-spawn |
 
-1. **Create `EnemyData` ScriptableObject** (similar to `WeaponData` structure)
-2. **Build `EnemyController`** that references `EnemyData` and manages `EnemyHealthBar`
-3. **Connect to Combat**: Weapon hits trigger `EnemyController.TakeDamage()`
-4. **Add AI Behaviors**: Start with simple Patrol → Aggro transitions
-5. **Integrate Events**: Fire events for game systems (quests, audio, UI updates)
+### **5. 🎭 EnemyAnimator (Animation Controller)**
+Manages animation states.
 
-This architecture ensures your VR enemies will be as data-driven and modular as your weapon system, creating a cohesive, maintainable combat experience where designers can create new enemy types by combining data assets rather than writing new code.
+| Animation | Trigger | Purpose |
+|-----------|---------|---------|
+| **Spawn** | `SetBool(IsMoving, true)` | Idle/movement blend |
+| **Despawn** | `Animator.enabled = false` | Disable when pooled |
+| **Attack** | `SetTrigger(AttackHash)` | Combat animations |
+| **Hit** | `SetTrigger(HitHash)` | Damage reaction |
+| **Death** | `SetTrigger(DeathHash)` | Death animation |
+
+### **6. ⚔️ EnemyAttack (Planned)**
+Currently placeholder for attack logic.
+
+| Planned Feature | Status | Notes |
+|----------------|--------|-------|
+| **Weapon Data** | Reference set | From EnemyData |
+| **Attack Logic** | Not implemented | VR-compatible attacks needed |
+| **Cooldowns** | Not implemented | Balance pacing |
+
+## 🔄 **Data Flow**
+
+```mermaid
+sequenceDiagram
+    participant P as Player Weapon
+    participant H as EnemyHealth
+    participant B as EnemyHealthBar
+    participant C as EnemyController
+    participant M as PoolManager
+    participant E as GameEvents
+
+    P->>H: TakeDamage(25)
+    H->>B: UpdateHealthBarValue(0.75)
+    H->>H: Check if health <= 0
+    alt Is Dead
+        H->>C: HandleDeath()
+        C->>M: ReturnEnemyPrefab(this)
+        C->>M: GetParticlePrefab(DeathVFX)
+        C->>E: Raise OnEnemyDespawned
+    else Is Alive
+        H->>E: Play random hit sound
+    end
+```
+
+## 📊 **Component Interaction Table**
+
+| Component | Depends On | Provides To | Communication Method |
+|-----------|------------|-------------|----------------------|
+| **EnemyController** | EnemyData, all enemy components | EnemyManager, PoolManager | Direct references, events |
+| **EnemyHealth** | EnemyHealthBar, PoolManager | EnemyController, weapons | Interface (IDamageable), events |
+| **EnemyMovement** | NavMeshAgent, Rigidbody | EnemyController | Direct control |
+| **EnemyAnimator** | Animator component | EnemyController | Animation parameters |
+| **EnemyHealthBar** | UI Toolkit, EnemyHealth | Player/UI system | Method calls |
+
+## 🎮 **Integration Points**
+
+### **With Weapon System**
+```csharp
+// When player weapon hits enemy:
+if (enemy.TryGetComponent<IDamageable>(out var damageable))
+{
+    damageable.TakeDamage(weaponDamage);
+    // EnemyHealth handles the rest
+}
+```
+
+### **With Pooling System**
+| Method | PoolManager Action | Enemy Action |
+|--------|-------------------|--------------|
+| **GetEnemyPrefab()** | Instantiates or reuses | `OnSpawn(EnemyData)` |
+| **ReturnEnemyPrefab()** | Returns to pool | `OnDespawn()` |
+
+### **With Event System**
+| Event | Raised When | Listeners |
+|-------|-------------|-----------|
+| **OnEnemySpawned** | Enemy initialized | Quest system, AI director |
+| **OnEnemyDespawned** | Enemy returned to pool | Score system, spawner |
+| **OnEnemyHit** (planned) | Enemy takes damage | Audio, UI, achievements |
+| **OnEnemyDied** (planned) | Enemy health reaches 0 | Quest, loot, progression |
+
+## ⚡ **Performance Considerations**
+
+| Optimization | Implementation | Benefit |
+|--------------|----------------|---------|
+| **Object Pooling** | All enemies managed by PoolManager | No runtime instantiation |
+| **Priority Updates** | High/Medium priority in EnemyManager | Critical logic first |
+| **NavMesh Caching** | Reuse NavMeshAgent component | Avoids component lookups |
+| **Event Unsubscription** | Clean up in OnDisable() | Prevents memory leaks |
+
+## 🚀 **Current Status & Next Steps**
+
+### **✅ Implemented**
+| Feature | Status | Notes |
+|---------|--------|-------|
+| **Data Configuration** | Complete | EnemyData ScriptableObjects |
+| **Health System** | Complete | With UI integration |
+| **Movement** | Complete | NavMesh-based |
+| **Animation** | Basic | Spawn/despawn states |
+| **Pooling Integration** | Complete | Full lifecycle |
+| **Event System** | Partial | Spawn/despawn events |
+
+### **📋 Planned Features**
+| Feature | Priority | Required For |
+|---------|----------|--------------|
+| **Attack System** | High | Combat gameplay |
+| **AI Behaviors** | High | Enemy intelligence |
+| **Status Effects** | Medium | Combat depth |
+| **Loot System** | Medium | Progression |
+| **VR Interaction** | High | Grab, physics reactions |
+
+## 🔧 **Extension Guide**
+
+### **Adding New Enemy Types:**
+1. Create new `EnemyData` ScriptableObject
+2. Configure stats, assign prefab
+3. Add to EnemyDatabase
+4. Spawn via PoolManager
+
+### **Adding New Behaviors:**
+```csharp
+// Example: Add ranged attack component
+public class EnemyRangedAttack : MonoBehaviour
+{
+    public void Attack(Transform target)
+    {
+        // VR-compatible projectile logic
+    }
+}
+
+// Add to enemy prefab, reference in EnemyController
+```
+
+## 📈 **Statistics**
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| **Components** | 7 core components | Health, Movement, Animator, etc. |
+| **ScriptableObjects** | 1 (EnemyData) | Extensible to variants |
+| **Interfaces** | 1 (IDamageable) | Standardized damage |
+| **Dependencies** | 5 systems | Pooling, Events, UI, Audio, Weapons |
+
+---
+
+> 💡 **Pro Tip**: Use the `EnemyData` ScriptableObjects for all balance tweaks. Designers can adjust health, speed, and sounds without touching code. The pooling system ensures performance even with many enemies.

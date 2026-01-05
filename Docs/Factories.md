@@ -1,162 +1,189 @@
-# 🏭 UI Toolkit Factory: High-Level Overview
+# 🏭 UI Toolkit Factory System
 
 ## 🎯 **System Purpose**
-This is a **centralized UI element factory** for Unity's UI Toolkit that standardizes UI creation across your entire VR project. It provides a clean, type-safe API for creating and configuring all UI elements with consistent styling, localization support, and data binding capabilities.
-
-## 🏗️ **Architecture & Usage Flow**
+A centralized factory for creating and configuring all UI Toolkit elements with consistent styling, localization, and data binding.
 
 ```mermaid
-flowchart TD
-    A[UI Components<br/>Panels, Menus, HUDs] -->|Calls| B[UIToolkitFactory]
+graph TD
+    A[UIToolkitFactory] --> B[Core Methods]
+    A --> C[Control Methods]
+    A --> D[Utility Methods]
+    A --> E[Fluent API]
     
-    B -->|Uses| C[GameConstants<br/>Style & Localization Keys]
-    B -->|Creates| D[HealthBarElements Struct]
-    B -->|Produces| E[VisualElements<br/>Buttons, Labels, Sliders]
-    B -->|Supports| F[Data Binding<br/>Runtime Updates]
-    B -->|Enables| G[Fluent API<br/>Method Chaining]
+    B --> B1[CreateElement<T>]
+    B --> B2[CreateContainer]
     
-    D -->|Contains| H[Container, Background, Fill]
-    E -->|Styled with| I[Unity Style Sheets]
-    F -->|Connects to| J[ScriptableObject Attributes]
+    C --> C1[CreateButton]
+    C --> C2[CreateLabel]
+    C --> C3[CreateBoundLabel]
+    C --> C4[CreateSlider]
+    C --> C5[CreateHealthBar]
     
-    H & E -->|Added to| K[UIDocument<br/>Final UI Hierarchy]
+    D --> D1[CreateGroup]
+    D --> D2[CreateSpacer]
+    D --> D3[CreateSeparator]
+    
+    E --> E1[WithClasses]
+    E --> E2[WithText]
+    E --> E3[WithMargin]
 ```
 
 ## 🧩 **Core Components**
 
-### **1. `HealthBarElements` Struct**
-- **Purpose**: Encapsulates all health bar components in a single reusable structure
-- **Contains**: Container, Background, and Fill `VisualElement` references
-- **Benefit**: External systems can update health values without knowing internal hierarchy
+### **1. HealthBarElements Struct**
+| Field | Type | Purpose |
+|-------|------|---------|
+| `Container` | `VisualElement` | Root element for the health bar |
+| `Background` | `VisualElement` | Background/frame of health bar |
+| `Fill` | `VisualElement` | Dynamic fill that shows health percentage |
 
-### **2. Factory Methods (Categorized by UI Type)**
-
-#### **🏗️ Core Elements**
-- **`CreateElement<T>()`**: Generic foundation for any `VisualElement`
-- **`CreateContainer()`**: Basic grouping/layout elements
-- **`CreateGroup()`**: Horizontal/vertical arrangement
-
-#### **🎮 Interactive Controls**
-- **`CreateButton()`**: Localized buttons with click handlers
-- **`CreateSlider()/CreateSliderInt()`**: Range controls with callbacks
-- **`CreateToggle()`**: Checkboxes with state tracking
-- **`CreateTextField()`**: Text input with multiline support
-- **`CreateDropdown()`**: Selection lists with options
-
-#### **📊 Display Elements**
-- **`CreateLabel()`**: Static text with localization
-- **`CreateBoundLabel()`**: **Key Feature** - Automatically updates when data changes
-- **`CreateHealthBar()`**: Complete health bar hierarchy
-- **`CreateProgressBar()`**: Simple progress indicator
-
-#### **🔧 Utility Elements**
-- **`CreateSpacer()`**: Flexible space filling
-- **`CreateSeparator()`**: Visual dividers
-- **`CreateScrollView()`**: Scrollable content areas
-
-### **3. Fluent API Extensions**
-Chainable methods for concise element configuration:
-- `WithClasses()` - Add CSS classes
-- `WithName()` - Set element name for querying
-- `WithText()` - Set text content
-- `WithMargin()/WithPadding()` - Layout control
-- `WithFlexGrow()` - Flexbox control
-- `WithVisibility()/WithDisplayStyle()` - Show/hide control
-
-## 🔄 **How It Works in Practice**
-
-### **Example 1: Creating a Localized Health Bar Panel**
+**Usage:**
 ```csharp
-// In EnemyHealthBar.cs (simplified with factory):
 HealthBarElements healthBar = UIToolkitFactory.CreateHealthBar();
-healthBar.Fill.style.width = new Length(currentHealthPercent * 100, LengthUnit.Percent);
-root.Add(healthBar.Container);
-
-// Before factory: Manual element creation, class assignment, hierarchy building
-// After factory: One line for complete, standardized health bar
+healthBar.Fill.style.width = new Length(healthPercent * 100, LengthUnit.Percent);
 ```
 
-### **Example 2: Creating a Bound Stat Display**
-```csharp
-// In BoundTextPanel.cs:
-var header = UIToolkitFactory.CreateLabel(
-    new LocalizedString(GameConstants.LocalTable, "health"), 
-    GameConstants.HeaderStyle);
+### **2. Factory Method Categories**
 
-var value = UIToolkitFactory.CreateBoundLabel(
-    playerHealthAttribute, 
-    nameof(playerHealthAttribute.Value), 
-    GameConstants.StatStyle);
+| Category | Methods | Purpose |
+|----------|---------|---------|
+| **🏗️ Core** | `CreateElement<T>`, `CreateContainer` | Foundation for any UI element |
+| **🎮 Interactive** | `CreateButton`, `CreateSlider`, `CreateToggle` | User input controls |
+| **📊 Display** | `CreateLabel`, `CreateBoundLabel`, `CreateHealthBar` | Information display |
+| **🔧 Utility** | `CreateGroup`, `CreateSpacer`, `CreateSeparator` | Layout and spacing |
 
-// Label automatically updates when playerHealthAttribute.Value changes
-// No manual event handling needed
+### **3. Key Methods Table**
+
+| Method | Returns | Key Features |
+|--------|---------|--------------|
+| `CreateButton()` | `Button` | Localization, click events, audio feedback |
+| `CreateBoundLabel()` | `Label` | **Auto-updates** when data changes |
+| `CreateHealthBar()` | `HealthBarElements` | Complete health bar structure |
+| `CreateSlider()` | `Slider` | Range control with callbacks |
+
+## 🔄 **Data Flow**
+
+```mermaid
+sequenceDiagram
+    participant A as UI Component
+    participant B as UIToolkitFactory
+    participant C as LocalizationFactory
+    participant D as ScriptableObject
+    
+    A->>B: CreateBoundLabel(playerHealth, "Value")
+    B->>D: Bind to playerHealth.Value
+    A->>B: CreateButton("attack", OnAttack)
+    B->>C: Get localized string "attack"
+    C-->>B: LocalizedString for current language
+    B-->>A: Button with localized text
+    D->>A: Notify when value changes
+    A->>A: Update label text automatically
 ```
 
-### **Example 3: Creating a Settings Menu (Fluent API)**
+## 🚀 **Key Features**
+
+### **✨ CreateBoundLabel()**
+| Feature | Benefit |
+|---------|---------|
+| **Automatic Updates** | UI updates when ScriptableObject changes |
+| **No Manual Wiring** | No need for event subscriptions |
+| **Performance** | Uses Unity's property system |
+| **Clean Code** | One line instead of 10+ |
+
+**Example:**
 ```csharp
-var settingsPanel = UIToolkitFactory.CreateContainer("settings-panel")
+// Creates a label that auto-updates when playerHealth.Value changes
+Label healthLabel = UIToolkitFactory.CreateBoundLabel(
+    playerHealth, 
+    nameof(playerHealth.Value),
+    UIToolkitStyles.Stat
+);
+```
+
+### **🌍 Localization Integration**
+| Integration Point | How It Works |
+|-------------------|-------------|
+| **Buttons** | `CreateButton("play", OnPlay)` uses `LocalizationFactory` |
+| **Labels** | `CreateLabel("score")` gets localized string |
+| **Sliders** | `CreateSlider(labelKey: "volume")` localizes label |
+
+### **🎨 Style Consistency**
+| Style Source | Example |
+|-------------|---------|
+| **Constants** | `UIToolkitStyles.HealthBarContainer` |
+| **Inline** | `CreateButton(classNames: "menu-button")` |
+| **Fluent API** | `.WithClasses("highlight", "large-text")` |
+
+## 📊 **Usage Patterns**
+
+### **Pattern 1: Simple Button**
+```csharp
+Button playButton = UIToolkitFactory.CreateButton(
+    LocalizationKeys.Play,
+    OnPlayClicked,
+    UIToolkitStyles.MenuButton
+);
+```
+
+### **Pattern 2: Complex Panel (Fluent API)**
+```csharp
+VisualElement panel = UIToolkitFactory.CreateContainer()
+    .WithClasses(UIToolkitStyles.PanelBody, "settings-panel")
     .WithPadding(20)
     .WithMargin(10);
 
-var volumeSlider = UIToolkitFactory.CreateSlider(0, 1, 0.5f, OnVolumeChanged)
-    .WithClasses("slider", "volume-slider")
-    .WithName("VolumeControl");
-
-settingsPanel.Add(volumeSlider);
+panel.Add(UIToolkitFactory.CreateLabel(LocalizationKeys.Settings, UIToolkitStyles.Header));
 ```
 
-## ✅ **Key Benefits & Design Principles**
-
-### **🌟 Advantages**
-- **Consistency**: All UI follows same creation patterns
-- **Localization Ready**: Built-in `LocalizedString` support
-- **Data Binding**: Automatic UI updates with `CreateBoundLabel()`
-- **Type Safety**: Compile-time checking for element types
-- **Reduced Boilerplate**: Eliminates repetitive UI setup code
-- **Maintainability**: Change UI patterns in one place (factory)
-
-### **🔧 Integration Points**
-- **With Localization System**: Uses `GameConstants` keys and `LocalizedString`
-- **With ScriptableObject Attributes**: Data binding for real-time updates
-- **With Style System**: Consistent CSS class naming via `GameConstants`
-- **With Event System**: Clean callback integration for interactive elements
-
-## 🚀 **Usage Patterns in Your VR Project**
-
-### **1. Runtime UI Creation**
-- **Health Bars**: `CreateHealthBar()` for enemies/players
-- **HUD Elements**: `CreateBoundLabel()` for dynamic stats
-- **Menus**: `CreateButton()` with localization for VR menus
-- **Settings**: `CreateSlider()`/`CreateToggle()` for VR comfort options
-
-### **2. Editor Productivity**
-- **Rapid Prototyping**: Create complex UI in few lines of code
-- **Live Preview**: `OnValidate()` in components shows UI in editor
-- **Style Exploration**: Easy to swap style classes via constants
-
-### **3. Performance Considerations**
-- **Reusable Elements**: Factory methods optimize element creation
-- **Efficient Binding**: `CreateBoundLabel()` uses Unity's property system
-- **Memory Management**: Clean event unsubscription in components
-
-## 📈 **Extensibility & Future Additions**
-
-The factory pattern makes it easy to add new UI components:
-
+### **Pattern 3: Data-Bound UI**
 ```csharp
-// Example: Adding a VR-specific thumbstick visualizer
-public static VisualElement CreateThumbstickVisualizer(Vector2 input, params string[] classNames)
-{
-    var container = CreateContainer(classNames);
-    var dot = CreateElement<VisualElement>("thumbstick-dot");
-    // Position dot based on input vector
-    return container;
-}
-
-// Usage in VR controller UI:
-var thumbstickUI = UIToolkitFactory.CreateThumbstickVisualizer(
-    controllerInput, 
-    "thumbstick-ui", "controller-overlay");
+// All three labels auto-update when attributes change
+Label goldLabel = UIToolkitFactory.CreateBoundLabel(playerGold, "Value", UIToolkitStyles.Stat);
+Label expLabel = UIToolkitFactory.CreateBoundLabel(playerExp, "Value", UIToolkitStyles.Stat);
+Label levelLabel = UIToolkitFactory.CreateBoundLabel(playerLevel, "Value", UIToolkitStyles.Stat);
 ```
 
-This factory system provides a professional-grade UI foundation that aligns perfectly with your data-driven architecture, ensuring all UI across your VR project is consistent, maintainable, and seamlessly integrated with your localization and attribute systems.
+## 🔗 **Integration Points**
+
+| System | Integration Method |
+|--------|-------------------|
+| **🎮 Controllers** | Events from `CreateButton()`, `CreateSlider()` |
+| **📊 Attributes** | `CreateBoundLabel()` for auto-updating UI |
+| **🌍 Localization** | All text methods accept localization keys |
+| **🎨 Styling** | Constants-based CSS class names |
+| **🔊 Audio** | Automatic audio events on interactive elements |
+
+## ✅ **Benefits Summary**
+
+| Benefit | Implementation | Impact |
+|---------|----------------|--------|
+| **Consistency** | Single factory for all UI | All UI looks/behaves the same |
+| **Maintainability** | Change patterns in one place | Easy updates across entire UI |
+| **Localization Ready** | Built-in `LocalizedString` support | Multi-language support |
+| **Performance** | Optimized element creation | Smooth VR framerates |
+| **Type Safety** | Compile-time checking | Fewer runtime errors |
+
+## 📈 **Factory Statistics**
+
+| Metric | Count | Notes |
+|--------|-------|-------|
+| **Core Methods** | 2 | `CreateElement<T>`, `CreateContainer` |
+| **Control Methods** | 8 | Buttons, sliders, toggles, etc. |
+| **Utility Methods** | 5 | Layout helpers |
+| **Fluent Methods** | 9 | Chaining methods |
+| **Total Methods** | 24 | Comprehensive coverage |
+
+## 🎯 **When to Use Each Method**
+
+| Use Case | Recommended Method | Example |
+|----------|-------------------|---------|
+| **Dynamic text** | `CreateBoundLabel()` | Player stats, health |
+| **Simple button** | `CreateButton()` | Menu navigation |
+| **Range input** | `CreateSlider()` | Volume, brightness |
+| **Layout** | `CreateGroup()` | Horizontal/vertical arrangement |
+| **Health display** | `CreateHealthBar()` | Player/enemy health |
+| **Text input** | `CreateTextField()` | Name entry, chat |
+
+---
+
+> 💡 **Pro Tip**: Always use the factory instead of `new VisualElement()` to ensure consistency. The fluent API (`WithX()` methods) makes complex UI creation readable in a single statement.
