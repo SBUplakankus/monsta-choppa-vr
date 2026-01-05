@@ -53,9 +53,8 @@ MonoBehaviour:
   onMusicRequested: {fileID: 11400000, guid: cb24b462f1c28344ebc0fd41d2ef4e61, type: 2}
   onSfxRequested: {fileID: 11400000, guid: d7f1e00a5b4e3ea43b7cc04d554b08bc, type: 2}
   audioDatabase: {fileID: 11400000, guid: 6366c33aeac982c48b0c78d5022654c3, type: 2}
+  worldAudioDatabase: {fileID: 11400000, guid: ea5f65a40c6e0c24d9d6222834494f56, type: 2}
   weaponDatabase: {fileID: 11400000, guid: 7de573f593f07ed4a986bf34f3499d83, type: 2}
   enemyDatabase: {fileID: 11400000, guid: 214a0531867fda44e8055b603b0795cf, type: 2}
   particleDatabase: {fileID: 11400000, guid: 6c060493cd71be647b2e8ab34ce64e51, type: 2}
-  spriteDatabase: {fileID: 0}
-  tmpFontDatabase: {fileID: 0}
   styleSheet: {fileID: 7433441132597879392, guid: 3f881dd781667644d803e8fa8d122329, type: 3}

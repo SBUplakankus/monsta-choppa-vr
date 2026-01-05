@@ -1,127 +1,157 @@
 # 🔤 Game Constants System
 
-This document explains the centralized `GameConstants` system used to manage string keys, tags, and configuration values throughout the Unity VR project. It provides type-safe references to eliminate hardcoded strings and improve maintainability.
+This centralized system manages all string keys, tags, and configuration values throughout the Unity VR project. It provides type-safe references to eliminate hardcoded strings and improve maintainability.
 
-## 🎯 Purpose
+```mermaid
+graph TD
+    A[Constants System] --> B[AudioKeys]
+    A --> C[GameConstants]
+    A --> D[LocalizationKeys]
+    A --> E[UIToolkitStyles]
+    
+    B --> B1[🔊 Audio Mixer Groups]
+    B --> B2[🎵 Audio Clip Keys]
+    
+    C --> C1[📊 Attribute Keys]
+    C --> C2[🏞️ Scene Names]
+    
+    D --> D1[📖 Localization Strings]
+    D --> D2[🎮 UI Text Keys]
+    
+    E --> E1[🎨 Visual Styles]
+    E --> E2[📐 CSS Class Names]
+```
 
-The system prevents scattered, error-prone strings like `"player_health"` across your codebase. Instead, you reference `GameConstants.PlayerHealthKey` for compile-time safety and single-point updates.
+## 🏗️ Structure Overview
 
-## 🏗️ Structure & Organization
+The constants system is organized into four main categories:
 
-Constants are logically grouped into regions for easy navigation:
+| Category | File | Purpose | Example Count |
+|----------|------|---------|---------------|
+| **🔊 Audio** | `AudioKeys.cs` | Audio mixer groups and sound clip keys | ~15 constants |
+| **🎮 Game** | `GameConstants.cs` | Attribute keys and scene names | ~8 constants |
+| **🌍 Localization** | `LocalizationKeys.cs` | UI text localization keys | ~50 constants |
+| **🎨 UI Styles** | `UIToolkitStyles.cs` | CSS class names for UI Toolkit | ~30 constants |
+
+## 📁 Detailed Breakdown
+
+### 1. **🔊 AudioKeys.cs**
+Manages audio system identifiers and mixer routing.
 
 ```csharp
 namespace Constants
 {
-    public static class GameConstants
+    public class AudioKeys
     {
-        #region Data Keys
-        public const string MainMusicKey = "main_music";
-        #endregion
+        // Mixer Groups
+        public const string MixerMaster = "Master";
+        public const string MixerMusic = "Music";
+        public const string MixerSfx = "SFX";
         
-        #region VR Layers & Physics
-        public const string InteractableLayer = "Interactable";
-        #endregion
-        
-        #region Tags
-        public const string PlayerTag = "Player";
-        #endregion
-        
-        #region Animation Parameters
-        public const string AnimGrabTrigger = "Grab";
-        #endregion
+        // Audio Clips
+        public const string MainMusic = "mainmusic";
+        public const string Pop = "pop";
+        public const string ButtonClick = "button_click";
     }
 }
 ```
 
-For large projects, constants can be split into separate files (e.g., `AudioConstants.cs`, `VRLayerConstants.cs`) that all reside in the `Constants` namespace.
+**Usage Examples:**
+- `AudioMixer.SetFloat(AudioKeys.MixerMaster, volume);`
+- `audioSource.Play(AudioKeys.ButtonClick);`
 
-## 🔑 Primary Use Cases in VR
+### 2. **🎮 GameConstants.cs**
+Core game configuration and persistent data keys.
 
-### 1. **Database Lookups**
-Constants provide the keys to retrieve assets from the ScriptableObject databases.
+```mermaid
+graph LR
+    A[GameConstants] --> B[Attribute Keys]
+    A --> C[Scene Names]
+    
+    B --> B1[💰 PlayerGoldKey]
+    B --> B2[⭐ PlayerExperienceKey]
+    B --> B3[📈 PlayerLevelKey]
+    
+    C --> C1[🚀 Bootstrapper]
+    C --> C2[🏠 StartMenu]
+    C --> C3[🎪 Hub]
+```
 
-*   **Audio System**: `AudioManager.Play(GameConstants.GrabSuccessKey);`
-*   **UI System**: `sprite = GameDatabases.UiDatabase.TryGet(GameConstants.CrosshairKey);`
-*   **Localization**: `string text = LocalizationDatabase.Get(GameConstants.MenuPlayKey);`
+**Key Groups:**
+- **📊 Attribute Keys**: Save data identifiers for player progression
+- **🏞️ Scene Names**: Scene loading references (no magic strings)
 
-### 2. **VR Interaction & Physics**
-VR games rely heavily on layers and tags for mechanics like grabbing, climbing, and UI interaction.
+### 3. **🌍 LocalizationKeys.cs**
+All UI text localization keys for multilingual support.
 
-*   **Layer Masks for Raycasting**:
-    ```csharp
-    // Raycast only against interactable objects
-    int layerMask = 1 << LayerMask.NameToLayer(GameConstants.InteractableLayer);
-    Physics.Raycast(controller.position, direction, out hit, maxDistance, layerMask);
-    ```
-*   **Object Identification**:
-    ```csharp
-    if (other.CompareTag(GameConstants.TeleportAnchorTag)) {
-        // Handle teleport logic
-    }
-    ```
+| Category | Example Keys | Purpose |
+|----------|--------------|---------|
+| **🎮 Game Actions** | `Play`, `Resume`, `Quit` | Main menu and game flow |
+| **⚙️ Settings** | `Audio`, `Video`, `Language` | Settings panel tabs |
+| **📊 Stats** | `Level`, `Experience`, `Gold` | Player progression display |
+| **🎚️ Quality** | `Low`, `Medium`, `High`, `Ultra` | Graphics quality options |
 
-### 3. **Animation State Management**
-Smooth, synchronized animations for hands and objects are crucial for immersion.
+**Total:** ~50 localization keys covering all in-game text.
 
-*   **Hand Animation Parameters**:
-    ```csharp
-    handAnimator.SetTrigger(GameConstants.AnimPointTrigger);
-    // or
-    handAnimator.SetFloat(GameConstants.AnimGripFloat, gripValue);
-    ```
-*   **Object State Changes**:
-    ```csharp
-    objectAnimator.SetBool(GameConstants.AnimIsGrabbedBool, isGrabbed);
-    ```
+### 4. **🎨 UIToolkitStyles.cs**
+CSS class names for UI Toolkit styling.
 
-### 4. **Game State & Configuration**
-Manage game rules, settings, and save data with consistent keys.
+| Style Type | Example Classes | Usage |
+|------------|----------------|-------|
+| **📦 Containers** | `container`, `panel-body`, `view-box` | Layout and grouping |
+| **🎛️ Components** | `menu-button`, `settings-slider`, `tab` | Specific UI elements |
+| **📊 Specialized** | `health-bar-fill`, `language-row` | Custom VR components |
+| **📐 Layout** | `button-container`, `control-box` | Positioning helpers |
 
-*   **PlayerPrefs / Save System**:
-    ```csharp
-    float savedVolume = PlayerPrefs.GetFloat(GameConstants.PrefsMasterVolumeKey, 0.8f);
-    ```
-*   **Difficulty Settings**:
-    ```csharp
-    if (currentDifficulty == GameConstants.DifficultyHardKey) {
-        enemyHealth *= 1.5f;
-    }
-    ```
+**VR Considerations:**
+- 🎯 Large, readable class names for VR headsets
+- 🎨 Consistent theming via CSS custom properties
+- 📱 Scalable for different display resolutions
 
-## 💡 Example: A Complete VR Interaction Flow
-
-Here’s how constants integrate into a typical VR grab action:
+## 🔄 Integration Example
 
 ```mermaid
 sequenceDiagram
-    participant Controller as VR Controller
-    participant Const as GameConstants
-    participant Audio as AudioManager
-    participant DB as AudioDatabase
-    participant Anim as Hand Animator
+    participant UI as UI System
+    participant Const as Constants
+    participant Loc as Localization
+    participant Audio as Audio System
 
-    Controller->>Const: Detects grab on object tagged<br/>Const.GrabbableTag
-    Controller->>DB: Requests audio clip using key<br/>Const.GrabSoundKey
-    DB-->>Audio: Returns "grab_success.wav"
-    Audio->>Audio: Plays clip with settings
-    Audio->>Controller: Triggers haptic pulse<br/>Const.HapticGrabAmplitude
-    Controller->>Anim: Sets animator float<br/>Const.AnimGripFloat to 1.0
+    UI->>Const: Load scene: GameConstants.Hub
+    UI->>Const: Apply style: UIToolkitStyles.HealthBar
+    UI->>Const: Get text key: LocalizationKeys.Experience
+    Const->>Loc: Translate key to current language
+    Loc-->>UI: Returns localized text
+    UI->>Const: Play sound: AudioKeys.ButtonClick
+    Const->>Audio: Find clip by key
+    Audio-->>UI: Play audio feedback
 ```
 
-## ✅ Benefits
+## ✅ Benefits & Best Practices
 
-*   **🚫 No Typos**: Compiler catches `GameConstants.MainMuiscKey`.
-*   **🔍 Easy Refactoring**: Change a key value in one place.
-*   **📖 Self-Documenting**: Constant names describe their use.
-*   **🧪 Easier Testing**: Mock constants for unit tests.
+| Benefit | Implementation | Impact |
+|---------|----------------|--------|
+| **🚫 No Typos** | Compile-time checking | Eliminates runtime string errors |
+| **🔍 Easy Refactoring** | Single source of truth | Change values in one place |
+| **📖 Self-Documenting** | Clear naming conventions | Understand usage from name |
+| **🌍 Localization Ready** | Separate keys from text | Easy multi-language support |
 
-## ⚠️ Best Practices
+### ⚡ Best Practices:
+1. **Always use constants** instead of literal strings
+2. **Group related constants** in logical categories
+3. **Use descriptive names** that indicate purpose
+4. **Add XML comments** for complex constants
+5. **Consider splitting** if a category grows beyond 50 items
 
-1.  **Use `const` over `static readonly`** for true compile-time constants where possible.
-2.  **Name keys descriptively**: `GrabSuccessKey` not `Sound1Key`.
-3.  **Group related constants** within `#region` blocks.
-4.  **Consider splitting** into multiple classes if one file grows too large (>200 constants).
-5.  **Don't store mutable configuration** here—use ScriptableObjects for that.
+## 🚀 Extension Guide
 
-This system ensures your VR project remains scalable and maintainable as you add hundreds of audio clips, UI assets, animation states, and interaction layers.
+| When to Add | Where to Add | Example |
+|-------------|--------------|---------|
+| **New audio clip** | `AudioKeys.cs` | `public const string SpellCast = "spell_cast";` |
+| **New UI text** | `LocalizationKeys.cs` | `public const string Inventory = "inventory";` |
+| **New CSS class** | `UIToolkitStyles.cs` | `public const string SpellSlot = "spell-slot";` |
+| **New save data** | `GameConstants.cs` | `public const string PlayerManaKey = "PlayerMana";` |
+
+---
+
+> 💡 **Pro Tip**: Use the `Constants.` prefix when referencing (e.g., `Constants.AudioKeys.MixerMaster`) to make it clear you're using a centralized constant, not a local variable.

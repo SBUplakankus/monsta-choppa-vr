@@ -87,10 +87,12 @@ namespace UI.Hosts
             ContentRoot = _settingsView.Content;
             
             BindTabs();
+            Show();
         }
 
         private void BindTabs()
         {
+            UnbindTabs();
             _audioTab.clicked += ShowAudioTab;
             _videoTab.clicked += ShowVideoTab;
             _languageTab.clicked += ShowLanguageTab;
@@ -105,5 +107,7 @@ namespace UI.Hosts
         }
         
         #endregion
+
+        
     }
 }

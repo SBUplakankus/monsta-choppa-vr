@@ -22,12 +22,14 @@ namespace UI.Hosts
 
         public virtual void Show()
         {
+            if(_tweenables == null) return;
             foreach (var tween in _tweenables)
                 tween?.Show();
         }
 
         public virtual void Hide()
         {
+            if(_tweenables == null) return;
             foreach (var tween in _tweenables)
                 tween?.Hide();
         }

@@ -78,7 +78,7 @@ namespace UI.Views
         }
 
         #endregion
-
+        
         #region IDisposable
 
         public override void Dispose()

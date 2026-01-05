@@ -12,29 +12,21 @@ namespace UI.Controllers
 
         [SerializeField] private StartMenuPanelHost startMenuPanelHost;
         [SerializeField] private SettingsPanelHost settingsPanelHost;
+
+        private bool _settingsActive;
         
         #endregion
         
         #region Methods
 
-        private void HandlePlay()
+        private void ToggleSettings()
         {
-            SceneManager.LoadScene(GameConstants.Hub);
-        }
-
-        private void HandleSettings()
-        {
-            settingsPanelHost.Generate();
-        }
-
-        private void HandleControls()
-        {
+            _settingsActive = !_settingsActive;
             
-        }
-
-        private void HandleQuit()
-        {
-            Application.Quit();
+            if(!_settingsActive)
+                settingsPanelHost.Hide();
+            else
+                settingsPanelHost.Generate();
         }
         
         private void BindButtons()
@@ -52,6 +44,30 @@ namespace UI.Controllers
             startMenuPanelHost.OnSettingsClicked -= HandleSettings;
             startMenuPanelHost.OnControlsClicked -= HandleControls;
             startMenuPanelHost.OnQuitClicked -= HandleQuit;
+        }
+        
+        #endregion
+        
+        #region Event Handlers
+        
+        private void HandlePlay()
+        {
+            SceneManager.LoadScene(GameConstants.Hub);
+        }
+
+        private void HandleSettings()
+        {
+            ToggleSettings();
+        }
+
+        private void HandleControls()
+        {
+            
+        }
+
+        private void HandleQuit()
+        {
+            Application.Quit();
         }
         
         #endregion

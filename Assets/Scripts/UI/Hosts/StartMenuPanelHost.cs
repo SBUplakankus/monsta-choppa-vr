@@ -19,7 +19,7 @@ namespace UI.Hosts
 
         #endregion
 
-        #region Methods
+        #region Class Methods
         
         private void OnPlay() => OnPlayClicked?.Invoke();
         private void OnControls() => OnControlsClicked?.Invoke();
@@ -29,6 +29,7 @@ namespace UI.Hosts
         public void SubscribeEvents()
         {
             if(_view == null) return;
+            UnsubscribeEvents();
             _view.OnPlayClicked += OnPlay;
             _view.OnControlsClicked += OnControls;
             _view.OnSettingsClicked += OnSettings;
@@ -54,8 +55,19 @@ namespace UI.Hosts
             );
             
             SubscribeEvents();
+            Show();
         }
+        
+        #endregion
+        
+        #region Unity Methods
 
+        private void OnEnable() => Generate();
+
+        #endregion
+        
+        #region IDisposable
+        
         public override void Dispose()
         {
             UnsubscribeEvents();
