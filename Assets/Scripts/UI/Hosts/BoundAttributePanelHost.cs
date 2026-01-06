@@ -26,7 +26,7 @@ namespace UI.Hosts
 
         public override void Dispose()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         #endregion
