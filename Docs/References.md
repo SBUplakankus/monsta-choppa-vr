@@ -16,7 +16,7 @@
 | Asset Name                   | Source                                  | Type / Description                                                                        | Key Use in Template                                                                               |
 | :--------------------------- | :-------------------------------------- | :---------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
 | **Synty – Dungeon Realms**   | Unity Asset Store                       | **Stylized modular dungeon environments and props** with a consistent low-poly aesthetic. | **Primary environment art set** for all levels, rooms, corridors, props, and decorative elements. |
-| **Publisher: Synty Studios** | Unity Asset Store (Publisher ID: 37453) | **Consistent stylized asset ecosystem** designed for modular workflows.                   | **Visual cohesion** across all scenes and rapid level assembly.                                   |
+| **Publisher: Synty Studios** | Unity Asset Store | **Consistent stylized asset ecosystem** designed for modular workflows.                   | **Visual cohesion** across all scenes and rapid level assembly.                                   |
 
 ---
 
