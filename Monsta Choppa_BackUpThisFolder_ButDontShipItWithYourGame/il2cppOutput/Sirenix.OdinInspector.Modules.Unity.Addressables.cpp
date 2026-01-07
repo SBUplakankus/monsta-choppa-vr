@@ -228,7 +228,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Attribute__ctor_m79ED1BF1EE36D1E417BA89A
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 126985
+// Method Definition Index: 127084
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_tF0C991953AD09BA65335F347FA9D837743C07282 UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m9D0069D7D218A36A0A9872BFCB88B71EDA13A8A4 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -262,7 +262,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_tF0C991953AD09BA65335F347FA9D8
 		return L_6;
 	}
 }
-// Method Definition Index: 126986
+// Method Definition Index: 127085
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mF5D64938EF1D8DE6BA7FDC2225473EF54AF6F0F9 (UnitySourceGeneratedAssemblyMonoScriptTypes_v1_t6B654F33AAFBA4C642FD0EBE85497264E12ECACD* __this, const RuntimeMethod* method) 
 {
 	{
@@ -348,7 +348,7 @@ IL2CPP_EXTERN_C void MonoScriptData_tF0C991953AD09BA65335F347FA9D837743C07282_ma
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 126987
+// Method Definition Index: 127086
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DisallowAddressableSubAssetFieldAttribute__ctor_m848EEF25072FB76D0EFAD16840562A2E5FD2BD18 (DisallowAddressableSubAssetFieldAttribute_tBB3863E1D2638B8CB898B1285CFC2966C757F1F3* __this, const RuntimeMethod* method) 
 {
 	{
@@ -364,7 +364,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DisallowAddressableSubAssetFieldAttribut
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 126988
+// Method Definition Index: 127087
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RegisterAssetReferenceAttributeForwardToChildAttribute__ctor_m7C18AF6D09F06B35BFB2B3B5C0237E2864B248E7 (RegisterAssetReferenceAttributeForwardToChildAttribute_t883AB15A08233BED0CFA79862430C812F2DFD378* __this, Type_t* ___0_attributeType, const RuntimeMethod* method) 
 {
 	{

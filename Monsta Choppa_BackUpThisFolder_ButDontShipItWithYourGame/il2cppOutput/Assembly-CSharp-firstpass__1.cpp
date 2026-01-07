@@ -3362,7 +3362,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR uint8_t* Array_GetRawSzArrayData_
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113892
+// Method Definition Index: 113991
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__cctor_m407016A37509BA34797AFB8187AEB28D0F836A6B (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3379,7 +3379,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__cctor_m407016A37509BA34797AFB81
 		return;
 	}
 }
-// Method Definition Index: 113893
+// Method Definition Index: 113992
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__ctor_m423A67E01289089C8B9D03E48325E76CC2F2BB12 (U3CU3Ec_t85F9BF8BEF7181CFBAC2E1E4CD55FA5105E600FE* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3387,7 +3387,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__ctor_m423A67E01289089C8B9D03E48
 		return;
 	}
 }
-// Method Definition Index: 113894
+// Method Definition Index: 113993
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3CInstantiateOrActivateDepthCameraU3Eb__15_0_mC8619AB32E356BBC12B205DF5F027AFBE0F5A6A2 (U3CU3Ec_t85F9BF8BEF7181CFBAC2E1E4CD55FA5105E600FE* __this, Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___0_cam, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3415,7 +3415,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3CInstantiateOrActivateDepthCam
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113895
+// Method Definition Index: 113994
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float DynamicOcclusionRaycasting_get_fadeDistanceToPlane_mD03B523752F58BD44EEAFA4AAA8A44888FDC67A9 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3424,7 +3424,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float DynamicOcclusionRaycasting_get_fadeDist
 		return L_0;
 	}
 }
-// Method Definition Index: 113896
+// Method Definition Index: 113995
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_set_fadeDistanceToPlane_m53ECAC34FCC0B8F5F0772146D4CE157A4E6E15E3 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3435,7 +3435,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_set_fadeDista
 		return;
 	}
 }
-// Method Definition Index: 113897
+// Method Definition Index: 113996
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool DynamicOcclusionRaycasting_IsColliderHiddenByDynamicOccluder_m3E16C0D4B2D5628459BCB34AA7521FC40E3FB5F3 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Collider_t1CC3163924FCD6C4CC2E816373A929C1E3D55E76* ___0_collider, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3479,7 +3479,7 @@ IL_000f:
 		return (bool)((((int32_t)L_7) == ((int32_t)0))? 1 : 0);
 	}
 }
-// Method Definition Index: 113898
+// Method Definition Index: 113997
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* DynamicOcclusionRaycasting_GetShaderKeyword_mC162B65034B200C985E3DEF2C4D76D358EDD7BA8 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3493,7 +3493,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* DynamicOcclusionRaycasting_GetShade
 		return _stringLiteral2A91F869776DBAA7EB71A3429961901E154F10C4;
 	}
 }
-// Method Definition Index: 113899
+// Method Definition Index: 113998
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t DynamicOcclusionRaycasting_GetDynamicOcclusionMode_m488A289065839F4E2EC03090EE6A183DF8BEC1E8 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3501,7 +3501,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t DynamicOcclusionRaycasting_GetDynamic
 		return (int32_t)(1);
 	}
 }
-// Method Definition Index: 113900
+// Method Definition Index: 113999
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C DynamicOcclusionRaycasting_get_planeEquationWS_m51AD843CA75282E43AA7576B9C294FB1F32C3652 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3510,7 +3510,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC
 		return L_0;
 	}
 }
-// Method Definition Index: 113901
+// Method Definition Index: 114000
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_set_planeEquationWS_mA67F0F13A6E9355138C38AC83BF1D3FF23F80DD9 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3520,7 +3520,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_set_planeEqua
 		return;
 	}
 }
-// Method Definition Index: 113902
+// Method Definition Index: 114001
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnValidateProperties_mAF8ADD5B5E69892D30A702310CBC59949A169102 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3540,7 +3540,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnValidatePro
 		return;
 	}
 }
-// Method Definition Index: 113903
+// Method Definition Index: 114002
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnEnablePostValidate_m951FA453ADA70B407A10E2C992824A42DFFD0476 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3551,7 +3551,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnEnablePostV
 		return;
 	}
 }
-// Method Definition Index: 113904
+// Method Definition Index: 114003
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnDisable_mF560F755097388FF4850D3D458A5BB38B0BED203 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3563,7 +3563,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnDisable_mF5
 		return;
 	}
 }
-// Method Definition Index: 113905
+// Method Definition Index: 114004
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_Start_m97BF9F37EFC83FB8F67D55C4D83886E5418C68A9 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3616,7 +3616,7 @@ IL_002c:
 		return;
 	}
 }
-// Method Definition Index: 113906
+// Method Definition Index: 114005
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 DynamicOcclusionRaycasting_GetRandomVectorAround_mD2EE6BF5ABEF41075F5048CD5EA100BA5387679D (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_direction, float ___1_angleDiff, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -3645,7 +3645,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_12;
 	}
 }
-// Method Definition Index: 113907
+// Method Definition Index: 114006
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t DynamicOcclusionRaycasting_get_queryTriggerInteraction_mC832D85F805482585D8FD02FF9D090250454021A (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3665,7 +3665,7 @@ IL_000a:
 		return (int32_t)(2);
 	}
 }
-// Method Definition Index: 113908
+// Method Definition Index: 114007
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float DynamicOcclusionRaycasting_get_raycastMaxDistance_m1A99A84C75A7B6D85FE5A4C6049136712F189B1C (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3683,7 +3683,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float DynamicOcclusionRaycasting_get_raycastM
 		return ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply(L_1, L_2)), L_5));
 	}
 }
-// Method Definition Index: 113909
+// Method Definition Index: 114008
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960 DynamicOcclusionRaycasting_GetBestHit_mF9E6E7CB96E05F91719EBCC2B9FB61B68AEE3F30 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_rayPos, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_rayDir, const RuntimeMethod* method) 
 {
 	{
@@ -3711,7 +3711,7 @@ IL_0012:
 		return L_6;
 	}
 }
-// Method Definition Index: 113910
+// Method Definition Index: 114009
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960 DynamicOcclusionRaycasting_GetBestHit3D_m8D6051087222AD6F4BECF6B92801EE44DDD05449 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_rayPos, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_rayDir, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3863,7 +3863,7 @@ IL_00a5:
 		return L_35;
 	}
 }
-// Method Definition Index: 113911
+// Method Definition Index: 114010
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960 DynamicOcclusionRaycasting_GetBestHit2D_mDED4E35C828E2BB7B28ACE1BE477B159CB7FF088 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_rayPos, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_rayDir, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4049,7 +4049,7 @@ IL_00dd:
 		return L_47;
 	}
 }
-// Method Definition Index: 113912
+// Method Definition Index: 114011
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t DynamicOcclusionRaycasting_GetDirectionCount_m9E1A4F7EB355C15367857AB891889E58CF63605F (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4069,7 +4069,7 @@ IL_000b:
 		return 2;
 	}
 }
-// Method Definition Index: 113913
+// Method Definition Index: 114012
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 DynamicOcclusionRaycasting_GetDirection_m9D2C31E74E11CB1D164785026D135782023457E1 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, uint32_t ___0_dirInt, const RuntimeMethod* method) 
 {
 	{
@@ -4155,7 +4155,7 @@ IL_005c:
 		return L_13;
 	}
 }
-// Method Definition Index: 113914
+// Method Definition Index: 114013
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool DynamicOcclusionRaycasting_IsHitValid_m7B0D560D46EC53F6E005918654EEF53ACA94A24B (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* ___0_hit, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_forwardVec, const RuntimeMethod* method) 
 {
 	{
@@ -4188,7 +4188,7 @@ IL_0025:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113915
+// Method Definition Index: 114014
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool DynamicOcclusionRaycasting_OnProcessOcclusion_m3675D193D191B86658854FB9F13B7F31F55D2AA3 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, int32_t ___0_source, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -4396,7 +4396,7 @@ IL_0141:
 		return L_53;
 	}
 }
-// Method Definition Index: 113916
+// Method Definition Index: 114015
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetHit_m62B98B120B48A933AE6B945ABEA4AC5BB4073A63 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* ___0_hit, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -4479,7 +4479,7 @@ IL_0057:
 		return;
 	}
 }
-// Method Definition Index: 113917
+// Method Definition Index: 114016
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetHitNull_m06540226054AB69E86499137C153ECA5148798D7 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4492,7 +4492,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetHitNull_m0
 		return;
 	}
 }
-// Method Definition Index: 113918
+// Method Definition Index: 114017
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnModifyMaterialCallback_m73A71E7ECB48EFECFAE4946055E86635EC6100C2 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, RuntimeObject* ___0_owner, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4539,7 +4539,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_OnModifyMater
 		return;
 	}
 }
-// Method Definition Index: 113919
+// Method Definition Index: 114018
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetClippingPlane_m33B7FEF286125A6679A4718492521B8744A3B0BA (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C ___0_planeWS, const RuntimeMethod* method) 
 {
 	{
@@ -4567,7 +4567,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetClippingPl
 		return;
 	}
 }
-// Method Definition Index: 113920
+// Method Definition Index: 114019
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetClippingPlaneOff_m44666C5F538D9F3B9A07D804D2B9AF9B6D30F340 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C V_0;
@@ -4587,7 +4587,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetClippingPl
 		return;
 	}
 }
-// Method Definition Index: 113921
+// Method Definition Index: 114020
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetPlaneWS_m6B5B7E98B6713C50BB53E3CFBC1FE47EE5799BBD (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C ___0_planeWS, const RuntimeMethod* method) 
 {
 	{
@@ -4598,7 +4598,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_SetPlaneWS_m6
 		return;
 	}
 }
-// Method Definition Index: 113922
+// Method Definition Index: 114021
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting__ctor_m2469F513C811023BE9BFA901FF45E17C463BA267 (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4690,7 +4690,7 @@ IL2CPP_EXTERN_C void HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960_marshal
 IL2CPP_EXTERN_C void HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960_marshal_com_cleanup(HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960_marshaled_com& marshaled)
 {
 }
-// Method Definition Index: 113923
+// Method Definition Index: 114022
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HitResult__ctor_m938985F66ECCFE7919E08CDF4257A35B69B10C28 (HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* __this, RaycastHit_t6F30BD0B38B56401CA833A1B87BD74F2ACD2F2B5* ___0_hit3D, const RuntimeMethod* method) 
 {
 	{
@@ -4729,7 +4729,7 @@ IL2CPP_EXTERN_C  void HitResult__ctor_m938985F66ECCFE7919E08CDF4257A35B69B10C28_
 	_thisAdjusted = reinterpret_cast<HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960*>(__this + _offset);
 	HitResult__ctor_m938985F66ECCFE7919E08CDF4257A35B69B10C28(_thisAdjusted, ___0_hit3D, method);
 }
-// Method Definition Index: 113924
+// Method Definition Index: 114023
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HitResult__ctor_m9F32CE64797D9168DD6FE486AA13153E783FD7B2 (HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA* ___0_hit2D, const RuntimeMethod* method) 
 {
 	{
@@ -4772,7 +4772,7 @@ IL2CPP_EXTERN_C  void HitResult__ctor_m9F32CE64797D9168DD6FE486AA13153E783FD7B2_
 	_thisAdjusted = reinterpret_cast<HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960*>(__this + _offset);
 	HitResult__ctor_m9F32CE64797D9168DD6FE486AA13153E783FD7B2(_thisAdjusted, ___0_hit2D, method);
 }
-// Method Definition Index: 113925
+// Method Definition Index: 114024
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HitResult_get_hasCollider_m4A82C8525BA6DEFDDABC5F940F77F8725C7C7C63 (HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4814,7 +4814,7 @@ IL2CPP_EXTERN_C  bool HitResult_get_hasCollider_m4A82C8525BA6DEFDDABC5F940F77F87
 	_returnValue = HitResult_get_hasCollider_m4A82C8525BA6DEFDDABC5F940F77F8725C7C7C63(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 113926
+// Method Definition Index: 114025
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* HitResult_get_name_mB5ED0EA6715ACDD7279388E8081E2A8C75F0EBCB (HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4880,7 +4880,7 @@ IL2CPP_EXTERN_C  String_t* HitResult_get_name_mB5ED0EA6715ACDD7279388E8081E2A8C7
 	_returnValue = HitResult_get_name_mB5ED0EA6715ACDD7279388E8081E2A8C75F0EBCB(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 113927
+// Method Definition Index: 114026
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 HitResult_get_bounds_m90B923FBC16E71D5D19773142CFBF1793228C08D (HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4949,7 +4949,7 @@ IL2CPP_EXTERN_C  Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 HitResult_get_
 	_returnValue = HitResult_get_bounds_m90B923FBC16E71D5D19773142CFBF1793228C08D(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 113928
+// Method Definition Index: 114027
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HitResult_SetNull_m77F3E909D4D74E26AFF3ABB281308F14A92180C7 (HitResult_t641B1C64E088D52D2D77CA0A3F589EAA8256B960* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4986,7 +4986,7 @@ IL2CPP_EXTERN_C  void HitResult_SetNull_m77F3E909D4D74E26AFF3ABB281308F14A92180C
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113929
+// Method Definition Index: 114028
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* GlobalMeshSD_Get_mB9733B58F9219BEA3C588A5046B5474D5B822E7C (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5070,7 +5070,7 @@ IL_0069:
 		return L_15;
 	}
 }
-// Method Definition Index: 113930
+// Method Definition Index: 114029
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GlobalMeshSD_Destroy_m266D6749410B7BC9016DF772E4414A701A513EC0 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5115,7 +5115,7 @@ IL_001d:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113931
+// Method Definition Index: 114030
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SkewingHandleSD_IsAttachedToSelf_m95EF6F0A62F78BED8F3A851175048117C391CC67 (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5153,7 +5153,7 @@ IL_0025:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113932
+// Method Definition Index: 114031
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SkewingHandleSD_CanSetSkewingVector_m3941404DA55D9604BE9FE70C58B4AB0D271DE60F (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5186,7 +5186,7 @@ IL_001a:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113933
+// Method Definition Index: 114032
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SkewingHandleSD_CanUpdateEachFrame_m1F2989954274B54A16F88795D14DB7B33DC44EBA (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5211,7 +5211,7 @@ IL_0014:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113934
+// Method Definition Index: 114033
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SkewingHandleSD_ShouldUpdateEachFrame_m6E6C5A473312B0ACE5CE86D1298B1B2D2A8100B2 (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5233,7 +5233,7 @@ IL_000f:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113935
+// Method Definition Index: 114034
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SkewingHandleSD_OnEnable_m5AAF3B0181995C43BFAD2566C8414F1ECB48874A (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5256,7 +5256,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 113936
+// Method Definition Index: 114035
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SkewingHandleSD_Start_m2F77C29B95E63531904BF8D8E396ACAB2801A6ED (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5297,7 +5297,7 @@ IL_001c:
 		return;
 	}
 }
-// Method Definition Index: 113937
+// Method Definition Index: 114036
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SkewingHandleSD_CoUpdate_m4DB0B3BF47CD3200EA70C7BCB37FEF2CC0D723FA (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5316,7 +5316,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SkewingHandleSD_CoUpdate_m4DB0
 		return L_1;
 	}
 }
-// Method Definition Index: 113938
+// Method Definition Index: 114037
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SkewingHandleSD_SetSkewingVector_m3577E1392082DFE360E8D19CD6330CEC5BB586F4 (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -5345,7 +5345,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SkewingHandleSD_SetSkewingVector_m3577E1
 		return;
 	}
 }
-// Method Definition Index: 113939
+// Method Definition Index: 114038
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SkewingHandleSD__ctor_m14C928D530AE97978F0B334C6C7AA465CF2387F3 (SkewingHandleSD_tAC2F22D2C44BB6BF902D17B116FE03E8719BEA80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5361,7 +5361,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SkewingHandleSD__ctor_m14C928D530AE97978
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113940
+// Method Definition Index: 114039
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoUpdateU3Ed__9__ctor_mFDE4DCE1FBDD9A79D8E19691CA2108F8FE1A5F7D (U3CCoUpdateU3Ed__9_t3AD4E9A2FD31F0181649F248270C4686431CDB35* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
@@ -5371,14 +5371,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoUpdateU3Ed__9__ctor_mFDE4DCE1FBDD9A
 		return;
 	}
 }
-// Method Definition Index: 113941
+// Method Definition Index: 114040
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoUpdateU3Ed__9_System_IDisposable_Dispose_m1753DEC1E2EA770F9EB70250A846A49D49F4BFF6 (U3CCoUpdateU3Ed__9_t3AD4E9A2FD31F0181649F248270C4686431CDB35* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 113942
+// Method Definition Index: 114041
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CCoUpdateU3Ed__9_MoveNext_m20C3186D0541780C1A9B92DD98DCC8BD34375DC8 (U3CCoUpdateU3Ed__9_t3AD4E9A2FD31F0181649F248270C4686431CDB35* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -5446,7 +5446,7 @@ IL_003d:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113943
+// Method Definition Index: 114042
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoUpdateU3Ed__9_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m7389478CAE260CB8226D5D9809DA3B959CE418BB (U3CCoUpdateU3Ed__9_t3AD4E9A2FD31F0181649F248270C4686431CDB35* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5454,7 +5454,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoUpdateU3Ed__9_System_Coll
 		return L_0;
 	}
 }
-// Method Definition Index: 113944
+// Method Definition Index: 114043
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoUpdateU3Ed__9_System_Collections_IEnumerator_Reset_m383A36866D219F063528FFC32205C28145AE2954 (U3CCoUpdateU3Ed__9_t3AD4E9A2FD31F0181649F248270C4686431CDB35* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5463,7 +5463,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoUpdateU3Ed__9_System_Collections_IE
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CCoUpdateU3Ed__9_System_Collections_IEnumerator_Reset_m383A36866D219F063528FFC32205C28145AE2954_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 113945
+// Method Definition Index: 114044
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoUpdateU3Ed__9_System_Collections_IEnumerator_get_Current_m1F207F76D6E5CF52FD06CBCF3D00E10E3D063E55 (U3CCoUpdateU3Ed__9_t3AD4E9A2FD31F0181649F248270C4686431CDB35* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5479,7 +5479,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoUpdateU3Ed__9_System_Coll
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113946
+// Method Definition Index: 114045
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_usedColorMode_mD36709B075D363237B87AE31233051513FD4062D (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5505,7 +5505,7 @@ IL_000e:
 		return L_2;
 	}
 }
-// Method Definition Index: 113947
+// Method Definition Index: 114046
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_useColorFromAttachedLightSpot_m387D001A83C2D643D51F298B87406F9576C35F08 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5536,7 +5536,7 @@ IL_0015:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113948
+// Method Definition Index: 114047
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_useColorTemperatureFromAttachedLightSpot_m938D3265493042C94671BB582E93F884376EDE9D (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5572,7 +5572,7 @@ IL_0020:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113949
+// Method Definition Index: 114048
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_alphaInside_mB929C74488A964983C568C4F1448FE3580754D72 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5581,7 +5581,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_alphaInside_m
 		return L_0;
 	}
 }
-// Method Definition Index: 113950
+// Method Definition Index: 114049
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_alphaInside_m4228B1456931A51A368B9E0D0B35D009C103AFAD (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5592,7 +5592,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_alphaInside_m4
 		return;
 	}
 }
-// Method Definition Index: 113951
+// Method Definition Index: 114050
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_alphaOutside_mB88A8642C9BEC8004B360F7ADE8FA9BE3B626241 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5601,7 +5601,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_alphaOutside_
 		return L_0;
 	}
 }
-// Method Definition Index: 113952
+// Method Definition Index: 114051
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_alphaOutside_m312CBB467EC8F3D24A7BEE64EA6F52505A0ECEF8 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5612,7 +5612,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_alphaOutside_m
 		return;
 	}
 }
-// Method Definition Index: 113953
+// Method Definition Index: 114052
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_intensityGlobal_mE15BEEA161E022BBBC677B00A3BE548A48CC95D4 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5621,7 +5621,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_intensityGlob
 		return L_0;
 	}
 }
-// Method Definition Index: 113954
+// Method Definition Index: 114053
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_intensityGlobal_m59475E1080410CBA144030183A0A0D26E617CC23 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5635,7 +5635,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_intensityGloba
 		return;
 	}
 }
-// Method Definition Index: 113955
+// Method Definition Index: 114054
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_useIntensityFromAttachedLightSpot_m819534A662B5BE6CB316E2F1F39C276680CFEE09 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5666,7 +5666,7 @@ IL_0015:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113956
+// Method Definition Index: 114055
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_GetInsideAndOutsideIntensity_m956632BE51F78736ED58953227C7BFF5CFD22853 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float* ___0_inside, float* ___1_outside, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -5705,7 +5705,7 @@ IL_0019:
 		return;
 	}
 }
-// Method Definition Index: 113957
+// Method Definition Index: 114056
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_useSpotAngleFromAttachedLightSpot_m8F7D73F09473470720830119FB34412A9C5280BA (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5736,7 +5736,7 @@ IL_0015:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113958
+// Method Definition Index: 114057
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_coneAngle_m2DB8B82A8E686F830F25E865DC17DCD6A93723E0 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5751,7 +5751,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_coneAngle_m2D
 		return ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply(L_3, (57.2957802f))), (2.0f)));
 	}
 }
-// Method Definition Index: 113959
+// Method Definition Index: 114058
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_coneRadiusEnd_m1CD2847AB67DFD680DF55646C2D35D8F5FFFEC03 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5764,7 +5764,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_coneRadiusEnd
 		return L_2;
 	}
 }
-// Method Definition Index: 113960
+// Method Definition Index: 114059
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_coneRadiusEnd_m731835F4E0A0103186F95479660AF8730C38E2EC (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5779,7 +5779,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_coneRadiusEnd_
 		return;
 	}
 }
-// Method Definition Index: 113961
+// Method Definition Index: 114060
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_coneVolume_m0D0550B78896C72B9966839901894FD314A90E1E (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -5803,7 +5803,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_coneVolume_m0
 		return ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply((1.04719758f), ((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_2, L_3)), ((float)il2cpp_codegen_multiply(L_4, L_5)))), ((float)il2cpp_codegen_multiply(L_6, L_7)))))), L_8));
 	}
 }
-// Method Definition Index: 113962
+// Method Definition Index: 114061
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_coneApexOffsetZ_m2CCFBC8EF76F660960BA1CE0ED62D80206B03EFA (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -5833,7 +5833,7 @@ IL_0027:
 		return ((std::numeric_limits<float>::max)());
 	}
 }
-// Method Definition Index: 113963
+// Method Definition Index: 114062
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_coneApexPositionLocal_mFD7EB60E6447504073CA3E02C50E15A3B1A070C3 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5846,7 +5846,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_1;
 	}
 }
-// Method Definition Index: 113964
+// Method Definition Index: 114063
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_coneApexPositionGlobal_mB12B13514E56595AF4445A44C63918AA0A78F264 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6 V_0;
@@ -5866,7 +5866,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_3;
 	}
 }
-// Method Definition Index: 113965
+// Method Definition Index: 114064
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_IsScalable_m7D6DFDAEB203C13EAD49D9F8D7AA986ADF696161 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5874,7 +5874,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_IsScalable_m7D6DFD
 		return (bool)1;
 	}
 }
-// Method Definition Index: 113966
+// Method Definition Index: 114065
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_geomSides_m9F5D0501C45D5450C99F137CEF937F21C436E303 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5899,7 +5899,7 @@ IL_0014:
 		return L_3;
 	}
 }
-// Method Definition Index: 113967
+// Method Definition Index: 114066
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_geomSides_m8A171D4247FCA8CF675A2476C8F1ABF6F1947055 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5927,7 +5927,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_geomSides_m8A1
 		return;
 	}
 }
-// Method Definition Index: 113968
+// Method Definition Index: 114067
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_geomSegments_mB3F9E2F4571430FB83610D502EF57418108F15B2 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5952,7 +5952,7 @@ IL_0014:
 		return L_3;
 	}
 }
-// Method Definition Index: 113969
+// Method Definition Index: 114068
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_geomSegments_m36A5282500E2BBBA0DE3663D5D6564FCF2C64D41 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5980,7 +5980,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_geomSegments_m
 		return;
 	}
 }
-// Method Definition Index: 113970
+// Method Definition Index: 114069
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_skewingLocalForwardDirectionNormalized_mCC3B3B132E51B2390101E5A53005D2BAF8080C10 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6028,7 +6028,7 @@ IL_0036:
 		return L_8;
 	}
 }
-// Method Definition Index: 113971
+// Method Definition Index: 114070
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_canHaveMeshSkewing_mE8F336CF706E273E2A20449A411747BC1BB95C9A (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6037,7 +6037,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_canHaveMeshSke
 		return (bool)((((int32_t)L_0) == ((int32_t)1))? 1 : 0);
 	}
 }
-// Method Definition Index: 113972
+// Method Definition Index: 114071
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_hasMeshSkewing_m885715302DDD6C0DEB38106B5186A098B3433281 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6099,7 +6099,7 @@ IL_0036:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 113973
+// Method Definition Index: 114072
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 VolumetricLightBeamSD_get_additionalClippingPlane_m8899784EFF3C0AF33833FD7AB2E7A4DF7F26C7D1 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6140,7 +6140,7 @@ IL_002a:
 		return L_7;
 	}
 }
-// Method Definition Index: 113974
+// Method Definition Index: 114073
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_attenuationLerpLinearQuad_m597F78DFD6D12C28E9A199F0CF99B3D2B5C9B85E (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6177,7 +6177,7 @@ IL_001d:
 		return L_2;
 	}
 }
-// Method Definition Index: 113975
+// Method Definition Index: 114074
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeStart_m266C2C4863AD79520C17519788A500E2B29CAC02 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6186,7 +6186,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeStart_m26
 		return L_0;
 	}
 }
-// Method Definition Index: 113976
+// Method Definition Index: 114075
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeStart_mD2AC85CADE3F97CAD0FAE0BB8E4ED0B393775C38 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6197,7 +6197,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeStart_mD2A
 		return;
 	}
 }
-// Method Definition Index: 113977
+// Method Definition Index: 114076
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeEnd_mBC9237C24EDB18AA26AB4E1E17D361F8456404BF (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6206,7 +6206,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeEnd_mBC92
 		return L_0;
 	}
 }
-// Method Definition Index: 113978
+// Method Definition Index: 114077
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeEnd_m33378F20673D59A3913F6BA422AAC941C52AEF35 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6217,7 +6217,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeEnd_m33378
 		return;
 	}
 }
-// Method Definition Index: 113979
+// Method Definition Index: 114078
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_fadeEndFromLight_mADE8C62A6DFC991AABA0A72E5F7CB559BA501250 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6226,7 +6226,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_fadeEndFromLig
 		return L_0;
 	}
 }
-// Method Definition Index: 113980
+// Method Definition Index: 114079
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeEndFromLight_m2083CA6A1E303AB454DC3D92D8B09DF11CFA425B (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6237,7 +6237,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeEndFromLig
 		return;
 	}
 }
-// Method Definition Index: 113981
+// Method Definition Index: 114080
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_useFallOffEndFromAttachedLightSpot_mBA48B3E98A4233523E8D19409AAF3F7CFED598A5 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6268,7 +6268,7 @@ IL_0015:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113982
+// Method Definition Index: 114081
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_maxGeometryDistance_mAA20C7930FB58B04468B0B8B873D91741B4B4190 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6287,7 +6287,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_maxGeometryDi
 		return ((float)il2cpp_codegen_add(L_0, L_7));
 	}
 }
-// Method Definition Index: 113983
+// Method Definition Index: 114082
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_isNoiseEnabled_m956BEA5298170A988BF95DE2F66668ECE65BC9B5 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6296,7 +6296,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_isNoiseEnabled
 		return (bool)((!(((uint32_t)L_0) <= ((uint32_t)0)))? 1 : 0);
 	}
 }
-// Method Definition Index: 113984
+// Method Definition Index: 114083
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_noiseEnabled_mED96CDFBB5EA4C4C66BBDAA353D69902412CDC2B (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6306,7 +6306,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_noiseEnabled_m
 		return L_0;
 	}
 }
-// Method Definition Index: 113985
+// Method Definition Index: 114084
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_noiseEnabled_mD0754E0C2F957EAB4FDC33396D67A226A3D56197 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* G_B2_0 = NULL;
@@ -6343,7 +6343,7 @@ IL_0008:
 		return;
 	}
 }
-// Method Definition Index: 113986
+// Method Definition Index: 114085
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeOutBegin_m11F11E868D58745C2A28B6CB6A12D61F61F960D6 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6352,7 +6352,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeOutBegin_
 		return L_0;
 	}
 }
-// Method Definition Index: 113987
+// Method Definition Index: 114086
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeOutBegin_m45450B6F8C76F373972D8508E355BD1923ABF4B1 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6364,7 +6364,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeOutBegin_m
 		return;
 	}
 }
-// Method Definition Index: 113988
+// Method Definition Index: 114087
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeOutEnd_mE59112AF8787A28172FCC70D9F83703C12858EA0 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6373,7 +6373,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeOutEnd_mE
 		return L_0;
 	}
 }
-// Method Definition Index: 113989
+// Method Definition Index: 114088
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeOutEnd_m5AE26C013332E1C21AF3E4D932858269F4399557 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6385,7 +6385,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_fadeOutEnd_m5A
 		return;
 	}
 }
-// Method Definition Index: 113990
+// Method Definition Index: 114089
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_isFadeOutEnabled_m32814A245ABF7DF9BEC31B787BF4DC7C32D11125 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6406,7 +6406,7 @@ IL_001e:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 113991
+// Method Definition Index: 114090
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_isTilted_m7FF692C67694F2C942397A7B5F9F257A50C5ABED (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6419,7 +6419,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_isTilted_m7FF6
 		return (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0);
 	}
 }
-// Method Definition Index: 113992
+// Method Definition Index: 114091
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_sortingLayerID_mA24AD8C1FFD22E33762058D8E6D23C7FA4177057 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6428,7 +6428,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_sortingLaye
 		return L_0;
 	}
 }
-// Method Definition Index: 113993
+// Method Definition Index: 114092
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_sortingLayerID_m989BEA1A536AF88D8D56D5E360D00E378E749E0E (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6465,7 +6465,7 @@ IL_0020:
 		return;
 	}
 }
-// Method Definition Index: 113994
+// Method Definition Index: 114093
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* VolumetricLightBeamSD_get_sortingLayerName_m1F05539C4104A4D35A33E6ECFC43BFB22FE7C801 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6477,7 +6477,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* VolumetricLightBeamSD_get_sortingLa
 		return L_1;
 	}
 }
-// Method Definition Index: 113995
+// Method Definition Index: 114094
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_sortingLayerName_m2D17C52B2D587938808771ADB92F94CF8400B60C (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, String_t* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6490,7 +6490,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_sortingLayerNa
 		return;
 	}
 }
-// Method Definition Index: 113996
+// Method Definition Index: 114095
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_sortingOrder_m153B5D6146A3C049FC839F46D02CC8EF51C2D7E9 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6499,7 +6499,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_sortingOrde
 		return L_0;
 	}
 }
-// Method Definition Index: 113997
+// Method Definition Index: 114096
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_sortingOrder_mFF4FE9F273769548EB5A65D85A699C5A8728D156 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6536,7 +6536,7 @@ IL_0020:
 		return;
 	}
 }
-// Method Definition Index: 113998
+// Method Definition Index: 114097
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_trackChangesDuringPlaytime_mD540D3482F0199CAC61313CA18DF78BCDC0C04BE (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6545,7 +6545,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_trackChangesDu
 		return L_0;
 	}
 }
-// Method Definition Index: 113999
+// Method Definition Index: 114098
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_trackChangesDuringPlaytime_m366E743E4F93DD7AF3DC73A62C98081A663DCD23 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6558,7 +6558,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set_trackChangesDu
 		return;
 	}
 }
-// Method Definition Index: 114000
+// Method Definition Index: 114099
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_isCurrentlyTrackingChanges_m18FADD38400E66EF1B184362FF2D53B7B67C6F58 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6567,7 +6567,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_isCurrentlyTra
 		return (bool)((!(((RuntimeObject*)(Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B*)L_0) <= ((RuntimeObject*)(RuntimeObject*)NULL)))? 1 : 0);
 	}
 }
-// Method Definition Index: 114001
+// Method Definition Index: 114100
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR BeamGeometryAbstractBase_tBABB209A0EFF5065B8AA0158D7DA9219B7691514* VolumetricLightBeamSD_GetBeamGeometry_mD48EEFDD978F16FF5D453FA4B75E5836D9609813 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6576,7 +6576,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR BeamGeometryAbstractBase_tBABB209A0EFF5065B8A
 		return L_0;
 	}
 }
-// Method Definition Index: 114002
+// Method Definition Index: 114101
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_SetBeamGeometryNull_m0E87C7F714BF857CFBE03BAAD1FC34DC01509F08 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6587,7 +6587,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_SetBeamGeometryNul
 		return;
 	}
 }
-// Method Definition Index: 114003
+// Method Definition Index: 114102
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_blendingModeAsInt_m806E58A12B7A611C63618D9630CDC18BEC1814E6 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6614,7 +6614,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_blendingMod
 		return L_5;
 	}
 }
-// Method Definition Index: 114004
+// Method Definition Index: 114103
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 VolumetricLightBeamSD_get_beamInternalLocalRotation_m953D5144616F2769724C499F7AC2677481BCC497 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6642,7 +6642,7 @@ IL_0018:
 		return L_4;
 	}
 }
-// Method Definition Index: 114005
+// Method Definition Index: 114104
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_beamLocalForward_m37F7D6266A6B4E7463032D0D33F9CD35D84DFCCE (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6666,7 +6666,7 @@ IL_000e:
 		return L_2;
 	}
 }
-// Method Definition Index: 114006
+// Method Definition Index: 114105
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_beamGlobalForward_m6F38A3234E94A39842035002B92DEB6DEE1114A8 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6681,7 +6681,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_2;
 	}
 }
-// Method Definition Index: 114007
+// Method Definition Index: 114106
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_GetLossyScale_m7065B9B48AF7E758B44F0690DBDB5BF4DAA0A594 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6727,7 +6727,7 @@ IL_003e:
 		return L_12;
 	}
 }
-// Method Definition Index: 114008
+// Method Definition Index: 114107
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_raycastDistance_mFF1748E26CC0D0FA93A7D29270A3522CBC705B99 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -6777,7 +6777,7 @@ IL_0031:
 		return L_8;
 	}
 }
-// Method Definition Index: 114009
+// Method Definition Index: 114108
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_ComputeRaycastGlobalVector_m53CAE6ED69B2435EF3641E584E73B633EB485510 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_localVec, const RuntimeMethod* method) 
 {
 	{
@@ -6798,7 +6798,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_5;
 	}
 }
-// Method Definition Index: 114010
+// Method Definition Index: 114109
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_raycastGlobalForward_m34B2D94ACAF3990543D32E7C64FED36149932039 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* G_B2_0 = NULL;
@@ -6841,7 +6841,7 @@ IL_0016:
 		return L_3;
 	}
 }
-// Method Definition Index: 114011
+// Method Definition Index: 114110
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_raycastGlobalUp_mF1F9665ECCC93641D105165475B80186538D1862 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6853,7 +6853,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_1;
 	}
 }
-// Method Definition Index: 114012
+// Method Definition Index: 114111
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 VolumetricLightBeamSD_get_raycastGlobalRight_mD16A71B20439E9FC523076FD075A87FC260CB37D (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6865,7 +6865,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_1;
 	}
 }
-// Method Definition Index: 114013
+// Method Definition Index: 114112
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get__INTERNAL_DynamicOcclusionMode_m7B02990AF2FD00CF3981DD019167BA6BC5D9A553 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6889,7 +6889,7 @@ IL_000e:
 		return L_2;
 	}
 }
-// Method Definition Index: 114014
+// Method Definition Index: 114113
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set__INTERNAL_DynamicOcclusionMode_mE0DB1C86F64CF2183B8E40D36E4468BABC2A10F3 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6900,7 +6900,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set__INTERNAL_Dyna
 		return;
 	}
 }
-// Method Definition Index: 114015
+// Method Definition Index: 114114
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get__INTERNAL_DynamicOcclusionMode_Runtime_m9708AB32AA03908F66A44FC9BB5E5EB92C6AD170 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6922,7 +6922,7 @@ IL_000a:
 		return L_1;
 	}
 }
-// Method Definition Index: 114016
+// Method Definition Index: 114115
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD__INTERNAL_SetDynamicOcclusionCallback_mE357587041B7A9EE81C7ED227C735693E63838B3 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, String_t* ___0_shaderKeyword, Callback_tD1060ABB71119FA99C31A6075BCBA0B1459FFE76* ___1_cb, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6960,7 +6960,7 @@ IL_0024:
 		return;
 	}
 }
-// Method Definition Index: 114017
+// Method Definition Index: 114116
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_add_onWillCameraRenderThisBeam_m1642EF34BA2E208DD285DF0636C147F8173E5EFD (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, OnWillCameraRenderCB_t503F072D5BCAC629D80B0CCBD577AE383E5DFC32* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7003,7 +7003,7 @@ IL_0007:
 		return;
 	}
 }
-// Method Definition Index: 114018
+// Method Definition Index: 114117
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_remove_onWillCameraRenderThisBeam_mDBF632ACCC1B2CBF97F5F7C9B1C3EB0A5D34CE5A (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, OnWillCameraRenderCB_t503F072D5BCAC629D80B0CCBD577AE383E5DFC32* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7046,7 +7046,7 @@ IL_0007:
 		return;
 	}
 }
-// Method Definition Index: 114019
+// Method Definition Index: 114118
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD__INTERNAL_OnWillCameraRenderThisBeam_mDF098D5F66AD5B9D6ABE15D54622A625DF5EEFBB (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___0_cam, const RuntimeMethod* method) 
 {
 	{
@@ -7071,7 +7071,7 @@ IL_0014:
 		return;
 	}
 }
-// Method Definition Index: 114020
+// Method Definition Index: 114119
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_RegisterOnBeamGeometryInitializedCallback_m0F8F904D8947FAE5068DAACC0B15E816C7705F93 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, OnBeamGeometryInitialized_t61313376F573C1A537AFF8D650D6CD0CE5E7B355* ___0_cb, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7110,7 +7110,7 @@ IL_002a:
 		return;
 	}
 }
-// Method Definition Index: 114021
+// Method Definition Index: 114120
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_CallOnBeamGeometryInitializedCallback_m73BF73C996D35E50E9946EE0E0DF4C42648A4A85 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7137,7 +7137,7 @@ IL_001a:
 		return;
 	}
 }
-// Method Definition Index: 114022
+// Method Definition Index: 114121
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_SetFadeOutValue_mBABF2853F9625E3780EBC29496998B17CC4AC7D7 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, float* ___0_propToChange, float ___1_value, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -7170,7 +7170,7 @@ IL_0019:
 		return;
 	}
 }
-// Method Definition Index: 114023
+// Method Definition Index: 114122
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_OnFadeOutStateChanged_mF830AAD240391523F42708BA8FCFCB1AA7AD8943 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7211,7 +7211,7 @@ IL_0020:
 		return;
 	}
 }
-// Method Definition Index: 114024
+// Method Definition Index: 114123
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t VolumetricLightBeamSD_get__INTERNAL_InstancedMaterialGroupID_mF930FF9A91A71BBDD5E69D1C121F7C57940D4368 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7220,7 +7220,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t VolumetricLightBeamSD_get__INTERNAL_
 		return L_0;
 	}
 }
-// Method Definition Index: 114025
+// Method Definition Index: 114124
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set__INTERNAL_InstancedMaterialGroupID_m27213AAABE915A9C4134318F6E8D258E119A871E (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, uint32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7230,7 +7230,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_set__INTERNAL_Inst
 		return;
 	}
 }
-// Method Definition Index: 114026
+// Method Definition Index: 114125
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* VolumetricLightBeamSD_get_meshStats_m09412E652E4879846CEBB2424E0D26429A90380E (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7311,7 +7311,7 @@ IL_0054:
 		return _stringLiteral98E8099C4FECB830FECF2392791D5276470AFD31;
 	}
 }
-// Method Definition Index: 114027
+// Method Definition Index: 114126
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_meshVerticesCount_m9D040D79E697665551CEE5D1B125479FA34AC6C4 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7362,7 +7362,7 @@ IL_0021:
 		return L_7;
 	}
 }
-// Method Definition Index: 114028
+// Method Definition Index: 114127
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_meshTrianglesCount_m4620EE93AF16C726FE4097196872A9D2D0F4FD88 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7414,7 +7414,7 @@ IL_0021:
 		return ((int32_t)(((int32_t)(((RuntimeArray*)L_7)->max_length))/3));
 	}
 }
-// Method Definition Index: 114029
+// Method Definition Index: 114128
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_GetInsideBeamFactor_m860051D3E26CD7B7657B56BFEBADD7A248B6C8C5 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_posWS, const RuntimeMethod* method) 
 {
 	{
@@ -7430,7 +7430,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_GetInsideBeamFact
 		return L_3;
 	}
 }
-// Method Definition Index: 114030
+// Method Definition Index: 114129
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_GetInsideBeamFactorFromObjectSpacePos_mA5A9AF1D5BC86D554AD7C5DE3A61B141D73EC298 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_posOS, const RuntimeMethod* method) 
 {
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
@@ -7544,7 +7544,7 @@ IL_006a:
 		return L_34;
 	}
 }
-// Method Definition Index: 114031
+// Method Definition Index: 114130
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_Generate_m44D95B453417434B86D96B685E78C58B5189C2C5 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7554,7 +7554,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_Generate_m44D95B45
 		return;
 	}
 }
-// Method Definition Index: 114032
+// Method Definition Index: 114131
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_GenerateGeometry_m4FA46DB0457C14CF1DF359065E6EFE2024FAF6F4 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7611,7 +7611,7 @@ IL_0052:
 		return;
 	}
 }
-// Method Definition Index: 114033
+// Method Definition Index: 114132
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_UpdateAfterManualPropertyChange_m109356699BA9D156B0ECEA4E41E6CEA511F72F08 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7646,7 +7646,7 @@ IL_001e:
 		return;
 	}
 }
-// Method Definition Index: 114034
+// Method Definition Index: 114133
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_Start_mA5E7EF815721DCF345C09FA99501D6267AB7EF81 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7658,7 +7658,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_Start_mA5E7EF81572
 		return;
 	}
 }
-// Method Definition Index: 114035
+// Method Definition Index: 114134
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_OnEnable_m35762B7713AB495CE5ABF3EBF4130F1C421508A9 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7693,7 +7693,7 @@ IL_0018:
 		return;
 	}
 }
-// Method Definition Index: 114036
+// Method Definition Index: 114135
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_OnDisable_m74706DB1D73EF05E6999225ECF4EB80632FE9276 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7729,7 +7729,7 @@ IL_0018:
 		return;
 	}
 }
-// Method Definition Index: 114037
+// Method Definition Index: 114136
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_StartPlaytimeUpdateIfNeeded_m8DC04724519911F94482B45428D713234A2D4C00 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7779,7 +7779,7 @@ IL_0029:
 		return;
 	}
 }
-// Method Definition Index: 114038
+// Method Definition Index: 114137
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* VolumetricLightBeamSD_CoPlaytimeUpdate_mAA1ADC48F1F0C23BB878C95269A26DDBD9A95D82 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7798,7 +7798,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* VolumetricLightBeamSD_CoPlayti
 		return L_1;
 	}
 }
-// Method Definition Index: 114039
+// Method Definition Index: 114138
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_AssignPropertiesFromAttachedSpotLight_m9FE0B4C9DA34D9023E6D9C1D898FFA5D2F34E431 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7950,7 +7950,7 @@ IL_00cb:
 		return;
 	}
 }
-// Method Definition Index: 114040
+// Method Definition Index: 114139
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_ClampProperties_m1C305820A6C35C837CC2DFF8B77BEAB402F5420B (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8049,7 +8049,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_ClampProperties_m1
 		return;
 	}
 }
-// Method Definition Index: 114041
+// Method Definition Index: 114140
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_ValidateProperties_mF5589D150F5374801C901A17CA2356CA256FD297 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8061,7 +8061,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_ValidateProperties
 		return;
 	}
 }
-// Method Definition Index: 114042
+// Method Definition Index: 114141
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD_HandleBackwardCompatibility_m3F234C3074C0651C55BF489C237697ADA65D27D7 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, int32_t ___0_serializedVersion, int32_t ___1_newVersion, const RuntimeMethod* method) 
 {
 	{
@@ -8181,7 +8181,7 @@ IL_0087:
 		return;
 	}
 }
-// Method Definition Index: 114043
+// Method Definition Index: 114142
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamSD__ctor_m2E58D25D8217D601357726FA61BFC0D323751E94 (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8294,7 +8294,7 @@ void OnWillCameraRenderCB_Invoke_m8B5D9735D0DE7F05295E395E4BF318EA3373C8FF_OpenS
 	typedef void (*FunctionPointerType) (Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184*, const RuntimeMethod*);
 	((FunctionPointerType)__this->___method_ptr)(___0_cam, method);
 }
-// Method Definition Index: 114044
+// Method Definition Index: 114143
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnWillCameraRenderCB__ctor_mFA352C673C5DC044620A564A9435E6A03EB848FC (OnWillCameraRenderCB_t503F072D5BCAC629D80B0CCBD577AE383E5DFC32* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) 
 {
 	__this->___method_ptr = (intptr_t)il2cpp_codegen_get_method_pointer((RuntimeMethod*)___1_method);
@@ -8331,20 +8331,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnWillCameraRenderCB__ctor_mFA352C673C5D
 	}
 	__this->___extra_arg = (intptr_t)&OnWillCameraRenderCB_Invoke_m8B5D9735D0DE7F05295E395E4BF318EA3373C8FF_Multicast;
 }
-// Method Definition Index: 114045
+// Method Definition Index: 114144
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnWillCameraRenderCB_Invoke_m8B5D9735D0DE7F05295E395E4BF318EA3373C8FF (OnWillCameraRenderCB_t503F072D5BCAC629D80B0CCBD577AE383E5DFC32* __this, Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___0_cam, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184*, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_cam, reinterpret_cast<RuntimeMethod*>(__this->___method));
 }
-// Method Definition Index: 114046
+// Method Definition Index: 114145
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* OnWillCameraRenderCB_BeginInvoke_m64C1D25C842A2BD391489F2488D82D2D4BFD69D0 (OnWillCameraRenderCB_t503F072D5BCAC629D80B0CCBD577AE383E5DFC32* __this, Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___0_cam, AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___1_callback, RuntimeObject* ___2_object, const RuntimeMethod* method) 
 {
 	void *__d_args[2] = {0};
 	__d_args[0] = ___0_cam;
 	return (RuntimeObject*)il2cpp_codegen_delegate_begin_invoke((RuntimeDelegate*)__this, __d_args, (RuntimeDelegate*)___1_callback, (RuntimeObject*)___2_object);
 }
-// Method Definition Index: 114047
+// Method Definition Index: 114146
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnWillCameraRenderCB_EndInvoke_m47C5202C7A7E38660C6D9382F6F2264720029B91 (OnWillCameraRenderCB_t503F072D5BCAC629D80B0CCBD577AE383E5DFC32* __this, RuntimeObject* ___0_result, const RuntimeMethod* method) 
 {
 	il2cpp_codegen_delegate_end_invoke((Il2CppAsyncResult*) ___0_result, 0);
@@ -8385,7 +8385,7 @@ IL2CPP_EXTERN_C  void DelegatePInvokeWrapper_OnBeamGeometryInitialized_t61313376
 	il2cppPInvokeFunc();
 
 }
-// Method Definition Index: 114048
+// Method Definition Index: 114147
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnBeamGeometryInitialized__ctor_mBBB6F1FE31D65D5788AF7965CCA601D17BACEC53 (OnBeamGeometryInitialized_t61313376F573C1A537AFF8D650D6CD0CE5E7B355* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) 
 {
 	__this->___method_ptr = (intptr_t)il2cpp_codegen_get_method_pointer((RuntimeMethod*)___1_method);
@@ -8414,19 +8414,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnBeamGeometryInitialized__ctor_mBBB6F1F
 	}
 	__this->___extra_arg = (intptr_t)&OnBeamGeometryInitialized_Invoke_m6FC9DB448E73C4421129FFC9AF3E61A005A1B902_Multicast;
 }
-// Method Definition Index: 114049
+// Method Definition Index: 114148
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnBeamGeometryInitialized_Invoke_m6FC9DB448E73C4421129FFC9AF3E61A005A1B902 (OnBeamGeometryInitialized_t61313376F573C1A537AFF8D650D6CD0CE5E7B355* __this, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, reinterpret_cast<RuntimeMethod*>(__this->___method));
 }
-// Method Definition Index: 114050
+// Method Definition Index: 114149
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* OnBeamGeometryInitialized_BeginInvoke_mB76425B927BF53062825E7A7A6A5F1329F0EF5C1 (OnBeamGeometryInitialized_t61313376F573C1A537AFF8D650D6CD0CE5E7B355* __this, AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___0_callback, RuntimeObject* ___1_object, const RuntimeMethod* method) 
 {
 	void *__d_args[1] = {0};
 	return (RuntimeObject*)il2cpp_codegen_delegate_begin_invoke((RuntimeDelegate*)__this, __d_args, (RuntimeDelegate*)___0_callback, (RuntimeObject*)___1_object);
 }
-// Method Definition Index: 114051
+// Method Definition Index: 114150
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnBeamGeometryInitialized_EndInvoke_mB5B67E891810DF9150B41587AE41B2D78F4EF626 (OnBeamGeometryInitialized_t61313376F573C1A537AFF8D650D6CD0CE5E7B355* __this, RuntimeObject* ___0_result, const RuntimeMethod* method) 
 {
 	il2cpp_codegen_delegate_end_invoke((Il2CppAsyncResult*) ___0_result, 0);
@@ -8439,7 +8439,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnBeamGeometryInitialized_EndInvoke_mB5B
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114052
+// Method Definition Index: 114151
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoPlaytimeUpdateU3Ed__199__ctor_mD9CFDAC57A2E7907BCD134A7474BCBC812A19218 (U3CCoPlaytimeUpdateU3Ed__199_t999F6311C365FA8E92E7CFB46464E65C71B8E0C5* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
@@ -8449,14 +8449,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoPlaytimeUpdateU3Ed__199__ctor_mD9CF
 		return;
 	}
 }
-// Method Definition Index: 114053
+// Method Definition Index: 114152
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoPlaytimeUpdateU3Ed__199_System_IDisposable_Dispose_m7765114A761F63AD52A6CA58933F81A91546F213 (U3CCoPlaytimeUpdateU3Ed__199_t999F6311C365FA8E92E7CFB46464E65C71B8E0C5* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 114054
+// Method Definition Index: 114153
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CCoPlaytimeUpdateU3Ed__199_MoveNext_m49A056F6C21E57E878ACC7DBD5FE96C7461BBB32 (U3CCoPlaytimeUpdateU3Ed__199_t999F6311C365FA8E92E7CFB46464E65C71B8E0C5* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -8541,7 +8541,7 @@ IL_004d:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 114055
+// Method Definition Index: 114154
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoPlaytimeUpdateU3Ed__199_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m182D3AB738832D4C4B92F14749196B56826B0239 (U3CCoPlaytimeUpdateU3Ed__199_t999F6311C365FA8E92E7CFB46464E65C71B8E0C5* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8549,7 +8549,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoPlaytimeUpdateU3Ed__199_S
 		return L_0;
 	}
 }
-// Method Definition Index: 114056
+// Method Definition Index: 114155
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoPlaytimeUpdateU3Ed__199_System_Collections_IEnumerator_Reset_m804864BC86913D67981EF3BF65B0B3C2B4FEC660 (U3CCoPlaytimeUpdateU3Ed__199_t999F6311C365FA8E92E7CFB46464E65C71B8E0C5* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8558,7 +8558,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCoPlaytimeUpdateU3Ed__199_System_Coll
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CCoPlaytimeUpdateU3Ed__199_System_Collections_IEnumerator_Reset_m804864BC86913D67981EF3BF65B0B3C2B4FEC660_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 114057
+// Method Definition Index: 114156
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoPlaytimeUpdateU3Ed__199_System_Collections_IEnumerator_get_Current_mA7D75006CBFE1491A997F2A417537A79B6F05DAC (U3CCoPlaytimeUpdateU3Ed__199_t999F6311C365FA8E92E7CFB46464E65C71B8E0C5* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8590,7 +8590,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCoPlaytimeUpdateU3Ed__199_S
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114058
+// Method Definition Index: 114157
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* HD_GetRaymarchingQuality_m4F0F9FBDC4E4C8C057B8E54F29E6671F677E21FF (int32_t ___0_id, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8616,7 +8616,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* HD_GetRaymarchingQuality_m4F0F9FBDC
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114059
+// Method Definition Index: 114158
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShaderProperties__cctor_mD3483AD80EE4C58D07A59A33BF90FDA234746A2F (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8732,7 +8732,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShaderProperties__cctor_mD3483AD80EE4C58
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114060
+// Method Definition Index: 114159
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SD__cctor_m8286954439904771F8E8544A35392038BFDC1D45 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8848,7 +8848,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SD__cctor_m8286954439904771F8E8544A35392
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114061
+// Method Definition Index: 114160
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HD__cctor_mBB52A15F248FE2DF0AAEFC8981C68BE5C68CD7AA (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8934,7 +8934,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HD__cctor_mBB52A15F248FE2DF0AAEFC8981C68
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114062
+// Method Definition Index: 114161
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float SpotLightHelper_GetIntensity_m36AE538E064EB291D34F0A54032ABFD1E4BA49B3 (Light_t1E68479B7782AF2050FAA02A5DC612FD034F18F3* ___0_light, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8967,7 +8967,7 @@ IL_000f:
 		return L_3;
 	}
 }
-// Method Definition Index: 114063
+// Method Definition Index: 114162
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float SpotLightHelper_GetSpotAngle_m05666C531EA96DD1E96AFEA09D28A3C0A7660F87 (Light_t1E68479B7782AF2050FAA02A5DC612FD034F18F3* ___0_light, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9000,7 +9000,7 @@ IL_000f:
 		return L_3;
 	}
 }
-// Method Definition Index: 114064
+// Method Definition Index: 114163
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float SpotLightHelper_GetFallOffEnd_m61282DBB5B3F8819B449F23362C77E32E3B3BEDF (Light_t1E68479B7782AF2050FAA02A5DC612FD034F18F3* ___0_light, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9041,7 +9041,7 @@ IL_000f:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114065
+// Method Definition Index: 114164
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SRPHelper_get_renderPipelineScriptingDefineSymbolAsString_m16061BB68DEACBC156D6757BE1ABA345E3ABA0E4 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9055,7 +9055,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SRPHelper_get_renderPipelineScripti
 		return _stringLiteral596F7DF0F0BA8C4C92175F86DEEF8499254DB516;
 	}
 }
-// Method Definition Index: 114066
+// Method Definition Index: 114165
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t SRPHelper_get_projectRenderPipeline_mEF9C29DC5B84E14592049B0DD84C44100039C9D8 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9088,7 +9088,7 @@ IL_0017:
 		return L_2;
 	}
 }
-// Method Definition Index: 114067
+// Method Definition Index: 114166
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t SRPHelper_ComputeRenderPipeline_m2CBA2C92479102487E8D6D50CC3684173BD23AEA (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9184,7 +9184,7 @@ IL_0047:
 		return (int32_t)(0);
 	}
 }
-// Method Definition Index: 114068
+// Method Definition Index: 114167
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SRPHelper_IsUsingCustomRenderPipeline_m752F84B9B8EA70630FACCF9D1F5E61C4AA3EBEF5 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9218,7 +9218,7 @@ IL_0013:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 114069
+// Method Definition Index: 114168
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SRPHelper_RegisterOnBeginCameraRendering_mD638C72554FA8CEC924ED1BA3ED7A24F1CBBB550 (Action_2_t8E07914D7090FF200FE84404EEEFAF3CE183C9F3* ___0_cb, const RuntimeMethod* method) 
 {
 	{
@@ -9245,7 +9245,7 @@ IL_0013:
 		return;
 	}
 }
-// Method Definition Index: 114070
+// Method Definition Index: 114169
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SRPHelper_UnregisterOnBeginCameraRendering_mCD8FD522DFFA4FE2DFAF98E669F08FDA81480700 (Action_2_t8E07914D7090FF200FE84404EEEFAF3CE183C9F3* ___0_cb, const RuntimeMethod* method) 
 {
 	{
@@ -9277,7 +9277,7 @@ IL_000d:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114071
+// Method Definition Index: 114170
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Packed_t32A9380E566C72CA349C5B278632D9DB54686E6B TransformUtils_GetWorldPacked_mD80B93D2965D3381D4605E0F1F8176C4AC6B971D (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___0_self, const RuntimeMethod* method) 
 {
 	Packed_t32A9380E566C72CA349C5B278632D9DB54686E6B V_0;
@@ -9317,7 +9317,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Packed_t32A9380E566C72CA349C5B278632D9DB54686
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114072
+// Method Definition Index: 114171
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Packed_IsSame_m7C64AB54B6B7245443AE68D930A269B56C2B62AF (Packed_t32A9380E566C72CA349C5B278632D9DB54686E6B* __this, Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___0_transf, const RuntimeMethod* method) 
 {
 	{
@@ -9380,7 +9380,7 @@ IL2CPP_EXTERN_C  bool Packed_IsSame_m7C64AB54B6B7245443AE68D930A269B56C2B62AF_Ad
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114073
+// Method Definition Index: 114172
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t TriggerZone_get_updateRate_mD5D9631FE440CA34D1CCA35EC1A3162D8205699C (TriggerZone_t129674BCB83C35D626A1F03FE067E1FD9EBDEA44* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9425,7 +9425,7 @@ IL_001f:
 		return (int32_t)(1);
 	}
 }
-// Method Definition Index: 114074
+// Method Definition Index: 114173
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TriggerZone_OnEnable_mD957D2C333B3A1F5BBB80982FE18617F0BB438EE (TriggerZone_t129674BCB83C35D626A1F03FE067E1FD9EBDEA44* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9508,7 +9508,7 @@ IL_0059:
 		return;
 	}
 }
-// Method Definition Index: 114075
+// Method Definition Index: 114174
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TriggerZone_OnOcclusionProcessed_m39B3800911ED0E75185A7B98136C3705AFD2318D (TriggerZone_t129674BCB83C35D626A1F03FE067E1FD9EBDEA44* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9518,7 +9518,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TriggerZone_OnOcclusionProcessed_m39B380
 		return;
 	}
 }
-// Method Definition Index: 114076
+// Method Definition Index: 114175
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TriggerZone_ComputeZone_mAC426CB21EA6261C957C8724B06F9AA805B9F5CE (TriggerZone_t129674BCB83C35D626A1F03FE067E1FD9EBDEA44* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9842,7 +9842,7 @@ IL_0202:
 		return;
 	}
 }
-// Method Definition Index: 114077
+// Method Definition Index: 114176
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TriggerZone__ctor_m39FF69D504704F0DFD4E895E6E78D4CCC7D1FA84 (TriggerZone_t129674BCB83C35D626A1F03FE067E1FD9EBDEA44* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9870,7 +9870,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TriggerZone__ctor_m39FF69D504704F0DFD4E8
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114078
+// Method Definition Index: 114177
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_ComputeConeRadiusEnd_m595E3CBF276CE047F6791607ECFC4449BA3C674D (float ___0_fallOffEnd, float ___1_spotAngle, const RuntimeMethod* method) 
 {
 	{
@@ -9882,7 +9882,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_ComputeConeRadiusEnd_m595E3CBF276
 		return ((float)il2cpp_codegen_multiply(L_0, L_2));
 	}
 }
-// Method Definition Index: 114079
+// Method Definition Index: 114178
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_ComputeSpotAngle_m319851D88C0C0C87B2C1CB0F10D8199902C5ECF8 (float ___0_fallOffEnd, float ___1_coneRadiusEnd, const RuntimeMethod* method) 
 {
 	{
@@ -9894,7 +9894,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_ComputeSpotAngle_m319851D88C0C0C8
 		return ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply(L_2, (57.2957802f))), (2.0f)));
 	}
 }
-// Method Definition Index: 114083
+// Method Definition Index: 114182
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Utils_GetPath_m6B8978F39358C45CEF358A16B6A3959608DCFDBE (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___0_current, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9947,7 +9947,7 @@ IL_001f:
 		return L_11;
 	}
 }
-// Method Definition Index: 114089
+// Method Definition Index: 114188
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Utils_SetupDepthCamera_mEF1133AE52B2DA02F532E224331DC38AB6A26741 (Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___0_depthCamera, float ___1_coneApexOffsetZ, float ___2_maxGeometryDistance, float ___3_coneRadiusStart, float ___4_coneRadiusEnd, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___5_beamLocalForward, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___6_lossyScale, bool ___7_isScalable, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___8_beamInternalLocalRotation, bool ___9_shouldScaleMinNearClipPlane, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -10264,7 +10264,7 @@ IL_016d:
 		return;
 	}
 }
-// Method Definition Index: 114090
+// Method Definition Index: 114189
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_HasFlag_mD7369254D164288A09D02EAC528DFA596B0E833F (Enum_t2A1A94B24E3B776EEF4E5E485E290BB9D4D072E2* ___0_mask, Enum_t2A1A94B24E3B776EEF4E5E485E290BB9D4D072E2* ___1_flags, const RuntimeMethod* method) 
 {
 	{
@@ -10275,7 +10275,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_HasFlag_mD7369254D164288A09D02EAC5
 		return (bool)((((int32_t)((int32_t)(((*(int32_t*)UnBox(L_0, il2cpp_defaults.int32_class)))&((*(int32_t*)UnBox(L_1, il2cpp_defaults.int32_class)))))) == ((int32_t)((*(int32_t*)UnBox(L_2, il2cpp_defaults.int32_class)))))? 1 : 0);
 	}
 }
-// Method Definition Index: 114091
+// Method Definition Index: 114190
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Utils_Divide_mBAEA374C51CC0DEA959A2774DA0663051BB36A7D (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_aVector, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_scale, const RuntimeMethod* method) 
 {
 	{
@@ -10321,7 +10321,7 @@ IL_0026:
 		return L_20;
 	}
 }
-// Method Definition Index: 114092
+// Method Definition Index: 114191
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Utils_xy_mE51F9ADBC8E374C128DFC12CB31BB5E97B049729 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_aVector, const RuntimeMethod* method) 
 {
 	{
@@ -10336,7 +10336,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D
 		return L_4;
 	}
 }
-// Method Definition Index: 114093
+// Method Definition Index: 114192
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Utils_xz_m7EAE0CDB3C070FD479E9D167719282F301B8FAFC (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_aVector, const RuntimeMethod* method) 
 {
 	{
@@ -10351,7 +10351,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D
 		return L_4;
 	}
 }
-// Method Definition Index: 114094
+// Method Definition Index: 114193
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Utils_yz_m70DE1CCA4826E5ABE2CD18B383089693A5A1A9AF (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_aVector, const RuntimeMethod* method) 
 {
 	{
@@ -10366,7 +10366,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D
 		return L_4;
 	}
 }
-// Method Definition Index: 114095
+// Method Definition Index: 114194
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Utils_yx_mCD68B523539CDF8F2D62DC6FD89897C745A6EE00 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_aVector, const RuntimeMethod* method) 
 {
 	{
@@ -10381,7 +10381,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D
 		return L_4;
 	}
 }
-// Method Definition Index: 114096
+// Method Definition Index: 114195
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Utils_zx_m79D402614CCE68CB48E3FE545B9B676C9C4A1374 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_aVector, const RuntimeMethod* method) 
 {
 	{
@@ -10396,7 +10396,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D
 		return L_4;
 	}
 }
-// Method Definition Index: 114097
+// Method Definition Index: 114196
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Utils_zy_m017CDBF680636A66626EFA5135BBAD283C0828D0 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_aVector, const RuntimeMethod* method) 
 {
 	{
@@ -10411,7 +10411,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D
 		return L_4;
 	}
 }
-// Method Definition Index: 114098
+// Method Definition Index: 114197
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_m3C3E241DA3DE98CF6C2FD97FC4C2F2D9C2FA1612 (float ___0_a, float ___1_b, float ___2_epsilon, const RuntimeMethod* method) 
 {
 	{
@@ -10424,7 +10424,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_m3C3E241DA3DE98CF6C2
 		return (bool)((((float)L_2) < ((float)L_3))? 1 : 0);
 	}
 }
-// Method Definition Index: 114099
+// Method Definition Index: 114198
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_mB87654A56EE0DA6C7EFC9E4EDD510319BE60DC22 (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_b, float ___2_epsilon, const RuntimeMethod* method) 
 {
 	{
@@ -10439,7 +10439,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_mB87654A56EE0DA6C7EF
 		return (bool)((((float)L_3) < ((float)L_4))? 1 : 0);
 	}
 }
-// Method Definition Index: 114100
+// Method Definition Index: 114199
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_mED73CA77656FB0C8B24ADC76293585E90C459050 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, float ___2_epsilon, const RuntimeMethod* method) 
 {
 	{
@@ -10454,7 +10454,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_mED73CA77656FB0C8B24
 		return (bool)((((float)L_3) < ((float)L_4))? 1 : 0);
 	}
 }
-// Method Definition Index: 114101
+// Method Definition Index: 114200
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_m5AAE4DBAC37751D5BC41568800475C44BCD8FB1E (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_a, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___1_b, float ___2_epsilon, const RuntimeMethod* method) 
 {
 	{
@@ -10469,7 +10469,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_Approximately_m5AAE4DBAC37751D5BC4
 		return (bool)((((float)L_3) < ((float)L_4))? 1 : 0);
 	}
 }
-// Method Definition Index: 114102
+// Method Definition Index: 114201
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 Utils_AsVector4_m79056316D735B5B9FCF131CFFEEDA05442574007 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_vec3, float ___1_w, const RuntimeMethod* method) 
 {
 	{
@@ -10487,7 +10487,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80E
 		return L_7;
 	}
 }
-// Method Definition Index: 114103
+// Method Definition Index: 114202
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 Utils_PlaneEquation_m96AB851838B02716C235ED2D05E754B80FFF36B8 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_normalizedNormal, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_pt, const RuntimeMethod* method) 
 {
 	{
@@ -10502,7 +10502,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80E
 		return L_4;
 	}
 }
-// Method Definition Index: 114104
+// Method Definition Index: 114203
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_GetVolumeCubic_mB283704E99D70259E27DFA9B80BADF7DA6570208 (Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 ___0_self, const RuntimeMethod* method) 
 {
 	{
@@ -10519,7 +10519,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_GetVolumeCubic_mB283704E99D70259E
 		return ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply(L_1, L_3)), L_5));
 	}
 }
-// Method Definition Index: 114105
+// Method Definition Index: 114204
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_GetMaxArea2D_mAA6D3EE6D08E05343A10B8FCAA0E18EAAA9587F6 (Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 ___0_self, const RuntimeMethod* method) 
 {
 	{
@@ -10549,7 +10549,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_GetMaxArea2D_mAA6D3EE6D08E05343A1
 		return L_13;
 	}
 }
-// Method Definition Index: 114106
+// Method Definition Index: 114205
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Utils_Opaque_m0258323433758FEAECD04E38A37528942077781A (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_self, const RuntimeMethod* method) 
 {
 	{
@@ -10566,7 +10566,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C
 		return L_6;
 	}
 }
-// Method Definition Index: 114107
+// Method Definition Index: 114206
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Utils_ComputeComplementaryColor_mF621E2FB16F3C1167B74746E850B99B2FA1E90EC (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_self, bool ___1_blackAndWhite, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -10658,7 +10658,7 @@ IL_003b:
 		return L_11;
 	}
 }
-// Method Definition Index: 114108
+// Method Definition Index: 114207
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C Utils_TranslateCustom_m6032B8A325978BFD3CCD02A87E9FB26E407BA2AA (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C ___0_plane, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_translation, const RuntimeMethod* method) 
 {
 	{
@@ -10680,7 +10680,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC
 		return L_6;
 	}
 }
-// Method Definition Index: 114109
+// Method Definition Index: 114208
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Utils_ClosestPointOnPlaneCustom_m48C1F9AC9FB6790EC3F75645A47F1ECBDA011FDC (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C ___0_plane, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_point, const RuntimeMethod* method) 
 {
 	{
@@ -10698,7 +10698,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A
 		return L_5;
 	}
 }
-// Method Definition Index: 114110
+// Method Definition Index: 114209
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_IsAlmostZero_mFE230F4F08F35BA495E9247E948DB940ABE4F144 (float ___0_f, const RuntimeMethod* method) 
 {
 	{
@@ -10709,7 +10709,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_IsAlmostZero_mFE230F4F08F35BA495E9
 		return (bool)((((float)L_1) < ((float)(0.00100000005f)))? 1 : 0);
 	}
 }
-// Method Definition Index: 114111
+// Method Definition Index: 114210
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_IsValid_m2B7423030DF73202123DCC6BE8AFD58BF83B2897 (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C ___0_plane, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -10724,7 +10724,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_IsValid_m2B7423030DF73202123DCC6BE
 		return (bool)((((float)L_1) > ((float)(0.5f)))? 1 : 0);
 	}
 }
-// Method Definition Index: 114112
+// Method Definition Index: 114211
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Utils_SetKeywordEnabled_mAE5D1F676431F1DF0151B751AC104AF342072283 (Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* ___0_mat, String_t* ___1_name, bool ___2_enabled, const RuntimeMethod* method) 
 {
 	{
@@ -10755,7 +10755,7 @@ IL_000b:
 		return;
 	}
 }
-// Method Definition Index: 114113
+// Method Definition Index: 114212
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Utils_SetShaderKeywordEnabled_m544560E48900623ADF95F5B9EBB5B3EB73B14E21 (String_t* ___0_name, bool ___1_enabled, const RuntimeMethod* method) 
 {
 	{
@@ -10782,7 +10782,7 @@ IL_000a:
 		return;
 	}
 }
-// Method Definition Index: 114114
+// Method Definition Index: 114213
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6 Utils_SampleInMatrix_m25AD93C27CD311920EA91B91A77A1F18AA8045A6 (Gradient_tA7FEBE2FDB4929FFF6C997134841046F713DAC1E* ___0_self, int32_t ___1_floatPackingPrecision, const RuntimeMethod* method) 
 {
 	Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6 V_0;
@@ -10836,7 +10836,7 @@ IL_0033:
 		return L_10;
 	}
 }
-// Method Definition Index: 114115
+// Method Definition Index: 114214
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ColorU5BU5D_t612261CF293F6FFC3D80AB52259FF0DC2B2CC389* Utils_SampleInArray_m9C16C4AD0FE16739A21282600545C7E9B3FDF621 (Gradient_tA7FEBE2FDB4929FFF6C997134841046F713DAC1E* ___0_self, int32_t ___1_samplesCount, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -10893,7 +10893,7 @@ IL_0028:
 		return L_12;
 	}
 }
-// Method Definition Index: 114116
+// Method Definition Index: 114215
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 Utils_Vector4_Floor_mAC7A847F3426FDC5D2024A4DBAE3D39BE8FA0253 (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_vec, const RuntimeMethod* method) 
 {
 	{
@@ -10920,7 +10920,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80E
 		return L_12;
 	}
 }
-// Method Definition Index: 114117
+// Method Definition Index: 114216
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_PackToFloat_m60D80C95969CDFF85522F361AE2DED2A3C5FDA5A (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_color, int32_t ___1_floatPackingPrecision, const RuntimeMethod* method) 
 {
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 V_0;
@@ -10959,7 +10959,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Utils_PackToFloat_m60D80C95969CDFF85522
 		return ((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_add((0.0f), ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply(L_6, ((float)L_7))), ((float)L_8))), ((float)L_9))))), ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_multiply(L_11, ((float)L_12))), ((float)L_13))))), ((float)il2cpp_codegen_multiply(L_15, ((float)L_16))))), L_18));
 	}
 }
-// Method Definition Index: 114118
+// Method Definition Index: 114217
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Utils_GetFloatPackingPrecision_mEBDA051CDC55CAF6D977133C8D546D5E0D74380E (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11008,7 +11008,7 @@ IL_001a:
 		return L_2;
 	}
 }
-// Method Definition Index: 114119
+// Method Definition Index: 114218
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_HasAtLeastOneFlag_mB1A1729643CF93235E544A3560D117A8A27FD1CF (Enum_t2A1A94B24E3B776EEF4E5E485E290BB9D4D072E2* ___0_mask, Enum_t2A1A94B24E3B776EEF4E5E485E290BB9D4D072E2* ___1_flags, const RuntimeMethod* method) 
 {
 	{
@@ -11018,7 +11018,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Utils_HasAtLeastOneFlag_mB1A1729643CF932
 		return (bool)((!(((uint32_t)((int32_t)(((*(int32_t*)UnBox(L_0, il2cpp_defaults.int32_class)))&((*(int32_t*)UnBox(L_1, il2cpp_defaults.int32_class)))))) <= ((uint32_t)0)))? 1 : 0);
 	}
 }
-// Method Definition Index: 114120
+// Method Definition Index: 114219
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Utils_MarkCurrentSceneDirty_mBE046E2151F1CD9F958455C83C53713E3B5D8E58 (const RuntimeMethod* method) 
 {
 	{
@@ -11026,7 +11026,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Utils_MarkCurrentSceneDirty_mBE046E2151F
 		return;
 	}
 }
-// Method Definition Index: 114121
+// Method Definition Index: 114220
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Utils_MarkObjectDirty_m1EF83A56D7D710C13FF2B6E69F530ED63519F042 (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___0_obj, const RuntimeMethod* method) 
 {
 	{
@@ -11050,7 +11050,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Utils_MarkObjectDirty_m1EF83A56D7D710C13
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114122
+// Method Definition Index: 114221
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool UtilsBeamProps_CanChangeDuringPlaytime_m84541FA673DBC9B511DA72A8DD97E0C925EB1164 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11090,7 +11090,7 @@ IL_0016:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 114123
+// Method Definition Index: 114222
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 UtilsBeamProps_GetInternalLocalRotation_m08075BCC6FB33164E8E19277009E579A9385D7BB (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11158,7 +11158,7 @@ IL_002c:
 		return L_10;
 	}
 }
-// Method Definition Index: 114124
+// Method Definition Index: 114223
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UtilsBeamProps_SetIntensityFromLight_m06FFE63647972ADC802D53B40DB1659172C6E068 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, bool ___1_fromLight, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11222,7 +11222,7 @@ IL_002c:
 		return;
 	}
 }
-// Method Definition Index: 114125
+// Method Definition Index: 114224
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float UtilsBeamProps_GetThickness_m89944E03AE1F6684CFA47A402BE8DE50E3E0C6ED (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11291,7 +11291,7 @@ IL_004e:
 		return (0.0f);
 	}
 }
-// Method Definition Index: 114126
+// Method Definition Index: 114225
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UtilsBeamProps_SetThickness_m7B1DD9516404B44884F2AD27201E8F912098A5C9 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, float ___1_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11357,7 +11357,7 @@ IL_0045:
 		return;
 	}
 }
-// Method Definition Index: 114127
+// Method Definition Index: 114226
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float UtilsBeamProps_GetFallOffEnd_m7DDBFECD9092C8D1A9DB8D46948736BE955FF5CC (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11422,7 +11422,7 @@ IL_002c:
 		return (0.0f);
 	}
 }
-// Method Definition Index: 114128
+// Method Definition Index: 114227
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_GetColorMode_mB8C29B34C3A348C07A99B5219AFEA1A47A61E5A3 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11488,7 +11488,7 @@ IL_002c:
 		return (int32_t)(0);
 	}
 }
-// Method Definition Index: 114129
+// Method Definition Index: 114228
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F UtilsBeamProps_GetColorFlat_m2609F970466B6D3C0D7C1EB02411DF3BBEDDF735 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11555,7 +11555,7 @@ IL_002c:
 		return L_10;
 	}
 }
-// Method Definition Index: 114130
+// Method Definition Index: 114229
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Gradient_tA7FEBE2FDB4929FFF6C997134841046F713DAC1E* UtilsBeamProps_GetColorGradient_m6D5B06307C99CD9727FE415B08DBC07EC064FE44 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11620,7 +11620,7 @@ IL_002c:
 		return (Gradient_tA7FEBE2FDB4929FFF6C997134841046F713DAC1E*)NULL;
 	}
 }
-// Method Definition Index: 114131
+// Method Definition Index: 114230
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UtilsBeamProps_SetColorFromLight_mEB6C1DD95AA0F0E029F00577D362BFB7415638E9 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, bool ___1_fromLight, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11684,7 +11684,7 @@ IL_002c:
 		return;
 	}
 }
-// Method Definition Index: 114132
+// Method Definition Index: 114231
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float UtilsBeamProps_GetConeAngle_mE2D317FF9DE82E9304E2161BE0EB04D77D198DCF (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11750,7 +11750,7 @@ IL_002c:
 		return (0.0f);
 	}
 }
-// Method Definition Index: 114133
+// Method Definition Index: 114232
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UtilsBeamProps_SetSpotAngleFromLight_m1D50BAA9E3550D9D345ADCB8F96DA9A7CC5444F5 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, bool ___1_fromLight, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11814,7 +11814,7 @@ IL_002c:
 		return;
 	}
 }
-// Method Definition Index: 114134
+// Method Definition Index: 114233
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float UtilsBeamProps_GetConeRadiusStart_mF1BF06BC98AB094A807C73D2B658949FB4BF28E9 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11879,7 +11879,7 @@ IL_002c:
 		return (0.0f);
 	}
 }
-// Method Definition Index: 114135
+// Method Definition Index: 114234
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float UtilsBeamProps_GetConeRadiusEnd_m6B6A9C675AC0A1E540FD7043B5FB40FEDFEF4FFF (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11945,7 +11945,7 @@ IL_002c:
 		return (0.0f);
 	}
 }
-// Method Definition Index: 114136
+// Method Definition Index: 114235
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_GetSortingLayerID_mE440A940219B85ACDE4149AD6F9F2F3E70991051 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12011,7 +12011,7 @@ IL_002c:
 		return 0;
 	}
 }
-// Method Definition Index: 114137
+// Method Definition Index: 114236
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_GetSortingOrder_m3BBD74D3E87D07D4BC13E9B0191E6747AA9C6DF9 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12077,7 +12077,7 @@ IL_002c:
 		return 0;
 	}
 }
-// Method Definition Index: 114138
+// Method Definition Index: 114237
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool UtilsBeamProps_GetFadeOutEnabled_m2573A14FD4852F59FDA4376BE6F7966FDE9DE78B (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12117,7 +12117,7 @@ IL_0016:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 114139
+// Method Definition Index: 114238
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float UtilsBeamProps_GetFadeOutEnd_m179A3B25F10B42F7A8AA6FD207CB93459A2B0645 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12157,7 +12157,7 @@ IL_0016:
 		return (0.0f);
 	}
 }
-// Method Definition Index: 114140
+// Method Definition Index: 114239
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UtilsBeamProps_SetFallOffEndFromLight_m96F8AA08220FEF7B50A8C8D4F55C41C0F12689CE (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, bool ___1_fromLight, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12221,7 +12221,7 @@ IL_002c:
 		return;
 	}
 }
-// Method Definition Index: 114141
+// Method Definition Index: 114240
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_GetDimensions_m8601CD2C1300286CAA2B3FC1BDB304CAB0F0A05F (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12286,7 +12286,7 @@ IL_002c:
 		return (int32_t)(0);
 	}
 }
-// Method Definition Index: 114142
+// Method Definition Index: 114241
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_GetGeomSides_m3EF669C00A487B68219450E25FDECBD019317042 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_self, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12330,7 +12330,7 @@ IL_0016:
 		return L_6;
 	}
 }
-// Method Definition Index: 114143
+// Method Definition Index: 114242
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_ConvertAttenuation_m6D538BCD9970DE21D292E2D6DC41C5F62C201143 (int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -12339,7 +12339,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_ConvertAttenuation_m6D
 		return (int32_t)(L_0);
 	}
 }
-// Method Definition Index: 114144
+// Method Definition Index: 114243
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UtilsBeamProps_ConvertAttenuation_m0B8CF48F7A0895BD767564FEA60D00E61B370E35 (int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -12370,7 +12370,7 @@ IL_0006:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114145
+// Method Definition Index: 114244
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Version_get_CurrentAsString_m7D09E526079AD8F0FB10B79C39DDBEA50B8F0B47 (const RuntimeMethod* method) 
 {
 	{
@@ -12380,7 +12380,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Version_get_CurrentAsString_m7D09E5
 		return L_0;
 	}
 }
-// Method Definition Index: 114146
+// Method Definition Index: 114245
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Version_GetVersionAsString_mDEA7DFDFC905C69699D746B76FCE30D98B809408 (int32_t ___0_version, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12428,7 +12428,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Version_GetVersionAsString_mDEA7DFD
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114147
+// Method Definition Index: 114246
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricDustParticles_get_isCulled_mD13BE4A245401FF801DC5E61547C3A4DEA160E1D (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12437,7 +12437,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricDustParticles_get_isCulled_mD1
 		return L_0;
 	}
 }
-// Method Definition Index: 114148
+// Method Definition Index: 114247
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_set_isCulled_mF6AA3EA0AB2E964E60D84B8C6A21220024B3A3F6 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -12447,7 +12447,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_set_isCulled_mF6
 		return;
 	}
 }
-// Method Definition Index: 114149
+// Method Definition Index: 114248
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricDustParticles_get_alphaAdditionalRuntime_m5CB1FBBC962A74A302C7B17E97AA8ED923C65D11 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12456,7 +12456,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float VolumetricDustParticles_get_alphaAdditi
 		return L_0;
 	}
 }
-// Method Definition Index: 114150
+// Method Definition Index: 114249
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_set_alphaAdditionalRuntime_m507AD501FC96649EF086EC004C3EB8CB555303EC (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -12482,7 +12482,7 @@ IL_0017:
 		return;
 	}
 }
-// Method Definition Index: 114151
+// Method Definition Index: 114250
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricDustParticles_get_particlesAreInstantiated_m634FB8D3D4F6391F03F68A1D868FAB53ACDDA39F (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12500,7 +12500,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricDustParticles_get_particlesAre
 		return L_1;
 	}
 }
-// Method Definition Index: 114152
+// Method Definition Index: 114251
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricDustParticles_get_particlesCurrentCount_m89388C32A1ACE749623C8A4545AE02FD3CAACC5D (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12533,7 +12533,7 @@ IL_000f:
 		return L_3;
 	}
 }
-// Method Definition Index: 114153
+// Method Definition Index: 114252
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricDustParticles_get_particlesMaxCount_m6E3B728E1580C89AE7BBE3ACFB2B4F46BDF18020 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12571,7 +12571,7 @@ IL_000f:
 		return L_4;
 	}
 }
-// Method Definition Index: 114154
+// Method Definition Index: 114253
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ParticleSystemRenderer_t576C271A363A738A6C576D4C6AEFB3B5B23E46C4* VolumetricDustParticles_FindRenderer_m8B5B591656B60D46FDA1D364CD0092F55743B761 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12608,7 +12608,7 @@ IL_0014:
 		return L_4;
 	}
 }
-// Method Definition Index: 114155
+// Method Definition Index: 114254
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_Start_m4A7AFB3424DB99633D5AC4E0CE80F7ACF4E6F2C2 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12639,7 +12639,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_Start_m4A7AFB342
 		return;
 	}
 }
-// Method Definition Index: 114156
+// Method Definition Index: 114255
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_InstantiateParticleSystem_m9F3DEE9F1A713EE1B9591F1EC99EDCA9054B9714 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12746,7 +12746,7 @@ IL_0097:
 		return;
 	}
 }
-// Method Definition Index: 114157
+// Method Definition Index: 114256
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_OnEnable_m326A398D26A1220BA8CA90CA0655F487CF2BCE25 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12756,7 +12756,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_OnEnable_m326A39
 		return;
 	}
 }
-// Method Definition Index: 114158
+// Method Definition Index: 114257
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_SetActive_m2D672390906B4B6B42B2DFB812FFE0F3F9371924 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, bool ___0_active, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12793,7 +12793,7 @@ IL_001e:
 		return;
 	}
 }
-// Method Definition Index: 114159
+// Method Definition Index: 114258
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_SetActiveAndPlay_m7A1FB635C029BD534A63B8C170A132A1FCB0B81E (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12805,7 +12805,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_SetActiveAndPlay
 		return;
 	}
 }
-// Method Definition Index: 114160
+// Method Definition Index: 114259
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_Play_m09CE532239D6A1E59B92FC96565ADB09D112D7D7 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12844,7 +12844,7 @@ IL_002f:
 		return;
 	}
 }
-// Method Definition Index: 114161
+// Method Definition Index: 114260
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_OnDisable_m25AD903054CC77F8E0CF3C642F558555EC31B0D1 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12854,7 +12854,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_OnDisable_m25AD9
 		return;
 	}
 }
-// Method Definition Index: 114162
+// Method Definition Index: 114261
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_OnDestroy_m31B42F2017A09F96580E7EBBF1CCDD6DE9B99095 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12915,7 +12915,7 @@ IL_0043:
 		return;
 	}
 }
-// Method Definition Index: 114163
+// Method Definition Index: 114262
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_Update_m8838398FB943C09F672E49C8E2C37E7E338D1C8E (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12983,7 +12983,7 @@ IL_0060:
 		return;
 	}
 }
-// Method Definition Index: 114164
+// Method Definition Index: 114263
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_SetParticleProperties_m23D030C17634D89DAAAD2FEC97E5590B70242C8C (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -13493,7 +13493,7 @@ IL_03e1:
 		return;
 	}
 }
-// Method Definition Index: 114165
+// Method Definition Index: 114264
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_HandleBackwardCompatibility_m9D14915AC35745EF39916E58C550F89F3F380BBC (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, int32_t ___0_serializedVersion, int32_t ___1_newVersion, const RuntimeMethod* method) 
 {
 	{
@@ -13588,7 +13588,7 @@ IL_0064:
 		return;
 	}
 }
-// Method Definition Index: 114166
+// Method Definition Index: 114265
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles_UpdateCulling_m8C1F28652F16A74C8712E61366C7E15BAD29C103 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -13792,7 +13792,7 @@ IL_0102:
 		return;
 	}
 }
-// Method Definition Index: 114167
+// Method Definition Index: 114266
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles__ctor_m608096378602CB0339DE5714213E86B0B4D472C0 (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -13843,7 +13843,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricDustParticles__ctor_m608096378
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114168
+// Method Definition Index: 114267
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__cctor_mB2C5C8DB1D1E1C65CA0D80DDDD2B6A02777C6DC0 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -13860,7 +13860,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__cctor_mB2C5C8DB1D1E1C65CA0D80DD
 		return;
 	}
 }
-// Method Definition Index: 114169
+// Method Definition Index: 114268
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__ctor_mD7934EEBA367395BBAE76616E1A07615F3A79388 (U3CU3Ec_tF1A2B60557D21E29BA4F2EAB7711C7D2ACB48FCC* __this, const RuntimeMethod* method) 
 {
 	{
@@ -13868,7 +13868,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__ctor_mD7934EEBA367395BBAE76616E
 		return;
 	}
 }
-// Method Definition Index: 114170
+// Method Definition Index: 114269
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3CInstantiateParticleSystemU3Eb__34_0_m0CD933974DCED151FAB59E25F54582CAD04C36AB (U3CU3Ec_tF1A2B60557D21E29BA4F2EAB7711C7D2ACB48FCC* __this, ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___0_ps, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -13896,7 +13896,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3CInstantiateParticleSystemU3Eb
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114173
+// Method Definition Index: 114272
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamAbstractBase_get_hasGeometry_m1699CAD6B6BAA57E7E52210CC3DC23E2D4800914 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -13915,7 +13915,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VolumetricLightBeamAbstractBase_get_hasG
 		return L_1;
 	}
 }
-// Method Definition Index: 114174
+// Method Definition Index: 114273
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 VolumetricLightBeamAbstractBase_get_bounds_m384C10608849AD48955763285B5037F5A6F25742 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -13960,7 +13960,7 @@ IL_001e:
 		return L_7;
 	}
 }
-// Method Definition Index: 114175
+// Method Definition Index: 114274
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_add_BeamGeometryGeneratedEvent_mC12F9391390BB0BA2C67D3AE6C041C10C4F51A31 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14003,7 +14003,7 @@ IL_0007:
 		return;
 	}
 }
-// Method Definition Index: 114176
+// Method Definition Index: 114275
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_remove_BeamGeometryGeneratedEvent_mCF67BFC7C4FDB1FB4A268C27AD76DA511008B997 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14046,7 +14046,7 @@ IL_0007:
 		return;
 	}
 }
-// Method Definition Index: 114177
+// Method Definition Index: 114276
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_RegisterBeamGeometryGeneratedCallback_m48272328BDF8900A89A2216E632B96E9EFE938FB (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* ___0_callback, const RuntimeMethod* method) 
 {
 	{
@@ -14075,7 +14075,7 @@ IL_0010:
 		return;
 	}
 }
-// Method Definition Index: 114178
+// Method Definition Index: 114277
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_GenerateGeometry_m320394E3072274BA8290EB88325BE915500EE032 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14102,7 +14102,7 @@ IL_001b:
 		return;
 	}
 }
-// Method Definition Index: 114181
+// Method Definition Index: 114280
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_CopyPropsFrom_m8D726C7229D485B0698CAD176489948198E22EA9 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_beamSrc, int32_t ___1_beamProps, const RuntimeMethod* method) 
 {
 	{
@@ -14181,7 +14181,7 @@ IL_0075:
 		return;
 	}
 }
-// Method Definition Index: 114182
+// Method Definition Index: 114281
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamAbstractBase_get__INTERNAL_pluginVersion_m6160E69DD1954F9EF7DB809824E72ABE82DCBDF4 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14190,7 +14190,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamAbstractBase_get__
 		return L_0;
 	}
 }
-// Method Definition Index: 114183
+// Method Definition Index: 114282
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Light_t1E68479B7782AF2050FAA02A5DC612FD034F18F3* VolumetricLightBeamAbstractBase_GetLightSpotAttachedSlow_m9947D155F0525E479F664CD50618B1D7DF7F51B1 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, int32_t* ___0_lightType, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14254,7 +14254,7 @@ IL_0021:
 		return (Light_t1E68479B7782AF2050FAA02A5DC612FD034F18F3*)NULL;
 	}
 }
-// Method Definition Index: 114184
+// Method Definition Index: 114283
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Light_t1E68479B7782AF2050FAA02A5DC612FD034F18F3* VolumetricLightBeamAbstractBase_get_lightSpotAttached_m38C6AF5405880AE42002A261FC5922CA1FD56965 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14263,7 +14263,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Light_t1E68479B7782AF2050FAA02A5DC612FD034F18
 		return L_0;
 	}
 }
-// Method Definition Index: 114185
+// Method Definition Index: 114284
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_InitLightSpotAttachedCached_mEFEED01539D3F489D3BA59BB760B06BEF77BB162 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -14277,7 +14277,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_InitLigh
 		return;
 	}
 }
-// Method Definition Index: 114186
+// Method Definition Index: 114285
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_OnDestroy_mC1167823E54270A95398EF57D4E84771B9F50FD1 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14287,7 +14287,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_OnDestro
 		return;
 	}
 }
-// Method Definition Index: 114187
+// Method Definition Index: 114286
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase_DestroyBeam_m1BC48CFD81712AEAD5535986E551A9EDABEFBD88 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14321,7 +14321,7 @@ IL_0012:
 		return;
 	}
 }
-// Method Definition Index: 114188
+// Method Definition Index: 114287
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VolumetricLightBeamAbstractBase__ctor_mA1239EBFD9C686FFC3EFCFC391E7609A56FE7F47 (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14381,7 +14381,7 @@ void BeamGeometryGeneratedHandler_Invoke_m787DBCFE676A945EA128123C69BC55119595EA
 	NullCheck(___0_beam);
 	GenericInterfaceActionInvoker0::Invoke(method, ___0_beam);
 }
-// Method Definition Index: 114189
+// Method Definition Index: 114288
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BeamGeometryGeneratedHandler__ctor_mEEA1C14490BC9B1090967F35B418191F920EB89B (BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) 
 {
 	__this->___method_ptr = (intptr_t)il2cpp_codegen_get_method_pointer((RuntimeMethod*)___1_method);
@@ -14434,20 +14434,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BeamGeometryGeneratedHandler__ctor_mEEA1
 	}
 	__this->___extra_arg = (intptr_t)&BeamGeometryGeneratedHandler_Invoke_m787DBCFE676A945EA128123C69BC55119595EA86_Multicast;
 }
-// Method Definition Index: 114190
+// Method Definition Index: 114289
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BeamGeometryGeneratedHandler_Invoke_m787DBCFE676A945EA128123C69BC55119595EA86 (BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* __this, VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_beam, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615*, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_beam, reinterpret_cast<RuntimeMethod*>(__this->___method));
 }
-// Method Definition Index: 114191
+// Method Definition Index: 114290
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* BeamGeometryGeneratedHandler_BeginInvoke_mA170092270FF520015F881E594F26E3C6338F7B5 (BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* __this, VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_beam, AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___1_callback, RuntimeObject* ___2_object, const RuntimeMethod* method) 
 {
 	void *__d_args[2] = {0};
 	__d_args[0] = ___0_beam;
 	return (RuntimeObject*)il2cpp_codegen_delegate_begin_invoke((RuntimeDelegate*)__this, __d_args, (RuntimeDelegate*)___1_callback, (RuntimeObject*)___2_object);
 }
-// Method Definition Index: 114192
+// Method Definition Index: 114291
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BeamGeometryGeneratedHandler_EndInvoke_m1D4B281E10599D3CB8AE3C6A20642221C71C144E (BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* __this, RuntimeObject* ___0_result, const RuntimeMethod* method) 
 {
 	il2cpp_codegen_delegate_end_invoke((Il2CppAsyncResult*) ___0_result, 0);
@@ -14468,7 +14468,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BeamGeometryGeneratedHandler_EndInvoke_m
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114193
+// Method Definition Index: 114292
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CameraToggleBeamVisibility_Update_mFB983B5C2757D62D0F978E1AB980E8400B3D43F9 (CameraToggleBeamVisibility_t1E5B9B26B3E650C049044D05210BF3A4B06887A5* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14548,7 +14548,7 @@ IL_004f:
 		return;
 	}
 }
-// Method Definition Index: 114194
+// Method Definition Index: 114293
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CameraToggleBeamVisibility__ctor_m1C2DA8F4081790671DA9269E9394BEB7C6FE9539 (CameraToggleBeamVisibility_t1E5B9B26B3E650C049044D05210BF3A4B06887A5* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14566,7 +14566,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CameraToggleBeamVisibility__ctor_m1C2DA8
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114195
+// Method Definition Index: 114294
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckIfInsideBeam_Start_m5B4A040C0E8525ACDD80513C3CDDDB2837E211CF (CheckIfInsideBeam_t86D13AA48AF9945F231A28A92395436C2FD0046F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14614,7 +14614,7 @@ IL_0027:
 		return;
 	}
 }
-// Method Definition Index: 114196
+// Method Definition Index: 114295
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckIfInsideBeam_Update_mFB1BC56AEB41018D032C8DFD6F2DEC36FE5DF488 (CheckIfInsideBeam_t86D13AA48AF9945F231A28A92395436C2FD0046F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14686,7 +14686,7 @@ IL_0031:
 		return;
 	}
 }
-// Method Definition Index: 114197
+// Method Definition Index: 114296
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckIfInsideBeam_FixedUpdate_m236613F16EAAB9A21C7C5A7694FAEDF3C46CA959 (CheckIfInsideBeam_t86D13AA48AF9945F231A28A92395436C2FD0046F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14696,7 +14696,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckIfInsideBeam_FixedUpdate_m236613F16
 		return;
 	}
 }
-// Method Definition Index: 114198
+// Method Definition Index: 114297
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckIfInsideBeam_OnTriggerStay_m51BAA53DBE42D40536AD8C1C71AF9BCCD0FEB5E9 (CheckIfInsideBeam_t86D13AA48AF9945F231A28A92395436C2FD0046F* __this, Collider_t1CC3163924FCD6C4CC2E816373A929C1E3D55E76* ___0_trigger, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14743,7 +14743,7 @@ IL_0025:
 		return;
 	}
 }
-// Method Definition Index: 114199
+// Method Definition Index: 114298
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckIfInsideBeam__ctor_m14893C31BBADD59CBB71CAF6A164878D1A92F520 (CheckIfInsideBeam_t86D13AA48AF9945F231A28A92395436C2FD0046F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14759,7 +14759,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckIfInsideBeam__ctor_m14893C31BBADD59
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114200
+// Method Definition Index: 114299
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FeaturesNotSupportedMessage_Start_m047DDAE6395E9EAA81E84E330C3E70D6D32E60C9 (FeaturesNotSupportedMessage_t798EA2AB835F8C544DEFD1A4AA9CDBD88B4793AB* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14791,7 +14791,7 @@ IL_0011:
 		return;
 	}
 }
-// Method Definition Index: 114201
+// Method Definition Index: 114300
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FeaturesNotSupportedMessage__ctor_m06CE828319821E44622DB445F1E49665F055F7E5 (FeaturesNotSupportedMessage_t798EA2AB835F8C544DEFD1A4AA9CDBD88B4793AB* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14807,7 +14807,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FeaturesNotSupportedMessage__ctor_m06CE8
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114202
+// Method Definition Index: 114301
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FreeCameraController_get_useMouseView_m80E26FBD604761FCE099C96155D85838C7EA7D69 (FreeCameraController_tF4D36684E8459EF7ECF81A8B4766162CEF5BCE9A* __this, const RuntimeMethod* method) 
 {
 	{
@@ -14816,7 +14816,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FreeCameraController_get_useMouseView_m8
 		return L_0;
 	}
 }
-// Method Definition Index: 114203
+// Method Definition Index: 114302
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FreeCameraController_set_useMouseView_mB0C9CFD3858AD2C92D7E7693842199AE2350A178 (FreeCameraController_tF4D36684E8459EF7ECF81A8B4766162CEF5BCE9A* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	int32_t G_B3_0 = 0;
@@ -14851,7 +14851,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 114204
+// Method Definition Index: 114303
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FreeCameraController_Start_mD5C76DB8BB1187449F217D702F37F157E76E84FF (FreeCameraController_tF4D36684E8459EF7ECF81A8B4766162CEF5BCE9A* __this, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -14898,7 +14898,7 @@ IL_0052:
 		return;
 	}
 }
-// Method Definition Index: 114205
+// Method Definition Index: 114304
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FreeCameraController_Update_m984800C07B10EE21DA3F23CA6C0DA15CAFD781FF (FreeCameraController_tF4D36684E8459EF7ECF81A8B4766162CEF5BCE9A* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15196,7 +15196,7 @@ IL_0208:
 		return;
 	}
 }
-// Method Definition Index: 114206
+// Method Definition Index: 114305
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FreeCameraController__ctor_m1B81198BDA712B80A2AD1DF1EB1A8B4765C75114 (FreeCameraController_tF4D36684E8459EF7ECF81A8B4766162CEF5BCE9A* __this, const RuntimeMethod* method) 
 {
 	{
@@ -15224,7 +15224,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FreeCameraController__ctor_m1B81198BDA71
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114207
+// Method Definition Index: 114306
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LightGenerator_Generate_m0D11EE6821B3603577E0734B8603BA5E9C6904E6 (LightGenerator_tE507C6337E1BA8C1C4802C0F6B35483CFD896799* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15567,7 +15567,7 @@ IL_0276:
 		return;
 	}
 }
-// Method Definition Index: 114208
+// Method Definition Index: 114307
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LightGenerator__ctor_mAD715B5777617A9CE44D89746A8CD3972B8A5321 (LightGenerator_tE507C6337E1BA8C1C4802C0F6B35483CFD896799* __this, const RuntimeMethod* method) 
 {
 	{
@@ -15593,7 +15593,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LightGenerator__ctor_mAD715B5777617A9CE4
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114209
+// Method Definition Index: 114308
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Rotater_Update_m3262A621622DAF476CE695F60F56FE9CF3E3A148 (Rotater_t96506EA0E8CDF115C29F01FD2B23EAF296C38014* __this, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -15633,7 +15633,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Rotater_Update_m3262A621622DAF476CE695F6
 		return;
 	}
 }
-// Method Definition Index: 114210
+// Method Definition Index: 114309
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Rotater__ctor_m0AE1982F91740EF9B629105AB68F19D2DB9FEA9E (Rotater_t96506EA0E8CDF115C29F01FD2B23EAF296C38014* __this, const RuntimeMethod* method) 
 {
 	{
@@ -15653,7 +15653,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Rotater__ctor_m0AE1982F91740EF9B629105AB
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114211
+// Method Definition Index: 114310
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InfiniteSavesExample_get_loadMode_m709527ED2832C49AC370B8E3D57A9A055DA03D65 (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -15665,7 +15665,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InfiniteSavesExample_get_loadMode_m70952
 		return L_1;
 	}
 }
-// Method Definition Index: 114212
+// Method Definition Index: 114311
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_Start_m7790BD87DF387BCCD63DAB5B1AFC9ABC1213EFE3 (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15759,7 +15759,7 @@ IL_003f:
 		return;
 	}
 }
-// Method Definition Index: 114213
+// Method Definition Index: 114312
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_Update_mE4175EEDDEAF31D940BD38753854AB090D55B8BC (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15787,7 +15787,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_Update_mE4175EEDDEA
 		return;
 	}
 }
-// Method Definition Index: 114214
+// Method Definition Index: 114313
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_CreateNewSaveSlot_mA7A53A5F0E61EF18549C556A63D12CD48D533CEE (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, SaveFile_t4F7D1CD7F3AF52DA4E106551D031AC26DA2F6B88* ___0_saveFile, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15874,7 +15874,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_CreateNewSaveSlot_m
 		return;
 	}
 }
-// Method Definition Index: 114215
+// Method Definition Index: 114314
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_CreateNewSave_mB546A2C31DF8A0C2353650F88D107702638D07C6 (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15942,7 +15942,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_CreateNewSave_mB546
 		return;
 	}
 }
-// Method Definition Index: 114216
+// Method Definition Index: 114315
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_LoadSave_m94AE8D11250BFE7AB8E299F0EC5B24D714D58C6F (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, SaveFile_t4F7D1CD7F3AF52DA4E106551D031AC26DA2F6B88* ___0_saveFile, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15963,7 +15963,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_LoadSave_m94AE8D112
 		return;
 	}
 }
-// Method Definition Index: 114217
+// Method Definition Index: 114316
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_OverwriteSave_m4C07D978521C7C7F8F15040B58CD318F600BD51F (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, SaveFile_t4F7D1CD7F3AF52DA4E106551D031AC26DA2F6B88* ___0_saveFile, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15988,7 +15988,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_OverwriteSave_m4C07
 		return;
 	}
 }
-// Method Definition Index: 114218
+// Method Definition Index: 114317
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample_LoadOrOverwriteSave_m63237C5A2852E741C9A454E297A4F105D8D36C41 (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, SaveFile_t4F7D1CD7F3AF52DA4E106551D031AC26DA2F6B88* ___0_saveFile, const RuntimeMethod* method) 
 {
 	{
@@ -16016,7 +16016,7 @@ IL_0010:
 		return;
 	}
 }
-// Method Definition Index: 114219
+// Method Definition Index: 114318
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample__ctor_mF48442A9BC87A1BE03619A5E8575CF335C6F371B (InfiniteSavesExample_tCB785A9C1AECD2A61CFAAA68B24491597C8B2BF7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16044,7 +16044,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InfiniteSavesExample__ctor_mF48442A9BC87
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114220
+// Method Definition Index: 114319
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass12_0__ctor_m539E26C34031F6AE20443471893869321CF8780D (U3CU3Ec__DisplayClass12_0_tA7AA65B7A5E3B2F4C54B640E3B0BE4A76CB073A7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -16052,7 +16052,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass12_0__ctor_m539E26C
 		return;
 	}
 }
-// Method Definition Index: 114221
+// Method Definition Index: 114320
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass12_0_U3CCreateNewSaveSlotU3Eb__0_mB8869DFF631FF5A4F81D97CE08ACF107174C85D7 (U3CU3Ec__DisplayClass12_0_tA7AA65B7A5E3B2F4C54B640E3B0BE4A76CB073A7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -16072,7 +16072,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass12_0_U3CCreateNewSa
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 114222
+// Method Definition Index: 114321
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SaveLoadExample_Start_m5A949097D72E3E07DB41D0A225944BCE0470E18D (SaveLoadExample_t77553024F64D1F4BF509852439A33DE857E59E41* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16130,7 +16130,7 @@ IL_004c:
 		return;
 	}
 }
-// Method Definition Index: 114223
+// Method Definition Index: 114322
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SaveLoadExample_Update_mDD7657E370B6F47602E4BDC5B88C0A7571F52F1F (SaveLoadExample_t77553024F64D1F4BF509852439A33DE857E59E41* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16321,7 +16321,7 @@ IL_0123:
 		return;
 	}
 }
-// Method Definition Index: 114224
+// Method Definition Index: 114323
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SaveLoadExample_GenerateRandomStates_m8C8D8ECCD36664FFBD2FF1D46D3FC322FDB5CA5D (SaveLoadExample_t77553024F64D1F4BF509852439A33DE857E59E41* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16413,7 +16413,7 @@ IL_0097:
 		return;
 	}
 }
-// Method Definition Index: 114225
+// Method Definition Index: 114324
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SaveLoadExample_LoadGame_m62F8DB5B8451F36364F740FAE3771B55C227EB90 (SaveLoadExample_t77553024F64D1F4BF509852439A33DE857E59E41* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16619,7 +16619,7 @@ IL_010a:
 		return;
 	}
 }
-// Method Definition Index: 114226
+// Method Definition Index: 114325
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SaveLoadExample_SaveGame_m3BD4CD54B57832D60B45B3E2A3659F4B9435F66C (SaveLoadExample_t77553024F64D1F4BF509852439A33DE857E59E41* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16701,7 +16701,7 @@ IL_005a:
 		return;
 	}
 }
-// Method Definition Index: 114227
+// Method Definition Index: 114326
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SaveLoadExample__ctor_m41A3E7FF2CE51655B43BEDD9DDCAF5F1CA71BC44 (SaveLoadExample_t77553024F64D1F4BF509852439A33DE857E59E41* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16775,7 +16775,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SaveLoadExample__ctor_m41A3E7FF2CE51655B
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
-// Method Definition Index: 113900
+// Method Definition Index: 113999
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C DynamicOcclusionRaycasting_get_planeEquationWS_m51AD843CA75282E43AA7576B9C294FB1F32C3652_inline (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, const RuntimeMethod* method) 
 {
 	{
@@ -16784,7 +16784,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Plane_tB7D8CC6F7AACF5F3AA483AF005
 		return L_0;
 	}
 }
-// Method Definition Index: 50948
+// Method Definition Index: 50950
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool GeometryUtility_TestPlanesAABB_mC59A5BE75084C86EAEB8E8F0FF6E6C171E0C1012_inline (PlaneU5BU5D_t4EEF66BAA8B0140EFFF34F6183CE7F80546592BE* ___0_planes, Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 ___1_bounds, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16805,7 +16805,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool GeometryUtility_TestPlanesAA
 		return L_3;
 	}
 }
-// Method Definition Index: 52835
+// Method Definition Index: 52840
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline (float ___0_a, float ___1_b, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -16842,7 +16842,7 @@ IL_000c:
 		return L_4;
 	}
 }
-// Method Definition Index: 52793
+// Method Definition Index: 52798
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_Euler_m9262AB29E3E9CE94EF71051F38A28E82AEC73F90_inline (float ___0_x, float ___1_y, float ___2_z, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -16860,7 +16860,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E
 		return L_3;
 	}
 }
-// Method Definition Index: 52877
+// Method Definition Index: 52882
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* __this, float ___0_x, float ___1_y, const RuntimeMethod* method) 
 {
 	{
@@ -16871,7 +16871,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector2__ctor_m9525B79969AFF
 		return;
 	}
 }
-// Method Definition Index: 52750
+// Method Definition Index: 52755
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_UnaryNegation_m5450829F333BD2A88AF9A592C4EE331661225915_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -16891,7 +16891,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_6;
 	}
 }
-// Method Definition Index: 52739
+// Method Definition Index: 52744
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_zero_m0C1249C3F25B1C70EAD3CC8B31259975A457AE39_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16905,7 +16905,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 52722
+// Method Definition Index: 52727
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_Dot_mBB86BB940AA0A32FA7D3C02AC42E5BC7095A5D52_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_lhs, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_rhs, const RuntimeMethod* method) 
 {
 	{
@@ -16924,7 +16924,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_Dot_mBB86BB940AA0A3
 		return ((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_1, L_3)), ((float)il2cpp_codegen_multiply(L_5, L_7)))), ((float)il2cpp_codegen_multiply(L_9, L_11))));
 	}
 }
-// Method Definition Index: 52751
+// Method Definition Index: 52756
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Multiply_m87BA7C578F96C8E49BB07088DAAC4649F83B0353_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, float ___1_d, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -16947,7 +16947,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_9;
 	}
 }
-// Method Definition Index: 52711
+// Method Definition Index: 52716
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3_Scale_mE0DC2C1B7902271788591F17DBE7F7F72EC37283_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_scale, const RuntimeMethod* method) 
 {
 	{
@@ -16966,7 +16966,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3_Scale_mE0DC2C1B79022
 		return;
 	}
 }
-// Method Definition Index: 52748
+// Method Definition Index: 52753
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Addition_m78C0EC70CB66E8DCAC225743D82B268DAEE92067_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -16992,7 +16992,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_12;
 	}
 }
-// Method Definition Index: 52749
+// Method Definition Index: 52754
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Subtraction_mE42023FF80067CB44A1D4A27EB7CF2B24CABB828_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -17018,7 +17018,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_12;
 	}
 }
-// Method Definition Index: 52721
+// Method Definition Index: 52726
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_normalized_m736BBF65D5CDA7A18414370D15B4DFCC1E466F07_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17027,7 +17027,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 50955
+// Method Definition Index: 50957
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Plane__ctor_m2BFB65EBFF51123791878684ECC375B99FAD10A2_inline (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_inNormal, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_inPoint, const RuntimeMethod* method) 
 {
 	{
@@ -17052,7 +17052,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Plane__ctor_m2BFB65EBFF51123
 		return;
 	}
 }
-// Method Definition Index: 50952
+// Method Definition Index: 50954
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Plane_get_normal_mA161D94E6F7327BC111007C880B76E1731729EFB_inline (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17060,7 +17060,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 50953
+// Method Definition Index: 50955
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Plane_get_distance_m2D50D2C23E2D9438272F876878015B38DAF5ED30_inline (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17068,7 +17068,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Plane_get_distance_m2D50D2C
 		return L_0;
 	}
 }
-// Method Definition Index: 52971
+// Method Definition Index: 52976
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector4__ctor_m96B2CD8B862B271F513AF0BDC2EABD58E4DBC813_inline (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3* __this, float ___0_x, float ___1_y, float ___2_z, float ___3_w, const RuntimeMethod* method) 
 {
 	{
@@ -17083,7 +17083,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector4__ctor_m96B2CD8B862B2
 		return;
 	}
 }
-// Method Definition Index: 113901
+// Method Definition Index: 114000
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_set_planeEquationWS_mA67F0F13A6E9355138C38AC83BF1D3FF23F80DD9_inline (DynamicOcclusionRaycasting_t89D13B4CE02C74E1E8C6A03E07C015DFD1BEB290* __this, Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -17093,7 +17093,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void DynamicOcclusionRaycasting_s
 		return;
 	}
 }
-// Method Definition Index: 52912
+// Method Definition Index: 52917
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_v, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -17111,7 +17111,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_4;
 	}
 }
-// Method Definition Index: 113998
+// Method Definition Index: 114097
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_trackChangesDuringPlaytime_mD540D3482F0199CAC61313CA18DF78BCDC0C04BE_inline (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17120,7 +17120,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool VolumetricLightBeamSD_get_tr
 		return L_0;
 	}
 }
-// Method Definition Index: 114184
+// Method Definition Index: 114283
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Light_t1E68479B7782AF2050FAA02A5DC612FD034F18F3* VolumetricLightBeamAbstractBase_get_lightSpotAttached_m38C6AF5405880AE42002A261FC5922CA1FD56965_inline (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17129,7 +17129,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Light_t1E68479B7782AF2050FAA02A5D
 		return L_0;
 	}
 }
-// Method Definition Index: 52708
+// Method Definition Index: 52713
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, float ___0_x, float ___1_y, float ___2_z, const RuntimeMethod* method) 
 {
 	{
@@ -17142,7 +17142,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3__ctor_m376936E6B999E
 		return;
 	}
 }
-// Method Definition Index: 52677
+// Method Definition Index: 52682
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Matrix4x4_MultiplyPoint_m20E910B65693559BFDE99382472D8DD02C862E7E_inline (Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_point, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -17223,7 +17223,7 @@ IL_0107:
 		return L_54;
 	}
 }
-// Method Definition Index: 52858
+// Method Definition Index: 52863
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Mathf_Approximately_m1DADD012A8FC82E11FB282501AE2EBBF9A77150B_inline (float ___0_a, float ___1_b, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17259,7 +17259,7 @@ IL_0035:
 		return L_10;
 	}
 }
-// Method Definition Index: 52741
+// Method Definition Index: 52746
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_forward_mAA55A7034304DF8B2152EAD49AE779FC4CA2EB4A_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17273,7 +17273,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 52986
+// Method Definition Index: 52991
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 Vector4_get_zero_m3D61F5FA9483CD9C08977D9D8852FB448B4CE6D1_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17287,7 +17287,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60
 		return L_0;
 	}
 }
-// Method Definition Index: 52913
+// Method Definition Index: 52918
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_get_zero_m32506C40EC2EE7D5D4410BF40D3EE683A3D5F32C_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17301,7 +17301,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2D
 		return L_0;
 	}
 }
-// Method Definition Index: 113992
+// Method Definition Index: 114091
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_sortingLayerID_mA24AD8C1FFD22E33762058D8E6D23C7FA4177057_inline (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17310,7 +17310,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get
 		return L_0;
 	}
 }
-// Method Definition Index: 52851
+// Method Definition Index: 52856
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Mathf_Clamp_m4DC36EEFDBE5F07C16249DA568023C5ECCFF0E7B_inline (int32_t ___0_value, int32_t ___1_min, int32_t ___2_max, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -17361,7 +17361,7 @@ IL_001d:
 		return L_9;
 	}
 }
-// Method Definition Index: 52746
+// Method Definition Index: 52751
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_right_mFF573AFBBB2186E7AFA1BA7CA271A78DF67E4EA0_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17375,7 +17375,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 52743
+// Method Definition Index: 52748
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_up_m128AF3FDC820BF59D5DE86D973E7DE3F20C3AEBA_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17389,7 +17389,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 52778
+// Method Definition Index: 52783
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_LookRotation_mFB02EDC8F733774DFAC3BEA4B4BB265A228F8307_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_forward, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_upwards, const RuntimeMethod* method) 
 {
 	{
@@ -17398,7 +17398,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E
 		return L_0;
 	}
 }
-// Method Definition Index: 52781
+// Method Definition Index: 52786
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_get_identity_m7E701AE095ED10FD5EA0B50ABCFDE2EEFF2173A5_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17412,7 +17412,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E
 		return L_0;
 	}
 }
-// Method Definition Index: 52782
+// Method Definition Index: 52787
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_op_Multiply_mCB375FCCC12A2EC8F9EB824A1BFB4453B58C2012_inline (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___0_lhs, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___1_rhs, const RuntimeMethod* method) 
 {
 	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 V_0;
@@ -17491,19 +17491,19 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E
 		return L_64;
 	}
 }
-// Method Definition Index: 114045
+// Method Definition Index: 114144
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void OnWillCameraRenderCB_Invoke_m8B5D9735D0DE7F05295E395E4BF318EA3373C8FF_inline (OnWillCameraRenderCB_t503F072D5BCAC629D80B0CCBD577AE383E5DFC32* __this, Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___0_cam, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184*, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_cam, reinterpret_cast<RuntimeMethod*>(__this->___method));
 }
-// Method Definition Index: 114049
+// Method Definition Index: 114148
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void OnBeamGeometryInitialized_Invoke_m6FC9DB448E73C4421129FFC9AF3E61A005A1B902_inline (OnBeamGeometryInitialized_t61313376F573C1A537AFF8D650D6CD0CE5E7B355* __this, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, reinterpret_cast<RuntimeMethod*>(__this->___method));
 }
-// Method Definition Index: 113363
+// Method Definition Index: 113462
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* BeamGeometryAbstractBase_get_coneMesh_m39B5E71A640A123B31E8E729185ED441E2E1F9C2_inline (BeamGeometryAbstractBase_tBABB209A0EFF5065B8AA0158D7DA9219B7691514* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17512,7 +17512,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Mesh_t6D9C539763A09BC2B12AEAEF36F
 		return L_0;
 	}
 }
-// Method Definition Index: 52906
+// Method Definition Index: 52911
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_op_Multiply_m2D984B613020089BF5165BA4CA10988E2DC771FE_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, float ___1_d, const RuntimeMethod* method) 
 {
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
@@ -17531,7 +17531,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2D
 		return L_6;
 	}
 }
-// Method Definition Index: 52902
+// Method Definition Index: 52907
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_op_Subtraction_m44475FCDAD2DA2F98D78A6625EC2DCDFE8803837_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_b, const RuntimeMethod* method) 
 {
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
@@ -17552,7 +17552,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2D
 		return L_8;
 	}
 }
-// Method Definition Index: 52893
+// Method Definition Index: 52898
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_get_magnitude_m5C59B4056420AEFDB291AD0914A3F675330A75CE_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17572,7 +17572,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_get_magnitude_m5C59
 		return ((float)L_4);
 	}
 }
-// Method Definition Index: 52883
+// Method Definition Index: 52888
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_get_normalized_mF6722883AEFB5027690A778DF8ACC20F0FA65297_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -17581,7 +17581,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2D
 		return L_0;
 	}
 }
-// Method Definition Index: 52850
+// Method Definition Index: 52855
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Clamp_mEB9AEA827D27D20FCC787F7375156AF46BB12BBF_inline (float ___0_value, float ___1_min, float ___2_max, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -17632,7 +17632,7 @@ IL_001d:
 		return L_9;
 	}
 }
-// Method Definition Index: 52561
+// Method Definition Index: 52566
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_get_linear_m76EB88E15DA4E00D615DF33D1CEE51092683117C_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* __this, const RuntimeMethod* method) 
 {
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F V_0;
@@ -17657,7 +17657,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_7;
 	}
 }
-// Method Definition Index: 52553
+// Method Definition Index: 52558
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_op_Multiply_mD0296202733CB2D5342FB7C82B48AEDA63036758_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_a, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___1_b, const RuntimeMethod* method) 
 {
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F V_0;
@@ -17688,7 +17688,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_16;
 	}
 }
-// Method Definition Index: 52562
+// Method Definition Index: 52567
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_get_gamma_mEB9104560536D684CD57C968A906A8B3EF89839F_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* __this, const RuntimeMethod* method) 
 {
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F V_0;
@@ -17713,7 +17713,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_7;
 	}
 }
-// Method Definition Index: 55717
+// Method Definition Index: 55724
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RenderPipeline_t3AF1E2046D27ABCEBA2279770AADA9F531073E69* RenderPipelineManager_get_currentPipeline_m270A15A23593BAD8D6A20CE2E328210FF9AA692D_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17727,7 +17727,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RenderPipeline_t3AF1E2046D27ABCEB
 		return L_0;
 	}
 }
-// Method Definition Index: 52754
+// Method Definition Index: 52759
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Vector3_op_Equality_mCDCBB8D2EDC3D3BF20F31A25ACB34705D352B479_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_lhs, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_rhs, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -17769,7 +17769,7 @@ IL_0043:
 		return L_19;
 	}
 }
-// Method Definition Index: 52784
+// Method Definition Index: 52789
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Quaternion_op_Equality_mE6F6B56FCED8478552BE02BBAF18C70B969217F9_inline (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___0_lhs, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___1_rhs, const RuntimeMethod* method) 
 {
 	{
@@ -17780,7 +17780,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Quaternion_op_Equality_mE6F6
 		return L_1;
 	}
 }
-// Method Definition Index: 52854
+// Method Definition Index: 52859
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_LerpUnclamped_mF35042F9D25A221BDD4B3FD6251224610AFC1F35_inline (float ___0_a, float ___1_b, float ___2_t, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -17799,7 +17799,7 @@ IL_000b:
 		return L_4;
 	}
 }
-// Method Definition Index: 52834
+// Method Definition Index: 52839
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Mathf_Min_m888083F74FF5655778F0403BB5E9608BEFDEA8CB_inline (int32_t ___0_a, int32_t ___1_b, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -17836,7 +17836,7 @@ IL_000c:
 		return L_4;
 	}
 }
-// Method Definition Index: 52733
+// Method Definition Index: 52738
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_SqrMagnitude_m5ED73273031577902F1BED4CA9C5A0E786A680D1_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_vector, const RuntimeMethod* method) 
 {
 	{
@@ -17845,7 +17845,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_SqrMagnitude_m5ED73
 		return L_0;
 	}
 }
-// Method Definition Index: 52849
+// Method Definition Index: 52854
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Sign_m42EE1F0BC041AF14F89DED7F762BE996E2C50D8A_inline (float ___0_f, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -17879,7 +17879,7 @@ IL_0018:
 		return L_1;
 	}
 }
-// Method Definition Index: 52898
+// Method Definition Index: 52903
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_SqrMagnitude_mC49B9FC3093AD872A60A0DEAE15B90CFC74DD80E_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, const RuntimeMethod* method) 
 {
 	{
@@ -17888,7 +17888,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_SqrMagnitude_mC49B9
 		return L_0;
 	}
 }
-// Method Definition Index: 52989
+// Method Definition Index: 52994
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 Vector4_op_Subtraction_mD14864BB81AC08F643D2B82B41B3577012410ED9_inline (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_a, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___1_b, const RuntimeMethod* method) 
 {
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 V_0;
@@ -17919,7 +17919,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60
 		return L_16;
 	}
 }
-// Method Definition Index: 53002
+// Method Definition Index: 53007
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector4_SqrMagnitude_m7E286AD9CAF9ABDB60927EAB581B95DAEB7C8B8F_inline (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_a, const RuntimeMethod* method) 
 {
 	{
@@ -17928,7 +17928,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector4_SqrMagnitude_m7E286
 		return L_0;
 	}
 }
-// Method Definition Index: 50909
+// Method Definition Index: 50911
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Bounds_get_size_m0699A53A55A78B3201D7270D6F338DFA91B6FAD4_inline (Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3* __this, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -17948,7 +17948,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_6;
 	}
 }
-// Method Definition Index: 52543
+// Method Definition Index: 52548
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Color__ctor_m3786F0D6E510D9CFA544523A955870BD2A514C8C_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* __this, float ___0_r, float ___1_g, float ___2_b, float ___3_a, const RuntimeMethod* method) 
 {
 	{
@@ -17963,7 +17963,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Color__ctor_m3786F0D6E510D9C
 		return;
 	}
 }
-// Method Definition Index: 52582
+// Method Definition Index: 52587
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_get_white_m068F5AF879B0FCA584E3693F762EA41BB65532C6_inline (const RuntimeMethod* method) 
 {
 	{
@@ -17973,7 +17973,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_0;
 	}
 }
-// Method Definition Index: 52566
+// Method Definition Index: 52571
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Color_get_Item_mF0272D1D468B77D590B0A763380CB3C17CA765BE_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* __this, int32_t ___0_index, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -18054,7 +18054,7 @@ IL_005d:
 		return L_10;
 	}
 }
-// Method Definition Index: 52567
+// Method Definition Index: 52572
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Color_set_Item_mB7A7D9F6632CDA2F9CE2E817776010653C2A20B2_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* __this, int32_t ___0_index, float ___1_value, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -18133,7 +18133,7 @@ IL_005d:
 		return;
 	}
 }
-// Method Definition Index: 52732
+// Method Definition Index: 52737
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_get_magnitude_mF0D6017E90B345F1F52D1CC564C640F1A847AF2D_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18155,7 +18155,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_get_magnitude_mF0D6
 		return ((float)L_6);
 	}
 }
-// Method Definition Index: 50954
+// Method Definition Index: 50956
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Plane_set_distance_m1C5AEDBC3AB38DF44322DFD210DCF8C2729DC6C6_inline (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -18164,7 +18164,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Plane_set_distance_m1C5AEDBC
 		return;
 	}
 }
-// Method Definition Index: 50959
+// Method Definition Index: 50961
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Plane_GetDistanceToPoint_m43E27525BB203513B13EF35F8EDB3785CA4AE6DC_inline (Plane_tB7D8CC6F7AACF5F3AA483AF005C1102A8577BC0C* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_point, const RuntimeMethod* method) 
 {
 	{
@@ -18175,7 +18175,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Plane_GetDistanceToPoint_m4
 		return ((float)il2cpp_codegen_add(L_1, L_2));
 	}
 }
-// Method Definition Index: 52752
+// Method Definition Index: 52757
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Multiply_m7F3B0FA9256CE368D7636558EFEFC4AB0E1A0F41_inline (float ___0_d, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_a, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -18198,7 +18198,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_9;
 	}
 }
-// Method Definition Index: 52734
+// Method Definition Index: 52739
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_get_sqrMagnitude_m43C27DEC47C4811FB30AB474FF2131A963B66FC8_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18211,7 +18211,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_get_sqrMagnitude_m4
 		return ((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_0, L_1)), ((float)il2cpp_codegen_multiply(L_2, L_3)))), ((float)il2cpp_codegen_multiply(L_4, L_5))));
 	}
 }
-// Method Definition Index: 52852
+// Method Definition Index: 52857
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline (float ___0_value, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -18259,7 +18259,7 @@ IL_002d:
 		return L_5;
 	}
 }
-// Method Definition Index: 52664
+// Method Definition Index: 52669
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Matrix4x4_set_Item_m47C4DDBFAE6578D6008AEF433777D4B2FACB62B0_inline (Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6* __this, int32_t ___0_index, float ___1_value, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -18466,7 +18466,7 @@ IL_00f4:
 		return;
 	}
 }
-// Method Definition Index: 52554
+// Method Definition Index: 52559
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_op_Multiply_m379B20A820266ACF82A21425B9CAE8DCD773CFBB_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_a, float ___1_b, const RuntimeMethod* method) 
 {
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F V_0;
@@ -18493,7 +18493,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_12;
 	}
 }
-// Method Definition Index: 52564
+// Method Definition Index: 52569
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 Color_op_Implicit_m9B3228DAFA8DC57A75DE00CBBF13ED4F1E7B01FF_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_c, const RuntimeMethod* method) 
 {
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 V_0;
@@ -18516,7 +18516,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60
 		return L_8;
 	}
 }
-// Method Definition Index: 113585
+// Method Definition Index: 113684
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamHD_get_sideSoftness_mE450079EC5B88662F7B31BE4A38612566990AA44_inline (VolumetricLightBeamHD_tCB0942FDB7E5F677676EBF8AE423022FD498DC47* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18525,7 +18525,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamHD_get_s
 		return L_0;
 	}
 }
-// Method Definition Index: 113578
+// Method Definition Index: 113677
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamHD_get_fallOffEnd_m55C49186C211BC052703C85D42457249ECE5711F_inline (VolumetricLightBeamHD_tCB0942FDB7E5F677676EBF8AE423022FD498DC47* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18534,7 +18534,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamHD_get_f
 		return L_0;
 	}
 }
-// Method Definition Index: 113542
+// Method Definition Index: 113641
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F VolumetricLightBeamHD_get_colorFlat_mC683186FCB15D3846A583972DDD5B4E43D78CDE9_inline (VolumetricLightBeamHD_tCB0942FDB7E5F677676EBF8AE423022FD498DC47* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18543,7 +18543,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_0;
 	}
 }
-// Method Definition Index: 113544
+// Method Definition Index: 113643
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Gradient_tA7FEBE2FDB4929FFF6C997134841046F713DAC1E* VolumetricLightBeamHD_get_colorGradient_mADC5F83ECB276708DBE8ED8FD22F2659AD8FDE8C_inline (VolumetricLightBeamHD_tCB0942FDB7E5F677676EBF8AE423022FD498DC47* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18552,7 +18552,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Gradient_tA7FEBE2FDB4929FFF6C9971
 		return L_0;
 	}
 }
-// Method Definition Index: 113565
+// Method Definition Index: 113664
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamHD_get_coneRadiusStart_m08ABF0AE98FEC73CB6384DF7D0915875EB2FB1BF_inline (VolumetricLightBeamHD_tCB0942FDB7E5F677676EBF8AE423022FD498DC47* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18561,7 +18561,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamHD_get_c
 		return L_0;
 	}
 }
-// Method Definition Index: 113996
+// Method Definition Index: 114095
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get_sortingOrder_m153B5D6146A3C049FC839F46D02CC8EF51C2D7E9_inline (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18570,7 +18570,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamSD_get
 		return L_0;
 	}
 }
-// Method Definition Index: 113988
+// Method Definition Index: 114087
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_fadeOutEnd_mE59112AF8787A28172FCC70D9F83703C12858EA0_inline (VolumetricLightBeamSD_tA4B5BB1A9875F6E8CF54424F6FCFFC428C57DA98* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18579,7 +18579,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricLightBeamSD_get_f
 		return L_0;
 	}
 }
-// Method Definition Index: 114148
+// Method Definition Index: 114247
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void VolumetricDustParticles_set_isCulled_mF6AA3EA0AB2E964E60D84B8C6A21220024B3A3F6_inline (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -18589,7 +18589,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void VolumetricDustParticles_set_
 		return;
 	}
 }
-// Method Definition Index: 114182
+// Method Definition Index: 114281
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamAbstractBase_get__INTERNAL_pluginVersion_m6160E69DD1954F9EF7DB809824E72ABE82DCBDF4_inline (VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18598,7 +18598,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t VolumetricLightBeamAbstra
 		return L_0;
 	}
 }
-// Method Definition Index: 114149
+// Method Definition Index: 114248
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricDustParticles_get_alphaAdditionalRuntime_m5CB1FBBC962A74A302C7B17E97AA8ED923C65D11_inline (VolumetricDustParticles_t323A43E92A71409609BA5EC9EC841FDA38BF4C9E* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18607,7 +18607,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float VolumetricDustParticles_get
 		return L_0;
 	}
 }
-// Method Definition Index: 52740
+// Method Definition Index: 52745
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_one_mC9B289F1E15C42C597180C9FE6FB492495B51D02_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18621,7 +18621,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 113775
+// Method Definition Index: 113874
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float MinMaxRangeFloat_get_maxValue_m986AEE0334A011ABE77FDE2B81677A077A676A98_inline (MinMaxRangeFloat_t95B416D24ECA444933A5B0D346044E6356919657* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18630,7 +18630,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float MinMaxRangeFloat_get_maxVal
 		return L_0;
 	}
 }
-// Method Definition Index: 113774
+// Method Definition Index: 113873
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float MinMaxRangeFloat_get_minValue_mB63BCBEF223C2228BC44332D7508CA54CDD9084B_inline (MinMaxRangeFloat_t95B416D24ECA444933A5B0D346044E6356919657* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18639,7 +18639,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float MinMaxRangeFloat_get_minVal
 		return L_0;
 	}
 }
-// Method Definition Index: 52853
+// Method Definition Index: 52858
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline (float ___0_a, float ___1_b, float ___2_t, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -18660,7 +18660,7 @@ IL_0010:
 		return L_5;
 	}
 }
-// Method Definition Index: 52833
+// Method Definition Index: 52838
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Min_m747CA71A9483CDB394B13BD0AD048EE17E48FFE4_inline (float ___0_a, float ___1_b, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -18697,7 +18697,7 @@ IL_000c:
 		return L_4;
 	}
 }
-// Method Definition Index: 50931
+// Method Definition Index: 50933
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Bounds_SqrDistance_mC8AB3C4A26FE7CC040727103B5F7111514FA4062_inline (Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_point, const RuntimeMethod* method) 
 {
 	{
@@ -18706,7 +18706,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Bounds_SqrDistance_mC8AB3C4
 		return L_0;
 	}
 }
-// Method Definition Index: 50902
+// Method Definition Index: 50904
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Bounds__ctor_mAF7B238B9FBF90C495E5D7951760085A93119C5A_inline (Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_center, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_size, const RuntimeMethod* method) 
 {
 	{
@@ -18737,7 +18737,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Bounds__ctor_mAF7B238B9FBF90
 		return;
 	}
 }
-// Method Definition Index: 113359
+// Method Definition Index: 113458
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* BeamGeometryAbstractBase_get_meshRenderer_m92BCE068955A5035A8E628BD4EC3824DBFD87513_inline (BeamGeometryAbstractBase_tBABB209A0EFF5065B8AA0158D7DA9219B7691514* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18746,13 +18746,13 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR MeshRenderer_t4B7747212F0B88244BB
 		return L_0;
 	}
 }
-// Method Definition Index: 114190
+// Method Definition Index: 114289
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void BeamGeometryGeneratedHandler_Invoke_m787DBCFE676A945EA128123C69BC55119595EA86_inline (BeamGeometryGeneratedHandler_t249A20104DAAE523CA7E7D65FF7CB70D042D7C04* __this, VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615* ___0_beam, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, VolumetricLightBeamAbstractBase_t7C223626893C40B15B3E7478211598333AB70615*, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_beam, reinterpret_cast<RuntimeMethod*>(__this->___method));
 }
-// Method Definition Index: 52581
+// Method Definition Index: 52586
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_get_red_mA2E53E7173FDC97E68E335049AB0FAAEE43A844D_inline (const RuntimeMethod* method) 
 {
 	{
@@ -18762,7 +18762,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_0;
 	}
 }
-// Method Definition Index: 52579
+// Method Definition Index: 52584
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_get_green_mEB001F2CD8C68C6BBAEF9101990B779D3AA2A6EF_inline (const RuntimeMethod* method) 
 {
 	{
@@ -18772,7 +18772,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED02
 		return L_0;
 	}
 }
-// Method Definition Index: 52792
+// Method Definition Index: 52797
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Quaternion_get_eulerAngles_m2DB5158B5C3A71FD60FC8A6EE43D3AAA1CFED122_inline (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18785,7 +18785,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_2;
 	}
 }
-// Method Definition Index: 114202
+// Method Definition Index: 114301
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool FreeCameraController_get_useMouseView_m80E26FBD604761FCE099C96155D85838C7EA7D69_inline (FreeCameraController_tF4D36684E8459EF7ECF81A8B4766162CEF5BCE9A* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18794,7 +18794,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool FreeCameraController_get_use
 		return L_0;
 	}
 }
-// Method Definition Index: 52776
+// Method Definition Index: 52781
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_AngleAxis_mF37022977B297E63AA70D69EA1C4C922FF22CC80_inline (float ___0_angle, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_axis, const RuntimeMethod* method) 
 {
 	{
@@ -18804,7 +18804,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E
 		return L_1;
 	}
 }
-// Method Definition Index: 52744
+// Method Definition Index: 52749
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_down_mF62B2AE7C5AC31EAC9CB62797C7190C90A7A8599_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18818,7 +18818,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D
 		return L_0;
 	}
 }
-// Method Definition Index: 52794
+// Method Definition Index: 52799
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_Euler_m5BCCC19216CFAD2426F15BC51A30421880D27B73_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_euler, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -18833,7 +18833,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E
 		return L_2;
 	}
 }
-// Method Definition Index: 103465
+// Method Definition Index: 103472
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Toggle_get_isOn_m89A609E936CD67F460E336CA8E03C4047BFB6619_inline (Toggle_tBF13F3EBA485E06826FD8A38F4B4C1380DF21A1F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18842,7 +18842,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Toggle_get_isOn_m89A609E936C
 		return L_0;
 	}
 }
-// Method Definition Index: 126080
+// Method Definition Index: 126179
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SaveStorage_tD4EBC2FF67E62A908C0985C20449C231C21B583B* SaveStorage_get_instance_m8DED041ECFA5F94CD2A9E4F9A67951D94EDA3BE2_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18857,7 +18857,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SaveStorage_tD4EBC2FF67E62A908C09
 		return L_0;
 	}
 }
-// Method Definition Index: 102223
+// Method Definition Index: 102230
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ButtonClickedEvent_t8EA72E90B3BD1392FB3B3EF167D5121C23569E4C* Button_get_onClick_m701712A7F7F000CC80D517C4510697E15722C35C_inline (Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18866,7 +18866,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ButtonClickedEvent_t8EA72E90B3BD1
 		return L_0;
 	}
 }
-// Method Definition Index: 126095
+// Method Definition Index: 126194
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR UnityEvent_tDC2C3548799DBC91D1E3F3DE60083A66F4751977* SaveFileOperation_get_onOperationEnded_mCD868D641DBEC65D6BCA2BF64B41901913664626_inline (SaveFileOperation_tD18E0C245E7B57BD93088EEB4AF4BA344E8FD79A* __this, const RuntimeMethod* method) 
 {
 	{
@@ -18875,7 +18875,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR UnityEvent_tDC2C3548799DBC91D1E3F
 		return L_0;
 	}
 }
-// Method Definition Index: 52700
+// Method Definition Index: 52705
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_Lerp_m3A906D0530A94FAABB94F0F905E84D99BE85C3F8_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, float ___2_t, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -18922,7 +18922,7 @@ IL_0064:
 		return L_24;
 	}
 }
-// Method Definition Index: 52770
+// Method Definition Index: 52775
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_Lerp_m259606226726C2F46E079A5A688B9E24FF7E9A0D_inline (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___0_a, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___1_b, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -18932,7 +18932,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E
 		return L_1;
 	}
 }
-// Method Definition Index: 52558
+// Method Definition Index: 52563
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_Lerp_mE79F87889843ECDC188E4CB5B5E1F1B2256E5EBE_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_a, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___1_b, float ___2_t, const RuntimeMethod* method) 
 {
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F V_0;
@@ -19216,7 +19216,7 @@ IL_0034:
 		return;
 	}
 }
-// Method Definition Index: 52719
+// Method Definition Index: 52724
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_Normalize_m1DE89849FE2019B6AA0031306896F3B800849399_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19280,7 +19280,7 @@ IL_0050:
 		return L_14;
 	}
 }
-// Method Definition Index: 52720
+// Method Definition Index: 52725
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3_Normalize_mC749B887A4C74BA0A2E13E6377F17CCAEB0AADA8_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -19322,7 +19322,7 @@ IL_0065:
 		return;
 	}
 }
-// Method Definition Index: 52723
+// Method Definition Index: 52728
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_Dot_m9B5EBE36643126708DB3F444C59C11FA30803DBB_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* ___0_lhs, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* ___1_rhs, const RuntimeMethod* method) 
 {
 	{
@@ -19341,7 +19341,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_Dot_m9B5EBE36643126
 		return ((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_1, L_3)), ((float)il2cpp_codegen_multiply(L_5, L_7)))), ((float)il2cpp_codegen_multiply(L_9, L_11))));
 	}
 }
-// Method Definition Index: 52788
+// Method Definition Index: 52793
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Quaternion_Dot_m80E67A0F9F1FD9EAD0C8EEF7D5396ADF612FA105_inline (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974* ___0_a, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974* ___1_b, const RuntimeMethod* method) 
 {
 	{
@@ -19364,7 +19364,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Quaternion_Dot_m80E67A0F9F1
 		return ((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_1, L_3)), ((float)il2cpp_codegen_multiply(L_5, L_7)))), ((float)il2cpp_codegen_multiply(L_9, L_11)))), ((float)il2cpp_codegen_multiply(L_13, L_15))));
 	}
 }
-// Method Definition Index: 52786
+// Method Definition Index: 52791
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Quaternion_IsEqualUsingDot_m9C672201C918C2D1E739F559DBE4406F95997CBD_inline (float ___0_dot, const RuntimeMethod* method) 
 {
 	{
@@ -19372,7 +19372,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Quaternion_IsEqualUsingDot_m
 		return (bool)((((float)L_0) > ((float)(0.999998987f)))? 1 : 0);
 	}
 }
-// Method Definition Index: 52894
+// Method Definition Index: 52899
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_get_sqrMagnitude_mA16336720C14EEF8BA9B55AE33B98C9EE2082BDC_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -19383,7 +19383,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_get_sqrMagnitude_mA
 		return ((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_0, L_1)), ((float)il2cpp_codegen_multiply(L_2, L_3))));
 	}
 }
-// Method Definition Index: 52985
+// Method Definition Index: 52990
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector4_get_sqrMagnitude_m864A2908BCF9E060BA73DE3DD259EC06F47F913C_inline (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3* __this, const RuntimeMethod* method) 
 {
 	{
@@ -19404,7 +19404,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Span_1_t7C6A40A7633287607E27FAFA6
 		return L_1;
 	}
 }
-// Method Definition Index: 52983
+// Method Definition Index: 52988
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector4_Dot_mCE153F87CBFD6EC7E53AD38E9CC01D3BCE909F6B_inline (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3* ___0_a, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3* ___1_b, const RuntimeMethod* method) 
 {
 	{

@@ -16,7 +16,7 @@ static Il2CppMethodPointer s_methodPointers[2] =
 };
 static const int32_t s_InvokerIndices[2] = 
 {
-	35168,
+	35169,
 	20652,
 };
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_BakeryAPV_CodeGenModule;

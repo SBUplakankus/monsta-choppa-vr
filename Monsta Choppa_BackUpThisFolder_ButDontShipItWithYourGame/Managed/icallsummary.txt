@@ -1545,11 +1545,14 @@ UnityEngine.Profiling.Profiler::GetRuntimeMemorySizeLong_Injected
 UnityEngine.PropertyNameUtils::PropertyNameFromString_Injected
 UnityEngine.QualitySettings::get_billboardsFaceCameraPosition
 UnityEngine.QualitySettings::get_enableLODCrossFade
+UnityEngine.QualitySettings::GetQualityLevel
 UnityEngine.QualitySettings::get_antiAliasing
 UnityEngine.QualitySettings::get_maximumLODLevel
 UnityEngine.QualitySettings::get_vSyncCount
 UnityEngine.QualitySettings::get_lodBias
 UnityEngine.QualitySettings::get_meshLodThreshold
+UnityEngine.QualitySettings::get_names
+UnityEngine.QualitySettings::SetQualityLevel
 UnityEngine.QualitySettings::set_antiAliasing
 UnityEngine.QualitySettings::set_enableLODCrossFade
 UnityEngine.QualitySettings::set_vSyncCount
