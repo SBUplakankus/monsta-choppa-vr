@@ -37,20 +37,6 @@ The project is built on **Unity’s XR Interaction Toolkit VR Template** with **
 - Gameplay systems subscribe to events and react accordingly
 - Systems may query Databases for assets or configuration
 
-**Flow Overview (ASCII Diagram):**
-
-Flow Overview:
-
-<pre>
-        [VR Input / XR Controllers]
-                   |
-                   v
-            [Event Channels]
-           /       |       \
-  [Gameplay]  [Audio]  [UI / Feedback]
-           \       |       /
-           [Databases / Assets]
-</pre>
 
 Notes:
 - Event Channels decouple senders from receivers
@@ -94,24 +80,6 @@ Notes:
     - Databases → static `GameDatabases`
 - Ensures systems are ready before any gameplay logic runs
 
-**Example Startup Flow:**
-
-Example Startup Flow:
-
-<pre>
-      [Scene Loads]
-             |
-             v
-    GameBootstrap.Awake()
-        /           \
- Assign Databases    Assign Event Channels
-     |                    |
-     v                    v
- Gameplay & VR Systems Ready
-</pre>
-
----
-
 ## 📝 Design Notes
 
 - 🎯 **Event-Driven Architecture** reduces coupling
@@ -138,10 +106,3 @@ Example Startup Flow:
 - Editor validation for database and event consistency
 
 ---
-
-## 📚 References
-
-- XR Interaction Toolkit VR Template
-- ScriptableObject-based event and database patterns
-- Unity’s recommended data-driven architecture best practices
-
