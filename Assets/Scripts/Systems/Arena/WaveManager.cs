@@ -33,12 +33,6 @@ namespace Systems.Arena
 
         private void HandleWavePrelude()
         {
-            Debug.Log($"WaveManager: Starting Wave Prelude. Duration: {GameConstants.PreludeDuration}s");
-            if (GameConstants.PreludeDuration <= 0)
-            {
-                Debug.LogError("WaveManager: Invalid Prelude Duration. Must be greater than 0.");
-                return;
-            }
             StartCountdown(GameConstants.PreludeDuration, GameState.WaveIntermission);
         }
         
@@ -65,6 +59,11 @@ namespace Systems.Arena
             );
         }
 
+        private void HandleAllWaveEnemiesDefeated()
+        {
+            onGameStateChangeRequest?.Raise(GameState.WaveComplete);
+        }
+
         /// <summary>
         /// Spawns the boss wave.
         /// </summary>
@@ -73,7 +72,9 @@ namespace Systems.Arena
             var bossWave = arenaWavesData.Boss;
             _waveSpawner.SpawnBoss(bossWave);
         }
-
+        
+        private void HandleBossDefeated() => onGameStateChangeRequest?.Raise(GameState.BossComplete);
+        
         /// <summary>
         /// Handles the boss completion state and transitions to the final state.
         /// </summary>
@@ -108,7 +109,7 @@ namespace Systems.Arena
                     HandleWaveCompletion();
                     break;
                 case GameState.BossIntermission:
-                    HandleIntermission(GameConstants.WaveIntermissionDuration, GameState.BossActive);
+                    HandleIntermission(GameConstants.BossIntermissionDuration, GameState.BossActive);
                     break;
                 case GameState.BossActive:
                     HandleBossSpawn();
@@ -147,8 +148,8 @@ namespace Systems.Arena
         private void OnEnable()
         {
             onGameStateChanged?.Subscribe(HandleGameStateChange);
-            _waveSpawner.OnWaveCompleted += HandleWaveCompletion;
-            _waveSpawner.OnBossCompleted += HandleBossCompletion;
+            _waveSpawner.OnWaveEnemiesDefeated += HandleAllWaveEnemiesDefeated;
+            _waveSpawner.OnBossDefeated += HandleBossDefeated;
 
             GameUpdateManager.Instance.Register(this, UpdatePriority.High);
         }
@@ -156,8 +157,8 @@ namespace Systems.Arena
         private void OnDisable()
         {
             onGameStateChanged?.Unsubscribe(HandleGameStateChange);
-            _waveSpawner.OnWaveCompleted -= HandleWaveCompletion;
-            _waveSpawner.OnBossCompleted -= HandleBossCompletion;
+            _waveSpawner.OnWaveEnemiesDefeated -= HandleAllWaveEnemiesDefeated;
+            _waveSpawner.OnBossDefeated -= HandleBossDefeated;
 
             GameUpdateManager.Instance.Unregister(this);
         }

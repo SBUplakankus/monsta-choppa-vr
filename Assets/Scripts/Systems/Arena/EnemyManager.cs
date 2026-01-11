@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Characters.Enemies;
 using Events;
 using Pooling;
@@ -32,9 +33,16 @@ namespace Systems
 
         public void CleanupEnemies()
         {
-            foreach (var enemyController in _activeEnemies)
+            KillAllEnemies();
+        }
+
+        public void KillAllEnemies()
+        {
+            if(_activeEnemies.Count <= 0) return;
+            var list =  _activeEnemies.ToList();
+            foreach (var enemyController in list)
             {
-                _gamePoolManager.ReturnEnemyPrefab(enemyController);
+                enemyController.DebugKillEnemy();
             }
         }
         

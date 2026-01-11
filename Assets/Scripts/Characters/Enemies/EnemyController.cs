@@ -47,6 +47,11 @@ namespace Characters.Enemies
         
         #region Class Functions
 
+        public void DebugKillEnemy()
+        {
+            HandleEnemyDeath();
+        }
+
         private void HandleEnemyDeath()
         {
             _gamePoolManager.ReturnEnemyPrefab(this);

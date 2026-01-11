@@ -31,8 +31,8 @@ namespace Systems.Arena
 
         private WaveType _waveType;
         private int _enemiesRemaining;
-        public event Action OnWaveCompleted;
-        public event Action OnBossCompleted;
+        public event Action OnWaveEnemiesDefeated;
+        public event Action OnBossDefeated;
 
         #endregion
         
@@ -69,10 +69,10 @@ namespace Systems.Arena
             switch (_waveType)
             {
                 case WaveType.Main:
-                    OnWaveCompleted?.Invoke();
+                    OnWaveEnemiesDefeated?.Invoke();
                     break;
                 case WaveType.Boss:
-                    OnBossCompleted?.Invoke();
+                    OnBossDefeated?.Invoke();
                     break;
             }
 

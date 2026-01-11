@@ -42,7 +42,6 @@ GameObject:
   m_Component:
   - component: {fileID: 716740361758076697}
   - component: {fileID: 7443078152165974430}
-  - component: {fileID: 5560070201604473320}
   m_Layer: 0
   m_Name: Character_Big_Ork_01
   m_TagString: Untagged
@@ -90,7 +89,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: caf01dd5152f3934d8079e6160aa3b1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,19 +173,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0093589425, y: 0.9434749, z: 0.013898134}
     m_Extent: {x: 1.4619842, y: 1.0403415, z: 0.4199332}
   m_DirtyAABB: 0
---- !u!114 &5560070201604473320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347955412398847135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09fb2c5f145047846ac8e94ce0994dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: AllIn13DShaderAssemebly::AllIn13DShader.AllIn13DShaderComponent
-  currRenderer: {fileID: 7443078152165974430}
 --- !u!1 &952479996333295634
 GameObject:
   m_ObjectHideFlags: 0

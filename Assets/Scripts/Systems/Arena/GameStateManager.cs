@@ -59,6 +59,13 @@ namespace Systems
 
         #endregion
 
+        #region  Properties
+
+        public GameState CurrentGameState => _currentGameState;
+        public GameState PreviousGameState => _previousState;
+
+        #endregion
+
         #region Unity Methods
 
         private void Awake()
