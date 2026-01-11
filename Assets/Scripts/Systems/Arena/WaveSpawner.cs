@@ -14,11 +14,15 @@ namespace Systems.Arena
         Boss
     }
     
+    /// <summary>
+    /// Manages the spawning of waves and boss entities in the arena.
+    /// Handles enemy spawning, boss spawning, and cleanup of active entities.
+    /// </summary>
     [RequireComponent(typeof(EnemyManager))]
     public class WaveSpawner : MonoBehaviour
     {
         #region Fields
-        
+
         [Header("Spawn Points")]
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private Transform bossSpawnPoint;
@@ -31,7 +35,15 @@ namespace Systems.Arena
 
         private WaveType _waveType;
         private int _enemiesRemaining;
+
+        /// <summary>
+        /// Raised when all enemies in the current wave are defeated.
+        /// </summary>
         public event Action OnWaveEnemiesDefeated;
+
+        /// <summary>
+        /// Raised when the boss is defeated.
+        /// </summary>
         public event Action OnBossDefeated;
 
         #endregion
@@ -41,6 +53,7 @@ namespace Systems.Arena
         /// <summary>
         /// Spawns a new wave of enemies.
         /// </summary>
+        /// <param name="waveData">The wave data defining the type and number of enemies.</param>
         public void SpawnWave(WaveData waveData)
         {
             _waveType = WaveType.Main;
@@ -49,8 +62,9 @@ namespace Systems.Arena
         }
 
         /// <summary>
-        /// Spawns the boss.
+        /// Spawns the boss enemy.
         /// </summary>
+        /// <param name="bossData">The wave data defining the boss enemy.</param>
         public void SpawnBoss(WaveData bossData)
         {
             _waveType = WaveType.Boss;
@@ -59,7 +73,7 @@ namespace Systems.Arena
         }
 
         /// <summary>
-        /// Tracks and responds to enemy deaths, monitoring wave progress.
+        /// Tracks and handles the defeat of an enemy, updating the count and raising events if the wave ends.
         /// </summary>
         private void HandleEnemyDeath()
         {
@@ -80,12 +94,11 @@ namespace Systems.Arena
         }
 
         /// <summary>
-        /// Cleans up all spawning activity and remaining enemies.
+        /// Cleans up all spawning activity and remaining enemies at the end of a wave.
         /// </summary>
         private void CleanUp()
         {
             _enemyManager.CleanupEnemies();
-
             _waveType = WaveType.Inactive;
             _enemiesRemaining = 0;
         }
@@ -94,6 +107,10 @@ namespace Systems.Arena
 
         #region Coroutines
 
+        /// <summary>
+        /// Coroutine to spawn enemies at random spawn points based on the provided <see cref="WaveData"/>.
+        /// </summary>
+        /// <param name="waveData">The wave configuration data.</param>
         private IEnumerator SpawnEnemies(WaveData waveData)
         {
             foreach (var enemyData in waveData.Wave)
@@ -111,6 +128,10 @@ namespace Systems.Arena
             }
         }
 
+        /// <summary>
+        /// Coroutine to spawn the boss entity at the dedicated boss spawn point.
+        /// </summary>
+        /// <param name="bossData">The boss configuration data.</param>
         private IEnumerator SpawnBossRoutine(WaveData bossData)
         {
             if (bossData.Wave.Count <= 0) yield break;
@@ -124,6 +145,10 @@ namespace Systems.Arena
 
         #region Helpers
 
+        /// <summary>
+        /// Gets a random spawn point from the provided spawn points array.
+        /// </summary>
+        /// <returns>A random spawn point.</returns>
         private Transform GetRandomSpawnPoint()
         {
             return spawnPoints[Random.Range(0, spawnPoints.Length)];
@@ -133,12 +158,18 @@ namespace Systems.Arena
 
         #region Unity Lifecycle
 
+        /// <summary>
+        /// Initializes references for enemy management and game pooling.
+        /// </summary>
         private void Awake()
         {
             _gamePoolManager = GamePoolManager.Instance;
             _enemyManager = GetComponent<EnemyManager>();
         }
 
+        /// <summary>
+        /// Subscribes to enemy death events on enable.
+        /// </summary>
         private void OnEnable()
         {
             _enemyManager.OnEnemyDeath += HandleEnemyDeath;
@@ -146,6 +177,9 @@ namespace Systems.Arena
                 _gamePoolManager = GamePoolManager.Instance;
         }
 
+        /// <summary>
+        /// Unsubscribes from enemy death events on disable and cleans up enemies.
+        /// </summary>
         private void OnDisable()
         {
             _enemyManager.OnEnemyDeath -= HandleEnemyDeath;

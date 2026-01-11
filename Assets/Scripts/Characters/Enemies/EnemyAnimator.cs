@@ -21,6 +21,7 @@ namespace Characters.Enemies
             Animator.enabled = false;
         }
         
+        // ReSharper disable Unity.PerformanceAnalysis
         public void OnSpawn()
         {
             if(!Animator)

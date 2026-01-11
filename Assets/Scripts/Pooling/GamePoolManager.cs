@@ -323,6 +323,7 @@ namespace Pooling
                 Destroy(particle.gameObject);
         }
         
+        // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// Retrieves a world audio instance from the pool, checking priority limits.
         /// </summary>

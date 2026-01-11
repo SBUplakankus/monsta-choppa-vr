@@ -9,6 +9,7 @@ namespace Characters.Enemies
         private NavMeshAgent _navMeshAgent;
         private Rigidbody _rigidbody;
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void OnSpawn(float speed)
         {
             if(!_navMeshAgent)

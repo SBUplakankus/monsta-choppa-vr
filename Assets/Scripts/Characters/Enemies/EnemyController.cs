@@ -3,55 +3,65 @@ using Databases;
 using Events;
 using Pooling;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Characters.Enemies
 {
     /// <summary>
-    /// Main controller for enemy entities, coordinating health, movement, animation, and events.
+    /// Main controller for enemy entities, responsible for managing health, movement, and behavior.
+    /// Coordinates with the object pool manager, enemy events, and associated components.
     /// </summary>
     public class EnemyController : MonoBehaviour
     {
         #region Fields
 
-        [Header("Components")] 
+        [Header("Components")]
         [SerializeField] private EnemyData enemyData;
+
         private EnemyMovement _enemyMovement;
         private EnemyAnimator _enemyAnimator;
         private EnemyHealth _enemyHealth;
         private EnemyId _enemyId;
 
-        [Header("Enemy Events")] 
+        [Header("Enemy Events")]
         private EnemyEventChannel _onEnemySpawned;
         private EnemyEventChannel _onEnemyDespawned;
-        
+
         private GamePoolManager _gamePoolManager;
 
         #endregion
-        
+
         #region Properties
 
         /// <summary>
-        /// Gets or sets the enemy configuration data.
+        /// Gets or sets this enemy's configuration data.
         /// </summary>
-        /// <value>The <see cref="EnemyData"/> containing enemy stats and settings.</value>
         public EnemyData Data
         {
             get => enemyData;
             set => enemyData = value;
         }
 
+        /// <summary>
+        /// Event triggered when this enemy dies.
+        /// </summary>
         public Action OnDeath { get; set; }
 
         #endregion
-        
-        #region Class Functions
 
+        #region Methods
+
+        /// <summary>
+        /// Simulates immediate death for debugging purposes.
+        /// </summary>
         public void DebugKillEnemy()
         {
             HandleEnemyDeath();
         }
 
+        /// <summary>
+        /// Executes logic triggered when the enemy dies.
+        /// This includes despawning the enemy and invoking assigned death effects.
+        /// </summary>
         private void HandleEnemyDeath()
         {
             _gamePoolManager.ReturnEnemyPrefab(this);
@@ -59,6 +69,9 @@ namespace Characters.Enemies
             OnDeath?.Invoke();
         }
 
+        /// <summary>
+        /// Initializes the enemy with its components and assigns event listeners.
+        /// </summary>
         private void InitEnemy()
         {
             _enemyId.ID = enemyData.EnemyId;
@@ -66,14 +79,13 @@ namespace Characters.Enemies
             _enemyHealth.DeathVFX = enemyData.DeathVFX;
             _enemyMovement.OnSpawn(enemyData.MoveSpeed);
             _enemyAnimator.OnSpawn();
-            
             _onEnemySpawned.Raise(this);
         }
-        
+
         /// <summary>
-        /// Initializes the enemy with specific configuration data when spawned from pool.
+        /// Prepares this enemy for combat when spawned from the object pool.
         /// </summary>
-        /// <param name="data">The <see cref="EnemyData"/> to configure this enemy.</param>
+        /// <param name="data">The <see cref="EnemyData"/> defining enemy stats.</param>
         public void OnSpawn(EnemyData data)
         {
             enemyData = data;
@@ -81,33 +93,41 @@ namespace Characters.Enemies
         }
 
         /// <summary>
-        /// Cleans up the enemy when returning to the object pool.
+        /// Resets the enemy and removes associations before returning to the object pool.
         /// </summary>
         public void OnDespawn()
         {
             _enemyAnimator.OnDespawn();
             _enemyMovement.OnDespawn();
             _enemyHealth.OnDespawn(HandleEnemyDeath);
-            
             _onEnemyDespawned.Raise(this);
         }
 
-        /// <summary>
-        /// High priority update method for critical enemy logic.
-        /// </summary>
         public void HighPriorityUpdate()
         {
             
         }
 
+        #endregion
+
+        #region Unity Methods
+
         /// <summary>
-        /// Medium priority update method for non-critical enemy logic.
+        /// Validates required components and assigns events on startup.
         /// </summary>
-        public void MediumPriorityUpdate()
+        private void Awake()
         {
-            
+            ValidateRequiredComponents();
+            CacheComponents();
         }
-    
+
+        #endregion
+
+        #region Helpers
+
+        /// <summary>
+        /// Ensures all necessary components are attached to this <see cref="GameObject"/>.
+        /// </summary>
         private void ValidateRequiredComponents()
         {
             if (!GetComponent<EnemyHealth>())
@@ -122,13 +142,13 @@ namespace Characters.Enemies
             if (!GetComponent<EnemyAnimator>())
                 gameObject.AddComponent<EnemyAnimator>();
 
-            if (!_onEnemySpawned)
-                _onEnemySpawned = GameEvents.OnEnemySpawned;
-
-            if (!_onEnemyDespawned)
-                _onEnemyDespawned = GameEvents.OnEnemyDespawned;
+            _onEnemySpawned ??= GameEvents.OnEnemySpawned;
+            _onEnemyDespawned ??= GameEvents.OnEnemyDespawned;
         }
-    
+
+        /// <summary>
+        /// Caches this enemy's components for runtime efficiency.
+        /// </summary>
         private void CacheComponents()
         {
             _enemyHealth = GetComponent<EnemyHealth>();
@@ -137,22 +157,7 @@ namespace Characters.Enemies
             _enemyAnimator = GetComponent<EnemyAnimator>();
             _gamePoolManager = GamePoolManager.Instance;
         }
-        
-        #endregion
-        
-        #region Unity Functions
 
-        private void Awake()
-        {
-            ValidateRequiredComponents();
-            CacheComponents();
-        }
-
-        private void OnEnable()
-        {
-            InitEnemy();
-        }
-        
         #endregion
     }
 }

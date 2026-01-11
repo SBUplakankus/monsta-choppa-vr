@@ -3,7 +3,7 @@ using System.Collections;
 using Events;
 using UnityEngine;
 
-namespace Systems
+namespace Systems.Arena
 {
     /// <summary>
     /// Enum representing the high-level states of the game.
