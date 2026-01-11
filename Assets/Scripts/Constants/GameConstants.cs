@@ -24,9 +24,9 @@ namespace Constants
         public const int FadeToBlackLength = 3;
         public const int IntroCutsceneLength = 6;
         public const int BossCutsceneLength = 6;
-        public const int PreludeDuration = 15;
-        public const int WaveIntermissionDuration = 10;
-        public const int BosIntermissionDuration = 10;
+        public const int PreludeDuration = 3;
+        public const int WaveIntermissionDuration = 3;
+        public const int BosIntermissionDuration = 3;
 
         #endregion
     }

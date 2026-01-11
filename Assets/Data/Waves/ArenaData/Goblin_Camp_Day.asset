@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47d634cc3c3a1f4e8716eec0a36068b, type: 3}
+  m_Name: Goblin_Camp_Day
+  m_EditorClassIdentifier: Assembly-CSharp::Waves.ArenaWavesData
+  arenaWaves:
+  - {fileID: 11400000, guid: a2f3a6cd1cc2eec4eb9182b37e9f225d, type: 2}
+  - {fileID: 11400000, guid: a2f3a6cd1cc2eec4eb9182b37e9f225d, type: 2}
+  arenaBoss: {fileID: 11400000, guid: a2f3a6cd1cc2eec4eb9182b37e9f225d, type: 2}

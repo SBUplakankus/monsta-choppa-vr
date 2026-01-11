@@ -7,6 +7,7 @@ namespace Events
     {
         private event Action<T> Handlers;
         
+        // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// Call the events handlers
         /// </summary>

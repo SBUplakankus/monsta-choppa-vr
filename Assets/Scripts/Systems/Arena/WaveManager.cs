@@ -2,6 +2,8 @@ using System;
 using Constants;
 using Events;
 using UnityEngine;
+using Utilities;
+using Waves;
 
 namespace Systems.Arena
 {
@@ -9,209 +11,159 @@ namespace Systems.Arena
     /// Manages wave flow, countdowns, and progression.
     /// Listens to GameState changes and requests transitions.
     /// </summary>
+    [RequireComponent(typeof(WaveSpawner))]
     public class WaveManager : MonoBehaviour, IUpdateable
     {
         #region Fields
 
-        [Header("Events")]
+        [Header("Arena Data")]
+        [SerializeField] private ArenaWavesData arenaWavesData;
+
+        [Header("Event Channels")]
         [SerializeField] private GameStateEventChannel onGameStateChanged;
-        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
+        [SerializeField] private GameStateEventChannel onGameStateChangeRequest;
 
-        [Header("Wave Timings")] 
-        private const float PreludeDelay = GameConstants.PreludeDuration;
-        private const float IntermissionDelay = GameConstants.WaveIntermissionDuration;
-        private const float BossIntermissionDelay = GameConstants.BosIntermissionDuration;
-
-        private float _countDownTimer;
-        private bool _countDownActive;
-
+        private CountdownTimer _countdownTimer;
+        private WaveSpawner _waveSpawner;
         private int _currentWaveIndex;
-        private bool _isBossWave;
 
         #endregion
+        
+        #region Wave Methods
 
-        #region Game State Handlers
-
-        private void HandleGamePrelude()
+        private void HandleWavePrelude()
         {
-            StartCountdown(PreludeDelay, GameState.WaveIntermission);
+            Debug.Log($"WaveManager: Starting Wave Prelude. Duration: {GameConstants.PreludeDuration}s");
+            if (GameConstants.PreludeDuration <= 0)
+            {
+                Debug.LogError("WaveManager: Invalid Prelude Duration. Must be greater than 0.");
+                return;
+            }
+            StartCountdown(GameConstants.PreludeDuration, GameState.WaveIntermission);
+        }
+        
+        /// <summary>
+        /// Spawns the next wave of enemies.
+        /// </summary>
+        private void HandleWaveStart()
+        {
+            var waveData = arenaWavesData.Waves[_currentWaveIndex];
+            _waveSpawner.SpawnWave(waveData);
         }
 
-        private void HandleWaveIntermission()
+        /// <summary>
+        /// Handles wave completion and progresses to the next state.
+        /// </summary>
+        private void HandleWaveCompletion()
         {
-            _isBossWave = IsBossWave(_currentWaveIndex);
-            StartCountdown(
-                _isBossWave ? BossIntermissionDelay : IntermissionDelay,
-                _isBossWave ? GameState.BossIntermission : GameState.WaveActive
+            _currentWaveIndex++;
+            var allWavesCompleted = _currentWaveIndex >= arenaWavesData.Waves.Count;
+
+            onGameStateChangeRequest?.Raise(allWavesCompleted
+                ? GameState.BossIntermission
+                : GameState.WaveIntermission
             );
         }
 
-        private void HandleWaveActive()
+        /// <summary>
+        /// Spawns the boss wave.
+        /// </summary>
+        private void HandleBossSpawn()
         {
-            // TODO: Trigger enemy spawning (via SpawnManager)
-            // TODO: Reset alive enemy count
-            Debug.Log($"Wave {_currentWaveIndex} started.");
+            var bossWave = arenaWavesData.Boss;
+            _waveSpawner.SpawnBoss(bossWave);
         }
 
-        private void HandleWaveComplete()
-        {
-            _currentWaveIndex++;
-
-            if (IsLastWave())
-            {
-                RaiseGameStateChangeRequest(GameState.GameWon);
-            }
-            else
-            {
-                RaiseGameStateChangeRequest(GameState.WaveIntermission);
-            }
-        }
-
-        private void HandleBossIntermission()
-        {
-            StartCountdown(BossIntermissionDelay, GameState.BossActive);
-        }
-
-        private void HandleBossActive()
-        {
-            // TODO: Spawn boss
-            Debug.Log("Boss wave started.");
-        }
-
-        private void HandleBossComplete()
-        {
-            RaiseGameStateChangeRequest(GameState.GameWon);
-        }
-
-        private void HandleGameOver()
-        {
-            StopCountdown();
-        }
-
-        private void HandleGamePaused()
-        {
-            // Timer intentionally NOT paused (unscaled delta recommended)
-        }
-
+        /// <summary>
+        /// Handles the boss completion state and transitions to the final state.
+        /// </summary>
+        private void HandleBossCompletion() => onGameStateChangeRequest?.Raise(GameState.GameWon);
+        
+        private void HandleIntermission(float duration, GameState nextState) => StartCountdown(duration, nextState);
+        
+        private void StopTimer() => _countdownTimer.Stop();
+        
         #endregion
-
-        #region Countdown Logic
-
-        private void StartCountdown(float duration, GameState nextState)
-        {
-            _countDownTimer = duration;
-            _countDownActive = true;
-            _nextStateAfterCountdown = nextState;
-        }
-
-        private void StopCountdown()
-        {
-            _countDownActive = false;
-        }
-
-        private GameState _nextStateAfterCountdown;
-
-        #endregion
-
-        #region Utility Methods
-
-        private void RaiseGameStateChangeRequest(GameState gameState)
-        {
-            onGameStateChangeRequested.Raise(gameState);
-        }
-
-        private bool IsBossWave(int waveIndex)
-        {
-            // Example: every 5 waves is a boss
-            return (waveIndex + 1) % 5 == 0;
-        }
-
-        private bool IsLastWave()
-        {
-            // TODO: Replace with wave definition count
-            return _currentWaveIndex >= 10;
-        }
-
-        #endregion
-
-        #region Game State Change Listener
-
+        
+        #region Event Handlers
+        
+        /// <summary>
+        /// Handles changes to the game state and takes action.
+        /// </summary>
         private void HandleGameStateChange(GameState gameState)
         {
+            Debug.Log($"WaveManager: State changed to {gameState}.");
             switch (gameState)
             {
                 case GameState.GamePrelude:
-                    HandleGamePrelude();
+                    HandleWavePrelude();
                     break;
-
                 case GameState.WaveIntermission:
-                    HandleWaveIntermission();
+                    HandleIntermission(GameConstants.WaveIntermissionDuration, GameState.WaveActive);
                     break;
-
                 case GameState.WaveActive:
-                    HandleWaveActive();
+                    HandleWaveStart();
                     break;
-
                 case GameState.WaveComplete:
-                    HandleWaveComplete();
+                    HandleWaveCompletion();
                     break;
-
                 case GameState.BossIntermission:
-                    HandleBossIntermission();
+                    HandleIntermission(GameConstants.WaveIntermissionDuration, GameState.BossActive);
                     break;
-
                 case GameState.BossActive:
-                    HandleBossActive();
+                    HandleBossSpawn();
                     break;
-
                 case GameState.BossComplete:
-                    HandleBossComplete();
+                    HandleBossCompletion();
                     break;
-
                 case GameState.GameOver:
-                    HandleGameOver();
-                    break;
-
+                case GameState.GameWon:
                 case GameState.GamePaused:
-                    HandleGamePaused();
+                    StopTimer();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(gameState), gameState, null);
             }
         }
-
-        #endregion
-
-        #region IUpdateable
-
-        public void OnUpdate(float deltaTime)
+        
+        /// <summary>
+        /// Starts a countdown timer and triggers a transition when completed.
+        /// </summary>
+        private void StartCountdown(float duration, GameState nextState)
         {
-            if (!_countDownActive)
-                return;
-
-            _countDownTimer -= deltaTime;
-
-            if (_countDownTimer <= 0f)
-            {
-                _countDownActive = false;
-                RaiseGameStateChangeRequest(_nextStateAfterCountdown);
-            }
+            _countdownTimer.Start(duration, () => onGameStateChangeRequest?.Raise(nextState));
         }
-
+        
         #endregion
 
         #region Unity Methods
 
+        private void Awake()
+        {
+            _countdownTimer = new CountdownTimer();
+            _waveSpawner = GetComponent<WaveSpawner>();
+        }
+
         private void OnEnable()
         {
+            onGameStateChanged?.Subscribe(HandleGameStateChange);
+            _waveSpawner.OnWaveCompleted += HandleWaveCompletion;
+            _waveSpawner.OnBossCompleted += HandleBossCompletion;
+
             GameUpdateManager.Instance.Register(this, UpdatePriority.High);
-            onGameStateChanged.Subscribe(HandleGameStateChange);
         }
 
         private void OnDisable()
         {
+            onGameStateChanged?.Unsubscribe(HandleGameStateChange);
+            _waveSpawner.OnWaveCompleted -= HandleWaveCompletion;
+            _waveSpawner.OnBossCompleted -= HandleBossCompletion;
+
             GameUpdateManager.Instance.Unregister(this);
-            onGameStateChanged.Unsubscribe(HandleGameStateChange);
         }
 
+        public void OnUpdate(float deltaTime) => _countdownTimer.Update(deltaTime);
+        
         #endregion
     }
 }

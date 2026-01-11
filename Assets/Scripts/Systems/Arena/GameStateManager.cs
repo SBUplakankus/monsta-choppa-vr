@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Events;
 using UnityEngine;
 
@@ -51,11 +52,7 @@ namespace Systems
         [Header("Events")]
         [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
         [SerializeField] private GameStateEventChannel onGameStateChanged;
-        [SerializeField] private StringEventChannel onSfxRequested;
-        [SerializeField] private StringEventChannel onMusicRequested;
         [SerializeField] private VoidEventChannel onPauseRequested;
-        [SerializeField] private VoidEventChannel onGameOverSequenceRequested;
-        [SerializeField] private VoidEventChannel onGameWonSequenceRequested;
 
         private GameState _currentGameState;
         private GameState _previousState;
@@ -70,14 +67,21 @@ namespace Systems
             EnterCurrentState();
         }
 
+        private IEnumerator TestStart()
+        {
+            yield return new WaitForSeconds(1);
+            onGameStateChanged.Raise(_currentGameState);
+        }
+
         private void OnEnable()
         {
-            
+            onGameStateChangeRequested?.Subscribe(HandleGameStateChangeRequest);
+            StartCoroutine(TestStart());
         }
 
         private void OnDisable()
         {
-            
+            onGameStateChangeRequested?.Unsubscribe(HandleGameStateChangeRequest);
         }
 
         #endregion
@@ -89,18 +93,38 @@ namespace Systems
         /// </summary>
         private static bool IsValidTransition(GameState from, GameState to)
         {
+            Debug.Log($"GameStateManager: Checking if transition from {from} to {to} is valid.");
             return from switch
             {
+                // Prelude -> WaveIntermission (game setup completed, start intermission)
                 GameState.GamePrelude => to == GameState.WaveIntermission,
+
+                // WaveIntermission -> WaveActive (ready to start a wave)
                 GameState.WaveIntermission => to == GameState.WaveActive,
-                GameState.WaveActive => to is GameState.WaveComplete or GameState.GameOver or GameState.BossIntermission,
+
+                // WaveActive -> (WaveComplete/BossIntermission/GameOver)
+                GameState.WaveActive => to is GameState.WaveComplete or GameState.GameOver,
+
+                // WaveComplete -> WaveIntermission/BossIntermission
                 GameState.WaveComplete => to is GameState.WaveIntermission or GameState.BossIntermission,
+
+                // BossIntermission -> BossActive (ready to start boss wave)
                 GameState.BossIntermission => to == GameState.BossActive,
+
+                // BossActive -> (BossComplete/GameOver)
                 GameState.BossActive => to is GameState.BossComplete or GameState.GameOver,
+
+                // BossComplete -> GameWon (boss defeated, transition to victory)
                 GameState.BossComplete => to == GameState.GameWon,
-                GameState.GameWon => false,
-                GameState.GameOver => false,
-                GameState.GamePaused => true, // can always exit pause
+
+                // Game state is final, no transitions possible
+                GameState.GameWon => false, // Can't transition from victory
+                GameState.GameOver => false, // Can't transition from game over
+
+                // Paused -> True (can resume to any previous state)
+                GameState.GamePaused => true,
+
+                // Default case: transition not allowed
                 _ => false
             };
         }
@@ -110,9 +134,19 @@ namespace Systems
         /// </summary>
         private void HandleGameStateChangeRequest(GameState newGameState)
         {
-            if (_currentGameState == newGameState) return;
-            if (!IsValidTransition(_currentGameState, newGameState)) return;
+            if (_currentGameState == newGameState)
+            {
+                Debug.LogWarning($"GameStateManager: Ignoring redundant state change to {newGameState}. Already in that state!");
+                return;
+            }
 
+            if (!IsValidTransition(_currentGameState, newGameState))
+            {
+                Debug.LogWarning($"GameStateManager: Invalid transition from {_currentGameState} to {newGameState}.");
+                return;
+            }
+
+            Debug.Log($"GameStateManager: Handling requested state transition to {newGameState}.");
             HandleGameStateChanged(newGameState);
         }
 
@@ -122,10 +156,12 @@ namespace Systems
         /// </summary>
         private void HandleGameStateChanged(GameState newGameState)
         {
+            Debug.Log($"GameStateManager: Exiting {_currentGameState}, transitioning to {newGameState}.");
             ExitCurrentState();
             _currentGameState = newGameState;
             EnterCurrentState();
-            onGameStateChanged.Raise(_currentGameState);
+            Debug.Log($"GameStateManager: Entered new state {newGameState}.");
+            onGameStateChanged?.Raise(_currentGameState);
         }
 
         /// <summary>
@@ -135,10 +171,12 @@ namespace Systems
         {
             if (_currentGameState == GameState.GamePaused)
             {
+                Debug.Log("GameStateManager: Resuming from paused state.");
                 HandleGameStateChanged(_previousState);
             }
             else
             {
+                Debug.Log($"GameStateManager: Pausing game. Previous state: {_currentGameState}.");
                 _previousState = _currentGameState;
                 HandleGameStateChanged(GameState.GamePaused);
             }
@@ -150,6 +188,7 @@ namespace Systems
 
         private void EnterCurrentState()
         {
+            Debug.Log($"GameStateManager: Entering state {_currentGameState}.");
             switch (_currentGameState)
             {
                 case GameState.GamePrelude: HandleGamePreludeEnter(); break;
@@ -169,6 +208,7 @@ namespace Systems
 
         private void ExitCurrentState()
         {
+            Debug.Log($"GameStateManager: Exiting state {_currentGameState}.");
             switch (_currentGameState)
             {
                 case GameState.GamePrelude: HandleGamePreludeExit(); break;
@@ -190,81 +230,37 @@ namespace Systems
 
         #region State Logic Stubs
 
-        private void HandleGamePreludeEnter()
-        {
-            // TODO: Play intro music, show cinematic, prepare first wave
-            onMusicRequested.Raise("PreludeMusic");
-        }
-        private void HandleGamePreludeExit() { }
+        private void HandleGamePreludeEnter() => Debug.Log("GameStateManager: Entering GamePrelude State.");
+        private void HandleGamePreludeExit() => Debug.Log("GameStateManager: Exiting GamePrelude State.");
 
-        private void HandleWaveIntermissionEnter()
-        {
-            // TODO: Start wave countdown, show shop or UI
-            onMusicRequested.Raise("IntermissionMusic");
-        }
-        private void HandleWaveIntermissionExit() { }
+        private void HandleWaveIntermissionEnter() => Debug.Log("GameStateManager: Entering WaveIntermission State.");
+        private void HandleWaveIntermissionExit() => Debug.Log("GameStateManager: Exiting WaveIntermission State.");
 
-        private void HandleWaveActiveEnter()
-        {
-            // TODO: Spawn enemies, play combat music, update UI
-            onSfxRequested.Raise("WaveStartHorn");
-            onMusicRequested.Raise("CombatMusic");
-        }
-        private void HandleWaveActiveExit() { }
+        private void HandleWaveActiveEnter() => Debug.Log("GameStateManager: Entering WaveActive State.");
+        private void HandleWaveActiveExit() => Debug.Log("GameStateManager: Exiting WaveActive State.");
 
-        private void HandleWaveCompleteEnter()
-        {
-            // TODO: Show wave complete UI, reward player, play fanfare
-            onSfxRequested.Raise("WaveCompleteFanfare");
-        }
-        private void HandleWaveCompleteExit() { }
+        private void HandleWaveCompleteEnter() => Debug.Log("GameStateManager: Entering WaveComplete State.");
+        private void HandleWaveCompleteExit() => Debug.Log("GameStateManager: Exiting WaveComplete State.");
 
-        private void HandleBossIntermissionEnter()
-        {
-            // TODO: Play boss intro music, cutscene, countdown
-            onMusicRequested.Raise("BossIntroMusic");
-        }
-        private void HandleBossIntermissionExit() { }
+        private void HandleBossIntermissionEnter() => Debug.Log("GameStateManager: Entering BossIntermission State.");
+        private void HandleBossIntermissionExit() => Debug.Log("GameStateManager: Exiting BossIntermission State.");
 
-        private void HandleBossActiveEnter()
-        {
-            // TODO: Spawn boss, update UI, play boss music
-            onSfxRequested.Raise("BossHorn");
-            onMusicRequested.Raise("BossMusic");
-        }
-        private void HandleBossActiveExit() { }
+        private void HandleBossActiveEnter() => Debug.Log("GameStateManager: Entering BossActive State.");
+        private void HandleBossActiveExit() => Debug.Log("GameStateManager: Exiting BossActive State.");
 
-        private void HandleBossCompleteEnter()
-        {
-            // TODO: Show boss defeat sequence, play victory music
-            onSfxRequested.Raise("BossDefeatedFanfare");
-        }
-        private void HandleBossCompleteExit() { }
+        private void HandleBossCompleteEnter() => Debug.Log("GameStateManager: Entering BossComplete State.");
+        private void HandleBossCompleteExit() => Debug.Log("GameStateManager: Exiting BossComplete State.");
 
-        private void HandleGameWonEnter()
-        {
-            // TODO: Play victory music, show end screen
-            onMusicRequested.Raise("VictoryMusic");
-            onGameWonSequenceRequested.Raise();
-        }
-        private void HandleGameWonExit() { }
+        private void HandleGameWonEnter() => Debug.Log("GameStateManager: Entering GameWon State.");
+        private void HandleGameWonExit() => Debug.Log("GameStateManager: Exiting GameWon State.");
 
-        private void HandleGameOverEnter()
-        {
-            // TODO: Play defeat music, show game over screen
-            onMusicRequested.Raise("DefeatMusic");
-            onGameOverSequenceRequested.Raise();
-        }
-        private void HandleGameOverExit() { }
+        private void HandleGameOverEnter() => Debug.Log("GameStateManager: Entering GameOver State.");
+        private void HandleGameOverExit() => Debug.Log("GameStateManager: Exiting GameOver State.");
 
-        private void HandleGamePausedEnter()
-        {
-            // TODO: Pause gameplay, show pause UI
-            Time.timeScale = 0f;
-        }
+        private void HandleGamePausedEnter() => Debug.Log("GameStateManager: Game Paused. Setting Time.timeScale to 0.");
         private void HandleGamePausedExit()
         {
-            // Resume gameplay
+            Debug.Log("GameStateManager: Game Resumed. Restoring Time.timeScale to 1.");
             Time.timeScale = 1f;
         }
 

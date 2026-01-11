@@ -1,3 +1,4 @@
+using System;
 using Databases;
 using Events;
 using Pooling;
@@ -23,6 +24,8 @@ namespace Characters.Enemies
         [Header("Enemy Events")] 
         private EnemyEventChannel _onEnemySpawned;
         private EnemyEventChannel _onEnemyDespawned;
+        
+        private GamePoolManager _gamePoolManager;
 
         #endregion
         
@@ -38,14 +41,17 @@ namespace Characters.Enemies
             set => enemyData = value;
         }
 
+        public Action OnDeath { get; set; }
+
         #endregion
         
         #region Class Functions
 
         private void HandleEnemyDeath()
         {
-            GamePoolManager.Instance.ReturnEnemyPrefab(this);
-            GamePoolManager.Instance.GetWorldAudioPrefab(enemyData.DeathSfx, transform.position);
+            _gamePoolManager.ReturnEnemyPrefab(this);
+            _gamePoolManager.GetWorldAudioPrefab(enemyData.DeathSfx, transform.position);
+            OnDeath?.Invoke();
         }
 
         private void InitEnemy()
@@ -66,7 +72,6 @@ namespace Characters.Enemies
         public void OnSpawn(EnemyData data)
         {
             enemyData = data;
-            ValidateRequiredComponents();
             InitEnemy();
         }
 
@@ -125,6 +130,7 @@ namespace Characters.Enemies
             _enemyId = GetComponent<EnemyId>();
             _enemyMovement = GetComponent<EnemyMovement>();
             _enemyAnimator = GetComponent<EnemyAnimator>();
+            _gamePoolManager = GamePoolManager.Instance;
         }
         
         #endregion
