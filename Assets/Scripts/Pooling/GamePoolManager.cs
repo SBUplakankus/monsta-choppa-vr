@@ -273,11 +273,18 @@ namespace Pooling
         /// <param name="enemy">The <see cref="EnemyController"/> to return to the pool.</param>
         public void ReturnEnemyPrefab(EnemyController enemy)
         {
+            // Ensure the enemy reference is valid
+            if (!enemy || !enemy.gameObject)
+            {
+                Debug.LogWarning("Attempting to return a destroyed EnemyController to the pool.");
+                return;
+            }
+            
             var data = enemy.Data;
-
+            
             if (_enemyPoolDictionary.TryGetValue(data, out var pool))
                 pool.Release(enemy.gameObject);
-            else
+            else if (enemy.gameObject.activeInHierarchy)
                 Destroy(enemy.gameObject);
         }
 

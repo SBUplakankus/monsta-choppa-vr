@@ -64,8 +64,19 @@ namespace Characters.Enemies
         /// </summary>
         private void HandleEnemyDeath()
         {
+            if (this == null || gameObject == null || !enemyData || !_gamePoolManager)
+            {
+                Debug.LogWarning("EnemyController or required dependencies are null or destroyed. Skipping HandleEnemyDeath.");
+                return;
+            }
+
             _gamePoolManager.ReturnEnemyPrefab(this);
-            _gamePoolManager.GetWorldAudioPrefab(enemyData.DeathSfx, transform.position);
+            
+            if (enemyData?.DeathSfx != null && transform != null)
+            {
+                _gamePoolManager.GetWorldAudioPrefab(enemyData.DeathSfx, transform.position);
+            }
+
             OnDeath?.Invoke();
         }
 

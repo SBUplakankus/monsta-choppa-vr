@@ -46,20 +46,19 @@ namespace Systems
         /// </summary>
         public void CleanupEnemies()
         {
-            KillAllEnemies();
-        }
-
-        /// <summary>
-        /// Kills all active enemies in the current wave and removes them from the manager's collection.
-        /// </summary>
-        public void KillAllEnemies()
-        {
-            if (_activeEnemies.Count <= 0) return;
-
-            var enemies = _activeEnemies.ToList();
-            foreach (var enemyController in enemies)
+            if (_activeEnemies.Count == 0) return;
+    
+            var enemies = _activeEnemies.ToList(); // Create a copy
+            foreach (var enemy in enemies)
             {
-                enemyController.DebugKillEnemy();
+                if (enemy != null)
+                {
+                    enemy.DebugKillEnemy(); // Only interact with valid enemies
+                }
+                else
+                {
+                    Debug.LogWarning("Encountered a null enemy during CleanupEnemies.");
+                }
             }
         }
 
@@ -79,8 +78,22 @@ namespace Systems
         /// <param name="enemyController">The <see cref="EnemyController"/> being removed from the manager.</param>
         private void HandleEnemyDisable(EnemyController enemyController)
         {
-            _activeEnemies.Remove(enemyController);
-            OnEnemyDeath?.Invoke();
+            // Check if reference was already removed or is null
+            if (enemyController == null)
+            {
+                Debug.LogWarning("Attempting to disable an enemy that is already null.");
+                return;
+            }
+
+            // Remove from active list
+            if (_activeEnemies.Remove(enemyController))
+            {
+                OnEnemyDeath?.Invoke(); // Trigger any death events
+            }
+            else
+            {
+                Debug.LogWarning("EnemyController not found in active enemies list.");
+            }
         }
 
         #endregion

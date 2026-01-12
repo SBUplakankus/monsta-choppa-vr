@@ -7,7 +7,7 @@ namespace UI.Views
     {
         protected VisualElement Container;
         
-        protected abstract void GenerateUI(VisualElement root);
+        protected virtual void GenerateUI(VisualElement root) {}
         
         public virtual void Dispose()
         {

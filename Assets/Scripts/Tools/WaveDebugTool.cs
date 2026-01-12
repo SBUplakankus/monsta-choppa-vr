@@ -30,7 +30,7 @@ namespace Tools
                 return;
             }
 
-            enemyManager.KillAllEnemies();
+            enemyManager.CleanupEnemies();
         }
     }
 }

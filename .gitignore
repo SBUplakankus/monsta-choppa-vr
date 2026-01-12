@@ -110,3 +110,11 @@ crashlytics-build.properties
 /[Aa]ssets/Editor.x86_64/
 /[Aa]ssets/Editor.x86.meta
 /[Aa]ssets/Editor.x86_64.meta
+
+# Ignore Bakery lightmaps directory
+/[Aa]ssets/BakeryLightmaps/
+/[Aa]ssets/BakeryLightmaps.meta
+
+# Ignore temporary build directories
+/Monsta Choppa_BackUpThisFolder_ButDontShipItWithYourGame/
+/MONSTA CHOPPA_BurstDebugInformation_DoNotShip/

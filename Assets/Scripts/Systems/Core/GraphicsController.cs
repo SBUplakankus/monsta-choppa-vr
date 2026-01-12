@@ -1,5 +1,6 @@
 using Attributes;
 using UnityEngine;
+using UnityEngine.XR.OpenXR.Features;
 
 namespace Systems
 {
@@ -50,6 +51,7 @@ namespace Systems
             qualitySetting.OnValueChanged += SetQuality;
             aliasingSetting.OnValueChanged += SetAliasing;
             renderScaleSetting.OnValueChanged += SetRenderScale;
+            SpaceWarpFeature.SetSpaceWarp(true);
         }
 
         private void OnDisable()

@@ -35,3 +35,31 @@ Slider{
     transition-duration: 0.4s;
     transition-timing-function: ease-out;
 }
+
+.boss-intro-container{
+    
+}
+
+.boss-intro-header{
+    
+}
+
+.boss-intro-body {
+    
+}
+
+.boss-intro-name {
+    
+}
+
+.arena-intro-container {
+    
+}
+
+.arena-intro-name{
+    
+}
+
+.arena-intro-time{
+    
+}

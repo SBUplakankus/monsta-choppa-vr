@@ -6,66 +6,85 @@ using Weapons;
 
 namespace Player
 {
+    /// <summary>
+    /// Manages the player's weapon holsters and interaction with weapons.
+    /// </summary>
     public class PlayerWeaponHolster : MonoBehaviour
     {
         [Header("Holsters")]
-        [SerializeField] private XRSocketInteractor socketInteractor;
-        [SerializeField] private WeaponHolsterController holsterWeapon;
-        
-        private XRBaseInteractable _currentHolsteredWeapon;
-        
-        public WeaponHolsterController HolsterWeapon { get; set; }
-        
+        [SerializeField] private XRSocketInteractor primaryHolster; // Holster 1
+        [SerializeField] private XRSocketInteractor secondaryHolster; // Holster 2
+
+        private XRBaseInteractable _primaryWeapon; // The currently holstered weapon in primary slot
+        private XRBaseInteractable _secondaryWeapon; // The currently holstered weapon in secondary slot
+
         private void Start()
-    {
-        if (socketInteractor == null)
         {
-            socketInteractor = GetComponent<XRSocketInteractor>();
+            // Subscribe to holster events
+            SubscribeToHolsterEvents(primaryHolster, true);
+            SubscribeToHolsterEvents(secondaryHolster, false);
         }
 
-        SubscribeToSocketEvents();
-    }
-
-    private void SubscribeToSocketEvents()
-    {
-        // When weapon is placed in holster
-        socketInteractor.selectEntered.AddListener((SelectEnterEventArgs args) =>
+        /// <summary>
+        /// Subscribes to socket interactor events for weapon holstering.
+        /// </summary>
+        private void SubscribeToHolsterEvents(XRSocketInteractor socket, bool isPrimaryHolster)
         {
-            _currentHolsteredWeapon = args.interactableObject as XRBaseInteractable;
-
-            if (_currentHolsteredWeapon == null) return;
-            Debug.Log($"Weapon Holstered: {holsterWeapon.name}");
-
-            if (holsterWeapon != null)
+            socket.selectEntered.AddListener((SelectEnterEventArgs args) =>
             {
-                // holsterWeapon.
-            }
-        });
+                XRBaseInteractable weapon = args.interactableObject as XRBaseInteractable;
+                if (weapon == null) return;
 
-        socketInteractor.selectExited.AddListener((SelectExitEventArgs args) =>
+                // Holster the weapon
+                if (isPrimaryHolster)
+                {
+                    _primaryWeapon = weapon;
+                    Debug.Log($"[Holster] Primary Weapon Holstered: {weapon.name}");
+                }
+                else
+                {
+                    _secondaryWeapon = weapon;
+                    Debug.Log($"[Holster] Secondary Weapon Holstered: {weapon.name}");
+                }
+            });
+
+            socket.selectExited.AddListener((SelectExitEventArgs args) =>
+            {
+                XRBaseInteractable weapon = args.interactableObject as XRBaseInteractable;
+                if (weapon == null) return;
+
+                // Remove the weapon from the holster
+                if (isPrimaryHolster && _primaryWeapon == weapon)
+                {
+                    _primaryWeapon = null;
+                    Debug.Log("[Holster] Primary Weapon Removed");
+                }
+                else if (!isPrimaryHolster && _secondaryWeapon == weapon)
+                {
+                    _secondaryWeapon = null;
+                    Debug.Log("[Holster] Secondary Weapon Removed");
+                }
+            });
+        }
+
+        /// <summary>
+        /// Checks if the player has a weapon holstered in the specified slot.
+        /// </summary>
+        /// <param name="isPrimary">True for primary, false for secondary holster.</param>
+        /// <returns>True if there’s a weapon holstered, otherwise false.</returns>
+        public bool HasWeaponHolstered(bool isPrimary)
         {
-            Debug.Log($"Weapon Removed: {holsterWeapon.name}");
+            return isPrimary ? _primaryWeapon != null : _secondaryWeapon != null;
+        }
 
-            if (holsterWeapon != null)
-            {
-                // holsterWeapon.OnUnholstered();
-            }
-
-            if (_currentHolsteredWeapon == (XRBaseInteractable)args.interactableObject)
-            {
-                _currentHolsteredWeapon = null;
-            }
-        });
-    }
-
-    public bool HasWeaponHolstered()
-    {
-        return _currentHolsteredWeapon != null;
-    }
-
-    public XRBaseInteractable GetHolsteredWeapon()
-    {
-        return _currentHolsteredWeapon;
-    }
+        /// <summary>
+        /// Gets the holstered weapon in the specified slot.
+        /// </summary>
+        /// <param name="isPrimary">True for primary, false for secondary holster.</param>
+        /// <returns>The holstered weapon or null if the slot is empty.</returns>
+        public XRBaseInteractable GetHolsteredWeapon(bool isPrimary)
+        {
+            return isPrimary ? _primaryWeapon : _secondaryWeapon;
+        }
     }
 }

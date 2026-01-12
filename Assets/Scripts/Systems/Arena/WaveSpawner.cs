@@ -56,6 +56,9 @@ namespace Systems.Arena
         /// <param name="waveData">The wave data defining the type and number of enemies.</param>
         public void SpawnWave(WaveData waveData)
         {
+            if(!_gamePoolManager)
+                _gamePoolManager = GamePoolManager.Instance;
+            
             _waveType = WaveType.Main;
             _enemiesRemaining = waveData.EnemyCount;
             StartCoroutine(SpawnEnemies(waveData));

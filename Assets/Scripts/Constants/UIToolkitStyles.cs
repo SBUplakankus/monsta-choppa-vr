@@ -43,5 +43,13 @@ namespace Constants
 
         public const string LanguageScroll = "language-scroll";
         public const string LanguageRow = "language-row";
+        
+        public const string BossIntroContainer = "boss-intro-container";
+        public const string BossIntroHeader = "boss-intro-header";
+        public const string BossIntroBody = "boss-intro-body";
+        public const string BossIntroName = "boss-intro-name";
+        public const string ArenaIntroContainer = "arena-intro-container";
+        public const string ArenaIntroName = "arena-intro-name";
+        public const string ArenaIntroTime = "arena-intro-time";
     }
 }

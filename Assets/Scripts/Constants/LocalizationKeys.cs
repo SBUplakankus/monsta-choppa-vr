@@ -53,5 +53,19 @@ namespace Constants
         public const string TimesTwo = "2x";
         public const string TimesFour = "4x";
         public const string TimesEight = "8x";
+        
+        public const string GoblinCamp = "goblin-camp";
+        public const string CliffPass = "cliff-pass";
+        public const string DwarfHall = "dwarf-hall";
+        public const string At = "at";
+        public const string Daytime  = "daytime";
+        public const string Dusk = "dusk";
+        public const string Midnight = "midnight";
+        public const string Difficulty = "difficulty";
+        
+        public const string BossWarning = "boss-warning";
+        public const string GoblinBoss = "goblin-boss";
+        public const string OrkBoss =  "ork-boss";
+        public const string SkeletonBoss = "skeleton-boss";
     }
 }
