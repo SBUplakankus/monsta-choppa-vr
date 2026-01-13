@@ -12,7 +12,6 @@ namespace UI.Hosts
         [SerializeField] protected UIDocument uiDocument;
         [SerializeField] protected StyleSheet styleSheet;
         
-        
         protected VisualElement ContentRoot;
         private ITweenable[] _tweenables;
         

@@ -1,18 +1,17 @@
+using Systems.Arena;
 using UI.Views;
+using UnityEngine;
 
 namespace UI.Hosts
 {
     public class ArenaIntroHost : BasePanelHost
     {
+        [SerializeField] private ArenaData arenaData;
         private ArenaIntroView _arenaIntroView;
-        private string _arenaKey, _difficultyKey;
         
-        public void DisplayArenaIntro(string arenaKey, string difficultyKey)
+        public void DisplayArenaIntro()
         {
-            _arenaKey = arenaKey;
-            _difficultyKey = difficultyKey;
             Generate();
-            Show();
         }
 
         public void HideArenaIntro()
@@ -22,17 +21,22 @@ namespace UI.Hosts
         
         public override void Generate()
         {
+            Dispose();
             _arenaIntroView = new ArenaIntroView(
                 uiDocument.rootVisualElement,
                 styleSheet,
-                _arenaKey,
-                _difficultyKey);
+                arenaData.Location,
+                arenaData.Difficulty);
+            
+            Show();
         }
 
         public override void Dispose()
         {
-            _arenaIntroView.Dispose();
+            _arenaIntroView?.Dispose();
             _arenaIntroView = null;
         }
+        
+        private void OnEnable() => Generate();
     }
 }

@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainGame_da
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: da
+  m_SharedData: {fileID: 11400000, guid: d7a64a165e652384ca42b4e7e7d081ae, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 44251197440
+    m_Localized: Afspil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544384
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544385
+    m_Localized: Genoptag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738688
+    m_Localized: Afslut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738689
+    m_Localized: Spin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738690
+    m_Localized: Guld
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738691
+    m_Localized: Erfaring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738692
+    m_Localized: Niveau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738693
+    m_Localized: "Tilf\xF8j"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738694
+    m_Localized: Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738695
+    m_Localized: Spil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4784931399249920
+    m_Localized: Velkommen til Proppa Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785094159216640
+    m_Localized: Lydindstillinger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785147527540736
+    m_Localized: Videoindstillinger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785218168008704
+    m_Localized: Afslut spil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785248534769664
+    m_Localized: Start spil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438223171170304
+    m_Localized: Kontrol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438258566901760
+    m_Localized: Hovedlyd
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438308139380736
+    m_Localized: Lydeffekter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438327282184192
+    m_Localized: "Brugergr\xE6nseflade"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438344411721728
+    m_Localized: "Atmosf\xE6re"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438385033555968
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438526226411520
+    m_Localized: Luk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5443756401864704
+    m_Localized: Monsta Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5450435990368256
+    m_Localized: Indstillinger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457511319842816
+    m_Localized: Lyd
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457533939724288
+    m_Localized: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457554743472128
+    m_Localized: Sprog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457578755862528
+    m_Localized: Sprogindstillinger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5868980876324864
+    m_Localized: Lav
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869050279473152
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869063059517440
+    m_Localized: "H\xF8j"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869073322979328
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869084534353920
+    m_Localized: Kvalitet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869140243099648
+    m_Localized: Anti-aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692608
+    m_Localized: Renderingsskala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692609
+    m_Localized: Engelsk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692610
+    m_Localized: Tjekkisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692611
+    m_Localized: Tysk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692612
+    m_Localized: Irsk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692613
+    m_Localized: Italiensk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692614
+    m_Localized: Litauisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692615
+    m_Localized: Polsk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692616
+    m_Localized: Spansk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692617
+    m_Localized: Ukrainsk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: Goblin Lejr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: Klip Passage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: "Dv\xE6rghal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: kl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: Dagslys
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: Skumring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: Midnat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: "Sv\xE6rhedsgrad"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: "Bossen n\xE6rmer sig"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Goblin Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Ork Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Skelet Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: Arabisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: Kinesisk (forenklet)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: Dansk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: Hollandsk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Estisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Finsk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: Fransk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: "Gr\xE6sk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: Indonesisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: Japansk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: Koreansk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: Lettisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malaysisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: Norsk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: Persisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: Portugisisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: "Rum\xE6nsk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: Russisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: Slovakisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: Slovensk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: Svensk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: Tyrkisk
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

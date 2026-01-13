@@ -9,6 +9,7 @@ namespace Factories
     /// </summary>
     public static class LocalizationFactory
     {
+        // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// Creates a <see cref="LocalizedString"/> using the main localization table.
         /// </summary>

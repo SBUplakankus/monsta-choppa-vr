@@ -198,6 +198,146 @@ MonoBehaviour:
     m_Localized: "\xDAcr\xE1inis"
     m_Metadata:
       m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: "Camp\xE1il Ghoblin"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: "Pas\xE1iste Aille"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: Halla Dhwarfa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: ag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: San solais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: Clapsholas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: "Me\xE1n o\xEDche"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Deacracht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: Tagann an Boss in Aice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Boss Goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Boss Orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: "Boss Cn\xE1mharlaigh"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: Araibis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: "S\xEDnis (Simplithe)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: Danmhairgis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: Ollainnis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: "East\xF3inis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Fionlainnis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: Fraincis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: "Gr\xE9igis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: "Hiond\xFAis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: "Indin\xE9isis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: "Seap\xE1inis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: "Coir\xE9is"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: Laitvis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malaeis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: Ioruais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: Peirsis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: "Portaing\xE9ilis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: "R\xF3m\xE1inis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: "R\xFAisis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: "Sl\xF3vaicis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: "Sl\xF3iv\xE9inis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: Sualainnis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: Tuircis
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

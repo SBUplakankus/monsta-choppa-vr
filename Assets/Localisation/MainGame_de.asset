@@ -198,6 +198,146 @@ MonoBehaviour:
     m_Localized: Ukrainisch
     m_Metadata:
       m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: Goblin-Lager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: Klippenpass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: Zwergenhalle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: um
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: Tageslicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: "D\xE4mmerung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: Mitternacht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Schwierigkeit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: "Der Boss n\xE4hert sich"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Goblin-Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Ork-Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Skelett-Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: Arabisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: Chinesisch (Vereinfacht)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: "D\xE4nisch"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: "Niederl\xE4ndisch"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Estnisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Finnisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: "Franz\xF6sisch"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: Griechisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: Indonesisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: Japanisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: Koreanisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: Lettisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malaiisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: Norwegisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: Persisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: Portugiesisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: "Rum\xE4nisch"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: Russisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: Slowakisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: Slowenisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: Schwedisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: "T\xFCrkisch"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

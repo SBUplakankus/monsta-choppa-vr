@@ -198,6 +198,146 @@ MonoBehaviour:
     m_Localized: Ucraniano
     m_Metadata:
       m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: Campamento de duendes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: Paso del acantilado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: "Sal\xF3n de los Enanos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: a las
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: "Luz del d\xEDa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: "Crep\xFAsculo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: Medianoche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Dificultad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: El Jefe se acerca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Jefe Duende
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Jefe Orco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Jefe Esqueleto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: "\xC1rabe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: Chino (simplificado)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: "Dan\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: "Holand\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Estonio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: "Finland\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: "Franc\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: Griego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: Indonesio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: "Japon\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: Coreano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: "Let\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malayo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: Noruego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: Persa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: "Portugu\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: Rumano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: Ruso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: Eslovaco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: Esloveno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: Sueco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: Turco
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

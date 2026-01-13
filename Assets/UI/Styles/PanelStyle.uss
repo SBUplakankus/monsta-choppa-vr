@@ -501,3 +501,47 @@ Button:focus {
 .unity-scroller__high-button {
     display: none;
 }
+
+
+.boss-intro-container{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.boss-intro-header{
+    font-size: 50px;
+    color: whitesmoke;
+    text-shadow: 1px 1px 1px black;
+}
+
+.boss-intro-body {
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+.boss-intro-name {
+    font-size: 80px;
+    color: var(--hub-colour-primary);
+    text-shadow: 1px 1px 1px black;
+}
+
+.arena-intro-container {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.arena-intro-name{
+    font-size: 80px;
+    color: var(--hub-colour-primary);
+    text-shadow: 1px 1px 1px black;
+}
+
+.arena-intro-time{
+    font-size: 20px;
+    color: whitesmoke;
+    text-shadow: 1px 1px 1px black;
+}

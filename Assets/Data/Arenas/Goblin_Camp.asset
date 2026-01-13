@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930b773df2bf4a25995b7493df40b716, type: 3}
-  m_Name: Font Database
-  m_EditorClassIdentifier: Assembly-CSharp::Databases.TMPFontDatabase
-  entries: []
+  m_Script: {fileID: 11500000, guid: 455be4209085f684690cee509341caf9, type: 3}
+  m_Name: Goblin_Camp
+  m_EditorClassIdentifier: Assembly-CSharp::Systems.Arena.ArenaData
+  location: 0
+  difficulty: 0
+  boss: 0

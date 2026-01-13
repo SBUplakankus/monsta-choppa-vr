@@ -23,14 +23,14 @@ namespace Systems.Arena.Cutscene
         /// Aligns the cutscene camera to the tracked head position, allowing the player to look around.
         /// </summary>
         /// <param name="headTransform">The transform of the player's head during VR.</param>
-        public void EnableCamera(Transform headTransform)
+        private void EnableCamera(Transform headTransform)
         {
             // Parent cutscene camera to the player's head during the cutscene
             _cameraTransform.SetParent(headTransform, false); // Using "false" to keep local position/rotation
             _cutsceneCamera.enabled = true;
         }
 
-        public void DisableCamera()
+        private void DisableCamera()
         {
             _cameraTransform.SetParent(null); // Detach from the head
             _cutsceneCamera.enabled = false;

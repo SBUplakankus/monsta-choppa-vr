@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainGame_id
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: id
+  m_SharedData: {fileID: 11400000, guid: d7a64a165e652384ca42b4e7e7d081ae, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 44251197440
+    m_Localized: Mainkan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544384
+    m_Localized: Jeda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544385
+    m_Localized: Lanjutkan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738688
+    m_Localized: Keluar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738689
+    m_Localized: Putar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738690
+    m_Localized: Emas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738691
+    m_Localized: Pengalaman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738692
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738693
+    m_Localized: Tambahkan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738694
+    m_Localized: Simpan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738695
+    m_Localized: Permainan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4784931399249920
+    m_Localized: Selamat datang di Proppa Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785094159216640
+    m_Localized: Pengaturan Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785147527540736
+    m_Localized: Pengaturan Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785218168008704
+    m_Localized: Keluar dari Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785248534769664
+    m_Localized: Mulai Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438223171170304
+    m_Localized: Kontrol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438258566901760
+    m_Localized: Volume Utama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438308139380736
+    m_Localized: Efek Suara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438327282184192
+    m_Localized: Antarmuka Pengguna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438344411721728
+    m_Localized: Suasana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438385033555968
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438526226411520
+    m_Localized: Tutup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5443756401864704
+    m_Localized: Monsta Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5450435990368256
+    m_Localized: Pengaturan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457511319842816
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457533939724288
+    m_Localized: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457554743472128
+    m_Localized: Bahasa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457578755862528
+    m_Localized: Pengaturan Bahasa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5868980876324864
+    m_Localized: Rendah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869050279473152
+    m_Localized: Sedang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869063059517440
+    m_Localized: Tinggi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869073322979328
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869084534353920
+    m_Localized: Kualitas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869140243099648
+    m_Localized: Anti-aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692608
+    m_Localized: Skala Render
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692609
+    m_Localized: Bahasa Inggris
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692610
+    m_Localized: Ceko
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692611
+    m_Localized: Jerman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692612
+    m_Localized: Irlandia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692613
+    m_Localized: Italia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692614
+    m_Localized: Lituania
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692615
+    m_Localized: Polandia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692616
+    m_Localized: Spanyol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692617
+    m_Localized: Ukraina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: Perkemahan Goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: Laluan Tebing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: Aula Kurcaci
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: di
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: Siang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: Senja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: Tengah malam
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Kesulitan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: Bos Mendekat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Bos Goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Bos Ork
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Bos Kerangka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: Arab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: Cina (Sederhana)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: Denmark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: Belanda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Estonia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Finlandia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: Prancis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: Yunani
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: Indonesia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: Jepang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: Korea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: Latvia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Melayu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: Norwegia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: Persia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: Portugis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: Rumania
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: Rusia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: Slovakia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: Slovenia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: Swedia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: Turki
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

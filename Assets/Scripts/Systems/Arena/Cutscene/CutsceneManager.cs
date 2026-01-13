@@ -1,4 +1,5 @@
 using System.Collections;
+using Events;
 using Player;
 using UnityEngine;
 
@@ -8,14 +9,13 @@ namespace Systems.Arena.Cutscene
     {
         #region Fields
         
-        [Header("Arena Data")]
-        [SerializeField] private ArenaData arenaData;
-        
         [Header("References")]
-        [SerializeField] private GameObject playerRig;
         [SerializeField] private CutsceneCameraController cameraController;
         [SerializeField] private CutsceneInterfaceController interfaceController;
         [SerializeField] private XRComponentController xrComponentController;
+
+        [Header("Events")] 
+        [SerializeField] private GameStateEventChannel onGameStateChange;
         
         private const int ArenaDisplayDuration = 5;
         private const int BossDisplayDuration = 4;
@@ -35,7 +35,7 @@ namespace Systems.Arena.Cutscene
         {
             HandleArenaStart();
             yield return _fadeTimer;
-            interfaceController.ShowArenaIntro(arenaData);
+            interfaceController.ShowArenaIntro();
             yield return _arenaTimer;
             interfaceController.HideArenaIntro();
             yield return _waitTimer;
@@ -50,7 +50,7 @@ namespace Systems.Arena.Cutscene
             yield return _fadeTimer;
             interfaceController.FadeOut();
             yield return _fadeTimer;
-            interfaceController.ShowBossIntro(arenaData);
+            interfaceController.ShowBossIntro();
             yield return _bossTimer;
             interfaceController.HideBossIntro();
             yield return _waitTimer;
@@ -88,7 +88,38 @@ namespace Systems.Arena.Cutscene
             interfaceController.FadeOut();
             xrComponentController.EnableComponents();
         }
+
+        private void TriggerArenaCutscene()
+        {
+            StartCoroutine(ArenaCutsceneRoutine());
+        }
+
+        private void TriggerBossCutscene()
+        {
+            StartCoroutine(BossCutsceneRoutine());
+        }
+
+        private void HandleGameStateChange(GameState gameState)
+        {
+            if(gameState == GameState.GamePrelude)
+                TriggerArenaCutscene();
+            else if (gameState == GameState.BossIntermission)
+                TriggerBossCutscene();
+        }
         
+        #endregion
+
+        #region Unity Methods
+
+        private void OnEnable()
+        {
+            onGameStateChange.Subscribe(HandleGameStateChange);
+        }
+
+        private void OnDisable()
+        {
+            onGameStateChange.Unsubscribe(HandleGameStateChange);
+        }
         #endregion
     }
 }

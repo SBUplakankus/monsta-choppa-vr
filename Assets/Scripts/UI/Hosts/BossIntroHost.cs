@@ -1,17 +1,17 @@
+using Systems.Arena;
 using UI.Views;
+using UnityEngine;
 
 namespace UI.Hosts
 {
     public class BossIntroHost : BasePanelHost
     {
+        [SerializeField] private ArenaData arenaData;
         private BossIntroView _bossIntroView;
-        private string _bossKey;
 
-        public void DisplayBossIntro(string bossKey)
+        public void DisplayBossIntro()
         {
-            _bossKey = bossKey;
             Generate();
-            Show();
         }
 
         public void HideBossIntro()
@@ -21,16 +21,19 @@ namespace UI.Hosts
         
         public override void Generate()
         {
+            Dispose();
+            
             _bossIntroView = new BossIntroView(
                 uiDocument.rootVisualElement, 
                 styleSheet, 
-                _bossKey);
+                arenaData.Boss);
+            
+            Show();
         }
 
         public override void Dispose()
         {
-            _bossIntroView.Dispose();
-            _bossKey = null;
+            _bossIntroView?.Dispose();
             _bossIntroView = null;
         }
     }

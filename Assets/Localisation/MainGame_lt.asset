@@ -198,6 +198,146 @@ MonoBehaviour:
     m_Localized: "Ukrainie\u010Di\u0173"
     m_Metadata:
       m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: "Goblin\u0173 stovykla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: "Uolos per\u0117ja"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: "Nyk\u0161tuk\u0173 sal\u0117"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: val
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: "Dienos \u0161viesa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: Sutemos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: Vidurnaktis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Sunkumas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: "Bosas art\u0117ja"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: "Goblin\u0173 bosas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: "Ork\u0173 bosas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Skeleto bosas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: "Arab\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: "Kin\u0173 (supaprastinta)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: "Dan\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: "Oland\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: "Est\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: "Suomi\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: "Pranc\u016Bz\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: "Graik\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: "Indonezie\u010Di\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: "Japon\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: "Kor\u0117jie\u010Di\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: "Latvi\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: "Malaizie\u010Di\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: "Norveg\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: "Pers\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: "Portugal\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: "Rumun\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: "Rus\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: "Slovak\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: "Slov\u0117n\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: "\u0160ved\u0173"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: "Turk\u0173"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

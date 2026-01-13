@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainGame_tr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: d7a64a165e652384ca42b4e7e7d081ae, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 44251197440
+    m_Localized: Oyna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544384
+    m_Localized: Duraklat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544385
+    m_Localized: Devam Et
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738688
+    m_Localized: "\xC7\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738689
+    m_Localized: "D\xF6nd\xFCr"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738690
+    m_Localized: "Alt\u0131n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738691
+    m_Localized: Deneyim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738692
+    m_Localized: Seviye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738693
+    m_Localized: Ekle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738694
+    m_Localized: Kaydet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738695
+    m_Localized: Oyun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4784931399249920
+    m_Localized: "Proppa Choppa'ya Ho\u015F Geldiniz"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785094159216640
+    m_Localized: "Ses Ayarlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785147527540736
+    m_Localized: "Video Ayarlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785218168008704
+    m_Localized: "Oyundan \xC7\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785248534769664
+    m_Localized: "Oyunu Ba\u015Flat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438223171170304
+    m_Localized: Kontroller
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438258566901760
+    m_Localized: Ana Ses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438308139380736
+    m_Localized: Ses Efektleri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438327282184192
+    m_Localized: "Kullan\u0131c\u0131 Aray\xFCz\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438344411721728
+    m_Localized: Atmosfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438385033555968
+    m_Localized: "M\xFCzik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438526226411520
+    m_Localized: Kapat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5443756401864704
+    m_Localized: Monsta Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5450435990368256
+    m_Localized: Ayarlar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457511319842816
+    m_Localized: Ses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457533939724288
+    m_Localized: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457554743472128
+    m_Localized: Dil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457578755862528
+    m_Localized: "Dil Ayarlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5868980876324864
+    m_Localized: "D\xFC\u015F\xFCk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869050279473152
+    m_Localized: Orta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869063059517440
+    m_Localized: "Y\xFCksek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869073322979328
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869084534353920
+    m_Localized: Kalite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869140243099648
+    m_Localized: "Kenar Yumu\u015Fatma"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692608
+    m_Localized: "Render \xD6l\xE7e\u011Fi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692609
+    m_Localized: "\u0130ngilizce"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692610
+    m_Localized: "\xC7ek\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692611
+    m_Localized: Almanca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692612
+    m_Localized: "\u0130rlandaca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692613
+    m_Localized: "\u0130talyanca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692614
+    m_Localized: Litvanca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692615
+    m_Localized: "Leh\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692616
+    m_Localized: "\u0130spanyolca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692617
+    m_Localized: Ukraynaca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: "Goblin Kamp\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: "U\xE7urum Ge\xE7idi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: "C\xFCce Salonu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: saat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: "G\xFCnd\xFCz"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: "Alacakaranl\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: "Gece Yar\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Zorluk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: "Patron Yakla\u015F\u0131yor"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Goblin Patronu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Ork Patronu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: "\u0130skelet Patronu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: "Arap\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: "Basitle\u015Ftirilmi\u015F \xC7ince"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: Danca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: Hollandaca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Estonca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Fince
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: "Frans\u0131zca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: Yunanca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: "Hint\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: Endonezyaca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: Japonca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: Korece
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: Letonca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malayca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: "Norve\xE7\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: "Fars\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: Portekizce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: Romence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: "Rus\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: "Slovak\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: Slovence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: "\u0130sve\xE7\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: "T\xFCrk\xE7e"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

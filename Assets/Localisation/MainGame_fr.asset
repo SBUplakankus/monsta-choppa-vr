@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainGame_fr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: d7a64a165e652384ca42b4e7e7d081ae, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 44251197440
+    m_Localized: Jouer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544384
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544385
+    m_Localized: Reprendre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738688
+    m_Localized: Quitter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738689
+    m_Localized: Tourner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738690
+    m_Localized: Or
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738691
+    m_Localized: "Exp\xE9rience"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738692
+    m_Localized: Niveau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738693
+    m_Localized: Ajouter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738694
+    m_Localized: Sauvegarder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738695
+    m_Localized: Jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4784931399249920
+    m_Localized: "Bienvenue \xE0 Proppa Choppa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785094159216640
+    m_Localized: "Param\xE8tres audio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785147527540736
+    m_Localized: "Param\xE8tres vid\xE9o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785218168008704
+    m_Localized: Quitter le jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785248534769664
+    m_Localized: Commencer le jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438223171170304
+    m_Localized: "Contr\xF4les"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438258566901760
+    m_Localized: Volume principal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438308139380736
+    m_Localized: Effets sonores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438327282184192
+    m_Localized: Interface utilisateur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438344411721728
+    m_Localized: Ambiance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438385033555968
+    m_Localized: Musique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438526226411520
+    m_Localized: Fermer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5443756401864704
+    m_Localized: Monsta Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5450435990368256
+    m_Localized: "Param\xE8tres"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457511319842816
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457533939724288
+    m_Localized: "Vid\xE9o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457554743472128
+    m_Localized: Langue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457578755862528
+    m_Localized: "Param\xE8tres de langue"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5868980876324864
+    m_Localized: Bas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869050279473152
+    m_Localized: Moyen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869063059517440
+    m_Localized: "\xC9lev\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869073322979328
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869084534353920
+    m_Localized: "Qualit\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869140243099648
+    m_Localized: "Anticr\xE9nelage"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692608
+    m_Localized: "\xC9chelle de rendu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692609
+    m_Localized: Anglais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692610
+    m_Localized: "Tch\xE8que"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692611
+    m_Localized: Allemand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692612
+    m_Localized: Irlandais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692613
+    m_Localized: Italien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692614
+    m_Localized: Lituanien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692615
+    m_Localized: Polonais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692616
+    m_Localized: Espagnol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692617
+    m_Localized: Ukrainien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: Camp de gobelins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: Passe de falaise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: Hall nain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: "\xE0"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: Jour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: "Cr\xE9puscule"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: Minuit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: "Difficult\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: Le Boss approche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Boss gobelin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Boss orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Boss squelette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: Arabe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: "Chinois (simplifi\xE9)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: Danois
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: "N\xE9erlandais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Estonien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Finnois
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: "Fran\xE7ais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: Grec
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: "Indon\xE9sien"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: Japonais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: "Cor\xE9en"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: Letton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: "Norv\xE9gien"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: Persan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: Portugais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: Roumain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: Russe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: Slovaque
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: "Slov\xE8ne"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: "Su\xE9dois"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: Turc
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

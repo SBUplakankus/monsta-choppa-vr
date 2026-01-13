@@ -198,6 +198,146 @@ MonoBehaviour:
     m_Localized: Ukrainian
     m_Metadata:
       m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: Goblin Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: Cliff Pass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: Dwarf Hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: At
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: Daytime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: Dusk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: Midnight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: The Boss Approaches
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Goblin Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Ork Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Skeleton Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: Arabic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: Chinese (Simplified)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: Danish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: Dutch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Estonian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Finnish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: French
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: Greek
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: Indonesian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: Japanese
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: Korean
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: Latvian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: Norwegian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: Persian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: Portuguese
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: Romanian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: Russian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: Slovak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: Slovenian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: Swedish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: Turkish
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

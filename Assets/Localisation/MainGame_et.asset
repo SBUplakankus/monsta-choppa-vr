@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainGame_et
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: et
+  m_SharedData: {fileID: 11400000, guid: d7a64a165e652384ca42b4e7e7d081ae, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 44251197440
+    m_Localized: "M\xE4ngi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544384
+    m_Localized: Paus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042646544385
+    m_Localized: "J\xE4tka"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738688
+    m_Localized: "V\xE4lju"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738689
+    m_Localized: "P\xF6\xF6rle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738690
+    m_Localized: Kuld
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738691
+    m_Localized: Kogemus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738692
+    m_Localized: Tase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738693
+    m_Localized: Lisa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738694
+    m_Localized: Salvesta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042650738695
+    m_Localized: "M\xE4ng"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4784931399249920
+    m_Localized: Tere tulemast Proppa Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785094159216640
+    m_Localized: Heliseaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785147527540736
+    m_Localized: Video seaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785218168008704
+    m_Localized: "V\xE4lju m\xE4ngust"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4785248534769664
+    m_Localized: "Alusta m\xE4ngu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438223171170304
+    m_Localized: Juhtimine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438258566901760
+    m_Localized: Peamine heli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438308139380736
+    m_Localized: Heliefektid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438327282184192
+    m_Localized: Kasutajaliides
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438344411721728
+    m_Localized: "\xD5hkkond"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438385033555968
+    m_Localized: Muusika
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5438526226411520
+    m_Localized: Sulge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5443756401864704
+    m_Localized: Monsta Choppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5450435990368256
+    m_Localized: Seaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457511319842816
+    m_Localized: Heli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457533939724288
+    m_Localized: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457554743472128
+    m_Localized: Keel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5457578755862528
+    m_Localized: Keele seaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5868980876324864
+    m_Localized: Madal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869050279473152
+    m_Localized: Keskmine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869063059517440
+    m_Localized: "K\xF5rge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869073322979328
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869084534353920
+    m_Localized: Kvaliteet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869140243099648
+    m_Localized: "Silmustamise v\xE4hendamine"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692608
+    m_Localized: Renderimise skaala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692609
+    m_Localized: Inglise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692610
+    m_Localized: "T\u0161ehhi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692611
+    m_Localized: Saksa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692612
+    m_Localized: Iiri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692613
+    m_Localized: Itaalia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692614
+    m_Localized: Leedu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692615
+    m_Localized: Poola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692616
+    m_Localized: Hispaania
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5869164842692617
+    m_Localized: Ukraina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052004883345408
+    m_Localized: Goblinilaager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052092103897088
+    m_Localized: Kaljurada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052173137850368
+    m_Localized: "P\xE4kapikkude saal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052231669362688
+    m_Localized: kell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052298853724160
+    m_Localized: "P\xE4evavalgus"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052324317343744
+    m_Localized: "H\xE4marik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052343325929472
+    m_Localized: "Kesk\xF6\xF6"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052375206834176
+    m_Localized: Raskus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052407561695232
+    m_Localized: "Boss l\xE4heneb"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052547416567808
+    m_Localized: Gobliniboss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052595651063808
+    m_Localized: Orkiboss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9052621152432128
+    m_Localized: Skeletoniboss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053459388280832
+    m_Localized: Araabia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053524504850432
+    m_Localized: Hiina (lihtsustatud)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053672769302528
+    m_Localized: Taani
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053716314566656
+    m_Localized: Hollandi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053768760143872
+    m_Localized: Eesti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053802893389824
+    m_Localized: Soome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053858228842496
+    m_Localized: Prantsuse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053907176370176
+    m_Localized: Kreeka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9053950755188736
+    m_Localized: Hindi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054007000805376
+    m_Localized: Indoneesia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054072897515520
+    m_Localized: Jaapani
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054106661662720
+    m_Localized: Korea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054171820175360
+    m_Localized: "L\xE4ti"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054233048625152
+    m_Localized: Malai
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054308214747136
+    m_Localized: Norra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054372010110976
+    m_Localized: "P\xE4rsia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054466772021248
+    m_Localized: Portugali
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054552784613376
+    m_Localized: Rumeenia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054586301296640
+    m_Localized: Vene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054659810668544
+    m_Localized: Slovaki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054715443916800
+    m_Localized: Sloveeni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054779973283840
+    m_Localized: Rootsi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9054834046251008
+    m_Localized: "T\xFCrgi"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
