@@ -511,9 +511,12 @@ Button:focus {
 }
 
 .boss-intro-header{
-    font-size: 50px;
-    color: whitesmoke;
-    text-shadow: 1px 1px 1px black;
+    font-size: 70px;
+    color: indianred;
+    -unity-font-style: bold;
+    text-shadow: -3px 3px 6px black;
+    -unity-text-outline: black 1px;
+    margin-bottom: 20px;
 }
 
 .boss-intro-body {
@@ -522,9 +525,11 @@ Button:focus {
 }
 
 .boss-intro-name {
-    font-size: 80px;
-    color: var(--hub-colour-primary);
-    text-shadow: 1px 1px 1px black;
+    font-size: 100px;
+    color: whitesmoke;
+    -unity-font-style: bold;
+    text-shadow: -4px 4px 8px black;
+    -unity-text-outline: black 1px;
 }
 
 .arena-intro-container {
@@ -535,13 +540,16 @@ Button:focus {
 }
 
 .arena-intro-name{
-    font-size: 80px;
-    color: var(--hub-colour-primary);
-    text-shadow: 1px 1px 1px black;
+    font-size: 130px;
+    -unity-font-style: bold;
+    color: whitesmoke;
+    text-shadow: -4px 4px 8px black;
+    -unity-text-outline: black 1px;
 }
 
 .arena-intro-time{
-    font-size: 20px;
+    font-size: 100px;
     color: whitesmoke;
-    text-shadow: 1px 1px 1px black;
+    text-shadow: -3px 3px 6px black;
+    -unity-text-outline: black 1px;
 }

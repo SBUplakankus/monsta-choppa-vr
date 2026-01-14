@@ -67,8 +67,8 @@ namespace UI.Hosts
         #endregion
         
         #region IDisposable
-        
-        public override void Dispose()
+
+        protected override void Dispose()
         {
             UnsubscribeEvents();
             _view?.Dispose();

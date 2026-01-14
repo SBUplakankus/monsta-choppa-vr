@@ -17,6 +17,7 @@ namespace UI.Views
         
         private void GenerateUI(VisualElement root, string arenaKey, string difficultyKey)
         {
+            Dispose();
             Container = UIToolkitFactory.CreateContainer(UIToolkitStyles.Container, UIToolkitStyles.ArenaIntroContainer);
             
             var arenaName = UIToolkitFactory.CreateLabel(arenaKey, UIToolkitStyles.ArenaIntroName);

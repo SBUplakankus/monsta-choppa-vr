@@ -17,14 +17,19 @@ namespace Systems
         [SerializeField] private IntEventChannel onExperienceChanged;
         [SerializeField] private IntEventChannel onLevelChanged;
 
-        [Header("Game Events")] 
-        [SerializeField] private EnemyEventChannel onEnemySpawned;
-        [SerializeField] private EnemyEventChannel onEnemyDespawned;
-        
-        [Header("Audio Events")]
+        [Header("Audio Events")] 
         [SerializeField] private StringEventChannel onMusicRequested;
         [SerializeField] private StringEventChannel onSfxRequested;
         
+        [Header("Game Events")] 
+        [SerializeField] private EnemyEventChannel onEnemySpawned;
+        [SerializeField] private EnemyEventChannel onEnemyDespawned;
+        [SerializeField] private GameStateEventChannel onGameStateChanged;
+        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
+        [SerializeField] private VoidEventChannel onPauseRequested;
+        [SerializeField] private VoidEventChannel onGameOverSequenceRequested;
+        [SerializeField] private VoidEventChannel onGameWonSequenceRequested;
+
         [Header("Databases")]
         [SerializeField] private AudioClipDatabase audioDatabase;
         [SerializeField] private WorldAudioDatabase worldAudioDatabase;
@@ -43,22 +48,27 @@ namespace Systems
         
         private void SetPlayerEvents()
         {
-            GameEvents.OnPlayerDamaged =  onPlayerDamaged;
-            GameEvents.OnGoldChanged =  onGoldChanged;
-            GameEvents.OnExperienceGained =  onExperienceChanged;
-            GameEvents.OnLevelChanged =  onLevelChanged;
-        }
-
-        private void SetGameEvents()
-        {
-            GameEvents.OnEnemySpawned = onEnemySpawned;
-            GameEvents.OnEnemyDespawned = onEnemyDespawned;
+            GameEvents.OnPlayerDamaged = onPlayerDamaged;
+            GameEvents.OnGoldChanged = onGoldChanged;
+            GameEvents.OnExperienceGained = onExperienceChanged;
+            GameEvents.OnLevelChanged = onLevelChanged;
         }
 
         private void SetAudioEvents()
         {
             GameEvents.OnMusicRequested = onMusicRequested;
             GameEvents.OnSfxRequested = onSfxRequested;
+        }
+
+        private void SetGameEvents()
+        {
+            GameEvents.OnEnemySpawned = onEnemySpawned;
+            GameEvents.OnEnemyDespawned = onEnemyDespawned;
+            GameEvents.OnGameStateChanged = onGameStateChanged;
+            GameEvents.OnGameStateChangeRequested = onGameStateChangeRequested;
+            GameEvents.OnPauseRequested = onPauseRequested;
+            GameEvents.OnGameOverSequenceRequested = onGameOverSequenceRequested;
+            GameEvents.OnGameWonSequenceRequested = onGameWonSequenceRequested;
         }
 
         private void SetDatabases()
@@ -68,7 +78,7 @@ namespace Systems
             else
                 Debug.LogError($"{nameof(audioDatabase)} not assigned in {name}", this);
             
-            if(worldAudioDatabase != null)
+            if (worldAudioDatabase != null)
                 GameDatabases.WorldAudioDatabase = worldAudioDatabase;
             else 
                 Debug.LogError($"{nameof(worldAudioDatabase)} not assigned in {name}", this);
@@ -102,8 +112,8 @@ namespace Systems
             }
             
             SetPlayerEvents();
-            SetGameEvents();
             SetAudioEvents();
+            SetGameEvents();
             SetDatabases();
             
             DontDestroyOnLoad(gameObject);

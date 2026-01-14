@@ -160,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ab3a3b4102418896b3ca02d579e999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerWeaponHolster
-  socketInteractor: {fileID: 2014556807277703912}
-  holsterWeapon: {fileID: 0}
+  primaryHolster: {fileID: 0}
+  secondaryHolster: {fileID: 0}
 --- !u!1 &8644522966615525746
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,8 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ab3a3b4102418896b3ca02d579e999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerWeaponHolster
-  socketInteractor: {fileID: 4680462795355013608}
-  holsterWeapon: {fileID: 0}
+  primaryHolster: {fileID: 0}
+  secondaryHolster: {fileID: 0}
 --- !u!1 &8656689774456190778
 GameObject:
   m_ObjectHideFlags: 0

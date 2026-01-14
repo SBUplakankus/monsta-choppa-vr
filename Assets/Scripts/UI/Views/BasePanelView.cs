@@ -11,6 +11,7 @@ namespace UI.Views
         
         public virtual void Dispose()
         {
+            Container?.Clear();
             Container?.RemoveFromHierarchy();
             Container = null;
         }

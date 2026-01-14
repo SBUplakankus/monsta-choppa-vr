@@ -11,7 +11,7 @@ namespace UI.Hosts
             _view = new LabelView(uiDocument.rootVisualElement, styleSheet);
         }
 
-        public override void Dispose()
+        protected override void Dispose()
         {
             _view?.Dispose();
         }

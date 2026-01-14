@@ -24,7 +24,7 @@ namespace UI.Hosts
             attribute.Refresh();
         }
 
-        public override void Dispose()
+        protected override void Dispose()
         {
             
         }

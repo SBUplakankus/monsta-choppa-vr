@@ -19,14 +19,14 @@ namespace UI.Hosts
         
         #region Class Methods
 
-        public virtual void Show()
+        public void Show()
         {
             if(_tweenables == null) return;
             foreach (var tween in _tweenables)
                 tween?.Show();
         }
 
-        public virtual void Hide()
+        public void Hide()
         {
             if(_tweenables == null) return;
             foreach (var tween in _tweenables)
@@ -34,13 +34,13 @@ namespace UI.Hosts
         }
 
         public abstract void Generate();
-        public abstract void Dispose();
+        protected abstract void Dispose();
         
         #endregion
 
         #region Unity Methods
 
-        private void Awake() => _tweenables = GetComponentsInChildren<ITweenable>(true);
+        private void Awake() => _tweenables = GetComponents<ITweenable>();
         private void OnDisable() => Dispose();
         
 #if UNITY_EDITOR

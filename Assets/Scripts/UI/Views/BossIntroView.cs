@@ -16,6 +16,8 @@ namespace UI.Views
 
         private void GenerateUI(VisualElement root, string bossKey)
         {
+            Dispose();
+            
             Container = UIToolkitFactory.CreateContainer(UIToolkitStyles.BossIntroContainer);
             
             var header = UIToolkitFactory.CreateLabel(LocalizationKeys.BossWarning,UIToolkitStyles.BossIntroHeader);
@@ -26,5 +28,7 @@ namespace UI.Views
             
             root.Add(Container);
         }
+        
+        
     }
 }

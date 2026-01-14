@@ -12,6 +12,7 @@ namespace UI.Hosts
         public void DisplayArenaIntro()
         {
             Generate();
+            Show();
         }
 
         public void HideArenaIntro()
@@ -27,16 +28,15 @@ namespace UI.Hosts
                 styleSheet,
                 arenaData.Location,
                 arenaData.Difficulty);
-            
-            Show();
         }
 
-        public override void Dispose()
+        protected override void Dispose()
         {
             _arenaIntroView?.Dispose();
             _arenaIntroView = null;
         }
         
         private void OnEnable() => Generate();
+        private void OnDisable() => Dispose();
     }
 }

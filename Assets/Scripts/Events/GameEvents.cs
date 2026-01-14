@@ -23,6 +23,7 @@ namespace Events
         public static EnemyEventChannel OnEnemySpawned;
         public static EnemyEventChannel OnEnemyDespawned;
         public static GameStateEventChannel OnGameStateChanged;
+        public static GameStateEventChannel OnGameStateChangeRequested;
         public static VoidEventChannel OnPauseRequested;
         public static VoidEventChannel OnGameOverSequenceRequested;
         public static VoidEventChannel OnGameWonSequenceRequested;

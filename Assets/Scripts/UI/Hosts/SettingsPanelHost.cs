@@ -29,7 +29,7 @@ namespace UI.Hosts
 
         #region Methods
 
-        public override void Dispose()
+        protected override void Dispose()
         {
             UnbindTabs();
             _settingsView?.Dispose();

@@ -31,10 +31,12 @@ namespace UI.Hosts
             Show();
         }
 
-        public override void Dispose()
+        protected override void Dispose()
         {
             _bossIntroView?.Dispose();
             _bossIntroView = null;
         }
+        
+        private void OnDisable() => Dispose();
     }
 }
