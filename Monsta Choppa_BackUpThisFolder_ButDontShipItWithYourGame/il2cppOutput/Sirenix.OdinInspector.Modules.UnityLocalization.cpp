@@ -476,7 +476,7 @@ inline void ReflectionOrEmittedBaseFormatter_1__ctor_m6E69E0336017194AA62F893A7D
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 127012
+// Method Definition Index: 140047
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_tE567614A75434831AA9B5B308CFC38E39635708B UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m4F7A8E993BACA13E8F3ED3B5DDC72EDEDE1F9976 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -510,7 +510,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_tE567614A75434831AA9B5B308CFC3
 		return L_6;
 	}
 }
-// Method Definition Index: 127013
+// Method Definition Index: 140048
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE0A7D8C06A9B664C837DBD72812B028358C6CD4F (UnitySourceGeneratedAssemblyMonoScriptTypes_v1_tB0D2742ED5B7B3326C473B6C264D2FCC0D287A9D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -596,7 +596,7 @@ IL2CPP_EXTERN_C void MonoScriptData_tE567614A75434831AA9B5B308CFC38E39635708B_ma
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 127014
+// Method Definition Index: 140049
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalizedStringFormatter__cctor_m6924025BB133FC1C18FFF9AC3CAA8089574E27EB (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -647,7 +647,7 @@ IL_0037:
 		return;
 	}
 }
-// Method Definition Index: 127015
+// Method Definition Index: 140050
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR LocalizedString_tFC63FF1AB38D2E097E3876DF9AA01CD473FF0F28* LocalizedStringFormatter_GetUninitializedObject_m1B76058B6DC29C30255D8539FB276F88286B83D6 (LocalizedStringFormatter_t5A750CC193621F647EA5741D0B23A6D00F8D2047* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -663,7 +663,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR LocalizedString_tFC63FF1AB38D2E097E3876DF9AA0
 		return L_0;
 	}
 }
-// Method Definition Index: 127016
+// Method Definition Index: 140051
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalizedStringFormatter_DeserializeImplementation_m0BB6539141104D3F15C3773DC2FA79BD79646B10 (LocalizedStringFormatter_t5A750CC193621F647EA5741D0B23A6D00F8D2047* __this, LocalizedString_tFC63FF1AB38D2E097E3876DF9AA01CD473FF0F28** ___0_value, RuntimeObject* ___1_reader, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -739,7 +739,7 @@ IL_0046:
 		return;
 	}
 }
-// Method Definition Index: 127017
+// Method Definition Index: 140052
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalizedStringFormatter__ctor_mDC1D54F5D276E65962964272BBA015066FEB84EB (LocalizedStringFormatter_t5A750CC193621F647EA5741D0B23A6D00F8D2047* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;

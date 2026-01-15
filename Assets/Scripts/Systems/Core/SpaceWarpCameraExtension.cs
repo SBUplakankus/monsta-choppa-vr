@@ -3,13 +3,12 @@ using UnityEngine.XR.OpenXR.Features;
 
 namespace Systems.Core
 {
-    public class SpaceWarpCameraExtension : MonoBehaviour, IUpdateable
+    [DefaultExecutionOrder(-100)]
+    public class SpaceWarpCameraExtension : MonoBehaviour
     {
         private void Awake() => SpaceWarpFeature.SetSpaceWarp(true);
-        private void OnEnable() => GameUpdateManager.Instance.Register(this, UpdatePriority.High);
-        private void OnDisable() => GameUpdateManager.Instance.Unregister(this);
 
-        public void OnUpdate(float deltaTime)
+        private void LateUpdate()
         { 
             SpaceWarpFeature.SetAppSpacePosition(transform.position);
             SpaceWarpFeature.SetAppSpaceRotation(transform.rotation);

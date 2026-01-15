@@ -1,9 +1,14 @@
+using System.Linq;
 using Constants;
 using Databases;
 using Events;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
+using UnityEngine.XR.Management;
+using UnityEngine.XR.OpenXR.Features.Meta;
 
 namespace Systems
 {
@@ -101,6 +106,8 @@ namespace Systems
             else
                 Debug.LogError($"{nameof(particleDatabase)} not assigned in {name}", this);
         }
+
+        
         
         #endregion
         
@@ -125,9 +132,13 @@ namespace Systems
             _isOwner = true;
         }
 
+        
         private void Start()
         {
-            SceneManager.LoadScene(GameConstants.StartMenu);
+            if (!Application.isEditor)
+            {
+                SceneManager.LoadScene(GameConstants.StartMenu);
+            }
         }
         
         private void OnDestroy()

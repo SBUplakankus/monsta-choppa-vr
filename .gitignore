@@ -116,5 +116,5 @@ crashlytics-build.properties
 /[Aa]ssets/BakeryLightmaps.meta
 
 # Ignore temporary build directories
-/Monsta Choppa_BackUpThisFolder_ButDontShipItWithYourGame/
-/MONSTA CHOPPA_BurstDebugInformation_DoNotShip/
+**/Monsta Choppa_BackUpThisFolder_ButDontShipItWithYourGame/
+**/MONSTA CHOPPA_BurstDebugInformation_DoNotShip/
