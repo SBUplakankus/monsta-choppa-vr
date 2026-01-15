@@ -20,13 +20,15 @@ namespace UI.Hosts
 
         public override void Generate()
         {
+            Dispose();
             _boundAttributePanelView = new BoundAttributePanelView(uiDocument.rootVisualElement,  styleSheet, attribute);
             attribute.Refresh();
         }
 
         protected override void Dispose()
         {
-            
+            _boundAttributePanelView?.Dispose();
+            _boundAttributePanelView = null;
         }
 
         #endregion

@@ -51,5 +51,7 @@ namespace Constants
         public const string ArenaIntroContainer = "arena-intro-container";
         public const string ArenaIntroName = "arena-intro-name";
         public const string ArenaIntroTime = "arena-intro-time";
+        
+        public const string AttributePanelHeader = "attribute-panel-header";
     }
 }

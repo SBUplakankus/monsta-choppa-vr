@@ -62,7 +62,7 @@ namespace UI.Controllers
 
         private void HandleControls()
         {
-            
+            SceneManager.LoadScene(GameConstants.GoblinCampDay);
         }
 
         private void HandleQuit()

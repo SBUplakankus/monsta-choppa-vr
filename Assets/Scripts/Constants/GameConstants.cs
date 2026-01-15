@@ -15,18 +15,16 @@ namespace Constants
         public const string Bootstrapper = "Bootstrapper";
         public const string StartMenu = "StartMenu";
         public const string Hub = "Hub";
+        public const string GoblinCampDay = "GoblinCampDay";
 
 
         #endregion
         
         #region Arena Properties
 
-        public const int FadeToBlackLength = 3;
-        public const int IntroCutsceneLength = 6;
-        public const int BossCutsceneLength = 6;
-        public const int PreludeDuration = 8;
-        public const int WaveIntermissionDuration = 8;
-        public const int BossIntermissionDuration = 8;
+        public const int PreludeDuration = 10;
+        public const int WaveIntermissionDuration = 15;
+        public const int BossIntermissionDuration = 15;
 
         #endregion
     }

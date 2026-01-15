@@ -248,7 +248,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9053524504850432
-    m_Key: chinese (Simplified) (zh-Hans)
+    m_Key: chinese (simplified) (zh-hans)
     m_Metadata:
       m_Items: []
   - m_Id: 9053672769302528
@@ -256,7 +256,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9053716314566656
-    m_Key: duth (nl)
+    m_Key: dutch (nl)
     m_Metadata:
       m_Items: []
   - m_Id: 9053768760143872
@@ -308,7 +308,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9054466772021248
-    m_Key: portugese (pt)
+    m_Key: portuguese (pt)
     m_Metadata:
       m_Items: []
   - m_Id: 9054552784613376

@@ -35,8 +35,6 @@ namespace UI.Hosts
             _arenaIntroView?.Dispose();
             _arenaIntroView = null;
         }
-        
-        private void OnEnable() => Generate();
         private void OnDisable() => Dispose();
     }
 }

@@ -543,13 +543,20 @@ Button:focus {
     font-size: 130px;
     -unity-font-style: bold;
     color: whitesmoke;
-    text-shadow: -4px 4px 8px black;
-    -unity-text-outline: black 1px;
+    text-shadow: -2px 2px 4px black; 
+   -unity-text-outline: darkgray 1px;
 }
 
 .arena-intro-time{
     font-size: 100px;
     color: whitesmoke;
-    text-shadow: -3px 3px 6px black;
-    -unity-text-outline: black 1px;
+    text-shadow: -2px 2px 4px black;
+    -unity-text-outline: darkgray 1px;
+}
+
+.attribute-panel-header{
+    -unity-font-style: bold;
+    color: var(--hub-colour-primary);
+    margin-bottom: var(--spacing-xlarge);
+    font-size: 35px;
 }

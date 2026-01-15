@@ -36,7 +36,7 @@ namespace UI.Views
             
             _container = UIToolkitFactory.CreateContainer(UIToolkitStyles.Container, UIToolkitStyles.PanelBody);
 
-            var header = UIToolkitFactory.CreateLabel(attribute.AttributeName, UIToolkitStyles.Header);
+            var header = UIToolkitFactory.CreateLabel(attribute.AttributeName, UIToolkitStyles.AttributePanelHeader);
             _container.Add(header);
             
             var stat =  UIToolkitFactory.CreateBoundLabel(attribute, nameof(attribute.Value), UIToolkitStyles.Stat);
@@ -48,6 +48,7 @@ namespace UI.Views
         public void Dispose()
         {
             if(_container == null) return;
+            _container.Clear();
             _container.RemoveFromHierarchy();
             _container = null;
         }

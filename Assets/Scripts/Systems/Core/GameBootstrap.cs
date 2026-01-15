@@ -1,6 +1,8 @@
+using Constants;
 using Databases;
 using Events;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Systems
@@ -40,7 +42,8 @@ namespace Systems
         [Header("UI Toolkit")]
         [SerializeField] private StyleSheet styleSheet;
         
-        private static bool _isInitialized = false;
+        private static bool _isInitialized;
+        private bool _isOwner;
 
         #endregion
         
@@ -119,11 +122,18 @@ namespace Systems
             DontDestroyOnLoad(gameObject);
             
             _isInitialized = true;
+            _isOwner = true;
+        }
+
+        private void Start()
+        {
+            SceneManager.LoadScene(GameConstants.StartMenu);
         }
         
         private void OnDestroy()
         {
-            if (!_isInitialized) return;
+            if (!_isOwner)
+                return;
             
             GameDatabases.Clear();
             _isInitialized = false;
