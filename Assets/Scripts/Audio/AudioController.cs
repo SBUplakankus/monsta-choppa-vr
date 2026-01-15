@@ -1,11 +1,11 @@
 using System;
+using System.Collections;
 using Attributes;
 using Constants;
 using Databases;
 using Events;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Serialization;
 
 namespace Audio
 {
@@ -14,7 +14,8 @@ namespace Audio
         #region Fields
 
         [Header("Audio Sources")] 
-        [SerializeField] private AudioSource musicSource;
+        [SerializeField] private AudioSource musicASource;
+        [SerializeField] private AudioSource musicBSource;
         [SerializeField] private AudioSource ambienceSource;
         [SerializeField] private AudioSource uiSfxSource;
 
@@ -34,11 +35,60 @@ namespace Audio
         [Header("Audio Events")] 
         [SerializeField] private StringEventChannel onUISfxRequested;
         [SerializeField] private StringEventChannel onMusicRequested;
+        [SerializeField] private StringEventChannel onMusicFadeRequested;
         [SerializeField] private StringEventChannel onAmbienceRequested;
+
+        private const float MusicFadeDuration = 2.5f;
+        private Coroutine _musicFadeRoutine;
 
         #endregion
 
+        #region Routines
+
+        private IEnumerator CrossFadeMusic(
+            AudioSource fromSource,
+            AudioSource toSource,
+            string fromMixer,
+            string toMixer,
+            AudioClip newClip,
+            float duration)
+        {
+            if (newClip == null) yield break;
+
+            toSource.clip = newClip;
+            toSource.loop = true;
+            toSource.Play();
+
+            var time = 0f;
+
+            SetMixerVolume(toMixer, 0f);
+            SetMixerVolume(fromMixer, 1f);
+
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                var t = time / duration;
+
+                SetMixerVolume(fromMixer, 1f - t);
+                SetMixerVolume(toMixer, t);
+
+                yield return null;
+            }
+
+            SetMixerVolume(fromMixer, 0f);
+            SetMixerVolume(toMixer, 1f);
+
+            fromSource.Stop();
+        }
+
+        #endregion
+        
         #region Methods
+        
+        private void SetMixerVolume(string mixerKey, float normalized)
+        {
+            audioMixer.SetFloat(mixerKey, ToDecibels(normalized));
+        }
         
         private AudioClip GetClip(string key)
         {
@@ -51,14 +101,47 @@ namespace Audio
         
         private void PlayMusic(string key)
         {
-            if (audioDatabase == null || musicSource == null) return;
+            var clip = GetClip(key);
+            if (clip == null) return;
+
+            musicASource.clip = clip;
+            musicASource.loop = true;
+            musicASource.Play();
+
+            SetMixerVolume(AudioKeys.MixerMusicA, 1f);
+            SetMixerVolume(AudioKeys.MixerMusicB, 0f);
+        }
+
+        private void PlayBlendedMusic(string key)
+        {
+            if (audioDatabase == null || musicASource == null || musicBSource == null)
+                return;
 
             var clip = GetClip(key);
             if (clip == null) return;
 
-            musicSource.clip = clip;
-            musicSource.loop = true;
-            musicSource.Play();
+            if (_musicFadeRoutine != null)
+                StopCoroutine(_musicFadeRoutine);
+
+            var aIsPlaying = musicASource.isPlaying;
+
+            _musicFadeRoutine = StartCoroutine(
+                aIsPlaying
+                    ? CrossFadeMusic(
+                        musicASource,
+                        musicBSource,
+                        AudioKeys.MixerMusicA,
+                        AudioKeys.MixerMusicB,
+                        clip,
+                        MusicFadeDuration)
+                    : CrossFadeMusic(
+                        musicBSource,
+                        musicASource,
+                        AudioKeys.MixerMusicB,
+                        AudioKeys.MixerMusicA,
+                        clip,
+                        MusicFadeDuration)
+            );
         }
 
         private void PlayAmbience(string key)
@@ -95,6 +178,7 @@ namespace Audio
             onUISfxRequested.Subscribe(PlaySfx);
             onMusicRequested.Subscribe(PlayMusic);
             onAmbienceRequested.Subscribe(PlayAmbience);
+            onMusicFadeRequested.Subscribe(PlayBlendedMusic);
             
             if(masterVolume != null) masterVolume.OnValueChanged += SetMasterVolume;
             if(musicVolume != null) musicVolume.OnValueChanged += SetMusicVolume;
@@ -108,6 +192,7 @@ namespace Audio
             onUISfxRequested.Unsubscribe(PlaySfx);
             onMusicRequested.Unsubscribe(PlayMusic);
             onAmbienceRequested.Unsubscribe(PlayAmbience);
+            onMusicFadeRequested.Unsubscribe(PlayBlendedMusic);
             
             masterVolume.OnValueChanged -= SetMasterVolume;
             musicVolume.OnValueChanged -= SetMusicVolume;

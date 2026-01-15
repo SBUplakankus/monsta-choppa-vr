@@ -15,3 +15,8 @@ MonoBehaviour:
   location: 0
   difficulty: 0
   boss: 0
+  ambience: {fileID: 11400000, guid: 0501a779c019ad945b0b918b8267d22d, type: 2}
+  introMusic: {fileID: 11400000, guid: 6d63901aaf462e441a2cea1b7ba2accf, type: 2}
+  intermissionMusic: {fileID: 11400000, guid: a209cefb0945c5040b1676ec514052ed, type: 2}
+  waveMusic: {fileID: 11400000, guid: ef953709879721844a79638924cd2d7e, type: 2}
+  bossMusic: {fileID: 11400000, guid: 21f04abf90bc4e24c8ba7d51479c38dc, type: 2}

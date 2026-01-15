@@ -1,5 +1,6 @@
 using System;
 using Constants;
+using Databases;
 using UnityEngine;
 
 namespace Systems.Arena
@@ -33,9 +34,20 @@ namespace Systems.Arena
         [SerializeField] private ArenaDifficulty difficulty = ArenaDifficulty.Daytime;
         [SerializeField] private ArenaBoss boss = ArenaBoss.Goblin;
         
+        [Header("Arena Audio Settings")]
+        [SerializeField] private AudioClipData ambience;
+        [SerializeField] private AudioClipData intermissionMusic;
+        [SerializeField] private AudioClipData waveMusic;
+        [SerializeField] private AudioClipData bossMusic;
+        
+        
         public string Location => GetLocationKey();
         public string Difficulty => GetDifficultyKey();
         public string Boss => GetBossKey();
+        public string Ambience => ambience.ID;
+        public string IntermissionMusicKey => intermissionMusic.ID;
+        public string WaveMusicKey => waveMusic.ID;
+        public string BossMusicKey => bossMusic.ID;
 
         private string GetLocationKey()
         {

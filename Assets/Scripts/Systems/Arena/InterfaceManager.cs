@@ -17,7 +17,7 @@ namespace Systems.Arena
         
         private const int FadeInAlpha = 1;
         private const int FadeOutAlpha = 0;
-        private const float FadeDuration = 1.5f;
+        private const float FadeDuration = 2f;
         private const Ease FadeEase = Ease.Linear;
         
         #endregion
@@ -25,7 +25,7 @@ namespace Systems.Arena
         #region Methods
         
         public void FadeIn() => Tween.Alpha(fadeToBlackCanvasGroup, FadeInAlpha, FadeDuration, FadeEase);
-        public void FadeOut() => Tween.Alpha(fadeToBlackCanvasGroup, FadeOutAlpha, FadeDuration, FadeEase);
+        private void FadeOut() => Tween.Alpha(fadeToBlackCanvasGroup, FadeOutAlpha, FadeDuration, FadeEase);
         
         public void ShowArenaIntro() => arenaIntroHost.DisplayArenaIntro();
         public void HideArenaIntro() => arenaIntroHost.HideArenaIntro();
@@ -35,10 +35,13 @@ namespace Systems.Arena
         public void HideBossIntro() => bossIntroHost.HideBossIntro();
         public void HandleBossIntroCompleted() => bossIntroHost.gameObject.SetActive(false);
         
-        private void OnEnable() => fadeToBlackCanvasGroup.alpha = FadeInAlpha;
-        
+        private void OnEnable()
+        {
+            fadeToBlackCanvasGroup.alpha = FadeInAlpha;
+            FadeOut();
+        }
+
         #endregion
-        
         
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Databases;
 using Events;
 using UnityEngine;
 
@@ -11,13 +12,13 @@ namespace Audio
         [SerializeField] private StringEventChannel onAmbienceRequested;
 
         [Header("Audio IDs")] 
-        [SerializeField] private string musicKey;
-        [SerializeField] private string ambienceKey;
+        [SerializeField] private AudioClipData musicKey;
+        [SerializeField] private AudioClipData ambienceKey;
 
         private void Start()
         {
-            onMusicRequested.Raise(musicKey);
-            onAmbienceRequested.Raise(ambienceKey);
+            onMusicRequested.Raise(musicKey.ID);
+            onAmbienceRequested.Raise(ambienceKey.ID);
         }
     }
 }
