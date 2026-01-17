@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,12 +31,12 @@ namespace Databases
         {
             if (_isLookupBuilt) return;
             
-            _lookup = new Dictionary<string, T>(entries.Length);
+            _lookup = new Dictionary<string, T>(entries.Length, StringComparer.Ordinal);
             
             for (var i = 0; i < entries.Length; i++)
             {
                 var entry = entries[i];
-                var key = GetKey(entry).Trim().ToLower();
+                var key = NormalizeKey(GetKey(entry));
                 _lookup[key] = entry;
             }
             
@@ -54,6 +55,13 @@ namespace Databases
         }
         
         /// <summary>
+        /// Normalizes a key for consistent lookup. Uses ordinal comparison for better performance.
+        /// </summary>
+        /// <param name="id">The raw key to normalize</param>
+        /// <returns>Normalized key</returns>
+        private static string NormalizeKey(string id) => id.Trim().ToLowerInvariant();
+        
+        /// <summary>
         /// Try to fetch an entry from the database
         /// </summary>
         /// <param name="id">ID of the entry</param>
@@ -63,7 +71,7 @@ namespace Databases
         {
             if (!_isLookupBuilt) BuildLookup();
             
-            return _lookup.TryGetValue(id.Trim().ToLower(), out entry);
+            return _lookup.TryGetValue(NormalizeKey(id), out entry);
         }
         
         /// <summary>
@@ -73,7 +81,7 @@ namespace Databases
         {
             if (!_isLookupBuilt) BuildLookup();
             
-            return _lookup[id.Trim().ToLower()];
+            return _lookup.TryGetValue(NormalizeKey(id), out var entry) ? entry : default;
         }
         
         #region Editor-Only Methods

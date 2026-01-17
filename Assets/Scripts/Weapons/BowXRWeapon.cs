@@ -22,6 +22,10 @@ namespace Weapons
 
         private void FireArrow()
         {
+            if (arrowPrefab == null || arrowSpawn == null) return;
+            
+            // TODO: Consider using object pooling for arrows to avoid Instantiate overhead
+            // This could be integrated with GamePoolManager using a ProjectileData ScriptableObject
             var arrow = Instantiate(arrowPrefab, arrowSpawn.position, arrowSpawn.rotation);
             // Apply force based on drawStrength
             _drawStrength = 0f;

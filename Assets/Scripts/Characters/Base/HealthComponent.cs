@@ -50,7 +50,6 @@ namespace Characters.Base
         public void TakeDamage(int damage)
         {
             _currentHealth -= damage;
-            Debug.Log($"Health: {_currentHealth} / {_maxHealth}");
             OnDamageTaken?.Invoke();
             if (_currentHealth <= 0)
                 OnDeath?.Invoke();
