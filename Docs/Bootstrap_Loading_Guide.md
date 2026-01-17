@@ -351,9 +351,12 @@ namespace Systems.Core
             }
             
             // Clean up memory
+            // Note: Resources.UnloadUnusedAssets() is async and handles most cleanup.
+            // We call it here while on the loading screen to reclaim memory from the 
+            // unloaded scene. Explicit GC.Collect() is omitted since Unity's asset
+            // unloading already triggers collection internally.
             yield return Resources.UnloadUnusedAssets();
-            GC.Collect();
-            yield return null;
+            yield return null; // Extra frame for cleanup to complete
             
             // Load new scene
             var operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -893,15 +896,19 @@ namespace Systems.Core
         private IEnumerator CleanupMemoryAsync()
         {
             // Spread cleanup across frames
+            // Resources.UnloadUnusedAssets() triggers garbage collection internally,
+            // so explicit GC.Collect() is typically unnecessary. However, during
+            // loading screens where frame timing is less critical, you may optionally
+            // call GC.Collect() if profiling shows significant memory pressure.
             yield return Resources.UnloadUnusedAssets();
             
-            // Give a frame for cleanup
+            // Give a frame for cleanup to complete
             yield return null;
             
-            // GC - this can cause a spike, but we're on loading screen
-            GC.Collect();
-            
-            yield return null;
+            // Optional: Explicit GC only if profiling shows it's needed
+            // Uncomment with caution - this can cause a frame spike
+            // System.GC.Collect();
+            // yield return null;
         }
         
         #endregion

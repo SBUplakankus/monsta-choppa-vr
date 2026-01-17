@@ -65,6 +65,9 @@ The most common source of leaks. If you subscribe to an event but don't unsubscr
 // ❌ MEMORY LEAK: Lambda event handlers
 button.clicked += () => DoSomething();
 // This anonymous function cannot be unsubscribed!
+// Why? Each lambda creates a NEW delegate instance. You cannot reference 
+// the same instance to remove it later. The event holds a reference to 
+// your lambda, which holds a reference to your class, preventing GC.
 
 // ❌ MEMORY LEAK: RegisterValueChangedCallback without cleanup
 slider.RegisterValueChangedCallback(OnValueChanged);

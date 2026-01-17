@@ -283,11 +283,18 @@ namespace Systems.Performance
         {
             #if UNITY_ANDROID && !UNITY_EDITOR
             // Check if device supports SpaceWarp
-            _isSpaceWarpSupported = Utils.IsSpaceWarpSupported();
+            // Note: The actual API depends on your Oculus SDK version:
+            // - Meta XR Core SDK: Use OVRManager.fixedFoveatedRenderingSupported as a proxy
+            //   or check OVRPlugin system properties
+            // - Oculus Integration: Check OVRManager settings
+            // 
+            // Example check (adjust based on your SDK):
+            // _isSpaceWarpSupported = OVRPlugin.GetSystemHeadsetType() >= OVRPlugin.SystemHeadset.Oculus_Quest_2;
+            _isSpaceWarpSupported = SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Vulkan;
             
             if (!_isSpaceWarpSupported)
             {
-                Debug.LogWarning("[SpaceWarp] Not supported on this device.");
+                Debug.LogWarning("[SpaceWarp] Not supported on this device or Vulkan not enabled.");
             }
             #else
             _isSpaceWarpSupported = false;
@@ -315,10 +322,22 @@ namespace Systems.Performance
             
             #if UNITY_ANDROID && !UNITY_EDITOR
             // Enable SpaceWarp
-            Utils.EnableSpaceWarp(true);
+            // Note: The actual API depends on your Oculus SDK version.
+            // 
+            // For Meta XR Core SDK (recommended):
+            // OVRManager.SetSpaceWarp(true);
+            // 
+            // For Oculus Integration SDK:
+            // OVRManager.instance.enableDynamicResolution = false; // Disable dynamic res first
+            // OVRPlugin.SetAppSpacePosition(...); // If using app-provided motion
+            // 
+            // The key settings are:
+            // 1. Enable SpaceWarp in OVRManager component in Inspector
+            // 2. Set target frame rate to half (36 for 72Hz, 45 for 90Hz)
             
             // Set application to render at half frame rate
-            OVRPlugin.SetHalfRate(true);
+            // This tells the runtime to expect half-rate rendering
+            Application.targetFrameRate = 36; // For 72Hz displays
             
             _isSpaceWarpEnabled = true;
             Debug.Log("[SpaceWarp] Enabled - rendering at 36 FPS");
