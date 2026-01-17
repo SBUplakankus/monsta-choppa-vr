@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Characters.Enemies;
 using Events;
 using Pooling;
@@ -21,6 +20,8 @@ namespace Systems
         private EnemyEventChannel _onEnemyDespawned;
 
         private readonly HashSet<EnemyController> _activeEnemies = new();
+        // Reusable list to avoid allocations during cleanup
+        private readonly List<EnemyController> _enemyCleanupBuffer = new();
         private GamePoolManager _gamePoolManager;
 
         #endregion
@@ -48,8 +49,11 @@ namespace Systems
         {
             if (_activeEnemies.Count == 0) return;
     
-            var enemies = _activeEnemies.ToList(); // Create a copy
-            foreach (var enemy in enemies)
+            // Use reusable buffer to avoid allocation
+            _enemyCleanupBuffer.Clear();
+            _enemyCleanupBuffer.AddRange(_activeEnemies);
+            
+            foreach (var enemy in _enemyCleanupBuffer)
             {
                 if (enemy != null)
                 {
@@ -60,6 +64,8 @@ namespace Systems
                     Debug.LogWarning("Encountered a null enemy during CleanupEnemies.");
                 }
             }
+            
+            _enemyCleanupBuffer.Clear();
         }
 
         #endregion
