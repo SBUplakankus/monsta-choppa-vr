@@ -6,11 +6,12 @@ namespace Characters.Enemies
     [RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
     public class EnemyMovement : MonoBehaviour
     {
+        private EnemyAnimator  _animator;
         private NavMeshAgent _navMeshAgent;
         private Rigidbody _rigidbody;
 
         // ReSharper disable Unity.PerformanceAnalysis
-        public void OnSpawn(float speed)
+        public void OnSpawn(float speed, EnemyAnimator animator)
         {
             if(!_navMeshAgent)
                 _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -20,6 +21,9 @@ namespace Characters.Enemies
 
             if(!_rigidbody)
                 _rigidbody = GetComponent<Rigidbody>();
+            
+            if(!_animator)
+                _animator = animator;
             
             _rigidbody.isKinematic = false;
         }

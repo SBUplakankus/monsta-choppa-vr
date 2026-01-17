@@ -81,8 +81,8 @@ namespace Characters.Enemies
             _enemyId.ID = enemyData.EnemyId;
             _enemyHealth.OnSpawn(enemyData.MaxHealth, HandleEnemyDeath);
             _enemyHealth.DeathVFX = enemyData.DeathVFX;
-            _enemyMovement.OnSpawn(enemyData.MoveSpeed);
             _enemyAnimator.OnSpawn();
+            _enemyMovement.OnSpawn(enemyData.MoveSpeed, _enemyAnimator);
             _onEnemySpawned.Raise(this);
         }
 

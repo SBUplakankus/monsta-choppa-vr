@@ -90,9 +90,9 @@ namespace Pooling
             _audioRoot = CreateChildRoot("WorldAudio");
         }
 
-        private Transform CreateChildRoot(string name)
+        private Transform CreateChildRoot(string rootName)
         {
-            var go = new GameObject(name);
+            var go = new GameObject(rootName);
             go.transform.SetParent(_poolRoot);
             return go.transform;
         }
