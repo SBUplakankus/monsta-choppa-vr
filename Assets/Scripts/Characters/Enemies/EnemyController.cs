@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Characters.Enemies
 {
     /// <summary>
-    /// Main controller for enemy entities, responsible for managing health, movement, and behavior.
+    /// Main controller for enemy entities, responsible for managing health, movement, attack, and behavior.
     /// Coordinates with the object pool manager, enemy events, and associated components.
     /// </summary>
     public class EnemyController : MonoBehaviour
@@ -20,6 +20,7 @@ namespace Characters.Enemies
         private EnemyMovement _enemyMovement;
         private EnemyAnimator _enemyAnimator;
         private EnemyHealth _enemyHealth;
+        private EnemyAttack _enemyAttack;
         private EnemyId _enemyId;
 
         [Header("Enemy Events")]
@@ -46,6 +47,16 @@ namespace Characters.Enemies
         /// </summary>
         public Action OnDeath { get; set; }
 
+        /// <summary>
+        /// Gets the enemy's animator component.
+        /// </summary>
+        public EnemyAnimator Animator => _enemyAnimator;
+
+        /// <summary>
+        /// Gets the enemy's movement component.
+        /// </summary>
+        public EnemyMovement Movement => _enemyMovement;
+
         #endregion
 
         #region Methods
@@ -67,6 +78,10 @@ namespace Characters.Enemies
             if (!this || !gameObject || !enemyData || !_gamePoolManager)
                 return;
 
+            // Stop all AI behavior
+            _enemyMovement?.SetDead();
+            _enemyAttack?.ResetAttack();
+
             _gamePoolManager?.ReturnEnemyPrefab(this);
             _gamePoolManager?.GetWorldAudioPrefab(enemyData?.DeathSfx, transform.position);
 
@@ -83,6 +98,7 @@ namespace Characters.Enemies
             _enemyHealth.DeathVFX = enemyData.DeathVFX;
             _enemyAnimator.OnSpawn();
             _enemyMovement.OnSpawn(enemyData.MoveSpeed, _enemyAnimator);
+            _enemyAttack?.InitAttack(enemyData.Weapon, _enemyAnimator, _enemyMovement);
             _onEnemySpawned.Raise(this);
         }
 
@@ -103,13 +119,36 @@ namespace Characters.Enemies
         {
             _enemyAnimator.OnDespawn();
             _enemyMovement.OnDespawn();
+            _enemyAttack?.ResetAttack();
             _enemyHealth.OnDespawn(HandleEnemyDeath);
             _onEnemyDespawned.Raise(this);
         }
 
+        /// <summary>
+        /// High priority update for critical AI logic (movement, combat decisions).
+        /// Called by EnemyManager each frame.
+        /// </summary>
         public void HighPriorityUpdate()
         {
+            // Update AI movement and state
+            _enemyMovement?.UpdateAI();
             
+            // Handle attack logic when in range
+            if (_enemyMovement != null && _enemyMovement.IsInAttackRange)
+            {
+                TryAttack();
+            }
+        }
+
+        /// <summary>
+        /// Attempts to perform an attack if conditions are met.
+        /// </summary>
+        private void TryAttack()
+        {
+            if (_enemyAttack != null && _enemyAttack.CanAttack)
+            {
+                _enemyAttack.TryAttack();
+            }
         }
 
         #endregion
@@ -145,6 +184,9 @@ namespace Characters.Enemies
             
             if (!GetComponent<EnemyAnimator>())
                 gameObject.AddComponent<EnemyAnimator>();
+            
+            if (!GetComponent<EnemyAttack>())
+                gameObject.AddComponent<EnemyAttack>();
 
             _onEnemySpawned ??= GameEvents.OnEnemySpawned;
             _onEnemyDespawned ??= GameEvents.OnEnemyDespawned;
@@ -159,6 +201,7 @@ namespace Characters.Enemies
             _enemyId = GetComponent<EnemyId>();
             _enemyMovement = GetComponent<EnemyMovement>();
             _enemyAnimator = GetComponent<EnemyAnimator>();
+            _enemyAttack = GetComponent<EnemyAttack>();
             _gamePoolManager = GamePoolManager.Instance;
         }
 

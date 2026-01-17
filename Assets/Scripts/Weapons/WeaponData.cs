@@ -2,10 +2,14 @@ using System.Collections.Generic;
 using Audio;
 using Databases;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Weapons
 {
+    /// <summary>
+    /// ScriptableObject containing all configuration data for a weapon.
+    /// Used by both player and enemy weapons for a unified, data-driven system.
+    /// Supports elemental modifiers and various weapon types.
+    /// </summary>
     [CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/Weapons/Data")]
     public class WeaponData : ScriptableObject
     {
@@ -17,11 +21,12 @@ namespace Weapons
         [SerializeField] private WeaponCategory category;
         [SerializeField] private WeaponRarity rarity;
         [SerializeField] private GameObject weaponPrefab;
+        [SerializeField] private Sprite icon;
 
         [Header("Base Stats")]
         [SerializeField] private int baseDamage = 10;
         [SerializeField] private float attackCooldown = 1f;
-        [SerializeField] private int range = 2;
+        [SerializeField] private float range = 2;
         [SerializeField] private int staminaCost = 10;
         [SerializeField] private DamageType damageType;
 
@@ -34,9 +39,16 @@ namespace Weapons
         [Header("Visual / Audio")] 
         [SerializeField] private WorldAudioData[] hitSfx;
         [SerializeField] private ParticleData hitVFX;
+        [SerializeField] private GameObject trailEffect;
+        [SerializeField] private Color trailColor = Color.white;
 
         [Header("Modifiers")]
         [SerializeField] private List<WeaponModifier> activeModifiers = new();
+
+        [Header("Economy")]
+        [SerializeField] private int purchasePrice = 100;
+        [SerializeField] private int sellPrice = 50;
+        [SerializeField] private bool isPurchasable = true;
 
         #endregion
 
@@ -44,9 +56,45 @@ namespace Weapons
 
         private WorldAudioData GetHitSfx()
         {
-            if(hitSfx == null) return null;
+            if (hitSfx == null || hitSfx.Length == 0) return null;
             var sfx = Random.Range(0, hitSfx.Length);
             return hitSfx[sfx];
+        }
+
+        /// <summary>
+        /// Gets the combined trail color from base and modifiers.
+        /// </summary>
+        public Color GetEffectiveTrailColor()
+        {
+            if (activeModifiers == null || activeModifiers.Count == 0)
+                return trailColor;
+
+            // Use the first modifier's trail color if available
+            foreach (var mod in activeModifiers)
+            {
+                if (mod != null && mod.trailColor != Color.white)
+                    return mod.trailColor;
+            }
+            return trailColor;
+        }
+
+        /// <summary>
+        /// Gets all damage types this weapon deals (base + modifiers).
+        /// </summary>
+        public List<DamageType> GetAllDamageTypes()
+        {
+            var types = new List<DamageType> { damageType };
+            
+            if (activeModifiers != null)
+            {
+                foreach (var mod in activeModifiers)
+                {
+                    if (mod != null && !types.Contains(mod.addedDamageType))
+                        types.Add(mod.addedDamageType);
+                }
+            }
+            
+            return types;
         }
 
         #endregion
@@ -59,11 +107,12 @@ namespace Weapons
         public WeaponCategory Category => category;
         public WeaponRarity Rarity => rarity;
         public GameObject WeaponPrefab => weaponPrefab;
+        public Sprite Icon => icon;
 
         // Base Stats
         public int BaseDamage => baseDamage;
         public float AttackCooldown => attackCooldown;
-        public int Range => range;
+        public float Range => range;
         public int StaminaCost => staminaCost;
         public DamageType DamageType => damageType;
 
@@ -76,20 +125,60 @@ namespace Weapons
         // Visual / Audio
         public WorldAudioData HitSfx => GetHitSfx();
         public ParticleData HitVFX => hitVFX;
+        public GameObject TrailEffect => trailEffect;
+        public Color TrailColor => trailColor;
 
         // Modifiers
         public IReadOnlyList<WeaponModifier> ActiveModifiers => activeModifiers;
 
-        // Calculated
+        // Economy
+        public int PurchasePrice => purchasePrice;
+        public int SellPrice => sellPrice;
+        public bool IsPurchasable => isPurchasable;
+
+        /// <summary>
+        /// Calculates total damage including all modifier bonuses.
+        /// </summary>
         public int TotalDamage
         {
             get
             {
                 int total = baseDamage;
-                foreach (var mod in activeModifiers)
-                    total += mod.damageBonus;
+                float multiplier = 1f;
+                
+                if (activeModifiers != null)
+                {
+                    foreach (var mod in activeModifiers)
+                    {
+                        if (mod == null) continue;
+                        total += mod.damageBonus;
+                        multiplier += mod.damageMultiplier;
+                    }
+                }
 
-                return total;
+                return Mathf.RoundToInt(total * multiplier);
+            }
+        }
+
+        /// <summary>
+        /// Calculates effective attack cooldown with modifier reductions.
+        /// </summary>
+        public float EffectiveCooldown
+        {
+            get
+            {
+                float cooldown = attackCooldown;
+                
+                if (activeModifiers != null)
+                {
+                    foreach (var mod in activeModifiers)
+                    {
+                        if (mod == null) continue;
+                        cooldown *= (1f - mod.cooldownReduction);
+                    }
+                }
+
+                return Mathf.Max(0.1f, cooldown);
             }
         }
 
@@ -101,6 +190,9 @@ namespace Weapons
             weaponID = weaponID?.Trim().ToLowerInvariant();
             baseDamage = Mathf.Max(0, baseDamage);
             staminaCost = Mathf.Max(0, staminaCost);
+            attackCooldown = Mathf.Max(0.1f, attackCooldown);
+            purchasePrice = Mathf.Max(0, purchasePrice);
+            sellPrice = Mathf.Max(0, sellPrice);
         }
 #endif
     }
