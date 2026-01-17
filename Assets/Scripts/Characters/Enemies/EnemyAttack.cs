@@ -8,6 +8,7 @@ namespace Characters.Enemies
     /// <summary>
     /// Handles enemy attack behavior including cooldowns, damage dealing, and player detection.
     /// Works with EnemyAnimator for attack animations.
+    /// VR-optimized with non-allocating physics queries.
     /// </summary>
     public class EnemyAttack : MonoBehaviour
     {
@@ -29,6 +30,10 @@ namespace Characters.Enemies
         private float _lastAttackTime;
         private bool _isAttacking;
         private bool _canDealDamage;
+
+        // VR Optimization: Pre-allocated array for physics queries
+        private const int MaxHitTargets = 4;
+        private readonly Collider[] _hitBuffer = new Collider[MaxHitTargets];
 
         #endregion
 
@@ -123,6 +128,7 @@ namespace Characters.Enemies
         /// <summary>
         /// Called by animation event during the attack animation's damage frame.
         /// Checks for player in attack range and applies damage.
+        /// VR-optimized: Uses non-allocating physics query.
         /// </summary>
         public void OnAttackHit()
         {
@@ -132,11 +138,13 @@ namespace Characters.Enemies
             _canDealDamage = false;
             
             var hitPoint = attackPoint ? attackPoint.position : transform.position + transform.forward;
-            var colliders = Physics.OverlapSphere(hitPoint, attackRadius, playerLayer);
             
-            foreach (var col in colliders)
+            // VR Optimization: Use non-allocating overlap sphere
+            var hitCount = Physics.OverlapSphereNonAlloc(hitPoint, attackRadius, _hitBuffer, playerLayer);
+            
+            for (int i = 0; i < hitCount; i++)
             {
-                if (col.TryGetComponent<IDamageable>(out var damageable))
+                if (_hitBuffer[i].TryGetComponent<IDamageable>(out var damageable))
                 {
                     damageable.TakeDamage(AttackDamage);
                 }

@@ -39,6 +39,10 @@ namespace Characters.Enemies
         private float _lastPathUpdateTime;
         private float _maxSpeed;
 
+        // VR Optimization: Cache player reference statically to avoid repeated FindGameObjectWithTag
+        private static Transform _cachedPlayerTransform;
+        private static bool _playerSearched;
+
         #endregion
 
         #region Properties
@@ -186,15 +190,37 @@ namespace Characters.Enemies
 
         /// <summary>
         /// Finds the player target in the scene.
+        /// VR Optimization: Caches player reference statically to avoid repeated FindGameObjectWithTag.
         /// </summary>
         private void FindTarget()
         {
-            // Find player by tag - standard Unity pattern for VR player rigs
-            var player = GameObject.FindGameObjectWithTag("Player");
-            if (player)
+            // Use cached player reference if available
+            if (_cachedPlayerTransform != null)
             {
-                _target = player.transform;
+                _target = _cachedPlayerTransform;
+                return;
             }
+
+            // Only search once per scene
+            if (!_playerSearched)
+            {
+                _playerSearched = true;
+                var player = GameObject.FindGameObjectWithTag("Player");
+                if (player)
+                {
+                    _cachedPlayerTransform = player.transform;
+                    _target = _cachedPlayerTransform;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clears the cached player reference. Call when loading a new scene.
+        /// </summary>
+        public static void ClearPlayerCache()
+        {
+            _cachedPlayerTransform = null;
+            _playerSearched = false;
         }
 
         /// <summary>

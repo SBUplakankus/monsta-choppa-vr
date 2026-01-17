@@ -5,7 +5,7 @@ namespace Weapons
     /// <summary>
     /// Shield weapon for blocking attacks.
     /// Can be used by both player and enemies.
-    /// VR-optimized with collision-based blocking.
+    /// VR-optimized with collision-based blocking and non-allocating physics.
     /// </summary>
     public class ShieldXRWeapon : XRWeaponBase
     {
@@ -21,6 +21,7 @@ namespace Weapons
         [SerializeField] private float bashDamage = 10f;
         [SerializeField] private float bashCooldown = 1f;
         [SerializeField] private float bashForce = 500f;
+        [SerializeField] private float bashRadius = 0.5f;
 
         private bool _isBlocking;
         private float _blockStartTime;
@@ -28,6 +29,10 @@ namespace Weapons
 
         // Cached
         private Transform _transform;
+        
+        // VR Optimization: Pre-allocated array for physics queries
+        private const int MaxBashTargets = 4;
+        private readonly Collider[] _bashBuffer = new Collider[MaxBashTargets];
 
         #endregion
 
@@ -121,6 +126,7 @@ namespace Weapons
 
         /// <summary>
         /// Performs a shield bash attack.
+        /// VR-optimized: Uses non-allocating physics query.
         /// </summary>
         public void ShieldBash()
         {
@@ -128,12 +134,14 @@ namespace Weapons
 
             _lastBashTime = Time.time;
 
-            // Detect enemies in front
+            // Detect enemies in front using non-allocating query
             var bashPoint = _transform.position + _transform.forward * 0.5f;
-            var colliders = Physics.OverlapSphere(bashPoint, 0.5f);
+            var hitCount = Physics.OverlapSphereNonAlloc(bashPoint, bashRadius, _bashBuffer);
 
-            foreach (var col in colliders)
+            for (int i = 0; i < hitCount; i++)
             {
+                var col = _bashBuffer[i];
+                
                 // Apply damage
                 if (col.TryGetComponent<Characters.Base.IDamageable>(out var damageable))
                 {

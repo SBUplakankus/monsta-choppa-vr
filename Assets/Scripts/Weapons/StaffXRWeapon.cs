@@ -11,6 +11,14 @@ namespace Weapons
     /// </summary>
     public class StaffXRWeapon : XRWeaponBase
     {
+        #region Constants
+
+        private const float MinChargeThreshold = 0.2f;
+        private const float MinDamageMultiplier = 0.5f;
+        private const float MaxDamageMultiplier = 1.0f;
+
+        #endregion
+
         #region Fields
 
         [Header("Spell Settings")]
@@ -18,6 +26,11 @@ namespace Weapons
         [SerializeField] private Transform castPoint;
         [SerializeField] private float castCooldown = 1f;
         [SerializeField] private float chargeTime = 0.5f;
+        
+        [Header("Damage Scaling")]
+        [SerializeField] private float minChargeForCast = MinChargeThreshold;
+        [SerializeField] private float minDamageMultiplier = MinDamageMultiplier;
+        [SerializeField] private float maxDamageMultiplier = MaxDamageMultiplier;
         
         [Header("Spell Pool")]
         [SerializeField] private int spellPoolSize = 10;
@@ -146,7 +159,7 @@ namespace Weapons
         {
             if (!_isCharging) return;
             
-            if (_chargeProgress > 0.2f) // Minimum charge threshold
+            if (_chargeProgress >= minChargeForCast)
             {
                 CastSpell();
             }
@@ -167,8 +180,8 @@ namespace Weapons
 
             spell.transform.SetParent(null);
             
-            // Damage multiplier based on charge
-            var damageMultiplier = 0.5f + (_chargeProgress * 0.5f);
+            // Damage multiplier based on charge (configurable via inspector)
+            var damageMultiplier = Mathf.Lerp(minDamageMultiplier, maxDamageMultiplier, _chargeProgress);
             spell.Launch(castPoint.position, castPoint.forward, damageMultiplier);
 
             TriggerHapticFeedback();

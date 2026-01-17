@@ -184,8 +184,8 @@ namespace Weapons
         /// </summary>
         private void HandleFlightCollision(Collision collision)
         {
-            // Check if we should stick
-            if (((1 << collision.gameObject.layer) & stickableLayers) != 0)
+            // Check if we should stick to this surface
+            if (IsLayerInMask(collision.gameObject.layer, stickableLayers))
             {
                 StickToSurface(collision);
             }
@@ -194,6 +194,17 @@ namespace Weapons
                 // Bounce off and start return
                 StartReturn();
             }
+        }
+
+        /// <summary>
+        /// Checks if a layer is included in a LayerMask.
+        /// </summary>
+        /// <param name="layer">The layer index to check.</param>
+        /// <param name="mask">The LayerMask to check against.</param>
+        /// <returns>True if the layer is in the mask.</returns>
+        private static bool IsLayerInMask(int layer, LayerMask mask)
+        {
+            return (mask.value & (1 << layer)) != 0;
         }
 
         /// <summary>
