@@ -108,6 +108,12 @@ namespace Characters.Enemies
         /// <value>The <see cref="ParticleData"/> for death effects.</value>
         public ParticleData DeathVFX => deathVFX;
         
+        /// <summary>
+        /// Gets the weapon data for this enemy's attacks.
+        /// </summary>
+        /// <value>The <see cref="WeaponData"/> for combat.</value>
+        public WeaponData Weapon => weapon;
+        
         #endregion
     }
 }
