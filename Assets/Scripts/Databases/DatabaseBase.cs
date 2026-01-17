@@ -75,13 +75,14 @@ namespace Databases
         }
         
         /// <summary>
-        /// Get entry without output parameter for cleaner syntax when you know it exists
+        /// Get entry without output parameter for cleaner syntax when you know it exists.
+        /// Throws KeyNotFoundException if entry is not found.
         /// </summary>
         public T Get(string id)
         {
             if (!_isLookupBuilt) BuildLookup();
             
-            return _lookup.TryGetValue(NormalizeKey(id), out var entry) ? entry : default;
+            return _lookup[NormalizeKey(id)];
         }
         
         #region Editor-Only Methods
