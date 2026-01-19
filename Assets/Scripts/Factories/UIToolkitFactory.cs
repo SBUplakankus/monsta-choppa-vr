@@ -330,6 +330,80 @@ namespace Factories
             return CreateElement<ScrollView>(classNames);
         }
         
+         /// <summary>
+        /// Creates an Image VisualElement from a sprite.
+        /// </summary>
+        /// <param name="sprite">The sprite to display inside the image.</param>
+        /// <param name="classNames">Optional CSS class names for styling the image.</param>
+        /// <returns>Configured Image element displaying the sprite.</returns>
+        public static Image CreateImage(Sprite sprite, params string[] classNames)
+        {
+            var image = CreateElement<Image>(classNames);
+
+            if (sprite != null)
+            {
+                image.sprite = sprite;
+            }
+
+            return image;
+        }
+
+        /// <summary>
+        /// Creates an Image VisualElement from a texture.
+        /// </summary>
+        /// <param name="texture">The texture to display inside the image.</param>
+        /// <param name="classNames">Optional CSS class names for styling the image.</param>
+        /// <returns>Configured Image element displaying the texture.</returns>
+        public static Image CreateImage(Texture2D texture, params string[] classNames)
+        {
+            var image = CreateElement<Image>(classNames);
+
+            if (texture != null)
+            {
+                image.style.backgroundImage = new StyleBackground(texture);
+            }
+
+            return image;
+        }
+
+        /// <summary>
+        /// Creates an Image VisualElement for icons with optional tooltip.
+        /// </summary>
+        /// <param name="sprite">The sprite to use as the image source.</param>
+        /// <param name="tooltip">Optional tooltip text to show on hover.</param>
+        /// <param name="classNames">CSS class names for styling.</param>
+        /// <returns>Configured Image element.</returns>
+        public static Image CreateIcon(Sprite sprite, string tooltip = null, params string[] classNames)
+        {
+            var image = CreateImage(sprite, classNames);
+
+            // Add tooltip if provided
+            if (!string.IsNullOrEmpty(tooltip))
+            {
+                image.tooltip = tooltip;
+            }
+
+            return image;
+        }
+
+        /// <summary>
+        /// Creates a VisualElement for displaying a background with a texture.
+        /// </summary>
+        /// <param name="texture">The background texture.</param>
+        /// <param name="classNames">CSS class names for styling the background.</param>
+        /// <returns>Configured VisualElement with a background image.</returns>
+        public static VisualElement CreateBackground(Texture2D texture, params string[] classNames)
+        {
+            var background = CreateElement<VisualElement>(classNames);
+
+            if (texture != null)
+            {
+                background.style.backgroundImage = new StyleBackground(texture);
+            }
+
+            return background;
+        }
+        
         #endregion
         
         #region Utility Methods

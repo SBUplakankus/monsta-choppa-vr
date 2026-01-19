@@ -98,8 +98,6 @@ namespace Systems
         /// <param name="updateable">Component to Remove</param>
         public void Unregister(IUpdateable updateable)
         {
-            // Try to remove from each list, stopping as soon as we find and remove it
-            // This avoids O(n) searches on all three lists when the item is in one
             if (_highPriorityUpdates.Remove(updateable)) return;
             if (_mediumPriorityUpdates.Remove(updateable)) return;
             _lowPriorityUpdates.Remove(updateable);
