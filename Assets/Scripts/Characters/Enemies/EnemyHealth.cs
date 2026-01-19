@@ -1,5 +1,6 @@
 using System;
 using Characters.Base;
+using Data.Core;
 using Databases;
 using Pooling;
 using UI.Game;

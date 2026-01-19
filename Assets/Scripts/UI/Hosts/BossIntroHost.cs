@@ -1,3 +1,4 @@
+using Data.Arena;
 using Systems.Arena;
 using UI.Views;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace UI.Hosts
             _bossIntroView = new BossIntroView(
                 uiDocument.rootVisualElement, 
                 styleSheet, 
-                arenaData.Boss);
+                arenaData.BossKey);
             
             Show();
         }

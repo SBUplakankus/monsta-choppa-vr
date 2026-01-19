@@ -1,3 +1,4 @@
+using Data.Weapons;
 using Weapons;
 using UnityEngine;
 

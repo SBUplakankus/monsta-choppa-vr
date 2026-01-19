@@ -31,8 +31,8 @@ namespace Systems
         [Header("Game Events")] 
         [SerializeField] private EnemyEventChannel onEnemySpawned;
         [SerializeField] private EnemyEventChannel onEnemyDespawned;
-        [SerializeField] private GameStateEventChannel onGameStateChanged;
-        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
+        [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
+        [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
         [SerializeField] private VoidEventChannel onPauseRequested;
         [SerializeField] private VoidEventChannel onGameOverSequenceRequested;
         [SerializeField] private VoidEventChannel onGameWonSequenceRequested;
@@ -72,8 +72,8 @@ namespace Systems
         {
             GameEvents.OnEnemySpawned = onEnemySpawned;
             GameEvents.OnEnemyDespawned = onEnemyDespawned;
-            GameEvents.OnGameStateChanged = onGameStateChanged;
-            GameEvents.OnGameStateChangeRequested = onGameStateChangeRequested;
+            GameEvents.OnArenaStateChanged = onArenaStateChanged;
+            GameEvents.OnArenaStateChangeRequested = onArenaStateChangeRequested;
             GameEvents.OnPauseRequested = onPauseRequested;
             GameEvents.OnGameOverSequenceRequested = onGameOverSequenceRequested;
             GameEvents.OnGameWonSequenceRequested = onGameWonSequenceRequested;

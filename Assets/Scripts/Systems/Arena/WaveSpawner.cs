@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
+using Data.Waves;
 using Pooling;
 using UnityEngine;
-using Waves;
 using Random = UnityEngine.Random;
 
 namespace Systems.Arena

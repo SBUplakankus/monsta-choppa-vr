@@ -16,7 +16,7 @@ namespace Attributes
     {
         #region Fields
 
-        [SerializeField, Range(0f, 2f)] private float value;
+        private float value;
 
         /// <inheritdoc cref="INotifyBindablePropertyChanged.propertyChanged"/>
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
@@ -36,9 +36,7 @@ namespace Attributes
             get => value;
             set
             {
-                var clamped = Mathf.Clamp01(value);
-                if (Mathf.Approximately(this.value, clamped)) return;
-                this.value = clamped;
+                this.value = value;
                 OnValueChanged?.Invoke(this.value);
                 Notify();
             }

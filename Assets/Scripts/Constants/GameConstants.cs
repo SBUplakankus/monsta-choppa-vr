@@ -91,5 +91,14 @@ namespace Constants
         public const float MinBowDrawStrength = 0.2f;
         
         #endregion
+
+        #region Save Keys
+
+        public const string MetaProgressionKey = "MetaProgression";
+        public const string AudioSettingsKey = "AudioSettings";
+        public const string VideoSettingsKey = "VideoSettings";
+        public const string LocalizationSettingsKey = "LocalizationSettings";
+
+        #endregion
     }
 }

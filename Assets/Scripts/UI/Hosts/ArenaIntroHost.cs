@@ -1,3 +1,4 @@
+using Data.Arena;
 using Systems.Arena;
 using UI.Views;
 using UnityEngine;
@@ -26,8 +27,8 @@ namespace UI.Hosts
             _arenaIntroView = new ArenaIntroView(
                 uiDocument.rootVisualElement,
                 styleSheet,
-                arenaData.Location,
-                arenaData.Difficulty);
+                arenaData.LocationKey,
+                arenaData.DifficultyKey);
         }
 
         protected override void Dispose()

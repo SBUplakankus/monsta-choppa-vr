@@ -1,20 +1,21 @@
 using System;
 using Constants;
+using Data.Arena;
+using Data.Waves;
 using Events;
 using UnityEngine;
 using Utilities;
-using Waves;
 
 namespace Systems.Arena
 {
     /// <summary>
     /// Manages wave flow, countdowns, and game progression for the arena combat system.
-    /// This component listens for <see cref="GameState"/> changes and coordinates
+    /// This component listens for <see cref="ArenaState"/> changes and coordinates
     /// spawning waves and bosses while managing intermissions and state transitions.
     /// </summary>
     /// <remarks>
     /// This class works closely with <see cref="WaveSpawner"/>, <see cref="CountdownTimer"/>,
-    /// and state-related event channels like <see cref="GameStateEventChannel"/>.
+    /// and state-related event channels like <see cref="ArenaStateEventChannel"/>.
     /// </remarks>
     [RequireComponent(typeof(WaveSpawner))]
     public class WaveManager : MonoBehaviour, IUpdateable
@@ -25,8 +26,8 @@ namespace Systems.Arena
         [SerializeField] private ArenaWavesData arenaWavesData;
 
         [Header("Event Channels")]
-        [SerializeField] private GameStateEventChannel onGameStateChanged;
-        [SerializeField] private GameStateEventChannel onGameStateChangeRequest;
+        [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
+        [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequest;
 
         private CountdownTimer _countdownTimer;
         private WaveSpawner _waveSpawner;
@@ -38,11 +39,11 @@ namespace Systems.Arena
 
         /// <summary>
         /// Handles the prelude before any wave starts.
-        /// Starts a countdown timer to transition into <see cref="GameState.WaveIntermission"/>.
+        /// Starts a countdown timer to transition into <see cref="ArenaState.WaveIntermission"/>.
         /// </summary>
         private void HandleWavePrelude()
         {
-            StartCountdown(GameConstants.PreludeDuration, GameState.WaveIntermission);
+            StartCountdown(GameConstants.PreludeDuration, ArenaState.WaveIntermission);
         }
         
         /// <summary>
@@ -56,26 +57,26 @@ namespace Systems.Arena
 
         /// <summary>
         /// Handles wave completion logic and transitions to the next game state.
-        /// If all waves are completed, transitions to <see cref="GameState.BossIntermission"/>.
-        /// Otherwise, transitions back to <see cref="GameState.WaveIntermission"/>.
+        /// If all waves are completed, transitions to <see cref="ArenaState.BossIntermission"/>.
+        /// Otherwise, transitions back to <see cref="ArenaState.WaveIntermission"/>.
         /// </summary>
         private void HandleWaveCompletion()
         {
             _currentWaveIndex++;
             var allWavesCompleted = _currentWaveIndex >= arenaWavesData.Waves.Count;
 
-            onGameStateChangeRequest?.Raise(allWavesCompleted
-                ? GameState.BossIntermission
-                : GameState.WaveIntermission);
+            onArenaStateChangeRequest?.Raise(allWavesCompleted
+                ? ArenaState.BossIntermission
+                : ArenaState.WaveIntermission);
         }
 
         /// <summary>
         /// Handles events triggered when all enemies in a wave are defeated.
-        /// Requests a transition to <see cref="GameState.WaveComplete"/>.
+        /// Requests a transition to <see cref="ArenaState.WaveComplete"/>.
         /// </summary>
         private void HandleAllWaveEnemiesDefeated()
         {
-            onGameStateChangeRequest?.Raise(GameState.WaveComplete);
+            onArenaStateChangeRequest?.Raise(ArenaState.WaveComplete);
         }
 
         /// <summary>
@@ -88,21 +89,21 @@ namespace Systems.Arena
         }
         
         /// <summary>
-        /// Handles the boss defeat and transitions to the <see cref="GameState.BossComplete"/> state.
+        /// Handles the boss defeat and transitions to the <see cref="ArenaState.BossComplete"/> state.
         /// </summary>
-        private void HandleBossDefeated() => onGameStateChangeRequest?.Raise(GameState.BossComplete);
+        private void HandleBossDefeated() => onArenaStateChangeRequest?.Raise(ArenaState.BossComplete);
         
         /// <summary>
-        /// Handles the boss completion and requests a transition to <see cref="GameState.GameWon"/>.
+        /// Handles the boss completion and requests a transition to <see cref="ArenaState.ArenaWon"/>.
         /// </summary>
-        private void HandleBossCompletion() => onGameStateChangeRequest?.Raise(GameState.GameWon);
+        private void HandleBossCompletion() => onArenaStateChangeRequest?.Raise(ArenaState.ArenaWon);
         
         /// <summary>
         /// Manages intermission periods between waves or before the boss fight.
         /// </summary>
         /// <param name="duration">The duration of the intermission in seconds.</param>
-        /// <param name="nextState">The <see cref="GameState"/> to transition to after the intermission.</param>
-        private void HandleIntermission(float duration, GameState nextState) => StartCountdown(duration, nextState);
+        /// <param name="nextState">The <see cref="ArenaState"/> to transition to after the intermission.</param>
+        private void HandleIntermission(float duration, ArenaState nextState) => StartCountdown(duration, nextState);
         
         /// <summary>
         /// Stops the countdown timer if it is currently running.
@@ -114,53 +115,53 @@ namespace Systems.Arena
         #region Event Handlers
 
         /// <summary>
-        /// Handles changes to the <see cref="GameState"/> and triggers appropriate wave or state logic.
+        /// Handles changes to the <see cref="ArenaState"/> and triggers appropriate wave or state logic.
         /// </summary>
-        /// <param name="gameState">The new game state to handle.</param>
-        private void HandleGameStateChange(GameState gameState)
+        /// <param name="arenaState">The new game state to handle.</param>
+        private void HandleGameStateChange(ArenaState arenaState)
         {
-            Debug.Log($"WaveManager: State changed to {gameState}.");
-            switch (gameState)
+            Debug.Log($"WaveManager: State changed to {arenaState}.");
+            switch (arenaState)
             {
-                case GameState.GamePrelude:
+                case ArenaState.ArenaPrelude:
                     HandleWavePrelude();
                     break;
-                case GameState.WaveIntermission:
-                    HandleIntermission(GameConstants.WaveIntermissionDuration, GameState.WaveActive);
+                case ArenaState.WaveIntermission:
+                    HandleIntermission(GameConstants.WaveIntermissionDuration, ArenaState.WaveActive);
                     break;
-                case GameState.WaveActive:
+                case ArenaState.WaveActive:
                     HandleWaveStart();
                     break;
-                case GameState.WaveComplete:
+                case ArenaState.WaveComplete:
                     HandleWaveCompletion();
                     break;
-                case GameState.BossIntermission:
-                    HandleIntermission(GameConstants.BossIntermissionDuration, GameState.BossActive);
+                case ArenaState.BossIntermission:
+                    HandleIntermission(GameConstants.BossIntermissionDuration, ArenaState.BossActive);
                     break;
-                case GameState.BossActive:
+                case ArenaState.BossActive:
                     HandleBossSpawn();
                     break;
-                case GameState.BossComplete:
+                case ArenaState.BossComplete:
                     HandleBossCompletion();
                     break;
-                case GameState.GameOver:
-                case GameState.GameWon:
-                case GameState.GamePaused:
+                case ArenaState.ArenaOver:
+                case ArenaState.ArenaWon:
+                case ArenaState.ArenaPaused:
                     StopTimer();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(gameState), gameState, null);
+                    throw new ArgumentOutOfRangeException(nameof(arenaState), arenaState, null);
             }
         }
         
         /// <summary>
-        /// Starts a countdown timer and triggers a transition to the specified <see cref="GameState"/>.
+        /// Starts a countdown timer and triggers a transition to the specified <see cref="ArenaState"/>.
         /// </summary>
         /// <param name="duration">Duration of the countdown in seconds.</param>
-        /// <param name="nextState">The <see cref="GameState"/> to transition to when the countdown ends.</param>
-        private void StartCountdown(float duration, GameState nextState)
+        /// <param name="nextState">The <see cref="ArenaState"/> to transition to when the countdown ends.</param>
+        private void StartCountdown(float duration, ArenaState nextState)
         {
-            _countdownTimer.Start(duration, () => onGameStateChangeRequest?.Raise(nextState));
+            _countdownTimer.Start(duration, () => onArenaStateChangeRequest?.Raise(nextState));
         }
         
         #endregion
@@ -181,7 +182,7 @@ namespace Systems.Arena
         /// </summary>
         private void OnEnable()
         {
-            onGameStateChanged?.Subscribe(HandleGameStateChange);
+            onArenaStateChanged?.Subscribe(HandleGameStateChange);
             _waveSpawner.OnWaveEnemiesDefeated += HandleAllWaveEnemiesDefeated;
             _waveSpawner.OnBossDefeated += HandleBossDefeated;
 
@@ -193,7 +194,7 @@ namespace Systems.Arena
         /// </summary>
         private void OnDisable()
         {
-            onGameStateChanged?.Unsubscribe(HandleGameStateChange);
+            onArenaStateChanged?.Unsubscribe(HandleGameStateChange);
             _waveSpawner.OnWaveEnemiesDefeated -= HandleAllWaveEnemiesDefeated;
             _waveSpawner.OnBossDefeated -= HandleBossDefeated;
 

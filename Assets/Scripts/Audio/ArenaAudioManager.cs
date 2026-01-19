@@ -1,5 +1,6 @@
 using System;
 using Constants;
+using Data.Arena;
 using Events;
 using Systems.Arena;
 using UnityEngine;
@@ -17,21 +18,21 @@ namespace Audio
         [SerializeField] private StringEventChannel onAmbienceRequested;
         [SerializeField] private StringEventChannel onMusicRequested;
         [SerializeField] private StringEventChannel onMusicFadeRequested;
-        [SerializeField] private GameStateEventChannel onGameStateChanged;
+        [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
         
         #endregion
         
         #region Class Methods
 
-        private void HandleGameStateChange(GameState newState)
+        private void HandleGameStateChange(ArenaState newState)
         {
             var key = newState switch
             {
-                GameState.WaveActive => arenaData.WaveMusicKey,
-                GameState.WaveIntermission or GameState.BossIntermission => arenaData.IntermissionMusicKey,
-                GameState.BossActive => arenaData.BossMusicKey,
-                GameState.GameWon => AudioKeys.GameWonKey,
-                GameState.GameOver => AudioKeys.GameOverKey,
+                ArenaState.WaveActive => arenaData.WaveMusicKey,
+                ArenaState.WaveIntermission or ArenaState.BossIntermission => arenaData.IntermissionMusicKey,
+                ArenaState.BossActive => arenaData.BossMusicKey,
+                ArenaState.ArenaWon => AudioKeys.GameWonKey,
+                ArenaState.ArenaOver => AudioKeys.GameOverKey,
                 _ => null
             };
             
@@ -49,8 +50,8 @@ namespace Audio
             onAmbienceRequested.Raise(arenaData.Ambience);
         }
 
-        private void OnEnable() => onGameStateChanged.Subscribe(HandleGameStateChange);
-        private void OnDisable() => onGameStateChanged.Unsubscribe(HandleGameStateChange);
+        private void OnEnable() => onArenaStateChanged.Subscribe(HandleGameStateChange);
+        private void OnDisable() => onArenaStateChanged.Unsubscribe(HandleGameStateChange);
 
         #endregion
     }

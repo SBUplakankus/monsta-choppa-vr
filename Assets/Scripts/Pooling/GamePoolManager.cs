@@ -3,6 +3,8 @@ using UnityEngine.Pool;
 using System.Collections.Generic;
 using Audio;
 using Characters.Enemies;
+using Data.Core;
+using Data.Weapons;
 using Databases;
 using Systems;
 using Visual_Effects;

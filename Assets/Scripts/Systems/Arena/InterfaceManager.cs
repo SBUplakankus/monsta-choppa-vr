@@ -19,7 +19,7 @@ namespace Systems.Arena
         [SerializeField] private BossIntroHost bossIntroHost;
         
         [Header("Events")]
-        [SerializeField] private GameStateEventChannel onGameStateChange;
+        [SerializeField] private ArenaStateEventChannel onArenaStateChange;
         
         private readonly CountdownTimer _countdownTimer = new();
 
@@ -47,36 +47,36 @@ namespace Systems.Arena
             _countdownTimer.Start(IntroDisplayDuration, bossIntroHost.HideBossIntro);
         }
 
-        private void HandleGameStateChange(GameState gameState)
+        private void HandleGameStateChange(ArenaState arenaState)
         {
-            switch (gameState)
+            switch (arenaState)
             {
-                case GameState.GamePrelude:
+                case ArenaState.ArenaPrelude:
                     ShowArenaIntro();
                     break;
-                case GameState.WaveActive:
+                case ArenaState.WaveActive:
                     break;
-                case GameState.WaveIntermission:
+                case ArenaState.WaveIntermission:
                     break;
-                case GameState.WaveComplete:
+                case ArenaState.WaveComplete:
                     break;
-                case GameState.BossIntermission:
+                case ArenaState.BossIntermission:
                     ShowBossIntro();
                     break;
-                case GameState.BossActive:
+                case ArenaState.BossActive:
                     break;
-                case GameState.BossComplete:
+                case ArenaState.BossComplete:
                     break;
-                case GameState.GameWon:
+                case ArenaState.ArenaWon:
                     FadeIn();
                     break;
-                case GameState.GameOver:
+                case ArenaState.ArenaOver:
                     FadeIn();
                     break;
-                case GameState.GamePaused:
+                case ArenaState.ArenaPaused:
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(gameState), gameState, null);
+                    throw new ArgumentOutOfRangeException(nameof(arenaState), arenaState, null);
             }
         }
         
@@ -86,7 +86,7 @@ namespace Systems.Arena
 
         private void OnEnable()
         {
-            onGameStateChange.Subscribe(HandleGameStateChange);
+            onArenaStateChange.Subscribe(HandleGameStateChange);
             GameUpdateManager.Instance.Register(this, UpdatePriority.High);
             fadeToBlackCanvasGroup.alpha = FadeInAlpha;
             FadeOut();
@@ -94,7 +94,7 @@ namespace Systems.Arena
 
         private void OnDisable()
         {
-            onGameStateChange.Unsubscribe(HandleGameStateChange);
+            onArenaStateChange.Unsubscribe(HandleGameStateChange);
             GameUpdateManager.Instance.Unregister(this);
             _countdownTimer.Stop();
         }

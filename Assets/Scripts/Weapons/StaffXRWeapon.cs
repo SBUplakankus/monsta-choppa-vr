@@ -1,4 +1,5 @@
 using Constants;
+using Data.Weapons;
 using UnityEngine;
 using Weapons.Projectiles;
 

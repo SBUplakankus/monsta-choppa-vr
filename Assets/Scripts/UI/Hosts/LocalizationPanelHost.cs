@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Events;
 using UI.Views;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -11,6 +12,8 @@ namespace UI.Hosts
     public class LocalizationPanelHost : MonoBehaviour
     {
         #region Fields
+
+        [SerializeField] private LocaleEventChannel onLocaleChangeRequested;
         
         private Locale[] _availableLocales;
         private Action _unbindAll;
@@ -55,12 +58,9 @@ namespace UI.Hosts
             };
         }
 
-        private static void SetLocale(Locale locale)
+        private void SetLocale(Locale locale)
         {
-            if (LocalizationSettings.SelectedLocale == locale)
-                return;
-
-            LocalizationSettings.SelectedLocale = locale;
+            onLocaleChangeRequested.Raise(locale);
         }
         
         #endregion

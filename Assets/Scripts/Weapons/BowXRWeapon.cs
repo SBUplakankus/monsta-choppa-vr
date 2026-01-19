@@ -1,4 +1,5 @@
 using Constants;
+using Data.Weapons;
 using UnityEngine;
 using Weapons.Projectiles;
 
@@ -30,8 +31,6 @@ namespace Weapons
         private bool _isDrawing;
         private Transform _drawHand;
         
-        // Object pool for arrows - VR performance optimization
-        private Projectile[] _arrowPool;
         private int _currentArrowIndex;
 
         // Cached references
@@ -64,7 +63,6 @@ namespace Weapons
         {
             base.Awake();
             _transform = transform;
-            InitializeArrowPool();
         }
 
         private void Update()
@@ -78,61 +76,7 @@ namespace Weapons
         }
 
         #endregion
-
-        #region Arrow Pool
-
-        /// <summary>
-        /// Initializes the arrow object pool for VR performance.
-        /// Pre-instantiates arrows to avoid runtime allocations.
-        /// </summary>
-        private void InitializeArrowPool()
-        {
-            if (arrowData == null || arrowData.Prefab == null) return;
-
-            _arrowPool = new Projectile[arrowPoolSize];
-            
-            for (int i = 0; i < arrowPoolSize; i++)
-            {
-                var arrowGO = Instantiate(arrowData.Prefab, _transform);
-                arrowGO.SetActive(false);
-                
-                var projectile = arrowGO.GetComponent<Projectile>();
-                if (projectile == null)
-                    projectile = arrowGO.AddComponent<Projectile>();
-                
-                projectile.Initialize(arrowData);
-                _arrowPool[i] = projectile;
-            }
-        }
-
-        /// <summary>
-        /// Gets the next available arrow from the pool.
-        /// </summary>
-        /// <returns>An arrow projectile or null if pool is exhausted.</returns>
-        private Projectile GetArrowFromPool()
-        {
-            if (_arrowPool == null || _arrowPool.Length == 0) return null;
-
-            // Find an inactive arrow
-            for (int i = 0; i < arrowPoolSize; i++)
-            {
-                _currentArrowIndex = (_currentArrowIndex + 1) % arrowPoolSize;
-                var arrow = _arrowPool[_currentArrowIndex];
-                
-                if (arrow != null && !arrow.gameObject.activeInHierarchy)
-                {
-                    return arrow;
-                }
-            }
-
-            // All arrows in use - reuse oldest (forced recycle for VR performance)
-            _currentArrowIndex = (_currentArrowIndex + 1) % arrowPoolSize;
-            var oldestArrow = _arrowPool[_currentArrowIndex];
-            oldestArrow?.OnDespawn();
-            return oldestArrow;
-        }
-
-        #endregion
+        
 
         #region Draw Mechanics
 
@@ -192,7 +136,7 @@ namespace Weapons
         {
             if (arrowSpawnPoint == null) return;
 
-            var arrow = GetArrowFromPool();
+            var arrow = new Projectile();
             if (arrow == null) return;
 
             // Unparent arrow from bow
