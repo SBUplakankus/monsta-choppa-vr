@@ -1,16 +1,11 @@
-using System.Linq;
 using Constants;
 using Databases;
 using Events;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using UnityEngine.XR;
-using UnityEngine.XR.Management;
-using UnityEngine.XR.OpenXR.Features.Meta;
 
-namespace Systems
+namespace Systems.Core
 {
     // Add execution order to ensure this runs before other scripts
     [DefaultExecutionOrder(-100)]
@@ -81,33 +76,42 @@ namespace Systems
 
         private void SetDatabases()
         {
-            if (audioDatabase != null)
+            if (audioDatabase)
                 GameDatabases.AudioClipDatabase = audioDatabase;
             else
                 Debug.LogError($"{nameof(audioDatabase)} not assigned in {name}", this);
             
-            if (worldAudioDatabase != null)
+            if (worldAudioDatabase)
                 GameDatabases.WorldAudioDatabase = worldAudioDatabase;
             else 
                 Debug.LogError($"{nameof(worldAudioDatabase)} not assigned in {name}", this);
                 
-            if (weaponDatabase != null)
+            if (weaponDatabase)
                 GameDatabases.WeaponDatabase = weaponDatabase;
             else
                 Debug.LogError($"{nameof(weaponDatabase)} not assigned in {name}", this);
                 
-            if (enemyDatabase != null)
+            if (enemyDatabase)
                 GameDatabases.EnemyDatabase = enemyDatabase;
             else
                 Debug.LogError($"{nameof(enemyDatabase)} not assigned in {name}", this);
             
-            if (particleDatabase != null)
+            if (particleDatabase)
                 GameDatabases.ParticleDatabase = particleDatabase;
             else
                 Debug.LogError($"{nameof(particleDatabase)} not assigned in {name}", this);
         }
 
-        
+        public void Initialize()
+        {
+            SetPlayerEvents();
+            SetAudioEvents();
+            SetGameEvents();
+            SetDatabases();
+            
+            _isInitialized = true;
+            _isOwner = true;
+        }
         
         #endregion
         
@@ -121,15 +125,7 @@ namespace Systems
                 return;
             }
             
-            SetPlayerEvents();
-            SetAudioEvents();
-            SetGameEvents();
-            SetDatabases();
-            
             DontDestroyOnLoad(gameObject);
-            
-            _isInitialized = true;
-            _isOwner = true;
         }
 
         

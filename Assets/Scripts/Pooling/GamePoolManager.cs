@@ -67,14 +67,10 @@ namespace Pooling
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-
-            CreatePoolRoots();
-
             _vfxRouter = GetComponent<VFXPriorityRouter>() ?? gameObject.AddComponent<VFXPriorityRouter>();
             _audioRouter = GetComponent<AudioPriorityRouter>() ?? gameObject.AddComponent<AudioPriorityRouter>();
-
-            PrewarmPools();
+            
+            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
@@ -271,6 +267,12 @@ namespace Pooling
         #endregion
 
         #region Public API
+
+        public void Initialise()
+        {
+            CreatePoolRoots();
+            PrewarmPools();
+        }
 
         public GameObject GetEnemyPrefab(EnemyData data, Vector3 position, Quaternion rotation)
         {

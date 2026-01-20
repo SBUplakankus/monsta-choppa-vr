@@ -23,6 +23,18 @@ namespace Saves
         #endregion
         
         #region Methods
+
+        private void TryLoadSettings()
+        {
+            if(SaveFile.HasData(GameConstants.AudioSettingsKey))
+                audioSettings = SaveFile.GetData<AudioSettingsConfig>(GameConstants.AudioSettingsKey);
+            
+            if (SaveFile.HasData(GameConstants.VideoSettingsKey))
+                videoSettings = SaveFile.GetData<VideoSettingsConfig>(GameConstants.VideoSettingsKey);
+            
+            if (SaveFile.HasData(GameConstants.LocalizationSettingsKey))
+                languageSettings = SaveFile.GetData<LanguageSettingsConfig>(GameConstants.LocalizationSettingsKey);
+        }
         
         protected override void HandleSaveRequested()
         {
@@ -40,21 +52,18 @@ namespace Saves
 
         protected override void HandleLoadRequested()
         {
-            if(SaveFile.HasData(GameConstants.AudioSettingsKey))
-                audioSettings = SaveFile.GetData<AudioSettingsConfig>(GameConstants.AudioSettingsKey);
-            
-            if (SaveFile.HasData(GameConstants.VideoSettingsKey))
-                videoSettings = SaveFile.GetData<VideoSettingsConfig>(GameConstants.VideoSettingsKey);
-            
-            if (SaveFile.HasData(GameConstants.LocalizationSettingsKey))
-                languageSettings = SaveFile.GetData<LanguageSettingsConfig>(GameConstants.LocalizationSettingsKey);
-            
+            TryLoadSettings();
             HandleLoadCompleted();
         }
 
         protected override void HandleLoadCompleted()
         {
             onSettingsLoadCompleted.Raise();
+        }
+
+        public void InitSettings()
+        {
+            TryLoadSettings();
         }
 
         private void OnEnable()

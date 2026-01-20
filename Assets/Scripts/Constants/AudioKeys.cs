@@ -1,6 +1,6 @@
 namespace Constants
 {
-    public class AudioKeys
+    public static class AudioKeys
     {
         public const string MixerMaster = "Master";
         public const string MixerMusic = "Music";

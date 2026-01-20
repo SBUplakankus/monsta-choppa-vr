@@ -1,9 +1,23 @@
 namespace Constants
 {
-    public class LocalizationKeys
+    public static class LocalizationKeys
     {
         public const string MainTable = "MainGame";
         public const string GameTitle = "game-title";
+        
+        public const string Initializing = "initializing";
+        public const string InitializingCore =  "initializing-core";
+        public const string CoreReady = "core-ready";
+        public const string LoadingSettings = "loading-settings";
+        public const string LoadingSaves = "loading-saves";
+        public const string UserDataLoaded = "user-data-loaded";
+        public const string PreloadingAssets = "preloading-assets";
+        public const string AssetsLoaded = "assets-loaded";
+        public const string LoadingGame = "loading-game";
+        public const string LoadingComplete = "loading-complete";
+        
+        public const string LoadingScene = "loading-scene";
+        public const string LoadingSceneComplete = "loading-scene-complete";
 
         public const string Play = "play";
         public const string StartGame = "start-game";

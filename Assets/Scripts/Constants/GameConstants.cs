@@ -30,55 +30,41 @@ namespace Constants
 
         #region Animation Keys
 
-        // Weapon Type Keys (Synty Locomotion Pack - Base Layer)
         public const int MageWeaponKey = 0;
         public const int TwoHandAxeKey = 1;
         public const int TwoHandSwordKey = 2;
         public const int SwordShieldKey = 3;
         public const int BowKey = 4;
         
-        // Attack Animation Counts (Upper Body Layer - Mixamo)
         public const int LightAttackCount = 3;
         public const int HeavyAttackCount = 2;
 
-        // Attack Triggers (Upper Body Layer - Mixamo)
         public const string LightAttackTrigger = "LightAttack";
         public const string LightAttackIndex = "LightAttackIndex";
         public const string HeavyAttackTrigger = "HeavyAttack";
         public const string HeavyAttackIndex = "HeavyAttackIndex";
         
-        // Hit Reaction Triggers (Upper Body Layer - Mixamo)
         public const string HitLeftTrigger = "HitLeft";
         public const string HitRightTrigger = "HitRight";
         public const string HitFrontTrigger = "HitFront";
         
-        // Movement Parameters (Synty Locomotion Blend Tree - Base Layer)
         public const string SpeedParam = "Speed";
         public const string IsMovingParam = "IsMoving";
         public const string IsAttackingParam = "IsAttacking";
         
-        // Weapon Type Parameter (for animation layer switching)
         public const string WeaponTypeParam = "WeaponType";
 
         #endregion
         
         #region Combat Settings
         
-        // Default attack range for melee enemies
         public const float DefaultMeleeAttackRange = 2.0f;
-        
-        // Default attack cooldown
         public const float DefaultAttackCooldown = 1.5f;
-        
-        // Velocity threshold for melee weapon damage (m/s)
         public const float MinSwingVelocity = 1.0f;
         public const float MaxSwingVelocity = 5.0f;
         
-        // Damage multiplier range based on velocity
         public const float MinVelocityDamageMultiplier = 0.5f;
         public const float MaxVelocityDamageMultiplier = 2.0f;
-        
-        // Invincibility frames duration after taking damage (seconds)
         public const float InvincibilityDuration = 0.2f;
         
         #endregion
