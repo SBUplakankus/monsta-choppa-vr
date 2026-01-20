@@ -1,82 +1,241 @@
-# 💾 Player Save System: High-Level Overview
+# Save Data System
 
-## 🎯 **System Purpose**
-This is an **event-driven player attribute system** that uses **Stylish Esper's ESave** JSON-based save system to persist player progress. It manages core player stats (Gold, Experience, Level) by reacting to game events, updating ScriptableObject attributes, and syncing everything with persistent save files.
+Player persistence using Esper.ESave for JSON-based save files with event-driven architecture.
 
-## 🏗️ **Architecture & Data Flow**
+---
 
-```mermaid
-flowchart TD
-    A[Game Events<br>e.g., Enemy Killed, Item Sold] -->|Trigger| B[Event Channels]
-    
-    B --> C[PlayerAttributes MonoBehaviour]
-    C -->|Updates| D[ScriptableObject<br>Attributes]
-    
-    D -->|Contain values| C
-    C -->|Save Trigger| E[ESave System<br>SaveFile]
-    E -->|Persists to| F[JSON Save File<br>on disk]
-    
-    F -->|Game Start| E
-    E -->|Load Trigger| C
-    C -->|Initializes| D
+## Architecture
+
+```
+SaveFileManagerBase (abstract)
+    │
+    ├── PlayerSaveFileManager (progression data)
+    │
+    └── SettingsSaveFileManager (user preferences)
 ```
 
-## 🧩 **Core Components**
+---
 
-### 1. **PlayerAttributes MonoBehaviour**
-The **central manager** that coordinates everything:
-- **Listens** to game events (gold earned, experience gained, level up, save request)
-- **Updates** ScriptableObject attributes when events occur
-- **Saves/Loads** data to/from the ESave system
-- **Provides** read-only properties for other systems to access
+## SaveFileManagerBase
 
-### 2. **ScriptableObject Attributes (`IntAttribute`)**
-Reusable data containers that hold:
-- Current value
-- Base value
-- Min/max constraints
-- Built-in modification methods (`SetValue()`, `ModifyValue()`)
+Abstract base class for save file managers.
 
-### 3. **Event Channels**
-Decoupled communication system:
-- `VoidEventChannel`: Simple triggers (e.g., "save game now")
-- `IntEventChannel`: Value changes (e.g., "add 50 gold")
+```csharp
+public abstract class SaveFileManagerBase : MonoBehaviour
+{
+    protected SaveFile saveFile;
+    
+    protected virtual void Awake()
+    {
+        saveFile = GetComponent<SaveFile>();
+    }
+    
+    protected abstract void HandleSaveRequested();
+    protected abstract void HandleSaveCompleted();
+    protected abstract void HandleLoadRequested();
+    protected abstract void HandleLoadCompleted();
+}
+```
 
-### 4. **ESave System Integration**
-- **`SaveFile`**: ESave's core class for JSON read/write operations
-- **`SaveFileSetup`**: Component that initializes the save file with profile/name
-- Uses `GameConstants` for save key consistency
+---
 
-## 🔄 **Operational Workflow**
+## PlayerSaveFileManager
 
-### **📥 Loading (Game Start)**
-1. `Awake()`: Gets `SaveFile` from `SaveFileSetup`
-2. Calls `SetDefaultValues()` for initial fallback
-3. Calls `LoadAttributes()` to pull saved data from JSON
-4. Subscribes to events in `OnEnable()`
+Manages player progression persistence.
 
-### **🔄 Runtime Updates**
-1. Game events fire (e.g., `onGoldChanged` with value `+50`)
-2. `PlayerAttributes` event handlers receive the events
-3. Corresponding attribute is updated via `ModifyValue()`
-4. Value changes are immediately available via properties
+```csharp
+public class PlayerSaveFileManager : SaveFileManagerBase
+{
+    [SerializeField] private MetaProgressionData metaProgression;
+    [SerializeField] private VoidEventChannel onSaveRequested;
+    [SerializeField] private VoidEventChannel onSaveCompleted;
+    [SerializeField] private VoidEventChannel onLoadRequested;
+    [SerializeField] private VoidEventChannel onLoadCompleted;
+    
+    private void OnEnable()
+    {
+        onSaveRequested.Subscribe(HandleSaveRequested);
+        onLoadRequested.Subscribe(HandleLoadRequested);
+    }
+    
+    private void OnDisable()
+    {
+        onSaveRequested.Unsubscribe(HandleSaveRequested);
+        onLoadRequested.Unsubscribe(HandleLoadRequested);
+    }
+    
+    protected override void HandleSaveRequested()
+    {
+        saveFile.AddOrUpdateData(GameConstants.MetaProgressionKey, metaProgression);
+        saveFile.Save();
+    }
+    
+    protected override void HandleLoadRequested()
+    {
+        if (saveFile.HasData(GameConstants.MetaProgressionKey))
+        {
+            var loaded = saveFile.GetData<MetaProgressionData>(GameConstants.MetaProgressionKey);
+            // Apply loaded data to metaProgression
+        }
+        onLoadCompleted.Raise();
+    }
+}
+```
 
-### **💾 Saving Progress**
-1. `onGameSaved` event is triggered (menu, auto-save, checkpoint)
-2. `HandleGameSave()` calls `SaveAttributes()`
-3. Each attribute's current value is written to `SaveFile` using `GameConstants` keys
-4. ESave persists data to JSON file on disk
+---
 
-## 🗝️ **Key Design Features**
+## MetaProgressionData
 
-### **✅ Advantages**
-- **Event-Driven**: Completely decoupled - any system can trigger stat changes
-- **Data-Centric**: ScriptableObjects make attributes reusable and inspector-friendly
-- **Save-Agnostic**: Core logic doesn't depend on ESave specifics
-- **Safe Defaults**: Always has valid values, even with missing save files
+ScriptableObject storing player progression.
 
-### **⚠️ Considerations**
-- **Attribute Synchronization**: ScriptableObjects maintain values between scenes; ensure proper resetting when needed
-- **Event Management**: Careful subscription/unsubscription prevents memory leaks
-- **Save Timing**: Consider when to trigger saves to avoid performance hits
-- **Error Handling**: Current error handling for missing `SaveFileSetup` is basic
+```csharp
+[CreateAssetMenu(menuName = "Scriptable Objects/Progression/Meta Progression")]
+public class MetaProgressionData : ScriptableObject
+{
+    [Header("Currency")]
+    public int gold;
+    public int gems;
+    
+    [Header("Experience")]
+    public int experience;
+    public int level;
+    
+    [Header("Multipliers")]
+    public float expGainMultiplier = 1f;
+    public float goldGainMultiplier = 1f;
+    public float healthMultiplier = 1f;
+    public float armorMultiplier = 1f;
+    
+    [Header("Unlocks")]
+    public List<string> unlockedWeapons;
+    public List<string> unlockedArenas;
+    public List<string> purchasedUpgrades;
+}
+```
+
+---
+
+## Save Keys
+
+All save keys defined in GameConstants.
+
+```csharp
+public static class GameConstants
+{
+    public const string MetaProgressionKey = "MetaProgression";
+    public const string PlayerGoldKey = "PlayerGold";
+    public const string PlayerExperienceKey = "PlayerExperience";
+    public const string PlayerLevelKey = "PlayerLevel";
+    public const string SettingsKey = "Settings";
+}
+```
+
+---
+
+## Save Triggers
+
+### Manual Save
+
+```csharp
+// Trigger save via event channel
+GameEvents.OnSaveRequested.Raise();
+```
+
+### Automatic Save Points
+
+Save occurs on:
+- Arena completion (victory or defeat)
+- Returning to hub
+- Purchasing upgrades
+- Application pause (headset removed)
+
+```csharp
+private void OnApplicationPause(bool paused)
+{
+    if (paused)
+    {
+        GameEvents.OnSaveRequested.Raise();
+    }
+}
+```
+
+---
+
+## Settings Save
+
+SettingsSaveFileManager handles user preferences separately from progression.
+
+```csharp
+public class SettingsSaveFileManager : SaveFileManagerBase
+{
+    [SerializeField] private FloatAttribute masterVolume;
+    [SerializeField] private FloatAttribute musicVolume;
+    [SerializeField] private FloatAttribute sfxVolume;
+    
+    protected override void HandleSaveRequested()
+    {
+        var settings = new SettingsData
+        {
+            masterVolume = masterVolume.Value,
+            musicVolume = musicVolume.Value,
+            sfxVolume = sfxVolume.Value
+        };
+        
+        saveFile.AddOrUpdateData(GameConstants.SettingsKey, settings);
+        saveFile.Save();
+    }
+}
+```
+
+---
+
+## ESave Integration
+
+The project uses Esper.ESave for serialization.
+
+**SaveFile API:**
+
+| Method | Purpose |
+|--------|---------|
+| `AddOrUpdateData(key, value)` | Store data by key |
+| `GetData<T>(key)` | Retrieve typed data |
+| `HasData(key)` | Check if key exists |
+| `Save()` | Write to disk |
+| `Load()` | Read from disk |
+| `Delete(key)` | Remove specific key |
+| `DeleteAll()` | Clear all data |
+
+**File Location:**
+- Windows: `%USERPROFILE%/AppData/LocalLow/[Company]/[Product]/`
+- Android: `/data/data/[package]/files/`
+
+---
+
+## Data Flow
+
+```
+1. Game event occurs (enemy killed, gold collected)
+2. PlayerAttributes updates IntAttribute values
+3. Event channels notify subscribers
+4. Save trigger fires (manual or automatic)
+5. SaveFileManager serializes data
+6. ESave writes to disk
+
+Load:
+1. Game starts or load requested
+2. SaveFileManager reads from ESave
+3. Data applied to ScriptableObjects/Attributes
+4. Event channels notify UI to refresh
+```
+
+---
+
+## Best Practices
+
+| Practice | Reason |
+|----------|--------|
+| Use constants for keys | Prevents typos, enables refactoring |
+| Validate loaded data | Handle missing or corrupted saves |
+| Save on significant events | Don't lose player progress |
+| Separate settings from progression | Settings apply globally, progression per-save |
+| Handle save failures gracefully | Disk full, permissions, etc. |

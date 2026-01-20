@@ -1,160 +1,202 @@
-# 🗃️ Data & Database System
+# Database System
 
-This document describes the **ScriptableObject-based database system** used to store and retrieve game data such as audio clips, fonts, and sprites in a centralized, data-driven way.
-
-The system is designed to be:
-- 📦 Data-only (no gameplay logic)
-- 🔍 Fast to query at runtime
-- 🔌 Globally accessible without scene dependencies
-- 🧩 Easily extendable for new data types
+Generic ScriptableObject-based database pattern for storing and retrieving game data with O(1) lookups.
 
 ---
 
-## 🎯 Purpose
+## Overview
 
-The database system provides a **generic, reusable base** for storing collections of ScriptableObject data and retrieving entries by a unique string ID.
+Databases provide centralized access to game content (weapons, enemies, audio, particles) without hard-coded references or scene dependencies.
 
-It avoids:
-- Hard-coded references
-- Scene-level dependencies
-- Large switch statements or enums
-
-And supports:
-- Centralized content management
-- Inspector-friendly workflows
-- Clean separation of data and behavior
-
----
-
-## 🧠 Core Concepts
-
-### 📄 Data Entries
-Individual pieces of data (audio clips, fonts, sprites, etc.) stored as ScriptableObjects and identified by a unique `id`.
-
-### 🗂️ Databases
-ScriptableObjects that store a list of data entries and build a runtime lookup dictionary for fast access.
-
-### 🔑 String-Based Keys
-All database entries are retrieved using string IDs, allowing flexible, data-driven requests from gameplay systems.
-
-### 🌍 Static Access
-Databases are assigned once at startup and accessed globally via static references.
+```
+GameDatabases (static access)
+    │
+    ├── WeaponDatabase  →  WeaponData[]
+    ├── EnemyDatabase   →  EnemyData[]
+    ├── AudioClipDatabase → AudioClipData[]
+    ├── WorldAudioDatabase → WorldAudioData[]
+    └── ParticleDatabase → ParticleData[]
+```
 
 ---
 
-## 🧱 System Components
+## DatabaseBase<T>
 
-### 🧩 `DatabaseBase<T>`
 Generic base class for all databases.
 
-**Responsibilities:**
-- Stores a list of entries (`List<T>`)
-- Builds a runtime lookup dictionary (`Dictionary<string, T>`)
-- Provides safe access via `TryGet(string id)`
-
-**Key Behavior:**
-- Lookup is built automatically on `OnEnable`
-- Lookup is lazily rebuilt if accessed before initialization
-- Derived classes define how keys are generated
-
----
-
-### 📄 Data ScriptableObjects
-
-| Data Type | Description | Key Field |
-|-----------|-------------|-----------|
-| `AudioClipData` | Audio clips and playback settings | `id` |
-| `TMPFontData` | TextMeshPro font assets | `id` |
-| `SpriteData` | Sprite assets | `id` |
-
-Each data object contains:
-- 🆔 A unique `id`
-- 🎨 A reference to the asset
-- ⚙️ Optional configuration data (e.g., volume, loop)
-
----
-
-### 🗂️ Database Implementations
-
-Each database inherits from `DatabaseBase<T>` and defines its lookup key.
-
-**Example: Audio Clip Database**
-
 ```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Databases/AudioClip Database")]
-public class AudioClipDatabase : DatabaseBase<AudioClipData>
+public abstract class DatabaseBase<T> : ScriptableObject where T : ScriptableObject
 {
-    protected override string GetKey(AudioClipData entry) => entry.id;
-}
-```
-
----
-
-## 🔁 Data Flow
-
-Gameplay systems request data using a string ID. The request flows through the static database reference, which performs a dictionary lookup and returns the associated ScriptableObject.
-
-```mermaid
-flowchart LR
-    A[Gameplay System<br/>e.g., Audio Manager]
-    B[String ID Request<br/>e.g., 'Explosion']
-    C[Static Database Reference<br/>GameDatabases.AudioClipDatabase]
-    D[Runtime Lookup Dictionary]
-    E[Data ScriptableObject<br/>AudioClipData]
+    [SerializeField] private T[] entries;
+    private Dictionary<string, T> _lookup;
     
-    A -- Requests by ID --> B
-    B -- Forwards to --> C
-    C -- Searches --> D
-    D -- Returns entry --> E
-    E -- Returns to system --> A
-```
-
-**Example flow:**
-1. A system requests the ID `"Explosion"`
-2. The `AudioClipDatabase` receives the request
-3. The lookup dictionary resolves the ID
-4. The `AudioClipData` is returned
-5. The system uses the clip and playback settings
-
----
-
-## 🚀 Initialization & Bootstrap
-
-Databases are assigned during application startup using the `GameBootstrap` MonoBehaviour.
-
-**Responsibilities:**
-- Assign database ScriptableObjects to static accessors
-- Ensure databases are available before gameplay systems run
-- Avoid scene searches or `Resources` loading
-
-### 🧩 Static Database Access
-
-The `GameDatabases` class holds static references to all databases used by the project, allowing global access without coupling systems to scene objects. Databases are assigned exactly once during startup and treated as read-only thereafter.
-
----
-
-## 🧪 Example Usage
-
-A gameplay system retrieves data by string ID:
-
-```csharp
-var data = GameDatabases.AudioClipDatabase.TryGet("Explosion");
-
-if (data != null)
-{
-    audioSource.clip = data.clip;
-    audioSource.volume = data.volume;
-    audioSource.loop = data.loop;
+    public bool TryGet(string id, out T entry)
+    {
+        BuildLookup();
+        var key = id?.ToLower().Trim() ?? string.Empty;
+        return _lookup.TryGetValue(key, out entry);
+    }
+    
+    public T Get(string id)
+    {
+        return TryGet(id, out var entry) ? entry : null;
+    }
+    
+    protected abstract string GetKey(T entry);
+    
+    private void BuildLookup()
+    {
+        if (_lookup != null) return;
+        
+        _lookup = new Dictionary<string, T>();
+        foreach (var entry in entries)
+        {
+            var key = GetKey(entry)?.ToLower().Trim();
+            if (!string.IsNullOrEmpty(key))
+                _lookup[key] = entry;
+        }
+    }
 }
 ```
 
 ---
 
-## 📝 Design Notes
+## Database Implementations
 
-- 📌 ScriptableObjects allow databases to exist independently of scenes
-- 🔄 Dictionaries provide O(1) lookup performance
-- 🧩 Generic base class keeps implementations minimal
-- 🧠 Bootstrap avoids `Resources` and runtime searching
+### WeaponDatabase
+
+```csharp
+[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Weapon Database")]
+public class WeaponDatabase : DatabaseBase<WeaponData>
+{
+    protected override string GetKey(WeaponData entry) => entry.WeaponID;
+}
+```
+
+### EnemyDatabase
+
+```csharp
+[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Enemy Database")]
+public class EnemyDatabase : DatabaseBase<EnemyData>
+{
+    protected override string GetKey(EnemyData entry) => entry.EnemyId;
+}
+```
+
+### ParticleDatabase
+
+```csharp
+[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Particle Database")]
+public class ParticleDatabase : DatabaseBase<ParticleData>
+{
+    protected override string GetKey(ParticleData entry) => entry.ID;
+}
+```
 
 ---
+
+## GameDatabases Static Access
+
+Global access point for all databases. Assigned during bootstrap.
+
+```csharp
+public static class GameDatabases
+{
+    public static WeaponDatabase WeaponDatabase { get; set; }
+    public static EnemyDatabase EnemyDatabase { get; set; }
+    public static AudioClipDatabase AudioClipDatabase { get; set; }
+    public static WorldAudioDatabase WorldAudioDatabase { get; set; }
+    public static ParticleDatabase ParticleDatabase { get; set; }
+    
+    public static void Clear()
+    {
+        WeaponDatabase = null;
+        EnemyDatabase = null;
+        // ... clear all references
+    }
+}
+```
+
+---
+
+## Usage
+
+### Retrieving Data
+
+```csharp
+// Safe retrieval with null check
+if (GameDatabases.WeaponDatabase.TryGet("sword_fire", out var weapon))
+{
+    SpawnWeapon(weapon);
+}
+
+// Direct retrieval (returns null if not found)
+var enemy = GameDatabases.EnemyDatabase.Get("goblin_melee");
+if (enemy != null)
+{
+    SpawnEnemy(enemy);
+}
+```
+
+### With Pooling
+
+```csharp
+// Get data from database, spawn from pool
+var enemyData = GameDatabases.EnemyDatabase.Get(enemyId);
+var instance = GamePoolManager.Instance.GetEnemyPrefab(enemyData, position, rotation);
+```
+
+---
+
+## Data Flow
+
+```
+1. Designer creates ScriptableObject asset (e.g., WeaponData)
+2. Asset added to database entries array
+3. Database builds lookup dictionary on first access
+4. Runtime systems query via GameDatabases static class
+5. Retrieved data used to configure pooled instances
+```
+
+---
+
+## Adding New Database Types
+
+1. Create data ScriptableObject with unique ID field
+2. Create database class extending DatabaseBase<T>
+3. Override GetKey to return the ID field
+4. Add property to GameDatabases
+5. Assign in bootstrap scene
+
+```csharp
+// Step 1: Data class
+[CreateAssetMenu(menuName = "Scriptable Objects/Abilities/Ability Data")]
+public class AbilityData : ScriptableObject
+{
+    public string abilityId;
+    public string displayName;
+    public float cooldown;
+    public GameObject effectPrefab;
+}
+
+// Step 2: Database class
+[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Ability Database")]
+public class AbilityDatabase : DatabaseBase<AbilityData>
+{
+    protected override string GetKey(AbilityData entry) => entry.abilityId;
+}
+
+// Step 3: Add to GameDatabases
+public static AbilityDatabase AbilityDatabase { get; set; }
+```
+
+---
+
+## Best Practices
+
+| Practice | Reason |
+|----------|--------|
+| Use TryGet over Get | Handles missing entries gracefully |
+| Normalize keys (lowercase, trimmed) | Prevents lookup failures from formatting |
+| Keep databases read-only at runtime | Maintains data consistency |
+| Assign databases during bootstrap | Ensures availability before gameplay |

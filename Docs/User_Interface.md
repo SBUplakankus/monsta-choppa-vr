@@ -1,161 +1,297 @@
-# 🖥️ VR UI System - Architecture Overview
+# User Interface System
 
-## 🎯 Core Pattern
-The UI follows a **Factory → View → Host → Controller** pattern for clean separation of concerns and maintainability.
-
-```mermaid
-graph LR
-    A[🎨 UIToolkitFactory] --> B[👁️ View]
-    B --> C[🏠 Host]
-    C --> D[🎮 Controller]
-    D --> E[⚙️ Game Systems]
-    
-    F[📊 Attributes] -.->|Data Binding| B
-    G[✨ TweenTransform] -.->|Animations| C
-    H[🎨 StyleSheet] -.->|Styling| A
-```
-
-## 🧩 Component Structure
-
-### 1. **🎨 UIToolkitFactory**
-Central factory class that creates and configures UI Toolkit elements with consistent styling.
-
-| Feature | Description | Example Method |
-|---------|-------------|----------------|
-| **Element Creation** | Creates common UI elements with consistent styling | `CreateButton()`, `CreateSlider()` |
-| **Localization** | Built-in text localization support | `CreateLabel("key")` |
-| **Data Binding** | Runtime property binding for dynamic UI | `CreateBoundLabel(dataSource, "Value")` |
-| **Fluent API** | Method chaining for easy configuration | `.WithClasses("class").WithText("Hi")` |
-| **Specialized UI** | Pre-built complex structures | `CreateHealthBar()` returns struct |
-
-### 2. **👁️ Views (BasePanelView)**
-Define the visual structure and layout of UI panels.
-
-| Responsibility | Implementation | Example |
-|----------------|----------------|---------|
-| **UI Hierarchy** | Builds visual tree using UIToolkitFactory | `SettingsPanelView` creates tabs |
-| **No Business Logic** | Pure visual structure only | ❌ No game logic here |
-| **Cleanup** | Implements `IDisposable` | Removes elements on disposal |
-| **Style Binding** | Applies style sheets | Adds USS classes to elements |
-
-### 3. **🏠 Hosts (BasePanelHost)**
-Manage view lifecycle and animation states.
-
-```mermaid
-graph TD
-    A[Host Awake] --> B[Get Tweenables]
-    B --> C[Generate View]
-    C --> D[Subscribe Events]
-    D --> E[Show/Hide with Tweens]
-    E --> F[Forward Events to Controller]
-    
-    G[OnDisable] --> H[Unsubscribe Events]
-    H --> I[Dispose View]
-```
-
-**Key Responsibilities:**
-- 🎭 **Animation Management**: Controls `ITweenable` components for show/hide
-- 🔗 **Event Forwarding**: Bridges View events to Controllers
-- 🧹 **Resource Management**: Cleans up Views on disable
-- 👁️ **Visibility**: Handles panel show/hide logic
-
-### 4. **🎮 Controllers**
-Handle business logic and user interactions.
-
-| Action | Method | Result |
-|--------|--------|--------|
-| **Play Game** | `HandlePlay()` | Loads Hub scene |
-| **Open Settings** | `HandleSettings()` | Toggles settings panel |
-| **Quit Game** | `HandleQuit()` | Exits application |
-| **Controls Help** | `HandleControls()` | Shows control scheme |
-
-## 🔗 Supporting Systems
-
-### **📊 Attributes System**
-ScriptableObject-based attributes for data binding:
-
-| Attribute | Type | Range | Use Case |
-|-----------|------|-------|----------|
-| `IntAttribute` | Integer | Any | Health, currency, counters |
-| `FloatAttribute` | Float | 0-1 (normalized) | Volume, brightness, sliders |
-
-**Features:**
-- 📡 `INotifyBindablePropertyChanged` for automatic UI updates
-- 🔔 `OnValueChanged` events for custom logic
-- 🎯 Built-in clamping and validation methods
-
-### **✨ Animation System (TweenTransform)**
-Scale animations for panel transitions:
-
-```mermaid
-graph LR
-    subgraph Show_Animation
-        A1[Show Called] --> A2[Stop Current Tween]
-        A2 --> A3[Set Start Scale 0.75]
-        A3 --> A4[Animate to Scale 1.0]
-        A4 --> A5[OutCubic Easing]
-    end
-    
-    subgraph Hide_Animation
-        B1[Hide Called] --> B2[Stop Current Tween]
-        B2 --> B3[Animate to Scale 0.0]
-        B3 --> B4[InCubic Easing]
-    end
-```
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `displayScale` | 1.0 | Target scale when visible |
-| `displayStartScale` | 0.75 | Starting scale for show animation |
-| `duration` | 0.25s | Animation length in seconds |
-| `ShowEase` | OutCubic | Easing function for showing |
-| `HideEase` | InCubic | Easing function for hiding |
-
-### **🎨 Style Management**
-Centralized USS (Unity Style Sheet) with CSS custom properties:
-
-| Category | Variables | Example Use |
-|----------|-----------|-------------|
-| **Colors** | `--hub-colour-primary`, `--background-dark` | Theming, backgrounds |
-| **Dimensions** | `--button-height`, `--panel-border-radius` | Consistent sizing |
-| **Transitions** | `--tween-duration` | Smooth animations |
-| **Typography** | `--font-size-header`, `--font-size-button` | Readability scaling |
-
-**VR Considerations:**
-- 👁️ **Large hit targets** for finger/hand interaction
-- 🎯 **High contrast** for varied lighting conditions
-- 📱 **Scalable text** for different headset resolutions
-
-## 🔄 Data Flow
-
-```mermaid
-graph TD
-    User[👤 User Interaction] --> Host
-    Host -->|Event| Controller[🎮 Controller]
-    Controller -->|Update| Attribute[📊 Attribute]
-    Attribute -->|Notify Change| View[👁️ View]
-    View -->|Update UI| User
-```
-
-## ✅ Key Benefits
-
-| Benefit | Implementation | Impact |
-|---------|----------------|--------|
-| **Testable** | Controllers isolated from UI | Easy unit testing |
-| **Maintainable** | Clear separation of concerns | Predictable updates |
-| **Performant** | USS styling, allocation-free tweens | 90+ FPS in VR |
-| **Scalable** | Established pattern for new panels | Rapid UI development |
-| **VR Ready** | Scalable styles, large hit targets | Comfortable interaction |
-
-## 🚀 Extension Points
-
-| Extension | How to Implement | Use Case |
-|-----------|------------------|----------|
-| **New Views** | Extend `BasePanelView` | Additional game menus |
-| **Custom Widgets** | Add methods to `UIToolkitFactory` | Specialized VR controls |
-| **Data Types** | Create new `Attribute` classes | Complex game stats |
-| **Animations** | Implement `ITweenable` | Custom transition effects |
+The UI system uses Unity's UI Toolkit with a Factory-View-Host-Controller architecture for clean separation of concerns and memory safety.
 
 ---
 
-> 💡 **Pro Tip**: Always use the Factory for UI creation to ensure consistency across your VR interface. The binding system automatically updates UI when attribute values change—no manual refresh needed!
+## Architecture Overview
+
+```
+Controller (game logic)
+    │
+    ▼
+Host (MonoBehaviour lifecycle, animations)
+    │
+    ▼
+View (UI element creation, layout)
+    │
+    ▼
+Factory (element builders, styling)
+```
+
+---
+
+## Components
+
+### UIToolkitFactory
+
+Static factory class that creates pre-configured UI Toolkit elements with consistent styling and localization.
+
+**Core Methods:**
+
+| Method | Returns | Purpose |
+|--------|---------|---------|
+| `CreateElement<T>()` | T | Generic element with class names |
+| `CreateContainer()` | VisualElement | Styled container |
+| `CreateButton()` | Button | Localized button with click handler |
+| `CreateLabel()` | Label | Localized label |
+| `CreateBoundLabel()` | Label | Data-bound label (auto-updates) |
+| `CreateSlider()` | Slider | Range input with callback |
+| `CreateToggle()` | Toggle | Boolean input |
+| `CreateDropdown()` | DropdownField | Selection input |
+| `CreateHealthBar()` | HealthBarElements | Container, background, fill |
+
+**Fluent Extensions:**
+
+```csharp
+var panel = UIToolkitFactory.CreateContainer()
+    .WithClasses(UIToolkitStyles.PanelBody)
+    .WithPadding(20)
+    .WithMargin(10)
+    .WithFlexGrow(1);
+```
+
+---
+
+### BasePanelView
+
+Abstract base class for all UI views. Views define visual structure only.
+
+```csharp
+public abstract class BasePanelView : IDisposable
+{
+    public VisualElement Container { get; protected set; }
+    
+    protected abstract void GenerateUI(VisualElement root);
+    
+    public virtual void Dispose()
+    {
+        Container?.Clear();
+        Container?.RemoveFromHierarchy();
+        Container = null;
+    }
+}
+```
+
+**View Responsibilities:**
+- Create UI element hierarchy using Factory
+- Expose elements as properties for Host binding
+- Expose events for user interactions
+- Implement Dispose for cleanup
+
+**View Restrictions:**
+- No game logic
+- No external event subscriptions
+- No references to game systems
+
+---
+
+### BasePanelHost
+
+MonoBehaviour that manages View lifecycle and animations.
+
+```csharp
+public abstract class BasePanelHost : MonoBehaviour
+{
+    [SerializeField] protected UIDocument uiDocument;
+    [SerializeField] protected StyleSheet styleSheet;
+    
+    protected VisualElement ContentRoot;
+    private ITweenable[] _tweenables;
+    
+    public abstract void Generate();
+    
+    public virtual void Show()
+    {
+        foreach (var tween in _tweenables)
+            tween.Show();
+    }
+    
+    public virtual void Hide()
+    {
+        foreach (var tween in _tweenables)
+            tween.Hide();
+    }
+    
+    protected virtual void Dispose()
+    {
+        // Override to cleanup View
+    }
+    
+    private void OnDisable() => Dispose();
+}
+```
+
+**Host Responsibilities:**
+- Create and destroy Views
+- Subscribe to View events
+- Forward events to Controllers
+- Manage show/hide animations via ITweenable
+
+---
+
+### Controllers
+
+MonoBehaviours that handle game logic in response to UI events.
+
+```csharp
+public class StartMenuController : MonoBehaviour
+{
+    [SerializeField] private StartMenuPanelHost menuHost;
+    [SerializeField] private SettingsPanelHost settingsHost;
+    
+    private void OnEnable()
+    {
+        menuHost.Generate();
+        menuHost.OnPlayClicked += HandlePlay;
+        menuHost.OnSettingsClicked += HandleSettings;
+    }
+    
+    private void OnDisable()
+    {
+        menuHost.OnPlayClicked -= HandlePlay;
+        menuHost.OnSettingsClicked -= HandleSettings;
+    }
+    
+    private void HandlePlay()
+    {
+        SceneManager.LoadScene(GameConstants.Hub);
+    }
+    
+    private void HandleSettings()
+    {
+        settingsHost.Generate();
+        settingsHost.Show();
+    }
+}
+```
+
+---
+
+## Data Binding
+
+### Automatic Binding
+
+Use `CreateBoundLabel` for labels that auto-update when data changes.
+
+```csharp
+// Label automatically updates when playerGold.Value changes
+var goldLabel = UIToolkitFactory.CreateBoundLabel(
+    playerGold,                    // INotifyBindablePropertyChanged source
+    nameof(playerGold.Value),      // Property path
+    UIToolkitStyles.StatValue
+);
+```
+
+### Manual Binding
+
+For complex formatting or conditional display.
+
+```csharp
+// Subscribe to attribute changes
+private void BindData()
+{
+    playerGold.OnValueChanged += UpdateGoldDisplay;
+    UpdateGoldDisplay(playerGold.Value);  // Initial value
+}
+
+private void UnbindData()
+{
+    playerGold.OnValueChanged -= UpdateGoldDisplay;
+}
+
+private void UpdateGoldDisplay(int value)
+{
+    goldLabel.text = value >= 1000 ? $"{value/1000f:F1}K" : value.ToString();
+}
+```
+
+---
+
+## Event Handling Pattern
+
+Store callback references for proper unsubscription.
+
+```csharp
+public class AudioSettingsPanelHost : BasePanelHost
+{
+    private Action _unbindAll;
+    
+    public void BindViewSliders(AudioSettingsPanelView view)
+    {
+        _unbindAll = () => { };
+        _unbindAll += BindSlider(view.MasterVolume, masterVolume);
+        _unbindAll += BindSlider(view.MusicVolume, musicVolume);
+    }
+    
+    private static Action BindSlider(Slider slider, FloatAttribute attribute)
+    {
+        EventCallback<ChangeEvent<float>> callback = e => attribute.Value = e.newValue;
+        slider.RegisterValueChangedCallback(callback);
+        
+        return () => slider.UnregisterValueChangedCallback(callback);
+    }
+    
+    protected override void Dispose()
+    {
+        _unbindAll?.Invoke();
+        _unbindAll = null;
+        base.Dispose();
+    }
+}
+```
+
+---
+
+## Animation System
+
+Hosts use `ITweenable` components for show/hide animations.
+
+**TweenTransform** - Scale animations for panels:
+
+```csharp
+public class TweenTransform : MonoBehaviour, ITweenable
+{
+    [SerializeField] private float displayScale = 1f;
+    [SerializeField] private float displayStartScale = 0.75f;
+    [SerializeField] private float duration = 0.25f;
+    
+    public void Show()
+    {
+        transform.localScale = Vector3.one * displayStartScale;
+        // Animate to displayScale with OutCubic easing
+    }
+    
+    public void Hide()
+    {
+        // Animate to zero with InCubic easing
+    }
+}
+```
+
+---
+
+## Existing Panels
+
+| Panel | View | Host | Controller | Status |
+|-------|------|------|------------|--------|
+| Start Menu | StartMenuPanelView | StartMenuPanelHost | StartMenuController | Complete |
+| Settings | SettingsPanelView | SettingsPanelHost | - | Complete |
+| Audio Settings | AudioSettingsPanelView | AudioSettingsPanelHost | - | Complete |
+| Video Settings | VideoSettingsPanelView | VideoSettingsPanelHost | - | Complete |
+| Loading Screen | LoadingScreenView | LoadingScreenHost | LoadingScreenController | Complete |
+| Arena Intro | ArenaIntroView | ArenaIntroHost | - | Complete |
+| Boss Intro | BossIntroView | BossIntroHost | - | Complete |
+| Enemy Health Bar | - | EnemyHealthBar | - | Complete |
+
+---
+
+## Memory Safety Rules
+
+| Rule | Implementation |
+|------|----------------|
+| Always dispose Views | Call Dispose in Host.OnDisable |
+| Unsubscribe all events | Use _unbindAll pattern or explicit unsubscribe |
+| No lambda event handlers | Store callback references for unsubscription |
+| Null check in callbacks | View may be disposed when callback fires |
+| Dispose before regenerate | Call Dispose before creating new View |

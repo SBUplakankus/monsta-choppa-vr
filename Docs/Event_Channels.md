@@ -1,157 +1,185 @@
-# 📡 Event Channel System
+# Event Channel System
 
-This document describes the **ScriptableObject-based Event Channel system** used to decouple systems in the Unity VR project.  
-Event Channels allow gameplay systems to communicate **without direct references**, supporting modular, reactive design.
-
----
-
-## 🎯 Purpose
-
-The Event Channel system:
-
-- Decouples sender and receiver logic
-- Enables global event broadcasting
-- Supports typed and untyped events
-- Integrates seamlessly with VR interactions and databases
-
-This system is especially useful in VR where multiple systems may need to react to the same controller input or game state change.
+ScriptableObject-based publish/subscribe system for decoupled communication between game systems.
 
 ---
 
-## 🧠 Core Concepts
+## Overview
 
-### ✨ Void Events
-- Events with no parameters
-- Implemented via `VoidEventChannel`
-- Example use: Player grabbed an object, button pressed
+Event channels allow systems to communicate without direct references. A sender raises an event, and any number of subscribers receive it.
 
-### 🔢 Typed Events
-- Events with a single payload (generic type `T`)
-- Base class: `TypeEventChannelBase<T>`
-- Examples: `FloatEventChannel`, `IntEventChannel`, `StringEventChannel`
-- Type safety ensures systems only subscribe to compatible event types
-
-### 🌍 Static Access
-- Event channels are assigned during bootstrap to `GameEvents` static references
-- This allows any system to raise or listen without scene dependencies
+```
+Sender  →  Event Channel (ScriptableObject)  →  Subscribers
+```
 
 ---
 
-## 🧱 System Components
+## Base Classes
 
-### 🧩 `VoidEventChannel`
-- Holds `event Action Handlers` internally
-- Methods:
-    - `Raise()` — triggers all subscribed handlers
-    - `Subscribe(Action handler)` — add a listener
-    - `Unsubscribe(Action handler)` — remove a listener
-- Automatically clears handlers on `OnDisable`
+### TypeEventChannelBase<T>
 
-### 🧩 `TypeEventChannelBase<T>`
-- Generic base for typed events
-- Holds `event Action<T> Handlers` internally
-- Methods:
-    - `Raise(T value)` — triggers all subscribed handlers with a value
-    - `Subscribe(Action<T> handler)` — add listener
-    - `Unsubscribe(Action<T> handler)` — remove listener
-- Automatically clears handlers on `OnDisable`
+Generic base class for typed events.
 
-### 📄 Example Event Channel
-- `FloatEventChannel` inherits `TypeEventChannelBase<float>`
-- Other typed channels follow the same pattern: `IntEventChannel`, `StringEventChannel`
-
----
-
-## 🔁 Data Flow
-
-1. A system or user input triggers an event (e.g., player takes damage)
-2. The corresponding Event Channel is raised via `Raise()`
-3. All subscribed listeners receive the event
-4. Each listener reacts independently (UI update, sound, gameplay logic)
-
-**Flow Overview:**
-
-- Sender system raises event
-- Event Channel ScriptableObject
-- Subscribed listeners
-- Reaction to event
-
-**Example:**
-- Player presses “Jump”
-- `VoidEventChannel` is raised
-- Listener systems: play audio, animate character, update UI
-
----
-
-## 🚀 Initialization & Bootstrap
-
-All Event Channels are assigned during application startup via the `GameBootstrap` MonoBehaviour.
-
-- Player events (e.g., `OnPlayerDamaged`)
-- Audio events (e.g., `OnMusicRequested`, `OnSfxRequested`)
-
-**Static Access:**
-
-`GameEvents` class holds static references:
-
-    public static class GameEvents
+```csharp
+public abstract class TypeEventChannelBase<T> : ScriptableObject
+{
+    private event Action<T> _handlers;
+    
+    public void Raise(T value)
     {
-        #region Player Events
-        public static IntEventChannel OnPlayerDamaged;
-        #endregion
-
-        #region Audio Events
-        public static StringEventChannel OnMusicRequested;
-        public static StringEventChannel OnSfxRequested;
-        #endregion
+        _handlers?.Invoke(value);
     }
-
-During `GameBootstrap.Awake()`, serialized event channel assets are assigned to the static references.
-
----
-
-## 🧪 Example Usage
-
-### Subscribe to an event:
-
-    private void OnEnable()
-        GameEvents.OnPlayerDamaged.Subscribe(HandlePlayerDamage);
-
+    
+    public void Subscribe(Action<T> handler)
+    {
+        _handlers += handler;
+    }
+    
+    public void Unsubscribe(Action<T> handler)
+    {
+        _handlers -= handler;
+    }
+    
     private void OnDisable()
-        GameEvents.OnPlayerDamaged.Unsubscribe(HandlePlayerDamage);
+    {
+        _handlers = null;  // Clear all handlers on disable
+    }
+}
+```
 
-    private void HandlePlayerDamage(int damage)
-        // React to damage (UI, audio, gameplay)
+### VoidEventChannel
 
-### Raise an event:
+For events with no payload.
 
-    GameEvents.OnSfxRequested.Raise("Explosion");
-
----
-
-## 📝 Design Notes
-
-- 📌 Event Channels prevent tight coupling between systems
-- 🔄 Supports multiple subscribers without requiring references
-- 🧩 Generic base allows creating new typed events easily
-- 🧠 Exceptions in subscriber callbacks are logged but do not break the chain
-
----
-
-## ⚠️ Gotchas & Limitations
-
-- ❗ Always unsubscribe in `OnDisable` to avoid memory leaks
-- ❗ Event order is not guaranteed if multiple subscribers exist
-- 🧪 Handlers should be lightweight to avoid blocking the main thread
+```csharp
+public class VoidEventChannel : ScriptableObject
+{
+    private event Action _handlers;
+    
+    public void Raise() => _handlers?.Invoke();
+    public void Subscribe(Action handler) => _handlers += handler;
+    public void Unsubscribe(Action handler) => _handlers -= handler;
+}
+```
 
 ---
 
-## 🔮 Future Improvements
+## Event Channel Types
 
-- Event channels with multiple parameters
-- Editor tooling to list all subscribers
-- Async or delayed event raising
-- Integration with pooling systems for high-frequency events
+| Type | Payload | Example Usage |
+|------|---------|---------------|
+| VoidEventChannel | None | Pause requested, game over trigger |
+| IntEventChannel | int | Damage dealt, gold changed, experience gained |
+| FloatEventChannel | float | Volume changed, timer tick |
+| StringEventChannel | string | Audio clip request, message display |
+| EnemyEventChannel | EnemyController | Enemy spawned, enemy despawned |
+| ArenaStateEventChannel | ArenaState | Arena state transitions |
+| LocaleEventChannel | Locale | Language changed |
 
 ---
 
+## GameEvents Registry
+
+Static class providing global access to all event channels. Assigned during bootstrap.
+
+```csharp
+public static class GameEvents
+{
+    // Player Events
+    public static IntEventChannel OnPlayerDamaged;
+    public static IntEventChannel OnGoldChanged;
+    public static IntEventChannel OnExperienceGained;
+    public static IntEventChannel OnLevelChanged;
+    
+    // Audio Events
+    public static StringEventChannel OnMusicRequested;
+    public static StringEventChannel OnSfxRequested;
+    
+    // Game Events
+    public static EnemyEventChannel OnEnemySpawned;
+    public static EnemyEventChannel OnEnemyDespawned;
+    public static ArenaStateEventChannel OnArenaStateChanged;
+    public static VoidEventChannel OnPauseRequested;
+    public static VoidEventChannel OnGameOverSequenceRequested;
+    public static VoidEventChannel OnGameWonSequenceRequested;
+}
+```
+
+---
+
+## Usage Examples
+
+### Subscribing to Events
+
+```csharp
+public class GoldDisplay : MonoBehaviour
+{
+    private void OnEnable()
+    {
+        GameEvents.OnGoldChanged.Subscribe(UpdateDisplay);
+    }
+    
+    private void OnDisable()
+    {
+        GameEvents.OnGoldChanged.Unsubscribe(UpdateDisplay);
+    }
+    
+    private void UpdateDisplay(int newGold)
+    {
+        goldLabel.text = newGold.ToString();
+    }
+}
+```
+
+### Raising Events
+
+```csharp
+public class EnemyHealth : MonoBehaviour
+{
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        
+        if (currentHealth <= 0)
+        {
+            GameEvents.OnEnemyDespawned.Raise(controller);
+        }
+    }
+}
+```
+
+### Requesting Audio
+
+```csharp
+// Request sound effect by ID
+GameEvents.OnSfxRequested.Raise("sword_hit");
+
+// Request music track
+GameEvents.OnMusicRequested.Raise("combat_theme");
+```
+
+---
+
+## Rules
+
+| Rule | Reason |
+|------|--------|
+| Always unsubscribe in OnDisable | Prevents memory leaks and null reference errors |
+| Keep handlers lightweight | Long handlers block other subscribers |
+| Use null-conditional invoke | Handlers may be null if no subscribers |
+| Match subscribe/unsubscribe methods | Using different method references causes leaks |
+
+---
+
+## Common Pattern: Method Reference
+
+```csharp
+// Correct - same method reference for subscribe and unsubscribe
+private void OnEnable() => GameEvents.OnGoldChanged.Subscribe(HandleGoldChanged);
+private void OnDisable() => GameEvents.OnGoldChanged.Unsubscribe(HandleGoldChanged);
+private void HandleGoldChanged(int gold) { /* ... */ }
+
+// Incorrect - lambda creates new delegate each time
+private void OnEnable() => GameEvents.OnGoldChanged.Subscribe(g => UpdateUI(g));
+// Cannot unsubscribe - different delegate instance
+```
