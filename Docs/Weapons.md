@@ -1,322 +1,342 @@
-# ⚔️ Weapon System Architecture
+# Weapon System
 
-## 🎯 **System Purpose**
-A data-driven, modular weapon system for VR combat where weapons are defined by ScriptableObjects and enhanced by stackable modifiers, providing endless customization possibilities.
-
-```mermaid
-graph TD
-    A[WeaponData ScriptableObject] --> B[XRWeaponBase]
-    B --> C[MeleeXRWeapon]
-    B --> D[WeaponHitbox]
-    
-    E[WeaponModifier] --> A
-    F[DamageSystem] -->|Triggers| G[PoolManager]
-    H[Player Input] --> B
-    
-    A -->|Contains| I[Base Stats]
-    A -->|Contains| J[VR Settings]
-    A -->|Contains| K[Visual/Audio]
-    
-    D -->|Detects| L[IDamageable Targets]
-    L --> M[EnemyHealth]
-```
-
-## 🧩 **Core Components**
-
-### **1. 📊 WeaponData (ScriptableObject)**
-The blueprint for any weapon - defines all properties and configuration.
-
-| Category | Fields | Description |
-|----------|--------|-------------|
-| **🎭 Identity** | `weaponID`, `displayName`, `category`, `rarity` | Unique identification and classification |
-| **📈 Base Stats** | `baseDamage`, `attackCooldown`, `range`, `staminaCost` | Core gameplay statistics |
-| **🎮 VR Settings** | `gripPositionOffset`, `gripRotationOffset`, `hapticStrength` | Hand positioning and feedback |
-| **🎨 Visual/Audio** | `hitSfx[]`, `hitVFX` | Sound and particle effects |
-| **✨ Modifiers** | `activeModifiers` | List of applied WeaponModifiers |
-
-**Key Properties:**
-```csharp
-// Calculated total damage including all modifiers
-public int TotalDamage
-{
-    get
-    {
-        int total = baseDamage;
-        foreach (var mod in activeModifiers)
-            total += mod.damageBonus;
-        return total;
-    }
-}
-```
-
-### **2. ✨ WeaponModifier (ScriptableObject)**
-Reusable add-ons that enhance weapons with special properties.
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `modifierName` | `string` | Display name |
-| `addedDamageType` | `DamageType` | Additional elemental damage |
-| `damageBonus` | `int` | Flat damage increase |
-| `speedBonus` | `float` | Attack speed multiplier |
-| `visualEffect` | `GameObject` | Custom VFX attachment |
-| `trailColor` | `Color` | Weapon trail color |
-
-**Usage Example:**
-```csharp
-// Create "Flaming" modifier in Unity Editor:
-// - addedDamageType: DamageType.Fire
-// - damageBonus: 5
-// - visualEffect: Fire particle system
-// - trailColor: Orange
-```
-
-### **3. ⚙️ XRWeaponBase (Base Class)**
-Core MonoBehaviour that handles weapon logic in VR.
-
-| Method | Trigger | Purpose |
-|--------|---------|---------|
-| `OnGrab()` | XR Grab event | Weapon is picked up |
-| `OnRelease()` | XR Release event | Weapon is dropped |
-| `PrimaryAction()` | Player input | Main attack/action |
-| `SecondaryAction()` | Player input | Alternate action |
-| `ProcessHit()` | Hitbox collision | Apply damage and effects |
-
-**Key Features:**
-- ✅ **XR Integration**: Works with Unity's XR Interaction Toolkit
-- ⏱️ **Cooldown System**: `CanAttack` property prevents spamming
-- 🔗 **Pool Integration**: Uses `GamePoolManager` for effects
-
-### **4. 🗡️ MeleeXRWeapon (Implementation)**
-Specific implementation for melee weapons (currently basic).
-
-**Current Status:**
-| Feature | Implemented | Notes |
-|---------|------------|-------|
-| **Basic Structure** | ✅ | Inherits from XRWeaponBase |
-| **Physics** | ✅ | Has Rigidbody for collisions |
-| **Attack Logic** | ❌ | `PrimaryAction()` empty |
-| **Special Moves** | ❌ | `SecondaryAction()` empty |
-
-### **5. 🎯 WeaponHitbox (Collision Detector)**
-Detects when weapon hits a target.
-
-| Component | Purpose | Notes |
-|-----------|---------|-------|
-| **Collider** | Physics detection | Should be on weapon's striking surface |
-| **OnTriggerEnter** | Detects hits | Checks for IDamageable interface |
-| **Weapon Reference** | Links to weapon | Gets damage and effects from WeaponData |
-
-### **6. 📝 Enums**
-Standardized classifications for the weapon system.
-
-**WeaponCategory:**
-```csharp
-public enum WeaponCategory
-{
-    Sword,    // 🗡️
-    Bow,      // 🏹
-    Staff,    // 🪄
-    Axe,      // 🪓
-    Dagger,   // 🗡️
-    Shield    // 🛡️
-}
-```
-
-**WeaponRarity:**
-```csharp
-public enum WeaponRarity
-{
-    Common,     // ⚪
-    Uncommon,   // 🟢
-    Rare,       // 🔵
-    Epic,       // 🟣
-    Legendary   // 🟠
-}
-```
-
-**DamageType:**
-```csharp
-public enum DamageType
-{
-    Physical,  // 💥
-    Fire,      // 🔥
-    Frost,     // ❄️
-    Lightning, // ⚡
-    Arcane     // 💫
-}
-```
-
-## 🔄 **Combat Flow**
-
-```mermaid
-sequenceDiagram
-    participant Player as Player Hand
-    participant Weapon as XRWeaponBase
-    participant Hitbox as WeaponHitbox
-    participant Enemy as IDamageable
-    participant Pool as PoolManager
-    participant Data as WeaponData
-
-    Player->>Weapon: Grab (XR Interaction)
-    Weapon->>Weapon: IsHeld = true
-    
-    Player->>Weapon: Swing (Physics/Animation)
-    Hitbox->>Enemy: OnTriggerEnter(collider)
-    Hitbox->>Weapon: ProcessHit(target, position)
-    
-    Weapon->>Data: Get TotalDamage
-    Data->>Data: Calculate base + modifiers
-    Data-->>Weapon: Returns final damage
-    
-    Weapon->>Enemy: TakeDamage(finalDamage)
-    Weapon->>Pool: GetParticlePrefab(hitVFX)
-    Weapon->>Pool: GetWorldAudioPrefab(hitSfx)
-    
-    Enemy->>Enemy: Apply damage, check death
-```
-
-## 📊 **Weapon Creation Workflow**
-
-### **Step 1: Create Weapon Data**
-```csharp
-// In Unity Editor:
-// 1. Right-click → Create → Weapons → Data
-// 2. Name it "IronSword"
-// 3. Configure:
-//    - Category: Sword
-//    - Base Damage: 15
-//    - Cooldown: 0.8s
-//    - Grip Offsets: Position weapon in hand
-//    - Hit SFX: "sword_hit_metal"
-//    - Hit VFX: "spark_particles"
-```
-
-### **Step 2: Create Modifiers (Optional)**
-```csharp
-// Create "Flaming" modifier:
-// 1. Right-click → Create → Weapons → Modifier
-// 2. Name it "Modifier_Flaming"
-// 3. Configure:
-//    - Added Damage Type: Fire
-//    - Damage Bonus: 5
-//    - Trail Color: Orange
-//    - Visual Effect: Fire aura prefab
-```
-
-### **Step 3: Apply Modifiers**
-```csharp
-// In IronSword WeaponData:
-// 1. Add "Modifier_Flaming" to Active Modifiers list
-// 2. Weapon becomes "Flaming Iron Sword"
-// 3. Total Damage: 20 (15 base + 5 fire)
-// 4. Now deals Fire damage type
-```
-
-### **Step 4: Setup Prefab**
-```csharp
-// Create weapon prefab:
-// 1. Create empty GameObject
-// 2. Add MeleeXRWeapon component
-// 3. Assign WeaponData asset
-// 4. Add WeaponHitbox component to striking surface
-// 5. Add XRGrabInteractable for VR interaction
-// 6. Add Rigidbody for physics
-// 7. Drag to prefab folder
-```
-
-## 🔗 **Integration Points**
-
-### **With Enemy System:**
-```csharp
-// When weapon hits enemy:
-if (enemy.TryGetComponent<IDamageable>(out var target))
-{
-    ProcessHit(target, hitPoint, hitRotation);
-    // EnemyHealth handles damage application
-}
-```
-
-### **With Pooling System:**
-```csharp
-// Spawn effects without instantiation:
-GamePoolManager.Instance.GetParticlePrefab(data.HitVFX, hitPoint, hitRotation);
-GamePoolManager.Instance.GetWorldAudioPrefab(data.HitSfx, hitPoint);
-```
-
-### **With Event System:**
-```csharp
-// Potential future events:
-// - OnWeaponEquipped(WeaponData)
-// - OnWeaponHit(WeaponData, DamageAmount)
-// - OnWeaponModifierApplied(WeaponModifier)
-```
-
-## ⚡ **Performance Optimizations**
-
-| Technique | Implementation | Benefit |
-|-----------|----------------|---------|
-| **ScriptableObjects** | All data as assets | No runtime allocation |
-| **Interface Pattern** | `IDamageable` for hits | Fast type checking |
-| **Cooldown Checks** | `Time.time` comparison | Prevents frame-rate dependency |
-| **Pooled Effects** | Use `GamePoolManager` | No GameObject instantiation |
-
-## 🚀 **Extension Guide**
-
-### **Adding New Weapon Type:**
-```csharp
-// 1. Add to WeaponCategory enum
-public enum WeaponCategory { Sword, Bow, Staff, Mace }
-
-// 2. Create new MonoBehaviour
-public class RangedXRWeapon : XRWeaponBase
-{
-    public void ShootProjectile()
-    {
-        // VR-compatible ranged logic
-    }
-}
-```
-
-### **Adding New Damage Type:**
-```csharp
-// 1. Add to DamageType enum
-public enum DamageType { Physical, Fire, Frost, Poison }
-
-// 2. Modifiers can now use Poison type
-// 3. Enemies can have resistances/weaknesses
-```
-
-### **Adding Stat Modifiers:**
-```csharp
-// Extend WeaponModifier with new stats:
-public class AdvancedWeaponModifier : WeaponModifier
-{
-    public int armorPenetration;
-    public float lifestealPercent;
-    public bool ignoresDefense;
-}
-```
-
-## 📈 **Current Status**
-
-| Component | Status | Notes |
-|-----------|--------|-------|
-| **WeaponData** | ✅ Complete | Full configuration system |
-| **WeaponModifier** | ✅ Complete | Stackable modifiers |
-| **XRWeaponBase** | ✅ Complete | Core VR functionality |
-| **MeleeXRWeapon** | ⚠️ Basic | Needs attack implementation |
-| **WeaponHitbox** | ✅ Complete | Damage detection works |
-| **Damage System** | ✅ Complete | Interface-based, works with enemies |
-
-## 🎮 **VR Considerations**
-
-| VR Feature | Implementation | Benefit |
-|------------|----------------|---------|
-| **Grip Positioning** | `gripPositionOffset`, `gripRotationOffset` | Natural weapon holding |
-| **Haptic Feedback** | `hapticStrength`, `hapticDuration` | Tactile hit confirmation |
-| **Physics Interaction** | XRGrabInteractable + Rigidbody | Realistic weapon handling |
-| **Hand Presence** | Controller/model integration | Immersive VR experience |
+Data-driven weapon system for VR combat with XR Interaction Toolkit integration, modular modifiers, and object pooling.
 
 ---
 
-> 💡 **Pro Tip**: Use the modifier system to create unique weapons by combining base stats with special effects. A "Frostfire Sword" could have both Fire and Frost modifiers applied, creating interesting gameplay combinations.
+## Architecture
+
+```
+WeaponData (ScriptableObject)
+    │
+    ├── WeaponDatabase (lookup)
+    │
+    └── XRWeaponBase (MonoBehaviour)
+            │
+            ├── MeleeXRWeapon
+            ├── BowXRWeapon
+            ├── StaffXRWeapon
+            ├── ShieldXRWeapon
+            └── ThrowableXRWeapon
+```
+
+---
+
+## WeaponData
+
+ScriptableObject defining all weapon properties.
+
+```csharp
+[CreateAssetMenu(menuName = "Scriptable Objects/Weapons/Weapon Data")]
+public class WeaponData : ScriptableObject
+{
+    [Header("Identity")]
+    public string weaponID;
+    public string displayName;
+    public WeaponCategory category;
+    public WeaponRarity rarity;
+    public GameObject weaponPrefab;
+    public Sprite icon;
+    
+    [Header("Stats")]
+    public int baseDamage;
+    public float attackCooldown;
+    public float range;
+    public int staminaCost;
+    public DamageType damageType;
+    
+    [Header("VR Settings")]
+    public Vector3 gripPositionOffset;
+    public Vector3 gripRotationOffset;
+    public float hapticStrength;
+    public float hapticDuration;
+    
+    [Header("Effects")]
+    public WorldAudioData[] hitSfx;
+    public ParticleData hitVFX;
+    public GameObject trailEffect;
+    public Color trailColor;
+    
+    [Header("Modifiers")]
+    public List<WeaponModifierData> activeModifiers;
+    
+    [Header("Economy")]
+    public int purchasePrice;
+    public int sellPrice;
+    public bool isPurchasable;
+    
+    // Calculated properties
+    public int TotalDamage
+    {
+        get
+        {
+            int total = baseDamage;
+            foreach (var mod in activeModifiers)
+                total += mod.damageBonus;
+            return total;
+        }
+    }
+}
+```
+
+---
+
+## WeaponModifierData
+
+Stackable modifiers that enhance weapons.
+
+```csharp
+[CreateAssetMenu(menuName = "Scriptable Objects/Weapons/Weapon Modifier")]
+public class WeaponModifierData : ScriptableObject
+{
+    [Header("Identity")]
+    public string modifierId;
+    public string modifierName;
+    
+    [Header("Damage")]
+    public DamageType addedDamageType;
+    public int damageBonus;
+    public float damageMultiplier;
+    
+    [Header("Speed")]
+    public float speedBonus;
+    public float cooldownReduction;
+    
+    [Header("Visual")]
+    public GameObject visualEffect;
+    public Color trailColor;
+    public Color glowColor;
+    public float glowIntensity;
+    
+    [Header("Hit Effects")]
+    public ParticleData onHitVFX;
+    public WorldAudioData onHitSfx;
+}
+```
+
+---
+
+## XRWeaponBase
+
+Abstract base class for all VR weapons.
+
+```csharp
+public abstract class XRWeaponBase : MonoBehaviour
+{
+    [SerializeField] protected WeaponData data;
+    
+    protected XRGrabInteractable grabInteractable;
+    protected Rigidbody rb;
+    
+    private float _lastAttackTime;
+    private bool _isHeld;
+    
+    public WeaponData Data => data;
+    public bool IsActive => _isHeld;
+    public bool CanAttack => Time.time >= _lastAttackTime + data.attackCooldown;
+    
+    protected virtual void OnGrab(SelectEnterEventArgs args)
+    {
+        _isHeld = true;
+    }
+    
+    protected virtual void OnRelease(SelectExitEventArgs args)
+    {
+        _isHeld = false;
+    }
+    
+    public virtual void ProcessHit(IDamageable target, Vector3 hitPoint, Quaternion hitRotation)
+    {
+        if (!CanAttack) return;
+        
+        _lastAttackTime = Time.time;
+        
+        int damage = CalculateDamage();
+        target.TakeDamage(damage);
+        
+        SpawnHitEffects(hitPoint, hitRotation);
+        SendHapticFeedback();
+    }
+    
+    protected int CalculateDamage()
+    {
+        return data.TotalDamage;
+    }
+}
+```
+
+---
+
+## Weapon Types
+
+### MeleeXRWeapon
+
+Close-range weapons using physics-based hit detection.
+
+- Uses WeaponHitbox for collision detection
+- Damage based on swing velocity
+- Haptic feedback on hit
+
+### BowXRWeapon
+
+Ranged weapon with projectile spawning.
+
+- Pull string to draw
+- Release to fire arrow projectile
+- Projectiles pooled via GamePoolManager
+
+### StaffXRWeapon
+
+Magic weapon with spell casting.
+
+- Primary: Projectile spell
+- Secondary: Area effect
+
+### ShieldXRWeapon
+
+Defensive weapon with blocking and bashing.
+
+```csharp
+public class ShieldXRWeapon : XRWeaponBase
+{
+    [Header("Block Settings")]
+    public float blockAngle = 60f;
+    public float damageReduction = 0.75f;
+    
+    [Header("Parry Settings")]
+    public float parryWindow = 0.2f;
+    
+    [Header("Bash Settings")]
+    public float bashCooldown = 1f;
+    public float bashDamage = 10f;
+    public float bashForce = 500f;
+    public float bashRadius = 1.5f;
+    
+    public bool TryBlock(Vector3 attackDirection, out float reduction)
+    {
+        float angle = Vector3.Angle(transform.forward, -attackDirection);
+        if (angle <= blockAngle)
+        {
+            reduction = damageReduction;
+            return true;
+        }
+        reduction = 0;
+        return false;
+    }
+}
+```
+
+### ThrowableXRWeapon
+
+Throwable weapons that return to pool on impact.
+
+- Thrown on release
+- Returns to pool after hit or timeout
+- Can be recalled (boomerang behavior)
+
+---
+
+## WeaponHitbox
+
+Component for melee damage detection.
+
+```csharp
+public class WeaponHitbox : MonoBehaviour
+{
+    private XRWeaponBase _weapon;
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!_weapon.IsActive) return;
+        
+        if (other.TryGetComponent<IDamageable>(out var target))
+        {
+            _weapon.ProcessHit(target, other.ClosestPoint(transform.position), transform.rotation);
+        }
+    }
+}
+```
+
+---
+
+## Enums
+
+```csharp
+public enum WeaponCategory
+{
+    Sword,
+    Bow,
+    Staff,
+    Axe,
+    Dagger,
+    Shield,
+    Throwable
+}
+
+public enum WeaponRarity
+{
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary
+}
+
+public enum DamageType
+{
+    Physical,
+    Fire,
+    Frost,
+    Lightning,
+    Arcane,
+    Poison
+}
+```
+
+---
+
+## Pooling Integration
+
+Weapons spawn effects through GamePoolManager.
+
+```csharp
+// Spawn hit VFX
+GamePoolManager.Instance.GetParticlePrefab(data.hitVFX, hitPoint, hitRotation);
+
+// Spawn hit audio
+var sfx = data.hitSfx[Random.Range(0, data.hitSfx.Length)];
+GamePoolManager.Instance.GetWorldAudioPrefab(sfx, hitPoint);
+```
+
+---
+
+## Holster System
+
+WeaponHolsterController manages equipped weapons.
+
+```csharp
+public class WeaponHolsterController : MonoBehaviour
+{
+    [SerializeField] private Transform leftHolster;
+    [SerializeField] private Transform rightHolster;
+    [SerializeField] private Transform backHolster;
+    
+    public void EquipWeapon(WeaponData weapon, HolsterSlot slot);
+    public void UnequipWeapon(HolsterSlot slot);
+    public WeaponData GetEquippedWeapon(HolsterSlot slot);
+}
+```
+
+---
+
+## Creating New Weapons
+
+1. Create WeaponData asset via Create menu
+2. Configure stats, VR settings, effects
+3. Create weapon prefab with:
+   - XRGrabInteractable
+   - Rigidbody
+   - Weapon component (MeleeXRWeapon, etc.)
+   - WeaponHitbox on striking surface
+4. Assign prefab to WeaponData
+5. Add to WeaponDatabase

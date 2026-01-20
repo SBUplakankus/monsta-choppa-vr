@@ -1,157 +1,181 @@
-# 🔤 Game Constants System
+# Constants System
 
-This centralized system manages all string keys, tags, and configuration values throughout the Unity VR project. It provides type-safe references to eliminate hardcoded strings and improve maintainability.
-
-```mermaid
-graph TD
-    A[Constants System] --> B[AudioKeys]
-    A --> C[GameConstants]
-    A --> D[LocalizationKeys]
-    A --> E[UIToolkitStyles]
-    
-    B --> B1[🔊 Audio Mixer Groups]
-    B --> B2[🎵 Audio Clip Keys]
-    
-    C --> C1[📊 Attribute Keys]
-    C --> C2[🏞️ Scene Names]
-    
-    D --> D1[📖 Localization Strings]
-    D --> D2[🎮 UI Text Keys]
-    
-    E --> E1[🎨 Visual Styles]
-    E --> E2[📐 CSS Class Names]
-```
-
-## 🏗️ Structure Overview
-
-The constants system is organized into four main categories:
-
-| Category | File | Purpose | Example Count |
-|----------|------|---------|---------------|
-| **🔊 Audio** | `AudioKeys.cs` | Audio mixer groups and sound clip keys | ~15 constants |
-| **🎮 Game** | `GameConstants.cs` | Attribute keys and scene names | ~8 constants |
-| **🌍 Localization** | `LocalizationKeys.cs` | UI text localization keys | ~50 constants |
-| **🎨 UI Styles** | `UIToolkitStyles.cs` | CSS class names for UI Toolkit | ~30 constants |
-
-## 📁 Detailed Breakdown
-
-### 1. **🔊 AudioKeys.cs**
-Manages audio system identifiers and mixer routing.
-
-```csharp
-namespace Constants
-{
-    public class AudioKeys
-    {
-        // Mixer Groups
-        public const string MixerMaster = "Master";
-        public const string MixerMusic = "Music";
-        public const string MixerSfx = "SFX";
-        
-        // Audio Clips
-        public const string MainMusic = "mainmusic";
-        public const string Pop = "pop";
-        public const string ButtonClick = "button_click";
-    }
-}
-```
-
-**Usage Examples:**
-- `AudioMixer.SetFloat(AudioKeys.MixerMaster, volume);`
-- `audioSource.Play(AudioKeys.ButtonClick);`
-
-### 2. **🎮 GameConstants.cs**
-Core game configuration and persistent data keys.
-
-```mermaid
-graph LR
-    A[GameConstants] --> B[Attribute Keys]
-    A --> C[Scene Names]
-    
-    B --> B1[💰 PlayerGoldKey]
-    B --> B2[⭐ PlayerExperienceKey]
-    B --> B3[📈 PlayerLevelKey]
-    
-    C --> C1[🚀 Bootstrapper]
-    C --> C2[🏠 StartMenu]
-    C --> C3[🎪 Hub]
-```
-
-**Key Groups:**
-- **📊 Attribute Keys**: Save data identifiers for player progression
-- **🏞️ Scene Names**: Scene loading references (no magic strings)
-
-### 3. **🌍 LocalizationKeys.cs**
-All UI text localization keys for multilingual support.
-
-| Category | Example Keys | Purpose |
-|----------|--------------|---------|
-| **🎮 Game Actions** | `Play`, `Resume`, `Quit` | Main menu and game flow |
-| **⚙️ Settings** | `Audio`, `Video`, `Language` | Settings panel tabs |
-| **📊 Stats** | `Level`, `Experience`, `Gold` | Player progression display |
-| **🎚️ Quality** | `Low`, `Medium`, `High`, `Ultra` | Graphics quality options |
-
-**Total:** ~50 localization keys covering all in-game text.
-
-### 4. **🎨 UIToolkitStyles.cs**
-CSS class names for UI Toolkit styling.
-
-| Style Type | Example Classes | Usage |
-|------------|----------------|-------|
-| **📦 Containers** | `container`, `panel-body`, `view-box` | Layout and grouping |
-| **🎛️ Components** | `menu-button`, `settings-slider`, `tab` | Specific UI elements |
-| **📊 Specialized** | `health-bar-fill`, `language-row` | Custom VR components |
-| **📐 Layout** | `button-container`, `control-box` | Positioning helpers |
-
-**VR Considerations:**
-- 🎯 Large, readable class names for VR headsets
-- 🎨 Consistent theming via CSS custom properties
-- 📱 Scalable for different display resolutions
-
-## 🔄 Integration Example
-
-```mermaid
-sequenceDiagram
-    participant UI as UI System
-    participant Const as Constants
-    participant Loc as Localization
-    participant Audio as Audio System
-
-    UI->>Const: Load scene: GameConstants.Hub
-    UI->>Const: Apply style: UIToolkitStyles.HealthBar
-    UI->>Const: Get text key: LocalizationKeys.Experience
-    Const->>Loc: Translate key to current language
-    Loc-->>UI: Returns localized text
-    UI->>Const: Play sound: AudioKeys.ButtonClick
-    Const->>Audio: Find clip by key
-    Audio-->>UI: Play audio feedback
-```
-
-## ✅ Benefits & Best Practices
-
-| Benefit | Implementation | Impact |
-|---------|----------------|--------|
-| **🚫 No Typos** | Compile-time checking | Eliminates runtime string errors |
-| **🔍 Easy Refactoring** | Single source of truth | Change values in one place |
-| **📖 Self-Documenting** | Clear naming conventions | Understand usage from name |
-| **🌍 Localization Ready** | Separate keys from text | Easy multi-language support |
-
-### ⚡ Best Practices:
-1. **Always use constants** instead of literal strings
-2. **Group related constants** in logical categories
-3. **Use descriptive names** that indicate purpose
-4. **Add XML comments** for complex constants
-5. **Consider splitting** if a category grows beyond 50 items
-
-## 🚀 Extension Guide
-
-| When to Add | Where to Add | Example |
-|-------------|--------------|---------|
-| **New audio clip** | `AudioKeys.cs` | `public const string SpellCast = "spell_cast";` |
-| **New UI text** | `LocalizationKeys.cs` | `public const string Inventory = "inventory";` |
-| **New CSS class** | `UIToolkitStyles.cs` | `public const string SpellSlot = "spell-slot";` |
-| **New save data** | `GameConstants.cs` | `public const string PlayerManaKey = "PlayerMana";` |
+Centralized string keys and configuration values to eliminate magic strings and improve maintainability.
 
 ---
 
-> 💡 **Pro Tip**: Use the `Constants.` prefix when referencing (e.g., `Constants.AudioKeys.MixerMaster`) to make it clear you're using a centralized constant, not a local variable.
+## Overview
+
+All string literals used for lookups, save keys, and style classes are defined as constants. This provides compile-time checking and single-source-of-truth for values used across the codebase.
+
+---
+
+## Constant Categories
+
+### GameConstants
+
+Core game configuration and save data keys.
+
+```csharp
+public static class GameConstants
+{
+    // Scene Names
+    public const string Bootstrapper = "Bootstrapper";
+    public const string StartMenu = "StartMenu";
+    public const string Hub = "Hub";
+    
+    // Save Keys
+    public const string PlayerGoldKey = "PlayerGold";
+    public const string PlayerExperienceKey = "PlayerExperience";
+    public const string PlayerLevelKey = "PlayerLevel";
+    public const string MetaProgressionKey = "MetaProgression";
+    
+    // Attribute Keys
+    public const string HealthAttribute = "Health";
+    public const string StaminaAttribute = "Stamina";
+}
+```
+
+### AudioKeys
+
+Audio mixer groups and clip identifiers.
+
+```csharp
+public static class AudioKeys
+{
+    // Mixer Groups
+    public const string MixerMaster = "Master";
+    public const string MixerMusic = "Music";
+    public const string MixerSfx = "SFX";
+    public const string MixerAmbience = "Ambience";
+    
+    // Common Clips
+    public const string ButtonClick = "button_click";
+    public const string ButtonHover = "button_hover";
+    public const string MenuOpen = "menu_open";
+    public const string MenuClose = "menu_close";
+}
+```
+
+### LocalizationKeys
+
+UI text localization keys.
+
+```csharp
+public static class LocalizationKeys
+{
+    // Main Menu
+    public const string Play = "play";
+    public const string Settings = "settings";
+    public const string Quit = "quit";
+    public const string Resume = "resume";
+    
+    // Settings
+    public const string Audio = "audio";
+    public const string Video = "video";
+    public const string Controls = "controls";
+    public const string Language = "language";
+    
+    // Stats
+    public const string Level = "level";
+    public const string Experience = "experience";
+    public const string Gold = "gold";
+    public const string Health = "health";
+}
+```
+
+### UIToolkitStyles
+
+USS class names for UI Toolkit styling.
+
+```csharp
+public static class UIToolkitStyles
+{
+    // Containers
+    public const string Container = "container";
+    public const string PanelBody = "panel-body";
+    public const string PanelHeader = "panel-header";
+    
+    // Components
+    public const string MenuButton = "menu-button";
+    public const string SettingsSlider = "settings-slider";
+    public const string Tab = "tab";
+    public const string TabActive = "tab-active";
+    
+    // Game UI
+    public const string HealthBar = "health-bar";
+    public const string HealthBarFill = "health-bar-fill";
+    public const string StatRow = "stat-row";
+    public const string StatValue = "stat-value";
+}
+```
+
+---
+
+## Usage
+
+### Scene Loading
+
+```csharp
+// Use constant instead of magic string
+SceneManager.LoadScene(GameConstants.Hub);
+```
+
+### Save Data
+
+```csharp
+// Consistent keys for save/load
+saveFile.AddOrUpdateData(GameConstants.PlayerGoldKey, goldValue);
+var gold = saveFile.GetData<int>(GameConstants.PlayerGoldKey);
+```
+
+### Audio
+
+```csharp
+// Request audio by key
+GameEvents.OnSfxRequested.Raise(AudioKeys.ButtonClick);
+audioMixer.SetFloat(AudioKeys.MixerMaster, volume);
+```
+
+### UI Styling
+
+```csharp
+// Apply USS classes
+var button = UIToolkitFactory.CreateButton(
+    LocalizationKeys.Play,
+    HandlePlay,
+    UIToolkitStyles.MenuButton
+);
+```
+
+---
+
+## Benefits
+
+| Benefit | Explanation |
+|---------|-------------|
+| Compile-time checking | Typos caught at build time, not runtime |
+| Refactoring safety | Change value in one place |
+| Autocomplete support | IDE suggests available constants |
+| Self-documenting | Clear naming indicates purpose |
+
+---
+
+## Adding New Constants
+
+1. Identify the category (Game, Audio, Localization, UI)
+2. Add to appropriate static class
+3. Use descriptive naming: `CategoryAction` or `CategoryItem`
+4. Replace all magic string usages
+
+```csharp
+// Adding a new save key
+public static class GameConstants
+{
+    // Existing keys...
+    public const string PlayerManaKey = "PlayerMana";  // New key
+}
+
+// Usage
+saveFile.AddOrUpdateData(GameConstants.PlayerManaKey, manaValue);
+```
