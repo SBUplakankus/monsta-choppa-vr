@@ -30,6 +30,7 @@ A VR roguelike arena combat game built with Unity's XR Interaction Toolkit. Figh
 |----------|-------------|
 | [Game Development](Docs/Game_Development_Guide.md) | Game loop, progression, economy design |
 | [VR Development](Docs/VR_Development_Guide.md) | Performance targets, optimization, Quest settings |
+| [Meta SpaceWarp](Docs/Meta_SpaceWarp_Guide.md) | Application SpaceWarp implementation for Quest |
 | [Bootstrap and Loading](Docs/Bootstrap_Loading_Guide.md) | Initialization, async scene loading |
 | [UI Toolkit Practices](Docs/UI_Toolkit_Best_Practices.md) | Memory safety, cleanup patterns |
 | [TODO](Docs/TODO.md) | Development roadmap and task list |
