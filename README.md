@@ -1,47 +1,66 @@
-# 📘 The Monsta Choppa Repository
+# Monsta Choppa
 
-**A lot of this is AI Generated at the moment for placeholder info while I develop the game**
-
-This folder contains high-level technical documentation for the Unity VR project **Monsta Choppa*.  
-The goal of these documents is to explain **how systems are structured**, **why architectural decisions were made**, and **how different systems communicate**.
-
-This project is built on top of Unity’s **XR Interaction Toolkit–based VR Template**, with custom systems layered on top to support **modular**, **event-driven**, and **data-driven** gameplay.
+A VR arena combat game built with Unity's XR Interaction Toolkit. This documentation explains the project architecture, systems, and development guides.
 
 ---
 
-## 🗂️ Documentation Index
+## Documentation Index
 
-### 📚 Core Architecture
-| 📄 Document                                    | 📝 Description                                                        |
-|------------------------------------------------|-----------------------------------------------------------------------|
-| [Architecture Overview](Docs/Architecture.md)  | High-level architectural philosophy and system relationships          |
-| [Event Channel System](Docs/Event_Channels.md) | ScriptableObject-based event system for decoupled communication       |
-| [Data & Database System](Docs/Databases.md)    | ScriptableObject databases for items, configuration, and runtime data |
-| [Constants](Docs/Constants.md)                 | How Global Constant variables are used for type safety                |
+### Core Architecture
 
-### 🎮 Systems Documentation
-| 📄 Document                                    | 📝 Description                                                        |
-|------------------------------------------------|-----------------------------------------------------------------------|
-| [User Interface](Docs/User_Interface.md)       | How the UI Works using UI Toolkit and C#                              |
-| [Factories](Docs/Factories.md)                 | Factory classes for creating elements                                 |
-| [Weapons](Docs/Weapons.md)                     | How the weapons system is structured                                  |
-| [Enemies](Docs/Enemies.md)                     | How the enemy system is structured                                    |
-| [Save Data](Docs/Save_Data.md)                 | How player save data is handled                                       |
+| Document | Description |
+|----------|-------------|
+| [Architecture](Docs/Architecture.md) | System overview and layer responsibilities |
+| [Event Channels](Docs/Event_Channels.md) | ScriptableObject-based event system |
+| [Databases](Docs/Databases.md) | Generic database pattern for game data |
+| [Constants](Docs/Constants.md) | Centralized string keys and configuration |
 
-### 🎓 Development Guides
-| 📄 Document                                                    | 📝 Description                                                        |
-|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| [Game Development Guide](Docs/Game_Development_Guide.md)       | Complete guide to game flow, levelling, economy, UI and more          |
-| [UI Toolkit Best Practices](Docs/UI_Toolkit_Best_Practices.md) | Memory leak prevention and efficient UITK panel creation              |
-| [Meta SpaceWarp Guide](Docs/Meta_SpaceWarp_Guide.md)           | Implementing Application SpaceWarp for Quest performance              |
-| [Bootstrap & Loading Guide](Docs/Bootstrap_Loading_Guide.md)   | Proper initialization, loading screens, and async scene loading       |
-| [VR Development Guide](Docs/VR_Development_Guide.md)           | VR fundamentals, custom hands, arenas, and Quest 2 tips               |
-| [Combat TODO](Docs/Combat_TODO.md)                             | Combat system improvements and optimization checklist                 |
+### Systems
 
-### 📖 Resources
-| 📄 Document                                    | 📝 Description                                                        |
-|------------------------------------------------|-----------------------------------------------------------------------|
-| [Tutorials](Docs/Tutorials.md)                 | Tutorials used to learn VR in Unity                                   |
-| [References](Docs/References.md)               | Links to content used in project                                      |
+| Document | Description |
+|----------|-------------|
+| [User Interface](Docs/User_Interface.md) | Factory-View-Host-Controller pattern |
+| [Weapons](Docs/Weapons.md) | Data-driven weapon system |
+| [Enemies](Docs/Enemies.md) | Enemy spawning and management |
+| [Save Data](Docs/Save_Data.md) | Player persistence with ESave |
+
+### Development Guides
+
+| Document | Description |
+|----------|-------------|
+| [VR Development](Docs/VR_Development_Guide.md) | Performance targets, comfort settings, Quest tips |
+| [Bootstrap and Loading](Docs/Bootstrap_Loading_Guide.md) | Initialization and async scene loading |
+| [UI Toolkit Practices](Docs/UI_Toolkit_Best_Practices.md) | Memory safety and panel creation patterns |
+| [Combat TODO](Docs/Combat_TODO.md) | Current optimization checklist |
+
+---
+
+## Tutorials and References
+
+### VR Development Tutorials
+
+| Title | Creator | Topic |
+|-------|---------|-------|
+| [World Space UI Toolkit for VR](https://www.youtube.com/watch?v=XJRxGHENrjc) | Valem Tutorials | UI Systems, Unity 6.2 |
+| [Starter Assets and Hand Tracking](https://www.youtube.com/watch?v=6DcwHPxCE54) | Dilmer Valecillos | XR Starter Assets, Hand Tracking |
+| [XR Rig Setup - Quest 3 and Unity 6](https://www.youtube.com/watch?v=I1JcytXwXM4) | Justin P. Barnett | XR Origin configuration |
+
+### UI Toolkit Tutorials
+
+| Title | Creator | Topic |
+|-------|---------|-------|
+| [Building Runtime UI with UI Toolkit](https://www.youtube.com/watch?v=-z3wNeYlJV4) | Game Dev Guide | UIDocument and runtime control |
+| [UI Toolkit Primer](https://www.youtube.com/watch?v=acQd7yr6eWg) | Tarodev | Visual Tree, UXML, USS fundamentals |
+
+### Project Dependencies
+
+| Asset | Source | Purpose |
+|-------|--------|---------|
+| PrimeTween | Unity Asset Store | Allocation-free animation |
+| Auto VR Optimizer | Unity Asset Store | Runtime performance adjustment |
+| Mesh Combiner | Unity Asset Store | Draw call reduction |
+| Synty Dungeon Realms | Unity Asset Store | Environment art |
+| Volumetric Light Beam | Unity Asset Store | Atmospheric lighting |
+| Ovanisound | Unity Asset Store | Sound effects and UI audio |
 
 ---
