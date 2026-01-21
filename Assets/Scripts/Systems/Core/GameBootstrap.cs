@@ -24,14 +24,16 @@ namespace Systems.Core
         [SerializeField] private StringEventChannel onSfxRequested;
         
         [Header("Game Events")] 
+        [SerializeField] private VoidEventChannel onPauseRequested;
+        [SerializeField] private VoidEventChannel onGameOverSequenceRequested;
+        [SerializeField] private VoidEventChannel onGameWonSequenceRequested;
+        
+        [Header("Arena Events")]
         [SerializeField] private EnemyEventChannel onEnemySpawned;
         [SerializeField] private EnemyEventChannel onEnemyDespawned;
         [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
         [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
-        [SerializeField] private VoidEventChannel onPauseRequested;
-        [SerializeField] private VoidEventChannel onGameOverSequenceRequested;
-        [SerializeField] private VoidEventChannel onGameWonSequenceRequested;
-
+        
         [Header("Databases")]
         [SerializeField] private AudioClipDatabase audioDatabase;
         [SerializeField] private WorldAudioDatabase worldAudioDatabase;

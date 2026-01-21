@@ -15,7 +15,7 @@ namespace Factories
     /// Allows external systems to update visuals (e.g. fill width) without
     /// knowing how the health bar hierarchy is constructed.
     /// </summary>
-    public struct HealthBarElements
+    public struct BarElements
     {
         public VisualElement Container;
         public VisualElement Background;
@@ -63,10 +63,10 @@ namespace Factories
         /// Container -> Background -> Fill
         /// </summary>
         /// <returns>
-        /// A <see cref="HealthBarElements"/> struct containing references
+        /// A <see cref="BarElements"/> struct containing references
         /// to the container, background, and fill elements.
         /// </returns>
-        public static HealthBarElements CreateHealthBar()
+        public static BarElements CreateHealthBar()
         {
             var container = CreateContainer(UIToolkitStyles.HealthBarContainer);
             var background = CreateContainer(UIToolkitStyles.HealthBarBackground);
@@ -75,7 +75,24 @@ namespace Factories
             background.Add(fill);
             container.Add(background);
 
-            return new HealthBarElements
+            return new BarElements
+            {
+                Container = container,
+                Background = background,
+                Fill = fill
+            };
+        }
+        
+        public static BarElements CreateLoadingBar()
+        {
+            var container = CreateContainer(UIToolkitStyles.LoadingBarContainer);
+            var background = CreateContainer(UIToolkitStyles.LoadingBarBackground);
+            var fill = CreateContainer(UIToolkitStyles.LoadingBarFill);
+
+            background.Add(fill);
+            container.Add(background);
+
+            return new BarElements
             {
                 Container = container,
                 Background = background,

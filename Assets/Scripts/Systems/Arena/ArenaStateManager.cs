@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Events;
+using Systems.Core;
 using UnityEngine;
 
 namespace Systems.Arena
@@ -45,7 +46,7 @@ namespace Systems.Arena
     /// Manages the current game state and transitions between them.
     /// Raises events for listeners and triggers enter/exit logic for each state.
     /// </summary>
-    public class AreaStateManager : MonoBehaviour
+    public class ArenaStateManager : MonoBehaviour
     {
         #region Fields
 
@@ -53,6 +54,7 @@ namespace Systems.Arena
         [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
         [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
         [SerializeField] private VoidEventChannel onPauseRequested;
+        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
 
         private ArenaState _currentArenaState;
         private ArenaState _previousState;
@@ -237,7 +239,11 @@ namespace Systems.Arena
 
         #region State Logic Stubs
 
-        private void HandleGamePreludeEnter() => Debug.Log("GameStateManager: Entering GamePrelude State.");
+        private void HandleGamePreludeEnter()
+        { 
+            onGameStateChangeRequested.Raise(GameState.Arena);
+        }
+        
         private void HandleGamePreludeExit() => Debug.Log("GameStateManager: Exiting GamePrelude State.");
 
         private void HandleWaveIntermissionEnter() => Debug.Log("GameStateManager: Entering WaveIntermission State.");
@@ -258,10 +264,16 @@ namespace Systems.Arena
         private void HandleBossCompleteEnter() => Debug.Log("GameStateManager: Entering BossComplete State.");
         private void HandleBossCompleteExit() => Debug.Log("GameStateManager: Exiting BossComplete State.");
 
-        private void HandleGameWonEnter() => Debug.Log("GameStateManager: Entering GameWon State.");
+        private void HandleGameWonEnter()
+        { 
+            onGameStateChangeRequested.Raise(GameState.ArenaVictory);
+        }
         private void HandleGameWonExit() => Debug.Log("GameStateManager: Exiting GameWon State.");
 
-        private void HandleGameOverEnter() => Debug.Log("GameStateManager: Entering GameOver State.");
+        private void HandleGameOverEnter()
+        { 
+            onGameStateChangeRequested.Raise(GameState.ArenaDefeat);
+        }
         private void HandleGameOverExit() => Debug.Log("GameStateManager: Exiting GameOver State.");
 
         private void HandleGamePausedEnter() => Debug.Log("GameStateManager: Game Paused. Setting Time.timeScale to 0.");

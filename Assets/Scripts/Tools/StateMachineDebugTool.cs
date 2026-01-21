@@ -8,7 +8,7 @@ namespace Tools
     public class StateMachineDebugTool : MonoBehaviour
     {
         [Header("State Machine Reference")]
-        [SerializeField] private AreaStateManager areaStateManager;
+        [SerializeField] private ArenaStateManager arenaStateManager;
         [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
 
         private void Update()
@@ -70,7 +70,7 @@ namespace Tools
         /// </summary>
         private void PingState(ArenaState state)
         {
-            if (!areaStateManager)
+            if (!arenaStateManager)
             {
                 Debug.LogError("StateMachineDebugTool: GameStateManager not assigned.");
                 return;

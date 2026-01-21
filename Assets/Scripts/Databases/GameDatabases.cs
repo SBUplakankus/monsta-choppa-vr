@@ -1,4 +1,3 @@
-using UnityEngine;
 
 namespace Databases
 {
@@ -6,71 +5,14 @@ namespace Databases
     {
         #region Databases
 
-        private static AudioClipDatabase _audioClipDatabase;
-        private static WorldAudioDatabase _worldAudioDatabase; 
-        private static WeaponDatabase _weaponDatabase;
-        private static EnemyDatabase _enemyDatabase;
-        private static ParticleDatabase _particleDatabase;
+        public static AudioClipDatabase AudioClipDatabase { get; set; }
+        public static WorldAudioDatabase WorldAudioDatabase { get; set; }
+        public static WeaponDatabase WeaponDatabase { get; set; }
+        public static EnemyDatabase EnemyDatabase { get; set; }
+        public static ParticleDatabase ParticleDatabase { get; set; }
+        public static UpgradeDatabase UpgradeDatabase { get; set; }
+        public static ArenaDatabase ArenaDatabase { get; set; }
 
-        #endregion
-        
-        #region Properties
-        
-        public static AudioClipDatabase AudioClipDatabase 
-        {
-            get
-            {
-                if (_audioClipDatabase == null)
-                    Debug.LogError($"{nameof(AudioClipDatabase)} not initialized!");
-                return _audioClipDatabase;
-            }
-            internal set => _audioClipDatabase = value;
-        }
-        
-        public static WorldAudioDatabase WorldAudioDatabase 
-        {
-            get
-            {
-                if (_worldAudioDatabase == null)
-                    Debug.LogError($"{nameof(WorldAudioDatabase)} not initialized!");
-                return _worldAudioDatabase;
-            }
-            internal set => _worldAudioDatabase = value;
-        }
-        
-        public static WeaponDatabase WeaponDatabase 
-        {
-            get
-            {
-                if (_weaponDatabase == null)
-                    Debug.LogError($"{nameof(WeaponDatabase)} not initialized!");
-                return _weaponDatabase;
-            }
-            internal set => _weaponDatabase = value;
-        }
-        
-        public static EnemyDatabase EnemyDatabase 
-        {
-            get
-            {
-                if (_enemyDatabase == null)
-                    Debug.LogError($"{nameof(EnemyDatabase)} not initialized!");
-                return _enemyDatabase;
-            }
-            internal set => _enemyDatabase = value;
-        }
-
-        public static ParticleDatabase ParticleDatabase
-        {
-            get
-            {
-                if (_particleDatabase == null)
-                    Debug.LogError($"{nameof(ParticleDatabase)} not initialized!");
-                return _particleDatabase;
-            }
-            internal set => _particleDatabase = value;
-        }
-        
         #endregion
         
         #region Methods
@@ -80,11 +22,13 @@ namespace Databases
         /// </summary>
         public static void Clear()
         {
-            _audioClipDatabase = null;
-            _worldAudioDatabase = null;
-            _weaponDatabase = null;
-            _enemyDatabase = null;
-            _particleDatabase = null;
+            AudioClipDatabase = null;
+            WorldAudioDatabase = null;
+            WeaponDatabase = null;
+            EnemyDatabase = null;
+            ParticleDatabase = null;
+            ArenaDatabase = null;
+            UpgradeDatabase = null;
         }
         
         #endregion

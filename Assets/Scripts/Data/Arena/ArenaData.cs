@@ -52,6 +52,7 @@ namespace Data.Arena
 
         #region Properties
 
+        public string ID => name;
         public ArenaLocation Location => location;
         public ArenaDifficulty Difficulty => difficulty;
         public ArenaBoss Boss => boss;

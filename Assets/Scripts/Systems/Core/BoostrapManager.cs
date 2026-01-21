@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Constants;
+using Events;
 using Pooling;
 using Saves;
 using UI.Controllers;
@@ -19,6 +20,9 @@ namespace Systems.Core
         [SerializeField] private LoadingScreenController loadingScreen;
         [SerializeField] private GamePoolManager gamePoolManager;
         [SerializeField] private SettingsSaveFileManager settingsSaveFileManager;
+        
+        [Header("Events")]
+        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
         
         private const float MinimumLoadTime = 2f;
         private const float OperationThreshold = 0.9f;
@@ -161,6 +165,7 @@ namespace Systems.Core
             {
                 loadingScreen?.FadeIn();
                 loadingScreen?.UpdateProgress(LocalizationKeys.LoadingScene);
+                onGameStateChangeRequested.Raise(GameState.Loading);
             }
             
             var currentScene = SceneManager.GetActiveScene();

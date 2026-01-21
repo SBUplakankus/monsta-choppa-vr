@@ -30,6 +30,13 @@ namespace Constants
         public const string HealthBarBackground = "health-bar-background";
         public const string HealthBarFill = "health-bar-fill";
         
+        public const string LoadingBar = "loading-bar";
+        public const string LoadingBarContainer = "loading-bar-container";
+        public const string LoadingBarBackground = "loading-bar-background";
+        public const string LoadingBarFill = "loading-bar-fill";
+        public const string LoadingLabelContainer = "loading-label-container";
+        public const string LoadingLabel = "loading-label";
+        
         public const string SettingsSlider = "settings-slider";
         public const string SettingsSliderRow = "settings-slider-row";
         public const string SettingsDropdownRow = "settings-dropdown-row";

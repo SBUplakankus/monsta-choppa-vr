@@ -24,7 +24,8 @@ namespace Data.Progression
         #endregion
         
         #region Properties
-        
+
+        public string ID => name;
         public FloatAttribute Attribute => upgradeAttribute;
         
         public float Value => upgradeValue;
