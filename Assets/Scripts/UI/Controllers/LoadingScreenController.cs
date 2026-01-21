@@ -7,8 +7,8 @@ namespace UI.Controllers
 {
     public struct LoadProgress
     {
-        public float LoadPercentage;
-        public string LoadingMessageKey;
+        public readonly float LoadPercentage;
+        public readonly string LoadingMessageKey;
 
         public LoadProgress(float loadPercentage, string loadingMessageKey)
         {
@@ -34,32 +34,23 @@ namespace UI.Controllers
             { LocalizationKeys.AssetsLoaded, new LoadProgress(0.8f, LocalizationKeys.AssetsLoaded) },
             { LocalizationKeys.LoadingGame, new LoadProgress(0.9f, LocalizationKeys.LoadingGame) },
             { LocalizationKeys.LoadingComplete, new LoadProgress(1f, LocalizationKeys.LoadingComplete) },
+            { LocalizationKeys.LoadingScene, new LoadProgress(0f, LocalizationKeys.LoadingScene) },
+            { LocalizationKeys.LoadingSceneComplete, new LoadProgress(1f, LocalizationKeys.LoadingSceneComplete) },
         };
 
         public void UpdateProgress(string key)
         {
-            var progress = _loadProgresses[key];
+            loadingScreenHost.UpdateLoadingScreen(_loadProgresses[key]);
         }
 
-        public void Show()
+        public void Show(string key)
         {
-            
+            loadingScreenHost.DisplayLoadingScreen(_loadProgresses[key]);
         }
 
         public void Hide()
         {
-            
+            loadingScreenHost.HideLoadingScreen();
         }
-
-        public void FadeIn()
-        {
-            
-        }
-
-        public void FadeOut()
-        {
-            
-        }
-        
     }
 }

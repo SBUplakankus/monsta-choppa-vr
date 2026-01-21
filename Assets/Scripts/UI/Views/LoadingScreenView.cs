@@ -1,4 +1,7 @@
+using Constants;
 using Factories;
+using UI.Controllers;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 namespace UI.Views
@@ -6,7 +9,8 @@ namespace UI.Views
     public class LoadingScreenView : BasePanelView
     {
         private IStyle _loadingBarFillStyle;
-        private VisualElement _loadingLabelContainer;
+        private LocalizedString _labelText;
+        private Label _loadingLabel;
         
         public LoadingScreenView(VisualElement root, StyleSheet styleSheet)
         {
@@ -18,17 +22,37 @@ namespace UI.Views
         
         protected sealed override void GenerateUI(VisualElement root)
         {
+            Dispose();
+            
+            var loadingContainer = UIToolkitFactory.CreateContainer(UIToolkitStyles.LoadingScreenContainer);
+            
+            var loadingLabelContainer = UIToolkitFactory.CreateContainer(UIToolkitStyles.LoadingLabelContainer);
+            _loadingLabel = UIToolkitFactory.CreateLabel(UIToolkitStyles.LoadingLabel);
+            loadingLabelContainer.Add(_loadingLabel);
+            loadingContainer.Add(loadingLabelContainer);
+            
             var loadingBar = UIToolkitFactory.CreateLoadingBar();
             _loadingBarFillStyle = loadingBar.Fill.style;
+            loadingContainer.Add(loadingBar.Container);
             
-            Container.Add(loadingBar.Container);
-            
+            Container.Add(loadingContainer);
             root.Add(Container);
         }
 
-        public void UpdateLoadingBarValue(float value)
+        public override void Dispose()
         {
-            _loadingBarFillStyle.width = new Length(value, LengthUnit.Percent);
+            _loadingBarFillStyle = null;
+            _labelText = null;
+            _loadingLabel = null;
+            base.Dispose();
         }
+        
+        public void UpdateLoadingBar(LoadProgress loadProgress)
+        {
+            _loadingBarFillStyle.width = new Length(loadProgress.LoadPercentage * 100, LengthUnit.Percent);
+            _labelText = LocalizationFactory.CreateString(loadProgress.LoadingMessageKey);
+            _loadingLabel.SetBinding(UIToolkitStyles.LabelTextBind, _labelText);
+        }
+        
     }
 }

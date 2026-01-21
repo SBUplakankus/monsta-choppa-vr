@@ -141,7 +141,7 @@ namespace Factories
             if(!string.IsNullOrEmpty(localizationKey))
             {
                 var localizedString = LocalizationFactory.CreateString(localizationKey);
-                label.SetBinding("text", localizedString);
+                label.SetBinding(UIToolkitStyles.LabelTextBind, localizedString);
             }
             
             return label;

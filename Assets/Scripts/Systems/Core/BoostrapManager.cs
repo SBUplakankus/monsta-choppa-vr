@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Constants;
 using Events;
 using Pooling;
@@ -7,7 +6,6 @@ using Saves;
 using UI.Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
 
 namespace Systems.Core
 {
@@ -120,8 +118,7 @@ namespace Systems.Core
         
         private void StartLoadingGame()
         {
-            loadingScreen.Show();
-            loadingScreen.UpdateProgress(LocalizationKeys.Initializing);
+            loadingScreen?.Show(LocalizationKeys.Initializing);
             _isInitialized = false;
         }
 
@@ -163,8 +160,7 @@ namespace Systems.Core
         {
             if (showLoading)
             {
-                loadingScreen?.FadeIn();
-                loadingScreen?.UpdateProgress(LocalizationKeys.LoadingScene);
+                loadingScreen?.Show(LocalizationKeys.LoadingScene);
                 onGameStateChangeRequested.Raise(GameState.Loading);
             }
             
@@ -195,7 +191,7 @@ namespace Systems.Core
             if (!showLoading) yield break;
             loadingScreen?.UpdateProgress(LocalizationKeys.LoadingComplete);
             yield return _minStepWait;
-            loadingScreen?.FadeOut();
+            loadingScreen?.Hide();
         }
         
         #endregion

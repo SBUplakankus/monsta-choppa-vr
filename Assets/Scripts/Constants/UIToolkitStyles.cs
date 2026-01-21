@@ -3,6 +3,7 @@ namespace Constants
     public static class UIToolkitStyles
     {
         public const string Container = "container";
+        public const string LabelTextBind = "text";
         
         public const string PanelBody = "panel-body";
         public const string PanelHeader = "panel-header";
@@ -30,7 +31,7 @@ namespace Constants
         public const string HealthBarBackground = "health-bar-background";
         public const string HealthBarFill = "health-bar-fill";
         
-        public const string LoadingBar = "loading-bar";
+        public const string LoadingScreenContainer = "loading-screen-container";
         public const string LoadingBarContainer = "loading-bar-container";
         public const string LoadingBarBackground = "loading-bar-background";
         public const string LoadingBarFill = "loading-bar-fill";
