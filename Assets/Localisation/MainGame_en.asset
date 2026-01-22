@@ -338,6 +338,50 @@ MonoBehaviour:
     m_Localized: Turkish
     m_Metadata:
       m_Items: []
+  - m_Id: 12393377141338112
+    m_Localized: Initialising
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393419323453440
+    m_Localized: Initialising Core Systems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393457164464128
+    m_Localized: Core Systems Loaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393485639593984
+    m_Localized: Loading User Loaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393514957778944
+    m_Localized: User Data Loaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394081536946176
+    m_Localized: Loading Game Assets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394118673313792
+    m_Localized: Game Assets Loaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394144451506176
+    m_Localized: Loading Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394169957068800
+    m_Localized: Loading Completed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394226232045568
+    m_Localized: Loading Scene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394253792817152
+    m_Localized: Scene Load Complete
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

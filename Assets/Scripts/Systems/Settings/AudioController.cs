@@ -25,13 +25,13 @@ namespace Systems.Settings
         [SerializeField] private AudioSettingsConfig audioSettings;
         
         [Header("Audio Database")]
-        [SerializeField] private AudioClipDatabase audioDatabase;
+        private AudioClipDatabase _audioDatabase = GameDatabases.AudioClipDatabase;
 
         [Header("Audio Events")] 
-        [SerializeField] private StringEventChannel onUISfxRequested;
-        [SerializeField] private StringEventChannel onMusicRequested;
-        [SerializeField] private StringEventChannel onMusicFadeRequested;
-        [SerializeField] private StringEventChannel onAmbienceRequested;
+        private readonly StringEventChannel _onUISfxRequested = GameEvents.OnUISfxRequested;
+        private readonly StringEventChannel _onMusicRequested = GameEvents.OnMusicRequested;
+        private readonly StringEventChannel _onMusicFadeRequested = GameEvents.OnMusicFadeRequested;
+        private readonly StringEventChannel _onAmbienceRequested = GameEvents.OnAmbienceRequested;
 
         private const float MusicFadeDuration = 2.5f;
         private Coroutine _musicFadeRoutine;
@@ -87,7 +87,7 @@ namespace Systems.Settings
         
         private AudioClip GetClip(string key)
         {
-            var entry = audioDatabase.Get(key);
+            var entry = _audioDatabase.Get(key);
             if (entry != null) return entry.Clip;
             Debug.LogWarning($"AudioController: Audio clip not found for key '{key}'");
             return null;
@@ -109,7 +109,7 @@ namespace Systems.Settings
 
         private void PlayBlendedMusic(string key)
         {
-            if (audioDatabase == null || musicASource == null || musicBSource == null)
+            if (_audioDatabase == null || musicASource == null || musicBSource == null)
                 return;
 
             var clip = GetClip(key);
@@ -141,7 +141,7 @@ namespace Systems.Settings
 
         private void PlayAmbience(string key)
         {
-            if (audioDatabase == null || ambienceSource == null) return;
+            if (_audioDatabase == null || ambienceSource == null) return;
             var clip = GetClip(key);
             
             if (clip == null) return;
@@ -152,7 +152,7 @@ namespace Systems.Settings
 
         private void PlaySfx(string key)
         {
-            if (audioDatabase == null || uiSfxSource == null) return;
+            if (_audioDatabase == null || uiSfxSource == null) return;
 
             var clip = GetClip(key);
             if (clip == null) return;
@@ -170,10 +170,10 @@ namespace Systems.Settings
 
         private void SubscribeEvents()
         {
-            onUISfxRequested.Subscribe(PlaySfx);
-            onMusicRequested.Subscribe(PlayMusic);
-            onAmbienceRequested.Subscribe(PlayAmbience);
-            onMusicFadeRequested.Subscribe(PlayBlendedMusic);
+            _onUISfxRequested.Subscribe(PlaySfx);
+            _onMusicRequested.Subscribe(PlayMusic);
+            _onAmbienceRequested.Subscribe(PlayAmbience);
+            _onMusicFadeRequested.Subscribe(PlayBlendedMusic);
             
             audioSettings.MasterVolume.OnValueChanged += SetMasterVolume;
             audioSettings.MusicVolume.OnValueChanged += SetMusicVolume;
@@ -184,10 +184,10 @@ namespace Systems.Settings
 
         private void UnsubscribeEvents()
         {
-            onUISfxRequested.Unsubscribe(PlaySfx);
-            onMusicRequested.Unsubscribe(PlayMusic);
-            onAmbienceRequested.Unsubscribe(PlayAmbience);
-            onMusicFadeRequested.Unsubscribe(PlayBlendedMusic);
+            _onUISfxRequested.Unsubscribe(PlaySfx);
+            _onMusicRequested.Unsubscribe(PlayMusic);
+            _onAmbienceRequested.Unsubscribe(PlayAmbience);
+            _onMusicFadeRequested.Unsubscribe(PlayBlendedMusic);
             
             audioSettings.MasterVolume.OnValueChanged -= SetMasterVolume;
             audioSettings.MusicVolume.OnValueChanged -= SetMusicVolume;
@@ -211,7 +211,7 @@ namespace Systems.Settings
         
         private void OnEnable()
         {
-            audioDatabase = GameDatabases.AudioClipDatabase;
+            _audioDatabase = GameDatabases.AudioClipDatabase;
             SubscribeEvents();
             SetInitialValues();
         }

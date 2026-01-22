@@ -56,12 +56,6 @@ namespace Attributes
         private void Notify([CallerMemberName] string property = "") => propertyChanged?.Invoke(this, new BindablePropertyChangedEventArgs(property));
         
         /// <summary>
-        /// Increases the current value by the specified amount.
-        /// </summary>
-        /// <param name="amount">The amount to add (can be negative).</param>
-        public void Add(int amount) => Value += amount;
-        
-        /// <summary>
         /// Resets the attribute value to zero.
         /// </summary>
         public void Reset() => Value = 0;

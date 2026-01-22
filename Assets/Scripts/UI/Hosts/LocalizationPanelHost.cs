@@ -13,7 +13,7 @@ namespace UI.Hosts
     {
         #region Fields
 
-        [SerializeField] private LocaleEventChannel onLocaleChangeRequested;
+        private readonly LocaleEventChannel _onLocaleChangeRequested = GameEvents.OnLocaleChangeRequested;
         
         private Locale[] _availableLocales;
         private Action _unbindAll;
@@ -60,7 +60,7 @@ namespace UI.Hosts
 
         private void SetLocale(Locale locale)
         {
-            onLocaleChangeRequested.Raise(locale);
+            _onLocaleChangeRequested.Raise(locale);
         }
         
         #endregion

@@ -25,8 +25,8 @@ namespace Characters.Enemies
         private EnemyId _enemyId;
 
         [Header("Enemy Events")]
-        private EnemyEventChannel _onEnemySpawned;
-        private EnemyEventChannel _onEnemyDespawned;
+        private readonly EnemyEventChannel _onEnemySpawned = GameEvents.OnEnemySpawned;
+        private readonly EnemyEventChannel _onEnemyDespawned = GameEvents.OnEnemyDespawned;
 
         private GamePoolManager _gamePoolManager;
 
@@ -188,9 +188,6 @@ namespace Characters.Enemies
             
             if (!GetComponent<EnemyAttack>())
                 gameObject.AddComponent<EnemyAttack>();
-
-            _onEnemySpawned ??= GameEvents.OnEnemySpawned;
-            _onEnemyDespawned ??= GameEvents.OnEnemyDespawned;
         }
 
         /// <summary>

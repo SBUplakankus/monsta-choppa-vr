@@ -24,18 +24,17 @@ namespace UI.Views
         {
             Dispose();
             
-            var loadingContainer = UIToolkitFactory.CreateContainer(UIToolkitStyles.LoadingScreenContainer);
+            Container = UIToolkitFactory.CreateContainer(UIToolkitStyles.LoadingScreenContainer);
             
             var loadingLabelContainer = UIToolkitFactory.CreateContainer(UIToolkitStyles.LoadingLabelContainer);
-            _loadingLabel = UIToolkitFactory.CreateLabel(UIToolkitStyles.LoadingLabel);
+            _loadingLabel = UIToolkitFactory.CreateLabel(LocalizationKeys.Initializing,UIToolkitStyles.LoadingLabel);
             loadingLabelContainer.Add(_loadingLabel);
-            loadingContainer.Add(loadingLabelContainer);
+            Container.Add(loadingLabelContainer);
             
             var loadingBar = UIToolkitFactory.CreateLoadingBar();
             _loadingBarFillStyle = loadingBar.Fill.style;
-            loadingContainer.Add(loadingBar.Container);
+            Container.Add(loadingBar.Container);
             
-            Container.Add(loadingContainer);
             root.Add(Container);
         }
 

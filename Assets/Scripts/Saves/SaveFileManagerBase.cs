@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Saves
 {
-    [RequireComponent(typeof(SaveFile))]
+    [RequireComponent(typeof(SaveFileSetup))]
     public abstract class SaveFileManagerBase : MonoBehaviour
     {
         #region Fields
 
-        [Header("Save Data")]
+        [Header("Save Data")] 
+        private SaveFileSetup _saveFileSetup;
         protected SaveFile SaveFile;
 
         #endregion
@@ -27,7 +28,11 @@ namespace Saves
         
         #region Unity Methods
 
-        private void Awake() => SaveFile = GetComponent<SaveFile>();
+        protected void GetSaveFile()
+        { 
+            _saveFileSetup = GetComponent<SaveFileSetup>();
+            SaveFile = _saveFileSetup.GetSaveFile();
+        }
         
         #endregion
         

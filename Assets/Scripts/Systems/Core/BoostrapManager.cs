@@ -1,5 +1,7 @@
 using System.Collections;
 using Constants;
+using Data.Registries;
+using Databases;
 using Events;
 using Pooling;
 using Saves;
@@ -9,191 +11,233 @@ using UnityEngine.SceneManagement;
 
 namespace Systems.Core
 {
-    public class BoostrapManager : MonoBehaviour
+    public class BootstrapManager : MonoBehaviour
     {
         #region Fields
 
-        [Header("Bootstrap Dependencies")]
-        [SerializeField] private GameBootstrap gameBootstrap;
+        [Header("Core Dependencies")]
+        [SerializeField] private GameEventRegistry gameEventRegistry;
+        [SerializeField] private GameDatabaseRegistry gameDatabaseRegistry;
         [SerializeField] private LoadingScreenController loadingScreen;
         [SerializeField] private GamePoolManager gamePoolManager;
         [SerializeField] private SettingsSaveFileManager settingsSaveFileManager;
-        
-        [Header("Events")]
-        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
-        
-        private const float MinimumLoadTime = 2f;
-        private const float OperationThreshold = 0.9f;
-        private readonly WaitForSeconds _minStepWait = new(0.5f);
-        
+
+        [Header("Configuration")]
+        [SerializeField] private float minimumLoadTime = 3f;
+        [SerializeField] private float fadeWaitTime = 1.5f;
+        [SerializeField] private float stepDelay = 0.5f;
+
+        private WaitForSeconds _stepWait;
+        private WaitForSeconds _minimumLoadWait;
+        private WaitForSeconds _fadeWait;
         private bool _isInitialized;
 
         #endregion
 
         #region Properties
 
-        public static BoostrapManager Instance { get; private set; }
+        public static BootstrapManager Instance { get; private set; }
 
         #endregion
 
-        #region Routines
+        #region Bootstrap Sequence
 
-        private IEnumerator Start()
+        private IEnumerator BootstrapSequence()
         {
-            StartLoadingGame();
+            Debug.Log("BootstrapManager: Starting bootstrap sequence");
 
-            yield return StartCoroutine(InitCoreSystemsAsync());
-            yield return StartCoroutine(LoadUserDataAsync());
-            yield return StartCoroutine(LoadAssetsAsync());
-            yield return StartCoroutine(LoadStartMenuAsync());
-            
-            FinishLoadingGame();
+            StartBootstrapSequence();
+
+            yield return InitializeCoreRegistriesAsync();
+            yield return InitializeSaveSystemsAsync();
+            yield return InitializePoolingSystemsAsync();
+            yield return LoadStartMenuAsync();
+
+            CompleteBootstrapSequence();
         }
-        
-        private IEnumerator HandleSceneLoading(AsyncOperation operation)
-        {
-            if (operation == null) yield break;
-            
-            var startTime = Time.time;
-            operation.allowSceneActivation = false;
 
-            while (!operation.isDone)
+        private IEnumerator InitializeCoreRegistriesAsync()
+        {
+            UpdateLoadingProgress(LocalizationKeys.InitializingCore);
+            yield return _stepWait;
+
+            if (!ValidateCoreRegistries())
+                yield break;
+
+            gameEventRegistry.Validate();
+            gameEventRegistry.Install();
+
+            gameDatabaseRegistry.Validate();
+            gameDatabaseRegistry.Install();
+
+            UpdateLoadingProgress(LocalizationKeys.CoreReady);
+            yield return _stepWait;
+        }
+
+        private IEnumerator InitializeSaveSystemsAsync()
+        {
+            UpdateLoadingProgress(LocalizationKeys.LoadingSettings);
+            yield return _stepWait;
+
+            if (settingsSaveFileManager)
             {
-                if (operation.progress >= OperationThreshold)
-                {
-                    var elapsed = Time.time - startTime;
-                    if (elapsed < MinimumLoadTime)
-                    {
-                        yield return new WaitForSeconds(MinimumLoadTime - elapsed);
-                    }
-                    operation.allowSceneActivation = true;
-                }
-                yield return null;
+                settingsSaveFileManager.enabled = true;
+                settingsSaveFileManager.InitSettings();
             }
+
+            UpdateLoadingProgress(LocalizationKeys.UserDataLoaded);
+            yield return _stepWait;
         }
 
-        private IEnumerator InitCoreSystemsAsync()
+        private IEnumerator InitializePoolingSystemsAsync()
         {
-            gameBootstrap?.Initialize();
-            yield return UpdateAndWait(LocalizationKeys.InitializingCore);
-            loadingScreen.UpdateProgress(LocalizationKeys.CoreReady);
-            
-        }
+            UpdateLoadingProgress(LocalizationKeys.PreloadingAssets);
+            yield return _stepWait;
 
-        private IEnumerator LoadUserDataAsync()
-        {
-            settingsSaveFileManager?.InitSettings();
-            yield return UpdateAndWait(LocalizationKeys.PreloadingAssets);
-            // loadingScreen.ReportProgress(_loadProgresses[LocalizationKeys.LoadingSaves]);
-            loadingScreen.UpdateProgress(LocalizationKeys.UserDataLoaded);
-        }
-
-        private IEnumerator LoadAssetsAsync()
-        {
             gamePoolManager?.Initialise();
-            yield return UpdateAndWait(LocalizationKeys.PreloadingAssets);
-            loadingScreen.UpdateProgress(LocalizationKeys.AssetsLoaded);
+
+            UpdateLoadingProgress(LocalizationKeys.AssetsLoaded);
+            yield return _stepWait;
         }
 
         private IEnumerator LoadStartMenuAsync()
         {
-            loadingScreen.UpdateProgress(LocalizationKeys.LoadingGame);
-            
-            var operation = SceneManager.LoadSceneAsync(GameConstants.StartMenu, LoadSceneMode.Additive);
-            if (operation != null) operation.allowSceneActivation = false;
-            yield return HandleSceneLoading(operation);
-
-            loadingScreen.UpdateProgress(LocalizationKeys.LoadingComplete);
+            UpdateLoadingProgress(LocalizationKeys.LoadingGame);
+            yield return _stepWait;
+            UpdateLoadingProgress(LocalizationKeys.LoadingComplete);
+            yield return _fadeWait;
+            SceneManager.LoadScene(GameConstants.StartMenu);
         }
 
         #endregion
 
-        #region Class Methods
+        #region Scene Management
 
-        private IEnumerator UpdateAndWait(string key)
+        public void LoadScene(string sceneName)
         {
-            loadingScreen.UpdateProgress(key);
-            yield return _minStepWait;
+            StartCoroutine(LoadSceneRoutine(sceneName));
         }
-        
-        private void StartLoadingGame()
+
+        private IEnumerator LoadSceneRoutine(string sceneName)
         {
-            loadingScreen?.Show(LocalizationKeys.Initializing);
+            ShowLoadingScreen(LocalizationKeys.LoadingScene);
+            GameEvents.OnGameStateChangeRequested?.Raise(GameState.Loading);
+
+            // Fake loading for minimum time
+            yield return _minimumLoadWait;
+
+            UpdateLoadingProgress(LocalizationKeys.LoadingSceneComplete);
+            HideLoadingScreen();
+
+            // Wait a bit before switching scene for smooth fade-out
+            yield return _fadeWait;
+
+            // Load new scene synchronously
+            SceneManager.LoadScene(sceneName);
+        }
+
+        #endregion
+
+        #region Utility
+
+        private bool ValidateCoreRegistries()
+        {
+            if (!gameEventRegistry)
+            {
+                Debug.LogError("GameEventRegistry not assigned!");
+                return false;
+            }
+
+            if (!gameDatabaseRegistry)
+            {
+                Debug.LogError("GameDatabaseRegistry not assigned!");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void StartBootstrapSequence()
+        {
             _isInitialized = false;
+            ShowLoadingScreen(LocalizationKeys.Initializing);
+            GameEvents.OnGameStateChangeRequested?.Raise(GameState.Loading);
         }
 
-        private void FinishLoadingGame()
+        private void CompleteBootstrapSequence()
         {
-            loadingScreen.Hide();
             _isInitialized = true;
+            HideLoadingScreen();
+            GameEvents.OnGameStateChangeRequested?.Raise(GameState.StartMenu);
+        }
+
+        private void ShowLoadingScreen(string message)
+        {
+            loadingScreen?.Show(message);
+        }
+
+        private void UpdateLoadingProgress(string message)
+        {
+            loadingScreen?.UpdateProgress(message);
+        }
+
+        private void HideLoadingScreen()
+        {
+            loadingScreen?.Hide();
         }
 
         #endregion
 
-        #region Unity Methods
+        #region Unity Lifecycle
 
         private void Awake()
         {
-            if (Instance != null)
+            InitializeSingleton();
+
+            // Cache WaitForSeconds to reduce GC allocations
+            _stepWait = new WaitForSeconds(stepDelay);
+            _minimumLoadWait = new WaitForSeconds(minimumLoadTime);
+            _fadeWait = new WaitForSeconds(fadeWaitTime);
+
+            settingsSaveFileManager.enabled = false;
+        }
+
+        private void Start()
+        {
+            StartCoroutine(BootstrapSequence());
+        }
+
+        private void OnDestroy()
+        {
+            Cleanup();
+        }
+
+        #endregion
+
+        #region Singleton
+
+        private void InitializeSingleton()
+        {
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
-        #endregion
-        
-        #region Public API
-        
-        /// <summary>
-        /// Loads a new scene with a loading screen transition.
-        /// Use this for all scene transitions.
-        /// </summary>
-        public void LoadScene(string sceneName, bool showLoading = true)
+        private void Cleanup()
         {
-            StartCoroutine(LoadSceneWithTransition(sceneName, showLoading));
-        }
-        
-        private IEnumerator LoadSceneWithTransition(string sceneName, bool showLoading)
-        {
-            if (showLoading)
-            {
-                loadingScreen?.Show(LocalizationKeys.LoadingScene);
-                onGameStateChangeRequested.Raise(GameState.Loading);
-            }
-            
-            var currentScene = SceneManager.GetActiveScene();
-            if (currentScene.name != GameConstants.Bootstrapper)
-            {
-                yield return SceneManager.UnloadSceneAsync(currentScene);
-            }
-            
-            // Clean up memory
-            // Note: Resources.UnloadUnusedAssets() is async and handles most cleanup.
-            // We call it here while on the loading screen to reclaim memory from the 
-            // unloaded scene. Explicit GC.Collect() is omitted since Unity's asset
-            // unloading already triggers collection internally.
-            yield return Resources.UnloadUnusedAssets();
-            yield return null;
-            
-            // Load new scene
-            var operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            if (operation != null)
-            {
-                operation.allowSceneActivation = false;
-                yield return HandleSceneLoading(operation);
-            }
+            if (Instance != this) return;
 
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+            GameDatabases.Clear();
+            GameEvents.Clear();
 
-            if (!showLoading) yield break;
-            loadingScreen?.UpdateProgress(LocalizationKeys.LoadingComplete);
-            yield return _minStepWait;
-            loadingScreen?.Hide();
+            Instance = null;
         }
-        
+
         #endregion
     }
 }

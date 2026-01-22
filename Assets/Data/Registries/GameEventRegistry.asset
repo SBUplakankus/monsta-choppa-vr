@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e895964eff1442695b0057cc715aba0, type: 3}
+  m_Name: GameEventRegistry
+  m_EditorClassIdentifier: Assembly-CSharp::Data.Registries.GameEventRegistry
+  onPlayerDamaged: {fileID: 11400000, guid: fa3d84616df02ec47bf24cd7208b0a78, type: 2}
+  onGoldIncreased: {fileID: 11400000, guid: c096a8cdbaf19994bbbac26ffa513677, type: 2}
+  onExperienceIncreased: {fileID: 11400000, guid: 8e5e798d992a47847bdc1ef8fd85bd23, type: 2}
+  onLevelIncreased: {fileID: 11400000, guid: f0376871c2dfcd3499ed8d3a1bef391c, type: 2}
+  onMusicRequested: {fileID: 11400000, guid: cb24b462f1c28344ebc0fd41d2ef4e61, type: 2}
+  onMusicFadeRequested: {fileID: 11400000, guid: bb57ae0593d32254cbb3c4f063059ab8, type: 2}
+  onAmbienceRequested: {fileID: 11400000, guid: c811a488573fe4146b2168ffdfa0f21f, type: 2}
+  onSfxRequested: {fileID: 11400000, guid: 87cd48176771c48428481b9f50391ef1, type: 2}
+  onUISfxRequested: {fileID: 11400000, guid: d7f1e00a5b4e3ea43b7cc04d554b08bc, type: 2}
+  onEnemySpawned: {fileID: 11400000, guid: 3b9f05794439bac4d9b65b7e07080906, type: 2}
+  onEnemyDespawned: {fileID: 11400000, guid: 3068a22f195008f4b82ab23c02f2934c, type: 2}
+  onArenaStateChanged: {fileID: 11400000, guid: cefa72ef3f52f6947a4fb75ce8456ef7, type: 2}
+  onArenaStateChangeRequested: {fileID: 11400000, guid: 4142b0f54c61ee24fbd344d4d0d7ae98, type: 2}
+  onPauseRequested: {fileID: 11400000, guid: 076bfcdb949ee774cb85602a7be86cd0, type: 2}
+  onResumeRequested: {fileID: 11400000, guid: 7b9fced023e64d1429f7ba7cd01e5d9f, type: 2}
+  onGameOverSequenceRequested: {fileID: 11400000, guid: ff01cfc57ab3a8a48bc785f269654b66, type: 2}
+  onGameWonSequenceRequested: {fileID: 11400000, guid: c76e601f92505ee42ae8c9ea51af2769, type: 2}
+  onGameStateChanged: {fileID: 11400000, guid: 75ca9ce95066b3a458fe301c14ee0a51, type: 2}
+  onGameStateChangeRequested: {fileID: 11400000, guid: a1249e53059db7b4196dbe08d98505e3, type: 2}
+  onLocaleChangeRequested: {fileID: 11400000, guid: b04325ca090750d42b66006341f9d0ad, type: 2}
+  onPlayerSaveRequested: {fileID: 11400000, guid: 48151c46a65920e47a545ace93ed8b7a, type: 2}
+  onPlayerSaveCompleted: {fileID: 11400000, guid: 150b65095d30d754fb6cdfbebab36c01, type: 2}
+  onPlayerLoadRequested: {fileID: 11400000, guid: d90e5ac633999bd47ac380a0554486c9, type: 2}
+  onPlayerLoadCompleted: {fileID: 11400000, guid: 808c0184c0e92414cb80196efdc6c9b9, type: 2}
+  onSettingsSaveRequested: {fileID: 11400000, guid: 9cdd216b82820814bb2288d48304862c, type: 2}
+  onSettingsSaveCompleted: {fileID: 11400000, guid: 47a4006a34b24be418a8c046ad185bac, type: 2}
+  onSettingsLoadRequested: {fileID: 11400000, guid: 83abb0f2a219a1c459de48d4c9a12afb, type: 2}
+  onSettingsLoadCompleted: {fileID: 11400000, guid: 778c2d8a7fc617247be54e2e2f3cb800, type: 2}

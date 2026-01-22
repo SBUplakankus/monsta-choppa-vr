@@ -560,3 +560,51 @@ Button:focus {
     margin-bottom: var(--spacing-xlarge);
     font-size: 35px;
 }
+
+.loading-screen-container{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: 0.3s;
+}
+
+.loading-bar-container{
+    width: 100%;
+    height: 30%;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-bar-background{
+    background-color: dimgrey;
+    border-radius: 8px;
+    width: 95%;
+    height: 95%;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar-fill{
+    background-color: var(--hub-colour-primary);
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-out;
+}
+
+.loading-label-container{
+    width: 100%;
+    height: 40%;
+    margin-bottom: var(--spacing-xlarge);
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-label{
+    font-size: 40px;
+    color: var(--hub-colour-primary);
+    -unity-font-style: bold;
+}

@@ -13,10 +13,10 @@ namespace Saves
         [SerializeField] private MetaProgressionData metaProgressionData;
         
         [Header("Save Events")] 
-        [SerializeField] private VoidEventChannel onPlayerSaveRequested;
-        [SerializeField] private VoidEventChannel onPlayerSaveCompleted;
-        [SerializeField] private VoidEventChannel onPlayerLoadRequested;
-        [SerializeField] private VoidEventChannel onPlayerLoadCompleted;
+        private readonly VoidEventChannel _onPlayerSaveRequested = GameEvents.OnPlayerSaveRequested;
+        private readonly VoidEventChannel _onPlayerSaveCompleted = GameEvents.OnPlayerSaveCompleted;
+        private readonly VoidEventChannel _onPlayerLoadRequested = GameEvents.OnPlayerLoadRequested;
+        private readonly VoidEventChannel _onPlayerLoadCompleted = GameEvents.OnPlayerLoadCompleted;
 
         #endregion
         
@@ -31,7 +31,7 @@ namespace Saves
         protected override void HandleSaveCompleted()
         {
             Debug.Log("Player Data Save Completed");
-            onPlayerSaveCompleted.Raise();
+            _onPlayerSaveCompleted.Raise();
             SaveFile.Save();
         }
 
@@ -46,23 +46,28 @@ namespace Saves
         protected override void HandleLoadCompleted()
         {
             Debug.Log("Player Data Load Completed");
-            onPlayerLoadCompleted.Raise();
+            _onPlayerLoadCompleted.Raise();
         }
 
         #endregion
         
         #region Unity Methods
+
+        private void Awake()
+        {
+            
+        }
         
         private void OnEnable()
         {
-            onPlayerSaveRequested.Subscribe(HandleSaveRequested);
-            onPlayerLoadRequested.Subscribe(HandleLoadRequested);
+            _onPlayerSaveRequested.Subscribe(HandleSaveRequested);
+            _onPlayerLoadRequested.Subscribe(HandleLoadRequested);
         }
 
         private void OnDisable()
         {
-            onPlayerSaveRequested.Unsubscribe(HandleSaveRequested);
-            onPlayerLoadRequested.Unsubscribe(HandleLoadRequested);
+            _onPlayerSaveRequested.Unsubscribe(HandleSaveRequested);
+            _onPlayerLoadRequested.Unsubscribe(HandleLoadRequested);
         }
         
         #endregion

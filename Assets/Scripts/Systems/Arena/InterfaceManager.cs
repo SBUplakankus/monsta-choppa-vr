@@ -19,7 +19,7 @@ namespace Systems.Arena
         [SerializeField] private BossIntroHost bossIntroHost;
         
         [Header("Events")]
-        [SerializeField] private ArenaStateEventChannel onArenaStateChange;
+        private readonly ArenaStateEventChannel _onArenaStateChange = GameEvents.OnArenaStateChanged;
         
         private readonly CountdownTimer _countdownTimer = new();
 
@@ -86,7 +86,7 @@ namespace Systems.Arena
 
         private void OnEnable()
         {
-            onArenaStateChange.Subscribe(HandleGameStateChange);
+            _onArenaStateChange.Subscribe(HandleGameStateChange);
             GameUpdateManager.Instance.Register(this, UpdatePriority.High);
             fadeToBlackCanvasGroup.alpha = FadeInAlpha;
             FadeOut();
@@ -94,7 +94,7 @@ namespace Systems.Arena
 
         private void OnDisable()
         {
-            onArenaStateChange.Unsubscribe(HandleGameStateChange);
+            _onArenaStateChange.Unsubscribe(HandleGameStateChange);
             GameUpdateManager.Instance.Unregister(this);
             _countdownTimer.Stop();
         }

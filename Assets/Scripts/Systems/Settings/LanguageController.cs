@@ -12,7 +12,7 @@ namespace Systems.Settings
         [SerializeField] private LanguageSettingsConfig languageSettingsConfig;
         
         [Header("Events")]
-        [SerializeField] private LocaleEventChannel onLocaleChangeRequested;
+        private readonly LocaleEventChannel _onLocaleChangeRequested = GameEvents.OnLocaleChangeRequested;
 
         private void HandleLocaleChangeRequested(Locale locale)
         {
@@ -31,12 +31,12 @@ namespace Systems.Settings
         private void OnEnable()
         {
             SetLanguage();
-            onLocaleChangeRequested.Subscribe(HandleLocaleChangeRequested);
+            _onLocaleChangeRequested.Subscribe(HandleLocaleChangeRequested);
         }
 
         private void OnDisable()
         {
-            onLocaleChangeRequested.Unsubscribe(HandleLocaleChangeRequested);
+            _onLocaleChangeRequested.Unsubscribe(HandleLocaleChangeRequested);
         }
     }
 }

@@ -19,11 +19,10 @@ namespace Player
         [SerializeField] private IntAttribute playerExperience;
         [SerializeField] private IntAttribute playerLevel;
 
-        [Header("Events")] 
-        [SerializeField] private VoidEventChannel onGameSaved;
-        [SerializeField] private IntEventChannel onGoldChanged;
-        [SerializeField] private IntEventChannel onExperienceChanged;
-        [SerializeField] private IntEventChannel onLevelChanged;
+        [Header("Events")]
+        private readonly IntEventChannel _onGoldIncreased = GameEvents.OnGoldIncreased;
+        private readonly IntEventChannel _onExperienceIncreased = GameEvents.OnExperienceIncreased;
+        private readonly IntEventChannel _onLevelIncreased = GameEvents.OnLevelIncreased;
         
         private SaveFile _saveFile;
         
@@ -53,76 +52,33 @@ namespace Player
         
         #region Class Functions
 
-        private void SetDefaultValues()
-        {
-            playerGold.Value = 50;
-            playerExperience.Value = 0;
-            playerLevel.Value = 1;
-        }
         
-        private void SaveAttributes()
-        {
-            _saveFile.AddOrUpdateData(GameConstants.PlayerGoldKey, playerGold.Value);
-            Debug.Log($"Saved {GameConstants.PlayerGoldKey}: {_saveFile.GetData(GameConstants.PlayerGoldKey, playerGold.Value)}");
-
-            
-            _saveFile.AddOrUpdateData(GameConstants.PlayerExperienceKey, playerExperience.Value);
-            Debug.Log($"Saved {GameConstants.PlayerExperienceKey}: {_saveFile.GetData(GameConstants.PlayerExperienceKey, playerExperience.Value)}");
-
-            
-            _saveFile.AddOrUpdateData(GameConstants.PlayerLevelKey, playerLevel.Value);
-            Debug.Log($"Saved {GameConstants.PlayerLevelKey}: {_saveFile.GetData(GameConstants.PlayerLevelKey,  playerLevel.Value)}");
-        }
-
-        private void LoadAttributes()
-        {
-            playerGold.Value = _saveFile.GetData(GameConstants.PlayerGoldKey, playerGold.Value);
-            playerExperience.Value = _saveFile.GetData(GameConstants.PlayerExperienceKey, playerExperience.Value);
-            playerLevel.Value = _saveFile.GetData(GameConstants.PlayerLevelKey,  playerLevel.Value);  
-        }
         
         #endregion
 
         #region Event Handlers
-        
-        private void HandleGameSave() => SaveAttributes();
-        private void HandleGoldChange(int amount) => playerGold.Add(amount);
-        private void HandleExperienceChange(int amount) => playerExperience.Add(amount);
-        private void HandleLevelChange(int amount) => playerLevel.Add(amount);
+
+        private void HandleGoldIncrease(int amount) => playerGold.Value += amount;
+        private void HandleExperienceIncrease(int amount) => playerExperience.Value += amount;
+        private void HandleLevelIncrease(int amount) => playerLevel.Value += amount;
         
         private void SubscribeToEvents()
         {
-            onGameSaved.Subscribe(HandleGameSave);
-            onGoldChanged.Subscribe(HandleGoldChange);
-            onExperienceChanged.Subscribe(HandleExperienceChange);
-            onLevelChanged.Subscribe(HandleLevelChange);
+            _onGoldIncreased.Subscribe(HandleGoldIncrease);
+            _onExperienceIncreased.Subscribe(HandleExperienceIncrease);
+            _onLevelIncreased.Subscribe(HandleLevelIncrease);
         }
 
         private void UnsubscribeToEvents()
         {
-            onGameSaved.Unsubscribe(HandleGameSave);
-            onGoldChanged.Unsubscribe(HandleGoldChange);
-            onExperienceChanged.Unsubscribe(HandleExperienceChange);
-            onLevelChanged.Unsubscribe(HandleLevelChange);
+            _onGoldIncreased.Unsubscribe(HandleGoldIncrease);
+            _onExperienceIncreased.Unsubscribe(HandleExperienceIncrease);
+            _onLevelIncreased.Unsubscribe(HandleLevelIncrease);
         }
 
         #endregion
         
         #region Unity Functions
-
-        private void Awake()
-        {
-            var setup = GetComponent<SaveFileSetup>();
-            if (setup == null)
-            {
-                Debug.LogError($"No {nameof(SaveFileSetup)} found on {gameObject.name}");
-                return;
-            }
-    
-            _saveFile = setup.GetSaveFile();
-            SetDefaultValues();
-            LoadAttributes();
-        }
 
         private void OnEnable() => SubscribeToEvents();
 

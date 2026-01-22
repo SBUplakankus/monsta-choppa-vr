@@ -15,10 +15,10 @@ namespace Saves
         [SerializeField] private LanguageSettingsConfig languageSettings;
         
         [Header("Save Events")] 
-        [SerializeField] private VoidEventChannel onSettingsSaveRequested;
-        [SerializeField] private VoidEventChannel onSettingsSaveCompleted;
-        [SerializeField] private VoidEventChannel onSettingsLoadRequested;
-        [SerializeField] private VoidEventChannel onSettingsLoadCompleted;
+        private VoidEventChannel _onSettingsSaveRequested;
+        private VoidEventChannel _onSettingsSaveCompleted;
+        private VoidEventChannel _onSettingsLoadRequested;
+        private VoidEventChannel _onSettingsLoadCompleted;
         
         #endregion
         
@@ -46,7 +46,7 @@ namespace Saves
 
         protected override void HandleSaveCompleted()
         {
-            onSettingsSaveCompleted.Raise();
+            _onSettingsSaveCompleted.Raise();
             SaveFile.Save();
         }
 
@@ -58,7 +58,7 @@ namespace Saves
 
         protected override void HandleLoadCompleted()
         {
-            onSettingsLoadCompleted.Raise();
+            _onSettingsLoadCompleted.Raise();
         }
 
         public void InitSettings()
@@ -66,16 +66,25 @@ namespace Saves
             TryLoadSettings();
         }
 
+        private void Awake()
+        {
+            GetSaveFile();
+            _onSettingsSaveRequested = GameEvents.OnSettingsSaveRequested;
+            _onSettingsSaveCompleted = GameEvents.OnSettingsSaveCompleted;
+            _onSettingsLoadRequested = GameEvents.OnSettingsLoadRequested;
+            _onSettingsLoadCompleted = GameEvents.OnSettingsLoadCompleted;
+        }
+
         private void OnEnable()
         {
-            onSettingsSaveRequested.Subscribe(HandleSaveRequested);
-            onSettingsLoadRequested.Subscribe(HandleLoadRequested);
+            _onSettingsSaveRequested?.Subscribe(HandleSaveRequested);
+            _onSettingsLoadRequested?.Subscribe(HandleLoadRequested);
         }
 
         private void OnDisable()
         {
-            onSettingsSaveRequested.Unsubscribe(HandleSaveRequested);
-            onSettingsSaveCompleted.Unsubscribe(HandleSaveCompleted);
+            _onSettingsSaveRequested?.Unsubscribe(HandleSaveRequested);
+            _onSettingsSaveCompleted?.Unsubscribe(HandleSaveCompleted);
         }
         
         #endregion

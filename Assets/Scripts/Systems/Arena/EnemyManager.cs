@@ -16,8 +16,8 @@ namespace Systems
         #region Fields
 
         [Header("Enemy Events")]
-        private EnemyEventChannel _onEnemySpawned;
-        private EnemyEventChannel _onEnemyDespawned;
+        private readonly EnemyEventChannel _onEnemySpawned = GameEvents.OnEnemySpawned;
+        private readonly EnemyEventChannel _onEnemyDespawned = GameEvents.OnEnemyDespawned;
 
         private readonly HashSet<EnemyController> _activeEnemies = new();
         // Reusable list to avoid allocations during cleanup
@@ -125,8 +125,6 @@ namespace Systems
         /// </summary>
         private void Awake()
         {
-            _onEnemySpawned = GameEvents.OnEnemySpawned;
-            _onEnemyDespawned = GameEvents.OnEnemyDespawned;
             _gamePoolManager = GamePoolManager.Instance;
         }
 

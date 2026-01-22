@@ -51,10 +51,10 @@ namespace Systems.Arena
         #region Fields
 
         [Header("Events")]
-        [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
-        [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
-        [SerializeField] private VoidEventChannel onPauseRequested;
-        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
+        private readonly ArenaStateEventChannel _onArenaStateChangeRequested = GameEvents.OnArenaStateChangeRequested;
+        private readonly ArenaStateEventChannel _onArenaStateChanged = GameEvents.OnArenaStateChanged;
+        private readonly VoidEventChannel _onPauseRequested = GameEvents.OnPauseRequested;
+        private readonly GameStateEventChannel _onGameStateChangeRequested = GameEvents.OnGameStateChangeRequested;
 
         private ArenaState _currentArenaState;
         private ArenaState _previousState;
@@ -79,18 +79,18 @@ namespace Systems.Arena
         private IEnumerator TestStart()
         {
             yield return new WaitForSeconds(1);
-            onArenaStateChanged.Raise(_currentArenaState);
+            _onArenaStateChanged.Raise(_currentArenaState);
         }
 
         private void OnEnable()
         {
-            onArenaStateChangeRequested?.Subscribe(HandleGameStateChangeRequest);
+            _onArenaStateChangeRequested?.Subscribe(HandleGameStateChangeRequest);
             StartCoroutine(TestStart());
         }
 
         private void OnDisable()
         {
-            onArenaStateChangeRequested?.Unsubscribe(HandleGameStateChangeRequest);
+            _onArenaStateChangeRequested?.Unsubscribe(HandleGameStateChangeRequest);
         }
 
         #endregion
@@ -170,7 +170,7 @@ namespace Systems.Arena
             _currentArenaState = newArenaState;
             EnterCurrentState();
             Debug.Log($"GameStateManager: Entered new state {newArenaState}.");
-            onArenaStateChanged?.Raise(_currentArenaState);
+            _onArenaStateChanged?.Raise(_currentArenaState);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace Systems.Arena
 
         private void HandleGamePreludeEnter()
         { 
-            onGameStateChangeRequested.Raise(GameState.Arena);
+            _onGameStateChangeRequested.Raise(GameState.Arena);
         }
         
         private void HandleGamePreludeExit() => Debug.Log("GameStateManager: Exiting GamePrelude State.");
@@ -266,13 +266,13 @@ namespace Systems.Arena
 
         private void HandleGameWonEnter()
         { 
-            onGameStateChangeRequested.Raise(GameState.ArenaVictory);
+            _onGameStateChangeRequested.Raise(GameState.ArenaVictory);
         }
         private void HandleGameWonExit() => Debug.Log("GameStateManager: Exiting GameWon State.");
 
         private void HandleGameOverEnter()
         { 
-            onGameStateChangeRequested.Raise(GameState.ArenaDefeat);
+            _onGameStateChangeRequested.Raise(GameState.ArenaDefeat);
         }
         private void HandleGameOverExit() => Debug.Log("GameStateManager: Exiting GameOver State.");
 

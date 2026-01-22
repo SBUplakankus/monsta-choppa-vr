@@ -1,4 +1,4 @@
-namespace Constants
+    namespace Constants
 {
     public static class LocalizationKeys
     {

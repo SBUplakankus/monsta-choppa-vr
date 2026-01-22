@@ -335,6 +335,50 @@ MonoBehaviour:
     m_Key: turkish (tr)
     m_Metadata:
       m_Items: []
+  - m_Id: 12393377141338112
+    m_Key: initializing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393419323453440
+    m_Key: initializing-core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393457164464128
+    m_Key: core-ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393485639593984
+    m_Key: loading-settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12393514957778944
+    m_Key: user-data-loaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394081536946176
+    m_Key: preloading-assets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394118673313792
+    m_Key: assets-loaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394144451506176
+    m_Key: loading-game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394169957068800
+    m_Key: loading-complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394226232045568
+    m_Key: loading-scene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12394253792817152
+    m_Key: loading-scene-complete
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
