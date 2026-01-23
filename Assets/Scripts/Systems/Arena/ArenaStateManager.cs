@@ -51,10 +51,10 @@ namespace Systems.Arena
         #region Fields
 
         [Header("Events")]
-        private readonly ArenaStateEventChannel _onArenaStateChangeRequested = GameEvents.OnArenaStateChangeRequested;
-        private readonly ArenaStateEventChannel _onArenaStateChanged = GameEvents.OnArenaStateChanged;
-        private readonly VoidEventChannel _onPauseRequested = GameEvents.OnPauseRequested;
-        private readonly GameStateEventChannel _onGameStateChangeRequested = GameEvents.OnGameStateChangeRequested;
+        private ArenaStateEventChannel _onArenaStateChangeRequested;
+        private ArenaStateEventChannel _onArenaStateChanged;
+        private VoidEventChannel _onPauseRequested;
+        private GameStateEventChannel _onGameStateChangeRequested;
 
         private ArenaState _currentArenaState;
         private ArenaState _previousState;
@@ -74,6 +74,11 @@ namespace Systems.Arena
         {
             _currentArenaState = ArenaState.ArenaPrelude;
             EnterCurrentState();
+            
+            _onArenaStateChanged = GameEvents.OnArenaStateChanged;
+            _onPauseRequested = GameEvents.OnPauseRequested;
+            _onGameStateChangeRequested = GameEvents.OnGameStateChangeRequested;
+            _onArenaStateChangeRequested  = GameEvents.OnArenaStateChangeRequested;
         }
 
         private IEnumerator TestStart()

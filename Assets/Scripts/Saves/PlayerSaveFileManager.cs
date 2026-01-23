@@ -13,10 +13,10 @@ namespace Saves
         [SerializeField] private MetaProgressionData metaProgressionData;
         
         [Header("Save Events")] 
-        private readonly VoidEventChannel _onPlayerSaveRequested = GameEvents.OnPlayerSaveRequested;
-        private readonly VoidEventChannel _onPlayerSaveCompleted = GameEvents.OnPlayerSaveCompleted;
-        private readonly VoidEventChannel _onPlayerLoadRequested = GameEvents.OnPlayerLoadRequested;
-        private readonly VoidEventChannel _onPlayerLoadCompleted = GameEvents.OnPlayerLoadCompleted;
+        private VoidEventChannel _onPlayerSaveRequested;
+        private VoidEventChannel _onPlayerSaveCompleted;
+        private VoidEventChannel _onPlayerLoadRequested;
+        private VoidEventChannel _onPlayerLoadCompleted;
 
         #endregion
         
@@ -55,7 +55,10 @@ namespace Saves
 
         private void Awake()
         {
-            
+            _onPlayerSaveRequested = GameEvents.OnPlayerSaveRequested;
+            _onPlayerSaveCompleted = GameEvents.OnPlayerSaveCompleted;
+            _onPlayerLoadRequested = GameEvents.OnPlayerLoadRequested;
+            _onPlayerLoadCompleted = GameEvents.OnPlayerLoadCompleted;
         }
         
         private void OnEnable()

@@ -15,10 +15,10 @@ namespace Audio
         [SerializeField] private ArenaData arenaData;
         
         [Header("Events")] 
-        [SerializeField] private StringEventChannel onAmbienceRequested;
-        [SerializeField] private StringEventChannel onMusicRequested;
-        [SerializeField] private StringEventChannel onMusicFadeRequested;
-        [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
+        private StringEventChannel _onAmbienceRequested;
+        private StringEventChannel _onMusicRequested;
+        private StringEventChannel _onMusicFadeRequested;
+        private ArenaStateEventChannel _onArenaStateChanged;
         
         #endregion
         
@@ -37,21 +37,29 @@ namespace Audio
             };
             
             if(key != null)
-                onMusicFadeRequested.Raise(key);
+                _onMusicFadeRequested.Raise(key);
         }
         
         #endregion
         
         #region Unity Methods
         
+        private void Awake()
+        {
+            _onAmbienceRequested = GameEvents.OnAmbienceRequested;
+            _onMusicRequested = GameEvents.OnMusicRequested;
+            _onMusicFadeRequested = GameEvents.OnMusicFadeRequested;
+            _onArenaStateChanged = GameEvents.OnArenaStateChanged;
+        }
+        
         private void Start()
         {
-            onMusicRequested.Raise(AudioKeys.GameIntroKey);
-            onAmbienceRequested.Raise(arenaData.Ambience);
+            _onMusicRequested.Raise(AudioKeys.GameIntroKey);
+            _onAmbienceRequested.Raise(arenaData.Ambience);
         }
 
-        private void OnEnable() => onArenaStateChanged.Subscribe(HandleGameStateChange);
-        private void OnDisable() => onArenaStateChanged.Unsubscribe(HandleGameStateChange);
+        private void OnEnable() => _onArenaStateChanged.Subscribe(HandleGameStateChange);
+        private void OnDisable() => _onArenaStateChanged.Unsubscribe(HandleGameStateChange);
 
         #endregion
     }

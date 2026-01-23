@@ -22,18 +22,18 @@ namespace Systems.Core
         #region Fields
 
         [Header("Game State Events")]
-        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
-        [SerializeField] private GameStateEventChannel onGameStateChanged;
+        private GameStateEventChannel _onGameStateChangeRequested;
+        private GameStateEventChannel _onGameStateChanged;
         
         [Header("Save Events")]
-        [SerializeField] private VoidEventChannel onSettingsSaveRequested;
-        [SerializeField] private VoidEventChannel onSettingsLoadRequested;
-        [SerializeField] private VoidEventChannel onPlayerSaveRequested;
-        [SerializeField] private VoidEventChannel onPlayerLoadRequested;
+        private VoidEventChannel _onSettingsSaveRequested;
+        private VoidEventChannel _onSettingsLoadRequested;
+        private VoidEventChannel _onPlayerSaveRequested;
+        private VoidEventChannel _onPlayerLoadRequested;
 
         [Header("Pause Settings")]
-        [SerializeField] private VoidEventChannel onPauseRequested;
-        [SerializeField] private VoidEventChannel onResumeRequested;
+        private VoidEventChannel _onPauseRequested;
+        private VoidEventChannel _onResumeRequested;
 
         private GameState _currentGameState;
         private GameState _previousGameState;
@@ -49,24 +49,37 @@ namespace Systems.Core
 
         #region Unity Methods
 
+        private void BindEvents()
+        {
+            _onSettingsSaveRequested = GameEvents.OnSettingsSaveRequested;
+            _onSettingsLoadRequested = GameEvents.OnSettingsLoadRequested;
+            _onPlayerSaveRequested = GameEvents.OnPlayerSaveRequested;
+            _onPlayerLoadRequested = GameEvents.OnPlayerLoadRequested;
+            _onPauseRequested = GameEvents.OnPauseRequested;
+            _onResumeRequested = GameEvents.OnResumeRequested;
+            _onGameStateChanged = GameEvents.OnGameStateChanged;
+            _onGameStateChangeRequested = GameEvents.OnGameStateChangeRequested;
+        }
+
         private void Awake()
         {
+            BindEvents();
             _currentGameState = GameState.StartMenu;
             EnterCurrentState();
         }
 
         private void OnEnable()
         {
-            onGameStateChangeRequested?.Subscribe(HandleGameStateChangeRequest);
-            onPauseRequested?.Subscribe(TogglePause);
-            onResumeRequested?.Subscribe(TogglePause);
+            _onGameStateChangeRequested?.Subscribe(HandleGameStateChangeRequest);
+            _onPauseRequested?.Subscribe(TogglePause);
+            _onResumeRequested?.Subscribe(TogglePause);
         }
 
         private void OnDisable()
         {
-            onGameStateChangeRequested?.Unsubscribe(HandleGameStateChangeRequest);
-            onPauseRequested?.Unsubscribe(TogglePause);
-            onResumeRequested?.Unsubscribe(TogglePause);
+            _onGameStateChangeRequested?.Unsubscribe(HandleGameStateChangeRequest);
+            _onPauseRequested?.Unsubscribe(TogglePause);
+            _onResumeRequested?.Unsubscribe(TogglePause);
         }
 
         #endregion
@@ -135,7 +148,7 @@ namespace Systems.Core
             ExitCurrentState();
             _currentGameState = newGameState;
             EnterCurrentState();
-            onGameStateChanged?.Raise(_currentGameState);
+            _onGameStateChanged?.Raise(_currentGameState);
         }
 
         /// <summary>
@@ -200,11 +213,11 @@ namespace Systems.Core
 
         private void HandleStartMenuEnter()
         { 
-            onSettingsLoadRequested?.Raise();
+            _onSettingsLoadRequested?.Raise();
         }
         private void HandleStartMenuExit()
         { 
-            onSettingsSaveRequested?.Raise();
+            _onSettingsSaveRequested?.Raise();
         }
 
         private void HandleLoadingEnter() => Debug.Log("GameFlowManager: Enter Loading");
@@ -212,12 +225,12 @@ namespace Systems.Core
 
         private void HandleHubEnter()
         { 
-            onPlayerLoadRequested?.Raise();
+            _onPlayerLoadRequested?.Raise();
         }
 
         private void HandleHubExit()
         {
-            onPlayerSaveRequested?.Raise();
+            _onPlayerSaveRequested?.Raise();
         }
 
         private void HandleArenaEnter() => Debug.Log("GameFlowManager: Enter Arena");
@@ -229,13 +242,13 @@ namespace Systems.Core
         private void HandleVictoryEnter() => Debug.Log("GameFlowManager: Enter Victory");
         private void HandleVictoryExit()
         { 
-            onPlayerSaveRequested?.Raise();
+            _onPlayerSaveRequested?.Raise();
         }
 
         private void HandleDefeatEnter() => Debug.Log("GameFlowManager: Enter Defeat");
         private void HandleDefeatExit()
         { 
-            onPlayerSaveRequested?.Raise();
+            _onPlayerSaveRequested?.Raise();
         }
 
         private void HandlePausedEnter() => Debug.Log("GameFlowManager: Enter Pause");

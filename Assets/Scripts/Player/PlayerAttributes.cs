@@ -20,9 +20,9 @@ namespace Player
         [SerializeField] private IntAttribute playerLevel;
 
         [Header("Events")]
-        private readonly IntEventChannel _onGoldIncreased = GameEvents.OnGoldIncreased;
-        private readonly IntEventChannel _onExperienceIncreased = GameEvents.OnExperienceIncreased;
-        private readonly IntEventChannel _onLevelIncreased = GameEvents.OnLevelIncreased;
+        private IntEventChannel _onGoldIncreased;
+        private IntEventChannel _onExperienceIncreased;
+        private IntEventChannel _onLevelIncreased;
         
         private SaveFile _saveFile;
         
@@ -79,6 +79,13 @@ namespace Player
         #endregion
         
         #region Unity Functions
+
+        private void Awake()
+        {
+            _onExperienceIncreased = GameEvents.OnExperienceIncreased;
+            _onLevelIncreased = GameEvents.OnLevelIncreased;
+            _onGoldIncreased = GameEvents.OnGoldIncreased;
+        }
 
         private void OnEnable() => SubscribeToEvents();
 

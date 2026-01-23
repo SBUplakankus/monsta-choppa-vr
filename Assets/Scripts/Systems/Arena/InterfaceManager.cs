@@ -19,7 +19,7 @@ namespace Systems.Arena
         [SerializeField] private BossIntroHost bossIntroHost;
         
         [Header("Events")]
-        private readonly ArenaStateEventChannel _onArenaStateChange = GameEvents.OnArenaStateChanged;
+        private ArenaStateEventChannel _onArenaStateChange;
         
         private readonly CountdownTimer _countdownTimer = new();
 
@@ -83,6 +83,11 @@ namespace Systems.Arena
         #endregion
         
         #region Unity Methods
+
+        private void Awake()
+        {
+            _onArenaStateChange = GameEvents.OnArenaStateChanged;
+        }
 
         private void OnEnable()
         {

@@ -25,8 +25,8 @@ namespace Characters.Enemies
         private EnemyId _enemyId;
 
         [Header("Enemy Events")]
-        private readonly EnemyEventChannel _onEnemySpawned = GameEvents.OnEnemySpawned;
-        private readonly EnemyEventChannel _onEnemyDespawned = GameEvents.OnEnemyDespawned;
+        private EnemyEventChannel _onEnemySpawned;
+        private EnemyEventChannel _onEnemyDespawned;
 
         private GamePoolManager _gamePoolManager;
 
@@ -201,6 +201,8 @@ namespace Characters.Enemies
             _enemyAnimator = GetComponent<EnemyAnimator>();
             _enemyAttack = GetComponent<EnemyAttack>();
             _gamePoolManager = GamePoolManager.Instance;
+            _onEnemyDespawned = GameEvents.OnEnemyDespawned;
+            _onEnemySpawned = GameEvents.OnEnemySpawned;
         }
 
         #endregion
