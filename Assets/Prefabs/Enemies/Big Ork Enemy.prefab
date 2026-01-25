@@ -1831,6 +1831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Characters.Enemies.EnemyController
   enemyData: {fileID: 11400000, guid: 42a0ba61212c3564e881d8ebd695d845, type: 2}
+  _onEnemySpawned: {fileID: 11400000, guid: 3b9f05794439bac4d9b65b7e07080906, type: 2}
+  _onEnemyDespawned: {fileID: 11400000, guid: 3068a22f195008f4b82ab23c02f2934c, type: 2}
 --- !u!114 &1391457108852092237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,6 +1845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e28d1c22bff475199185ad724d15760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Characters.Enemies.EnemyAnimator
+  upperBodyLayerIndex: 1
+  upperBodyLayerWeight: 1
 --- !u!114 &3593069901483011094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,6 +1860,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Characters.Enemies.EnemyAttack
   weaponSocket: {fileID: 1148703999516887771}
+  attackCooldown: 1.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackPoint: {fileID: 0}
+  attackRadius: 0.5
 --- !u!114 &3691733624133506884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,7 +1878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306eb3bce2b14c84a1a3d7513c7094a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Characters.Enemies.EnemyHealth
+  invincibilityDuration: 0.2
+  useInvincibility: 1
   healthBar: {fileID: 4462237747360419107}
+  hitVFX: {fileID: 0}
 --- !u!114 &4567293069816523135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,6 +1928,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a8394dbb9d8be40813cce57c61a5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Characters.Enemies.EnemyMovement
+  attackRange: 2
+  stoppingDistance: 1.5
+  rotationSpeed: 5
+  pathUpdateInterval: 0.2
 --- !u!1 &8411519449576753959
 GameObject:
   m_ObjectHideFlags: 0

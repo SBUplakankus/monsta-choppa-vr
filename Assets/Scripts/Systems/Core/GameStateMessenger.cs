@@ -7,12 +7,7 @@ namespace Systems.Core
     public class GameStateMessenger : MonoBehaviour
     {
         [SerializeField] private GameState gameState;
-        private GameStateEventChannel _onGameStateChangeRequest;
-
-        private void Awake()
-        {
-            _onGameStateChangeRequest = GameEvents.OnGameStateChangeRequested;
-        }
+        [SerializeField] private GameStateEventChannel _onGameStateChangeRequest;
 
         private void Start()
         {

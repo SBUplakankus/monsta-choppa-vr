@@ -11,6 +11,7 @@ namespace Systems.Core
     /// Lightweight bootstrap for testing scenes directly in-editor.
     /// Instantly initializes core systems without loading screens or scene transitions.
     /// </summary>
+    [DefaultExecutionOrder(-100)]
     public class InstantBootstrapManager : MonoBehaviour
     {
         [Header("Core Dependencies")]

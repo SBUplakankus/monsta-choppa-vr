@@ -327,10 +327,6 @@ MonoBehaviour:
   playerGold: {fileID: 11400000, guid: 012cadf097bc57e4a9321ec4041ee3e0, type: 2}
   playerExperience: {fileID: 11400000, guid: 3284aee4b84dd0c4297031b6edbfe69a, type: 2}
   playerLevel: {fileID: 11400000, guid: 679b558a411763747877c838bde58e44, type: 2}
-  onGameSaved: {fileID: 11400000, guid: ae4306b074318e945b3eda1327048e56, type: 2}
-  onGoldChanged: {fileID: 11400000, guid: c096a8cdbaf19994bbbac26ffa513677, type: 2}
-  onExperienceChanged: {fileID: 11400000, guid: 8e5e798d992a47847bdc1ef8fd85bd23, type: 2}
-  onLevelChanged: {fileID: 11400000, guid: f0376871c2dfcd3499ed8d3a1bef391c, type: 2}
 --- !u!1001 &5589631879934983866
 PrefabInstance:
   m_ObjectHideFlags: 0

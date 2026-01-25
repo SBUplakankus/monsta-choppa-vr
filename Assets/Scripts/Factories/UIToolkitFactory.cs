@@ -393,13 +393,6 @@ namespace Factories
         public static Image CreateIcon(Sprite sprite, string tooltip = null, params string[] classNames)
         {
             var image = CreateImage(sprite, classNames);
-
-            // Add tooltip if provided
-            if (!string.IsNullOrEmpty(tooltip))
-            {
-                image.tooltip = tooltip;
-            }
-
             return image;
         }
 

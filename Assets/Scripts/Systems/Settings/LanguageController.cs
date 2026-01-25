@@ -10,9 +10,9 @@ namespace Systems.Settings
     {
         [Header("Settings")]
         [SerializeField] private LanguageSettingsConfig languageSettingsConfig;
-        
-        [Header("Events")]
-        private readonly LocaleEventChannel _onLocaleChangeRequested = GameEvents.OnLocaleChangeRequested;
+
+        [Header("Events")] 
+        [SerializeField] private LocaleEventChannel _onLocaleChangeRequested;
 
         private void HandleLocaleChangeRequested(Locale locale)
         {

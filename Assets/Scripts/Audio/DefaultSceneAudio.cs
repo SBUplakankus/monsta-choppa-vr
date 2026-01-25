@@ -8,8 +8,8 @@ namespace Audio
 {
     public class DefaultSceneAudio : MonoBehaviour
     {
-        private readonly StringEventChannel _onMusicRequested = GameEvents.OnMusicRequested;
-        private readonly StringEventChannel _onAmbienceRequested = GameEvents.OnAmbienceRequested;
+        [SerializeField] private StringEventChannel _onMusicRequested;
+        [SerializeField] private StringEventChannel _onAmbienceRequested;
 
         [Header("Audio IDs")] 
         [SerializeField] private AudioClipData musicKey;

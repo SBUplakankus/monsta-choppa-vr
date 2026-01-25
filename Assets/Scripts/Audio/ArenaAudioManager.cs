@@ -15,10 +15,10 @@ namespace Audio
         [SerializeField] private ArenaData arenaData;
         
         [Header("Events")] 
-        private StringEventChannel _onAmbienceRequested;
-        private StringEventChannel _onMusicRequested;
-        private StringEventChannel _onMusicFadeRequested;
-        private ArenaStateEventChannel _onArenaStateChanged;
+        [SerializeField] private StringEventChannel _onAmbienceRequested;
+        [SerializeField] private StringEventChannel _onMusicRequested;
+        [SerializeField] private StringEventChannel _onMusicFadeRequested;
+        [SerializeField] private ArenaStateEventChannel _onArenaStateChanged;
         
         #endregion
         
@@ -43,15 +43,6 @@ namespace Audio
         #endregion
         
         #region Unity Methods
-        
-        private void Awake()
-        {
-            _onAmbienceRequested = GameEvents.OnAmbienceRequested;
-            _onMusicRequested = GameEvents.OnMusicRequested;
-            _onMusicFadeRequested = GameEvents.OnMusicFadeRequested;
-            _onArenaStateChanged = GameEvents.OnArenaStateChanged;
-        }
-        
         private void Start()
         {
             _onMusicRequested.Raise(AudioKeys.GameIntroKey);

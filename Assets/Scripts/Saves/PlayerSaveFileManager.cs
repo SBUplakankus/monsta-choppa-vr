@@ -13,10 +13,10 @@ namespace Saves
         [SerializeField] private MetaProgressionData metaProgressionData;
         
         [Header("Save Events")] 
-        private VoidEventChannel _onPlayerSaveRequested;
-        private VoidEventChannel _onPlayerSaveCompleted;
-        private VoidEventChannel _onPlayerLoadRequested;
-        private VoidEventChannel _onPlayerLoadCompleted;
+        [SerializeField] private VoidEventChannel _onPlayerSaveRequested;
+        [SerializeField] private VoidEventChannel _onPlayerSaveCompleted;
+        [SerializeField] private VoidEventChannel _onPlayerLoadRequested;
+        [SerializeField] private VoidEventChannel _onPlayerLoadCompleted;
 
         #endregion
         
@@ -52,14 +52,6 @@ namespace Saves
         #endregion
         
         #region Unity Methods
-
-        private void Awake()
-        {
-            _onPlayerSaveRequested = GameEvents.OnPlayerSaveRequested;
-            _onPlayerSaveCompleted = GameEvents.OnPlayerSaveCompleted;
-            _onPlayerLoadRequested = GameEvents.OnPlayerLoadRequested;
-            _onPlayerLoadCompleted = GameEvents.OnPlayerLoadCompleted;
-        }
         
         private void OnEnable()
         {

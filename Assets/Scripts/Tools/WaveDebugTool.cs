@@ -29,7 +29,8 @@ namespace Tools
                 Debug.LogError("DebugWaveTool: WaveSpawner not assigned.");
                 return;
             }
-
+            
+            Debug.Log("DebugWaveTool: KillAllEnemies");
             enemyManager.CleanupEnemies();
         }
     }

@@ -22,18 +22,18 @@ namespace Systems.Core
         #region Fields
 
         [Header("Game State Events")]
-        private GameStateEventChannel _onGameStateChangeRequested;
-        private GameStateEventChannel _onGameStateChanged;
+        [SerializeField] private GameStateEventChannel _onGameStateChangeRequested;
+        [SerializeField] private GameStateEventChannel _onGameStateChanged;
         
         [Header("Save Events")]
-        private VoidEventChannel _onSettingsSaveRequested;
-        private VoidEventChannel _onSettingsLoadRequested;
-        private VoidEventChannel _onPlayerSaveRequested;
-        private VoidEventChannel _onPlayerLoadRequested;
+        [SerializeField] private VoidEventChannel _onSettingsSaveRequested;
+        [SerializeField] private VoidEventChannel _onSettingsLoadRequested;
+        [SerializeField] private VoidEventChannel _onPlayerSaveRequested;
+        [SerializeField] private VoidEventChannel _onPlayerLoadRequested;
 
         [Header("Pause Settings")]
-        private VoidEventChannel _onPauseRequested;
-        private VoidEventChannel _onResumeRequested;
+        [SerializeField] private VoidEventChannel _onPauseRequested;
+        [SerializeField] private VoidEventChannel _onResumeRequested;
 
         private GameState _currentGameState;
         private GameState _previousGameState;
@@ -63,7 +63,6 @@ namespace Systems.Core
 
         private void Awake()
         {
-            BindEvents();
             _currentGameState = GameState.StartMenu;
             EnterCurrentState();
         }

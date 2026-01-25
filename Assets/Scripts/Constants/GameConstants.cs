@@ -22,9 +22,9 @@ namespace Constants
         
         #region Arena Properties
 
-        public const int PreludeDuration = 10;
-        public const int WaveIntermissionDuration = 15;
-        public const int BossIntermissionDuration = 15;
+        public const int PreludeDuration = 8;
+        public const int WaveIntermissionDuration = 6;
+        public const int BossIntermissionDuration = 6;
 
         #endregion
 

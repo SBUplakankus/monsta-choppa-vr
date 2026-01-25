@@ -15,10 +15,10 @@ namespace Saves
         [SerializeField] private LanguageSettingsConfig languageSettings;
         
         [Header("Save Events")] 
-        private VoidEventChannel _onSettingsSaveRequested;
-        private VoidEventChannel _onSettingsSaveCompleted;
-        private VoidEventChannel _onSettingsLoadRequested;
-        private VoidEventChannel _onSettingsLoadCompleted;
+        [SerializeField] private VoidEventChannel _onSettingsSaveRequested;
+        [SerializeField] private VoidEventChannel _onSettingsSaveCompleted;
+        [SerializeField] private VoidEventChannel _onSettingsLoadRequested;
+        [SerializeField] private VoidEventChannel _onSettingsLoadCompleted;
         
         #endregion
         
@@ -69,10 +69,6 @@ namespace Saves
         private void Awake()
         {
             GetSaveFile();
-            _onSettingsSaveRequested = GameEvents.OnSettingsSaveRequested;
-            _onSettingsSaveCompleted = GameEvents.OnSettingsSaveCompleted;
-            _onSettingsLoadRequested = GameEvents.OnSettingsLoadRequested;
-            _onSettingsLoadCompleted = GameEvents.OnSettingsLoadCompleted;
         }
 
         private void OnEnable()

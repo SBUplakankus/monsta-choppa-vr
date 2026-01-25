@@ -16,8 +16,8 @@ namespace Systems
         #region Fields
 
         [Header("Enemy Events")]
-        private EnemyEventChannel _onEnemySpawned;
-        private EnemyEventChannel _onEnemyDespawned;
+        [SerializeField] private EnemyEventChannel _onEnemySpawned;
+        [SerializeField] private EnemyEventChannel _onEnemyDespawned;
 
         private readonly HashSet<EnemyController> _activeEnemies = new();
         // Reusable list to avoid allocations during cleanup
@@ -47,6 +47,7 @@ namespace Systems
         /// </summary>
         public void CleanupEnemies()
         {
+            Debug.Log(_activeEnemies.Count);
             if (_activeEnemies.Count == 0) return;
     
             // Use reusable buffer to avoid allocation
@@ -126,9 +127,6 @@ namespace Systems
         private void Awake()
         {
             _gamePoolManager = GamePoolManager.Instance;
-
-            _onEnemySpawned = GameEvents.OnEnemySpawned;
-            _onEnemyDespawned = GameEvents.OnEnemyDespawned;
         }
 
         /// <summary>

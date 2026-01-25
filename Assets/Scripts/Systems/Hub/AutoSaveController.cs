@@ -7,14 +7,9 @@ namespace Systems.Hub
 {
     public class AutoSaveController : MonoBehaviour, IUpdateable
     {
-        private VoidEventChannel _onPlayerSaveRequested;
+        [SerializeField] private VoidEventChannel _onPlayerSaveRequested;
         private float _timer;
         private const int AutoSaveInterval = 30;
-
-        private void Awake()
-        {
-            _onPlayerSaveRequested = GameEvents.OnPlayerSaveRequested;
-        }
         
         private void OnEnable()
         {

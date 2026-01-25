@@ -25,8 +25,8 @@ namespace Characters.Enemies
         private EnemyId _enemyId;
 
         [Header("Enemy Events")]
-        private EnemyEventChannel _onEnemySpawned;
-        private EnemyEventChannel _onEnemyDespawned;
+        [SerializeField] private EnemyEventChannel _onEnemySpawned;
+        [SerializeField] private EnemyEventChannel _onEnemyDespawned;
 
         private GamePoolManager _gamePoolManager;
 
@@ -67,6 +67,7 @@ namespace Characters.Enemies
         /// </summary>
         public void DebugKillEnemy()
         {
+            Debug.Log("Killing Enemy Debug");
             HandleEnemyDeath();
         }
 
@@ -76,15 +77,15 @@ namespace Characters.Enemies
         /// </summary>
         private void HandleEnemyDeath()
         {
-            if (!this || !gameObject || !enemyData || !_gamePoolManager)
-                return;
-
             // Stop all AI behavior
-            _enemyMovement?.SetDead();
-            _enemyAttack?.ResetAttack();
-
-            _gamePoolManager?.ReturnEnemyPrefab(this);
-            _gamePoolManager?.GetWorldAudioPrefab(enemyData?.DeathSfx, transform.position);
+            _enemyMovement.SetDead();
+            _enemyAttack.ResetAttack();
+            
+            if(!_gamePoolManager)
+                _gamePoolManager = GamePoolManager.Instance;
+            
+            _gamePoolManager.ReturnEnemyPrefab(this);
+            _gamePoolManager.GetWorldAudioPrefab(enemyData?.DeathSfx, transform.position);
 
             OnDeath?.Invoke();
         }
@@ -161,34 +162,12 @@ namespace Characters.Enemies
         /// </summary>
         private void Awake()
         {
-            ValidateRequiredComponents();
             CacheComponents();
         }
 
         #endregion
 
         #region Helpers
-
-        /// <summary>
-        /// Ensures all necessary components are attached to this <see cref="GameObject"/>.
-        /// </summary>
-        private void ValidateRequiredComponents()
-        {
-            if (!GetComponent<EnemyHealth>())
-                gameObject.AddComponent<EnemyHealth>();
-            
-            if (!GetComponent<EnemyId>())
-                gameObject.AddComponent<EnemyId>();
-            
-            if (!GetComponent<EnemyMovement>())
-                gameObject.AddComponent<EnemyMovement>();
-            
-            if (!GetComponent<EnemyAnimator>())
-                gameObject.AddComponent<EnemyAnimator>();
-            
-            if (!GetComponent<EnemyAttack>())
-                gameObject.AddComponent<EnemyAttack>();
-        }
 
         /// <summary>
         /// Caches this enemy's components for runtime efficiency.
@@ -201,8 +180,6 @@ namespace Characters.Enemies
             _enemyAnimator = GetComponent<EnemyAnimator>();
             _enemyAttack = GetComponent<EnemyAttack>();
             _gamePoolManager = GamePoolManager.Instance;
-            _onEnemyDespawned = GameEvents.OnEnemyDespawned;
-            _onEnemySpawned = GameEvents.OnEnemySpawned;
         }
 
         #endregion

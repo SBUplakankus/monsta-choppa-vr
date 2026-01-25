@@ -26,8 +26,8 @@ namespace Systems.Arena
         [SerializeField] private ArenaWavesData arenaWavesData;
 
         [Header("Event Channels")]
-        private ArenaStateEventChannel _onArenaStateChanged;
-        private ArenaStateEventChannel _onArenaStateChangeRequest;
+        [SerializeField] private ArenaStateEventChannel _onArenaStateChanged;
+        [SerializeField] private ArenaStateEventChannel _onArenaStateChangeRequest;
 
         private CountdownTimer _countdownTimer;
         private WaveSpawner _waveSpawner;
@@ -175,9 +175,6 @@ namespace Systems.Arena
         {
             _countdownTimer = new CountdownTimer();
             _waveSpawner = GetComponent<WaveSpawner>();
-            
-            _onArenaStateChanged = GameEvents.OnArenaStateChanged;
-            _onArenaStateChangeRequest = GameEvents.OnArenaStateChangeRequested;
         }
 
         /// <summary>

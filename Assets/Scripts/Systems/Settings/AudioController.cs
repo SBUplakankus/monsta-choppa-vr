@@ -25,13 +25,13 @@ namespace Systems.Settings
         [SerializeField] private AudioSettingsConfig audioSettings;
         
         [Header("Audio Database")]
-        private AudioClipDatabase _audioDatabase;
+        [SerializeField] private AudioClipDatabase _audioDatabase;
 
         [Header("Audio Events")] 
-        private StringEventChannel _onUISfxRequested;
-        private StringEventChannel _onMusicRequested;
-        private StringEventChannel _onMusicFadeRequested;
-        private StringEventChannel _onAmbienceRequested;
+        [SerializeField] private StringEventChannel _onUISfxRequested;
+        [SerializeField] private StringEventChannel _onMusicRequested;
+        [SerializeField] private StringEventChannel _onMusicFadeRequested;
+        [SerializeField] private StringEventChannel _onAmbienceRequested;
 
         private const float MusicFadeDuration = 2.5f;
         private Coroutine _musicFadeRoutine;
@@ -209,19 +209,8 @@ namespace Systems.Settings
         
         #region Unity Methods
 
-        private void Awake()
-        {
-            _audioDatabase = GameDatabases.AudioClipDatabase;
-            
-            _onUISfxRequested = GameEvents.OnUISfxRequested;
-            _onMusicRequested = GameEvents.OnMusicRequested;
-            _onAmbienceRequested = GameEvents.OnAmbienceRequested;
-            _onMusicFadeRequested = GameEvents.OnMusicFadeRequested;
-        }
-        
         private void OnEnable()
         {
-            _audioDatabase = GameDatabases.AudioClipDatabase;
             SubscribeEvents();
             SetInitialValues();
         }
