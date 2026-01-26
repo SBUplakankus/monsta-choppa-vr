@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 5191023675016540407}
   - component: {fileID: 7559692321053097136}
   m_Layer: 0
-  m_Name: Music
+  m_Name: Music A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,136 @@ AudioSource:
   m_GameObject: {fileID: 6771707689133956492}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 6504659045910047714, guid: a71097b060ef7014b8385752893b6354, type: 2}
+  OutputAudioMixerGroup: {fileID: 2707668384216189976, guid: a71097b060ef7014b8385752893b6354, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &7702120854388553939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3681570496767307117}
+  - component: {fileID: 1926904661976100272}
+  m_Layer: 0
+  m_Name: Music B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3681570496767307117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702120854388553939}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6181177954002084619}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1926904661976100272
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702120854388553939}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8262304193241225081, guid: a71097b060ef7014b8385752893b6354, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -268,6 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6181177954002084619}
   - component: {fileID: 7865557065336400152}
+  - component: {fileID: 4696848891395177320}
   m_Layer: 0
   m_Name: Audio Controller
   m_TagString: Untagged
@@ -289,6 +419,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5191023675016540407}
+  - {fileID: 3681570496767307117}
   - {fileID: 6580931104600636426}
   - {fileID: 2889387179262146651}
   m_Father: {fileID: 0}
@@ -305,19 +436,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356df92a943b9154b86228b1b5267e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioController
-  musicSource: {fileID: 7559692321053097136}
+  musicASource: {fileID: 7559692321053097136}
+  musicBSource: {fileID: 1926904661976100272}
   ambienceSource: {fileID: 9110784077595541483}
   uiSfxSource: {fileID: 1149146465065959421}
   audioMixer: {fileID: 24100000, guid: a71097b060ef7014b8385752893b6354, type: 2}
-  masterVolume: {fileID: 11400000, guid: b98a394ec2147d040a3f01b51e2d4211, type: 2}
-  musicVolume: {fileID: 11400000, guid: ee919be35a101b947a35da4732b4257a, type: 2}
-  ambienceVolume: {fileID: 11400000, guid: ee9f24da450ba9443b33cb2cb1d6a114, type: 2}
-  sfxVolume: {fileID: 11400000, guid: 0aaa56080fd283846a77782733aec820, type: 2}
-  uiVolume: {fileID: 11400000, guid: 61f3b7e35d102ff4e916283656bba2a6, type: 2}
+  audioSettings: {fileID: 11400000, guid: 52d76308ec4beca40b4b2cd1466c7cd2, type: 2}
   audioDatabase: {fileID: 11400000, guid: 6366c33aeac982c48b0c78d5022654c3, type: 2}
-  onUISfxRequested: {fileID: 11400000, guid: d7f1e00a5b4e3ea43b7cc04d554b08bc, type: 2}
-  onMusicRequested: {fileID: 11400000, guid: cb24b462f1c28344ebc0fd41d2ef4e61, type: 2}
-  onAmbienceRequested: {fileID: 11400000, guid: c811a488573fe4146b2168ffdfa0f21f, type: 2}
+--- !u!114 &4696848891395177320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7728997726534610163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c271ebbbfe91ce542a2b2e15fe030e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio.DefaultSceneAudio
+  musicKey: {fileID: 11400000, guid: 30efa777203dc08408e066e71df896f5, type: 2}
+  ambienceKey: {fileID: 11400000, guid: b0f69d59f6dabaf499efbfddc933e9c6, type: 2}
 --- !u!1 &8559636192074870434
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Generic;
-using Events;
+using Events.Registries;
 using UI.Views;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
-using UnityEngine.UIElements;
 
 namespace UI.Hosts
 {
     public class LocalizationPanelHost : MonoBehaviour
     {
         #region Fields
-
-        private readonly LocaleEventChannel _onLocaleChangeRequested = GameEvents.OnLocaleChangeRequested;
         
         private Locale[] _availableLocales;
         private Action _unbindAll;
@@ -35,9 +32,8 @@ namespace UI.Hosts
         {
             var unbinders = new List<Action>();
 
-            for (int i = 0; i < view.LanguageButtons.Count; i++)
+            for (var i = 0; i < view.LanguageButtons.Count; i++)
             {
-                var index = i;
                 var button = view.LanguageButtons[i];
                 var locale = _availableLocales[i];
 
@@ -58,9 +54,9 @@ namespace UI.Hosts
             };
         }
 
-        private void SetLocale(Locale locale)
+        private static void SetLocale(Locale locale)
         {
-            _onLocaleChangeRequested.Raise(locale);
+            SystemEvents.LocaleChangeRequested.Raise(locale);
         }
         
         #endregion

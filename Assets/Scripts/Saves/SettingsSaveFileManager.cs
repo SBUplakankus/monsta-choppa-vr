@@ -1,6 +1,7 @@
 using Constants;
 using Data.Settings;
 using Events;
+using Events.Registries;
 using UnityEngine;
 
 namespace Saves
@@ -13,12 +14,6 @@ namespace Saves
         [SerializeField] private AudioSettingsConfig audioSettings;
         [SerializeField] private VideoSettingsConfig videoSettings;
         [SerializeField] private LanguageSettingsConfig languageSettings;
-        
-        [Header("Save Events")] 
-        [SerializeField] private VoidEventChannel _onSettingsSaveRequested;
-        [SerializeField] private VoidEventChannel _onSettingsSaveCompleted;
-        [SerializeField] private VoidEventChannel _onSettingsLoadRequested;
-        [SerializeField] private VoidEventChannel _onSettingsLoadCompleted;
         
         #endregion
         
@@ -46,7 +41,6 @@ namespace Saves
 
         protected override void HandleSaveCompleted()
         {
-            _onSettingsSaveCompleted.Raise();
             SaveFile.Save();
         }
 
@@ -58,7 +52,6 @@ namespace Saves
 
         protected override void HandleLoadCompleted()
         {
-            _onSettingsLoadCompleted.Raise();
         }
 
         public void InitSettings()
@@ -73,14 +66,14 @@ namespace Saves
 
         private void OnEnable()
         {
-            _onSettingsSaveRequested?.Subscribe(HandleSaveRequested);
-            _onSettingsLoadRequested?.Subscribe(HandleLoadRequested);
+            SystemEvents.SettingsSaveRequested.Subscribe(HandleSaveRequested);
+            SystemEvents.SettingsLoadRequested.Subscribe(HandleLoadRequested);
         }
 
         private void OnDisable()
         {
-            _onSettingsSaveRequested?.Unsubscribe(HandleSaveRequested);
-            _onSettingsSaveCompleted?.Unsubscribe(HandleSaveCompleted);
+            SystemEvents.SettingsSaveRequested.Unsubscribe(HandleSaveRequested);
+            SystemEvents.SettingsLoadRequested.Unsubscribe(HandleLoadRequested);
         }
         
         #endregion

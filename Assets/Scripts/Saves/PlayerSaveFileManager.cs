@@ -1,6 +1,7 @@
 using Constants;
 using Data.Progression;
 using Events;
+using Events.Registries;
 using UnityEngine;
 
 namespace Saves
@@ -11,12 +12,6 @@ namespace Saves
 
         [Header("Player Data Objects")]
         [SerializeField] private MetaProgressionData metaProgressionData;
-        
-        [Header("Save Events")] 
-        [SerializeField] private VoidEventChannel _onPlayerSaveRequested;
-        [SerializeField] private VoidEventChannel _onPlayerSaveCompleted;
-        [SerializeField] private VoidEventChannel _onPlayerLoadRequested;
-        [SerializeField] private VoidEventChannel _onPlayerLoadCompleted;
 
         #endregion
         
@@ -31,7 +26,6 @@ namespace Saves
         protected override void HandleSaveCompleted()
         {
             Debug.Log("Player Data Save Completed");
-            _onPlayerSaveCompleted.Raise();
             SaveFile.Save();
         }
 
@@ -46,7 +40,6 @@ namespace Saves
         protected override void HandleLoadCompleted()
         {
             Debug.Log("Player Data Load Completed");
-            _onPlayerLoadCompleted.Raise();
         }
 
         #endregion
@@ -55,14 +48,14 @@ namespace Saves
         
         private void OnEnable()
         {
-            _onPlayerSaveRequested.Subscribe(HandleSaveRequested);
-            _onPlayerLoadRequested.Subscribe(HandleLoadRequested);
+            SystemEvents.PlayerSaveRequested.Subscribe(HandleSaveRequested);
+            SystemEvents.PlayerLoadRequested.Subscribe(HandleLoadRequested);
         }
 
         private void OnDisable()
         {
-            _onPlayerSaveRequested.Unsubscribe(HandleSaveRequested);
-            _onPlayerLoadRequested.Unsubscribe(HandleLoadRequested);
+            SystemEvents.PlayerSaveRequested.Unsubscribe(HandleSaveRequested);
+            SystemEvents.PlayerLoadRequested.Unsubscribe(HandleLoadRequested);
         }
         
         #endregion

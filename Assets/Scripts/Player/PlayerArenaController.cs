@@ -1,6 +1,7 @@
 using Attributes;
 
 using Events;
+using Events.Registries;
 using Interfaces;
 using Systems.Arena;
 using UnityEngine;
@@ -14,9 +15,6 @@ namespace Player
         [SerializeField] private IntAttribute currentHealth;
         [SerializeField] private IntAttribute maxShield;
         [SerializeField] private IntAttribute currentShield;
-
-        [Header("Events")] 
-        [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
         
         private bool _isInitialized;
 
@@ -56,7 +54,7 @@ namespace Player
 
         private void HandleDeath()
         {
-            onArenaStateChangeRequested?.Raise(ArenaState.ArenaOver); 
+            GameplayEvents.ArenaStateChangeRequested.Raise(ArenaState.ArenaDefeat);
         }
     }
 }

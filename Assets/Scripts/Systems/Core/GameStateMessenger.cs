@@ -1,5 +1,6 @@
 using System;
 using Events;
+using Events.Registries;
 using UnityEngine;
 
 namespace Systems.Core
@@ -7,11 +8,10 @@ namespace Systems.Core
     public class GameStateMessenger : MonoBehaviour
     {
         [SerializeField] private GameState gameState;
-        [SerializeField] private GameStateEventChannel _onGameStateChangeRequest;
 
         private void Start()
         {
-            _onGameStateChangeRequest.Raise(gameState);
+            GameplayEvents.GameStateChangeRequested.Raise(gameState);
         }
     }
 }

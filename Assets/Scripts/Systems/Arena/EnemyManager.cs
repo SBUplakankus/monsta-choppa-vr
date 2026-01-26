@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Characters.Enemies;
 using Events;
+using Events.Registries;
 using Pooling;
 using UnityEngine;
 
@@ -14,10 +15,6 @@ namespace Systems.Arena
     public class EnemyManager : MonoBehaviour, IUpdateable
     {
         #region Fields
-
-        [Header("Enemy Events")]
-        [SerializeField] private EnemyEventChannel onEnemySpawned;
-        [SerializeField] private EnemyEventChannel onEnemyDespawned;
 
         private readonly List<EnemyController> _activeEnemies = new();
         private readonly List<EnemyController> _enemyCleanupBuffer = new();
@@ -137,8 +134,8 @@ namespace Systems.Arena
             if (!_gamePoolManager)
                 _gamePoolManager = GamePoolManager.Instance;
             
-            onEnemySpawned.Subscribe(HandleEnemyEnable);
-            onEnemyDespawned.Subscribe(HandleEnemyDisable);
+            GameplayEvents.EnemySpawned.Subscribe(HandleEnemyEnable);
+            GameplayEvents.EnemyDespawned.Subscribe(HandleEnemyDisable);
         }
 
         /// <summary>
@@ -147,8 +144,8 @@ namespace Systems.Arena
         private void OnDisable()
         {
             GameUpdateManager.Instance.Unregister(this);
-            onEnemySpawned.Unsubscribe(HandleEnemyEnable);
-            onEnemyDespawned.Unsubscribe(HandleEnemyDisable);
+            GameplayEvents.EnemySpawned.Unsubscribe(HandleEnemyEnable);
+            GameplayEvents.EnemyDespawned.Unsubscribe(HandleEnemyDisable);
         }
 
         #endregion

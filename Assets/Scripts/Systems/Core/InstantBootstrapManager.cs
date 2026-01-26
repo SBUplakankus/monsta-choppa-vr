@@ -2,6 +2,7 @@ using Constants;
 using Data.Registries;
 using Databases;
 using Events;
+using Events.Registries;
 using Pooling;
 using UnityEngine;
 
@@ -15,7 +16,6 @@ namespace Systems.Core
     public class InstantBootstrapManager : MonoBehaviour
     {
         [Header("Core Dependencies")]
-        [SerializeField] private GameEventRegistry gameEventRegistry;
         [SerializeField] private GameDatabaseRegistry gameDatabaseRegistry;
         [SerializeField] private GamePoolManager gamePoolManager;
 
@@ -43,17 +43,6 @@ namespace Systems.Core
         {
             Debug.Log("InstantBootstrapManager: Initializing test bootstrap");
 
-            // Events
-            if (gameEventRegistry)
-            {
-                gameEventRegistry.Validate();
-                gameEventRegistry.Install();
-            }
-            else
-            {
-                Debug.LogError("InstantBootstrapManager: GameEventRegistry missing!");
-            }
-
             // Databases
             if (gameDatabaseRegistry)
             {
@@ -77,7 +66,10 @@ namespace Systems.Core
             if (!_initialized) return;
 
             GameDatabases.Clear();
-            GameEvents.Clear();
+            AudioEvents.Clear();
+            GameplayEvents.Clear();
+            SystemEvents.Clear();
+            UIEvents.Clear();
             _initialized = false;
         }
     }

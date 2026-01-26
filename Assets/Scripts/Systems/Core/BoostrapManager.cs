@@ -3,6 +3,7 @@ using Constants;
 using Data.Registries;
 using Databases;
 using Events;
+using Events.Registries;
 using Pooling;
 using Saves;
 using UI.Controllers;
@@ -16,7 +17,6 @@ namespace Systems.Core
         #region Fields
 
         [Header("Core Dependencies")]
-        [SerializeField] private GameEventRegistry gameEventRegistry;
         [SerializeField] private GameDatabaseRegistry gameDatabaseRegistry;
         [SerializeField] private LoadingScreenController loadingScreen;
         [SerializeField] private GamePoolManager gamePoolManager;
@@ -63,9 +63,6 @@ namespace Systems.Core
 
             if (!ValidateCoreRegistries())
                 yield break;
-
-            gameEventRegistry.Validate();
-            gameEventRegistry.Install();
 
             gameDatabaseRegistry.Validate();
             gameDatabaseRegistry.Install();
@@ -121,7 +118,7 @@ namespace Systems.Core
         private IEnumerator LoadSceneRoutine(string sceneName)
         {
             ShowLoadingScreen(LocalizationKeys.LoadingScene);
-            GameEvents.OnGameStateChangeRequested?.Raise(GameState.Loading);
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.Loading);
 
             // Fake loading for minimum time
             yield return _minimumLoadWait;
@@ -142,33 +139,24 @@ namespace Systems.Core
 
         private bool ValidateCoreRegistries()
         {
-            if (!gameEventRegistry)
-            {
-                Debug.LogError("GameEventRegistry not assigned!");
-                return false;
-            }
+            if (gameDatabaseRegistry) return true;
+            Debug.LogError("GameDatabaseRegistry not assigned!");
+            return false;
 
-            if (!gameDatabaseRegistry)
-            {
-                Debug.LogError("GameDatabaseRegistry not assigned!");
-                return false;
-            }
-
-            return true;
         }
 
         private void StartBootstrapSequence()
         {
             _isInitialized = false;
             ShowLoadingScreen(LocalizationKeys.Initializing);
-            GameEvents.OnGameStateChangeRequested?.Raise(GameState.Loading);
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.Loading);
         }
 
         private void CompleteBootstrapSequence()
         {
             _isInitialized = true;
             HideLoadingScreen();
-            GameEvents.OnGameStateChangeRequested?.Raise(GameState.StartMenu);
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.StartMenu);
         }
 
         private void ShowLoadingScreen(string message)
@@ -233,7 +221,10 @@ namespace Systems.Core
             if (Instance != this) return;
 
             GameDatabases.Clear();
-            GameEvents.Clear();
+            AudioEvents.Clear();
+            GameplayEvents.Clear();
+            SystemEvents.Clear();
+            UIEvents.Clear();
 
             Instance = null;
         }

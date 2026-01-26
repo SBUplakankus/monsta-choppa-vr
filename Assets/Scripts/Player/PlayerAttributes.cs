@@ -2,6 +2,7 @@ using Attributes;
 using Constants;
 using Esper.ESave;
 using Events;
+using Events.Registries;
 using UnityEngine;
 
 namespace Player
@@ -18,13 +19,6 @@ namespace Player
         [SerializeField] private IntAttribute playerGold;
         [SerializeField] private IntAttribute playerExperience;
         [SerializeField] private IntAttribute playerLevel;
-
-        [Header("Events")]
-        private IntEventChannel _onGoldIncreased;
-        private IntEventChannel _onExperienceIncreased;
-        private IntEventChannel _onLevelIncreased;
-        
-        private SaveFile _saveFile;
         
         #endregion
         
@@ -64,28 +58,21 @@ namespace Player
         
         private void SubscribeToEvents()
         {
-            _onGoldIncreased.Subscribe(HandleGoldIncrease);
-            _onExperienceIncreased.Subscribe(HandleExperienceIncrease);
-            _onLevelIncreased.Subscribe(HandleLevelIncrease);
+            GameplayEvents.GoldChanged.Subscribe(HandleGoldIncrease);
+            GameplayEvents.ExperienceChanged.Subscribe(HandleExperienceIncrease);
+            GameplayEvents.LevelChanged.Subscribe(HandleLevelIncrease);
         }
 
         private void UnsubscribeToEvents()
         {
-            _onGoldIncreased.Unsubscribe(HandleGoldIncrease);
-            _onExperienceIncreased.Unsubscribe(HandleExperienceIncrease);
-            _onLevelIncreased.Unsubscribe(HandleLevelIncrease);
+            GameplayEvents.GoldChanged.Unsubscribe(HandleGoldIncrease);
+            GameplayEvents.ExperienceChanged.Unsubscribe(HandleExperienceIncrease);
+            GameplayEvents.LevelChanged.Unsubscribe(HandleLevelIncrease);
         }
 
         #endregion
         
         #region Unity Functions
-
-        private void Awake()
-        {
-            _onExperienceIncreased = GameEvents.OnExperienceIncreased;
-            _onLevelIncreased = GameEvents.OnLevelIncreased;
-            _onGoldIncreased = GameEvents.OnGoldIncreased;
-        }
 
         private void OnEnable() => SubscribeToEvents();
 

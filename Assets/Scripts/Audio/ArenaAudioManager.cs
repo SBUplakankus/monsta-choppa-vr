@@ -2,6 +2,7 @@ using System;
 using Constants;
 using Data.Arena;
 using Events;
+using Events.Registries;
 using Systems.Arena;
 using UnityEngine;
 
@@ -14,12 +15,6 @@ namespace Audio
         [Header("Arena Data")]
         [SerializeField] private ArenaData arenaData;
         
-        [Header("Events")] 
-        [SerializeField] private StringEventChannel _onAmbienceRequested;
-        [SerializeField] private StringEventChannel _onMusicRequested;
-        [SerializeField] private StringEventChannel _onMusicFadeRequested;
-        [SerializeField] private ArenaStateEventChannel _onArenaStateChanged;
-        
         #endregion
         
         #region Class Methods
@@ -31,13 +26,13 @@ namespace Audio
                 ArenaState.WaveActive => arenaData.WaveMusicKey,
                 ArenaState.WaveIntermission or ArenaState.BossIntermission => arenaData.IntermissionMusicKey,
                 ArenaState.BossActive => arenaData.BossMusicKey,
-                ArenaState.ArenaWon => AudioKeys.GameWonKey,
-                ArenaState.ArenaOver => AudioKeys.GameOverKey,
+                ArenaState.ArenaVictory => AudioKeys.GameWonKey,
+                ArenaState.ArenaDefeat => AudioKeys.GameOverKey,
                 _ => null
             };
             
             if(key != null)
-                _onMusicFadeRequested.Raise(key);
+                AudioEvents.MusicFadeRequested.Raise(key);
         }
         
         #endregion
@@ -45,12 +40,12 @@ namespace Audio
         #region Unity Methods
         private void Start()
         {
-            _onMusicRequested.Raise(AudioKeys.GameIntroKey);
-            _onAmbienceRequested.Raise(arenaData.Ambience);
+            AudioEvents.MusicRequested.Raise(AudioKeys.GameIntroKey);
+            AudioEvents.AmbienceRequested.Raise(arenaData.Ambience);
         }
 
-        private void OnEnable() => _onArenaStateChanged.Subscribe(HandleGameStateChange);
-        private void OnDisable() => _onArenaStateChanged.Unsubscribe(HandleGameStateChange);
+        private void OnEnable() => GameplayEvents.ArenaStateChanged.Subscribe(HandleGameStateChange);
+        private void OnDisable() => GameplayEvents.ArenaStateChanged.Unsubscribe(HandleGameStateChange);
 
         #endregion
     }

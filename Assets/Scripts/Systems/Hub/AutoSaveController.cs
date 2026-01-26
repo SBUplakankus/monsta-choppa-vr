@@ -1,5 +1,6 @@
 using System;
 using Events;
+using Events.Registries;
 using UnityEngine;
 using Utilities;
 
@@ -7,7 +8,6 @@ namespace Systems.Hub
 {
     public class AutoSaveController : MonoBehaviour, IUpdateable
     {
-        [SerializeField] private VoidEventChannel _onPlayerSaveRequested;
         private float _timer;
         private const int AutoSaveInterval = 30;
         
@@ -25,7 +25,7 @@ namespace Systems.Hub
         private void AutoSave()
         {
             _timer = 0;
-            _onPlayerSaveRequested.Raise();
+            SystemEvents.PlayerSaveRequested.Raise();
         }
 
         public void OnUpdate(float deltaTime)

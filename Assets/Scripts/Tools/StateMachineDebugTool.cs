@@ -1,4 +1,5 @@
 using Events;
+using Events.Registries;
 using Systems;
 using Systems.Arena;
 using UnityEngine;
@@ -9,7 +10,6 @@ namespace Tools
     {
         [Header("State Machine Reference")]
         [SerializeField] private ArenaStateManager arenaStateManager;
-        [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
 
         private void Update()
         {
@@ -51,12 +51,12 @@ namespace Tools
 
             if (UnityEngine.InputSystem.Keyboard.current.digit8Key.wasPressedThisFrame)
             {
-                PingState(ArenaState.ArenaWon);
+                PingState(ArenaState.ArenaVictory);
             }
 
             if (UnityEngine.InputSystem.Keyboard.current.digit9Key.wasPressedThisFrame)
             {
-                PingState(ArenaState.ArenaOver);
+                PingState(ArenaState.ArenaDefeat);
             }
 
             if (UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -77,7 +77,7 @@ namespace Tools
             }
 
             Debug.Log($"StateMachineDebugTool: Pinging state {state}.");
-            onArenaStateChangeRequested?.Raise(state);
+            GameplayEvents.ArenaStateChangeRequested.Raise(state);
         }
     }
 }

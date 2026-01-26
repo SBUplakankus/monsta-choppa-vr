@@ -1,4 +1,5 @@
 using Events;
+using Events.Registries;
 using Systems.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,12 +9,6 @@ namespace Systems.Arena
     public class ArenaPauseController : MonoBehaviour
     {
         #region Fields
-
-        [Header("Events")] 
-        [SerializeField] private VoidEventChannel onPause;
-        [SerializeField] private VoidEventChannel onResumed;
-        [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequested;
-        [SerializeField] private GameStateEventChannel onGameStateChangeRequested;
         
         [Header("Input Actions")]
         [SerializeField] private InputActionReference pauseAction;
@@ -28,16 +23,16 @@ namespace Systems.Arena
         private void Unpause()
         {
             _isPaused = false;
-            onResumed?.Raise();
-            onGameStateChangeRequested?.Raise(GameState.Arena);
+            GameplayEvents.GamePaused.Raise();
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.Arena);
         }
 
         private void Pause()
         {
             _isPaused = true;
-            onPause?.Raise();
-            onArenaStateChangeRequested?.Raise(ArenaState.ArenaPaused); 
-            onGameStateChangeRequested?.Raise(GameState.ArenaPaused);
+            GameplayEvents.GamePaused.Raise();
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.ArenaPaused);
+            GameplayEvents.ArenaStateChangeRequested.Raise(ArenaState.ArenaPaused);
         }
 
         private void TogglePause()

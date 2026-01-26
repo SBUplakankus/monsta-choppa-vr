@@ -1,7 +1,6 @@
 using System;
 using Data.Core;
-using Databases;
-using Events;
+using Events.Registries;
 using Pooling;
 using UnityEngine;
 
@@ -23,10 +22,6 @@ namespace Characters.Enemies
         private EnemyHealth _enemyHealth;
         private EnemyAttack _enemyAttack;
         private EnemyId _enemyId;
-
-        [Header("Enemy Events")]
-        [SerializeField] private EnemyEventChannel _onEnemySpawned;
-        [SerializeField] private EnemyEventChannel _onEnemyDespawned;
 
         private GamePoolManager _gamePoolManager;
 
@@ -67,7 +62,6 @@ namespace Characters.Enemies
         /// </summary>
         public void DebugKillEnemy()
         {
-            Debug.Log("Killing Enemy Debug");
             HandleEnemyDeath();
         }
 
@@ -101,7 +95,7 @@ namespace Characters.Enemies
             _enemyAnimator.OnSpawn();
             _enemyMovement.OnSpawn(enemyData.MoveSpeed, _enemyAnimator);
             _enemyAttack?.InitAttack(enemyData.Weapon, _enemyAnimator, _enemyMovement);
-            _onEnemySpawned.Raise(this);
+            GameplayEvents.EnemySpawned.Raise(this);
         }
 
         /// <summary>
@@ -123,7 +117,7 @@ namespace Characters.Enemies
             _enemyMovement.OnDespawn();
             _enemyAttack?.ResetAttack();
             _enemyHealth.OnDespawn(HandleEnemyDeath);
-            _onEnemyDespawned.Raise(this);
+            GameplayEvents.EnemyDespawned.Raise(this);
         }
 
         /// <summary>
@@ -132,11 +126,9 @@ namespace Characters.Enemies
         /// </summary>
         public void HighPriorityUpdate()
         {
-            // Update AI movement and state
             _enemyMovement?.UpdateAI();
             
-            // Handle attack logic when in range
-            if (_enemyMovement != null && _enemyMovement.IsInAttackRange)
+            if (_enemyMovement && _enemyMovement.IsInAttackRange)
             {
                 TryAttack();
             }
@@ -147,10 +139,9 @@ namespace Characters.Enemies
         /// </summary>
         private void TryAttack()
         {
-            if (_enemyAttack != null && _enemyAttack.CanAttack)
-            {
+            if (!_enemyAttack) return;
+            if (_enemyAttack.CanAttack)
                 _enemyAttack.TryAttack();
-            }
         }
 
         #endregion

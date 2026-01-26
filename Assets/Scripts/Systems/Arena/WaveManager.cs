@@ -3,6 +3,7 @@ using Constants;
 using Data.Arena;
 using Data.Waves;
 using Events;
+using Events.Registries;
 using UnityEngine;
 using Utilities;
 
@@ -15,7 +16,6 @@ namespace Systems.Arena
     /// </summary>
     /// <remarks>
     /// This class works closely with <see cref="WaveSpawner"/>, <see cref="CountdownTimer"/>,
-    /// and state-related event channels like <see cref="ArenaStateEventChannel"/>.
     /// </remarks>
     [RequireComponent(typeof(WaveSpawner))]
     public class WaveManager : MonoBehaviour, IUpdateable
@@ -24,10 +24,6 @@ namespace Systems.Arena
 
         [Header("Arena Data")]
         [SerializeField] private ArenaWavesData arenaWavesData;
-
-        [Header("Event Channels")]
-        [SerializeField] private ArenaStateEventChannel onArenaStateChanged;
-        [SerializeField] private ArenaStateEventChannel onArenaStateChangeRequest;
 
         private CountdownTimer _countdownTimer;
         private WaveSpawner _waveSpawner;
@@ -64,8 +60,8 @@ namespace Systems.Arena
         {
             _currentWaveIndex++;
             var allWavesCompleted = _currentWaveIndex >= arenaWavesData.Waves.Count;
-
-            onArenaStateChangeRequest?.Raise(allWavesCompleted
+            
+            GameplayEvents.ArenaStateChangeRequested.Raise(allWavesCompleted
                 ? ArenaState.BossIntermission
                 : ArenaState.WaveIntermission);
         }
@@ -76,7 +72,7 @@ namespace Systems.Arena
         /// </summary>
         private void HandleAllWaveEnemiesDefeated()
         {
-            onArenaStateChangeRequest?.Raise(ArenaState.WaveComplete);
+            GameplayEvents.ArenaStateChangeRequested.Raise(ArenaState.WaveComplete);
         }
 
         /// <summary>
@@ -91,12 +87,12 @@ namespace Systems.Arena
         /// <summary>
         /// Handles the boss defeat and transitions to the <see cref="ArenaState.BossComplete"/> state.
         /// </summary>
-        private void HandleBossDefeated() => onArenaStateChangeRequest?.Raise(ArenaState.BossComplete);
+        private void HandleBossDefeated() => GameplayEvents.ArenaStateChangeRequested.Raise(ArenaState.BossComplete);
         
         /// <summary>
-        /// Handles the boss completion and requests a transition to <see cref="ArenaState.ArenaWon"/>.
+        /// Handles the boss completion and requests a transition to <see cref="ArenaState.ArenaVictory"/>.
         /// </summary>
-        private void HandleBossCompletion() => onArenaStateChangeRequest?.Raise(ArenaState.ArenaWon);
+        private void HandleBossCompletion() => GameplayEvents.ArenaStateChangeRequested.Raise(ArenaState.ArenaVictory);
         
         /// <summary>
         /// Manages intermission periods between waves or before the boss fight.
@@ -144,8 +140,8 @@ namespace Systems.Arena
                 case ArenaState.BossComplete:
                     HandleBossCompletion();
                     break;
-                case ArenaState.ArenaOver:
-                case ArenaState.ArenaWon:
+                case ArenaState.ArenaDefeat:
+                case ArenaState.ArenaVictory:
                 case ArenaState.ArenaPaused:
                     StopTimer();
                     break;
@@ -161,7 +157,7 @@ namespace Systems.Arena
         /// <param name="nextState">The <see cref="ArenaState"/> to transition to when the countdown ends.</param>
         private void StartCountdown(float duration, ArenaState nextState)
         {
-            _countdownTimer.Start(duration, () => onArenaStateChangeRequest?.Raise(nextState));
+            _countdownTimer.Start(duration, () => GameplayEvents.ArenaStateChangeRequested.Raise(nextState));
         }
         
         #endregion
@@ -182,7 +178,7 @@ namespace Systems.Arena
         /// </summary>
         private void OnEnable()
         {
-            onArenaStateChanged?.Subscribe(HandleGameStateChange);
+            GameplayEvents.ArenaStateChanged.Subscribe(HandleGameStateChange);
             _waveSpawner.OnWaveEnemiesDefeated += HandleAllWaveEnemiesDefeated;
             _waveSpawner.OnBossDefeated += HandleBossDefeated;
 
@@ -194,7 +190,7 @@ namespace Systems.Arena
         /// </summary>
         private void OnDisable()
         {
-            onArenaStateChanged?.Unsubscribe(HandleGameStateChange);
+            GameplayEvents.ArenaStateChanged.Unsubscribe(HandleGameStateChange);
             _waveSpawner.OnWaveEnemiesDefeated -= HandleAllWaveEnemiesDefeated;
             _waveSpawner.OnBossDefeated -= HandleBossDefeated;
 

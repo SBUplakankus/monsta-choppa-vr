@@ -1,5 +1,6 @@
 using Data.Settings;
 using Events;
+using Events.Registries;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -10,9 +11,6 @@ namespace Systems.Settings
     {
         [Header("Settings")]
         [SerializeField] private LanguageSettingsConfig languageSettingsConfig;
-
-        [Header("Events")] 
-        [SerializeField] private LocaleEventChannel _onLocaleChangeRequested;
 
         private void HandleLocaleChangeRequested(Locale locale)
         {
@@ -31,12 +29,12 @@ namespace Systems.Settings
         private void OnEnable()
         {
             SetLanguage();
-            _onLocaleChangeRequested.Subscribe(HandleLocaleChangeRequested);
+            SystemEvents.LocaleChangeRequested.Subscribe(HandleLocaleChangeRequested);
         }
 
         private void OnDisable()
         {
-            _onLocaleChangeRequested.Unsubscribe(HandleLocaleChangeRequested);
+            SystemEvents.LocaleChangeRequested.Unsubscribe(HandleLocaleChangeRequested);
         }
     }
 }

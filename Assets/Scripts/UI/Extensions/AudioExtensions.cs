@@ -1,14 +1,15 @@
 using Constants;
 using Events;
+using Events.Registries;
 using UnityEngine.UIElements;
 
 namespace UI.Extensions
 {
     public static class AudioExtensions
     {
-        public static void AddAudioEvents(this Button button) 
+        public static void AddAudioEvents(this Button button)
         {
-            var audioChannel = GameEvents.OnSfxRequested;
+            var audioChannel = AudioEvents.UISfxRequested;
             var isHovering = false;
 
             button.RegisterCallback<PointerEnterEvent>(_ =>
@@ -30,7 +31,7 @@ namespace UI.Extensions
         
         public static void AddAudioEvents(this DropdownField dropdown)
         {
-            var audioChannel = GameEvents.OnSfxRequested;
+            var audioChannel = AudioEvents.UISfxRequested;
             var hovering = false;
 
             dropdown.RegisterCallback<PointerEnterEvent>(_ =>
@@ -55,7 +56,7 @@ namespace UI.Extensions
         
         public static void AddAudioEvents(this Slider slider)
         {
-            var audioChannel = GameEvents.OnSfxRequested;
+            var audioChannel = AudioEvents.UISfxRequested;
             var hovering = false;
 
             slider.RegisterCallback<PointerEnterEvent>(_ =>

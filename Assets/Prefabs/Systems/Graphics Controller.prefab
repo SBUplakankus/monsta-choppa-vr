@@ -44,6 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce79e107f721234083cca038322f880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Systems.GraphicsController
-  qualitySetting: {fileID: 11400000, guid: 4de941f428f4d39489d9c36e5e311e9a, type: 2}
-  aliasingSetting: {fileID: 11400000, guid: 2f1e8feac55048d4dbb8090462e28319, type: 2}
-  renderScaleSetting: {fileID: 11400000, guid: 2ce2c3be072b70d40afb5f05ed8ac640, type: 2}
+  videoSettings: {fileID: 11400000, guid: 1c374b36d7e16f747b0cfaad2dc5e9e0, type: 2}

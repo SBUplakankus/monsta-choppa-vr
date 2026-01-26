@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Events;
+using Events.Registries;
 using Systems.Core;
 using UnityEngine;
 
@@ -33,10 +34,10 @@ namespace Systems.Arena
         BossComplete,
 
         /// <summary>All waves/bosses completed; game victory</summary>
-        ArenaWon,
+        ArenaVictory,
 
         /// <summary>Player defeated; game over sequence</summary>
-        ArenaOver,
+        ArenaDefeat,
 
         /// <summary>Game is paused</summary>
         ArenaPaused
@@ -49,12 +50,6 @@ namespace Systems.Arena
     public class ArenaStateManager : MonoBehaviour
     {
         #region Fields
-
-        [Header("Events")]
-        [SerializeField] private ArenaStateEventChannel _onArenaStateChangeRequested;
-        [SerializeField] private ArenaStateEventChannel _onArenaStateChanged;
-        [SerializeField] private VoidEventChannel _onPauseRequested;
-        [SerializeField] private GameStateEventChannel _onGameStateChangeRequested;
 
         private ArenaState _currentArenaState;
         private ArenaState _previousState;
@@ -79,18 +74,18 @@ namespace Systems.Arena
         private IEnumerator TestStart()
         {
             yield return new WaitForSeconds(1);
-            _onArenaStateChanged.Raise(_currentArenaState);
+            GameplayEvents.ArenaStateChanged.Raise(_currentArenaState);
         }
 
         private void OnEnable()
         {
-            _onArenaStateChangeRequested?.Subscribe(HandleGameStateChangeRequest);
+            GameplayEvents.ArenaStateChangeRequested.Subscribe(HandleArenaStateChangeRequest);
             StartCoroutine(TestStart());
         }
 
         private void OnDisable()
         {
-            _onArenaStateChangeRequested?.Unsubscribe(HandleGameStateChangeRequest);
+            GameplayEvents.ArenaStateChangeRequested.Unsubscribe(HandleArenaStateChangeRequest);
         }
 
         #endregion
@@ -112,7 +107,7 @@ namespace Systems.Arena
                 ArenaState.WaveIntermission => to == ArenaState.WaveActive,
 
                 // WaveActive -> (WaveComplete/BossIntermission/GameOver)
-                ArenaState.WaveActive => to is ArenaState.WaveComplete or ArenaState.ArenaOver,
+                ArenaState.WaveActive => to is ArenaState.WaveComplete or ArenaState.ArenaDefeat,
 
                 // WaveComplete -> WaveIntermission/BossIntermission
                 ArenaState.WaveComplete => to is ArenaState.WaveIntermission or ArenaState.BossIntermission,
@@ -121,14 +116,14 @@ namespace Systems.Arena
                 ArenaState.BossIntermission => to == ArenaState.BossActive,
 
                 // BossActive -> (BossComplete/GameOver)
-                ArenaState.BossActive => to is ArenaState.BossComplete or ArenaState.ArenaOver,
+                ArenaState.BossActive => to is ArenaState.BossComplete or ArenaState.ArenaDefeat,
 
                 // BossComplete -> GameWon (boss defeated, transition to victory)
-                ArenaState.BossComplete => to == ArenaState.ArenaWon,
+                ArenaState.BossComplete => to == ArenaState.ArenaVictory,
 
                 // Game state is final, no transitions possible
-                ArenaState.ArenaWon => false, // Can't transition from victory
-                ArenaState.ArenaOver => false, // Can't transition from game over
+                ArenaState.ArenaVictory => false, // Can't transition from victory
+                ArenaState.ArenaDefeat => false, // Can't transition from game over
 
                 // Paused -> True (can resume to any previous state)
                 ArenaState.ArenaPaused => true,
@@ -141,7 +136,7 @@ namespace Systems.Arena
         /// <summary>
         /// Handles an external request to change the game state.
         /// </summary>
-        private void HandleGameStateChangeRequest(ArenaState newArenaState)
+        private void HandleArenaStateChangeRequest(ArenaState newArenaState)
         {
             if (_currentArenaState == newArenaState)
             {
@@ -170,7 +165,7 @@ namespace Systems.Arena
             _currentArenaState = newArenaState;
             EnterCurrentState();
             Debug.Log($"GameStateManager: Entered new state {newArenaState}.");
-            _onArenaStateChanged?.Raise(_currentArenaState);
+            GameplayEvents.ArenaStateChanged.Raise(_currentArenaState);
         }
 
         /// <summary>
@@ -197,7 +192,6 @@ namespace Systems.Arena
 
         private void EnterCurrentState()
         {
-            Debug.Log($"GameStateManager: Entering state {_currentArenaState}.");
             switch (_currentArenaState)
             {
                 case ArenaState.ArenaPrelude: HandleGamePreludeEnter(); break;
@@ -207,8 +201,8 @@ namespace Systems.Arena
                 case ArenaState.BossIntermission: HandleBossIntermissionEnter(); break;
                 case ArenaState.BossActive: HandleBossActiveEnter(); break;
                 case ArenaState.BossComplete: HandleBossCompleteEnter(); break;
-                case ArenaState.ArenaWon: HandleGameWonEnter(); break;
-                case ArenaState.ArenaOver: HandleGameOverEnter(); break;
+                case ArenaState.ArenaVictory: HandleGameWonEnter(); break;
+                case ArenaState.ArenaDefeat: HandleGameOverEnter(); break;
                 case ArenaState.ArenaPaused: HandleGamePausedEnter(); break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -217,7 +211,6 @@ namespace Systems.Arena
 
         private void ExitCurrentState()
         {
-            Debug.Log($"GameStateManager: Exiting state {_currentArenaState}.");
             switch (_currentArenaState)
             {
                 case ArenaState.ArenaPrelude: HandleGamePreludeExit(); break;
@@ -227,8 +220,8 @@ namespace Systems.Arena
                 case ArenaState.BossIntermission: HandleBossIntermissionExit(); break;
                 case ArenaState.BossActive: HandleBossActiveExit(); break;
                 case ArenaState.BossComplete: HandleBossCompleteExit(); break;
-                case ArenaState.ArenaWon: HandleGameWonExit(); break;
-                case ArenaState.ArenaOver: HandleGameOverExit(); break;
+                case ArenaState.ArenaVictory: HandleGameWonExit(); break;
+                case ArenaState.ArenaDefeat: HandleGameOverExit(); break;
                 case ArenaState.ArenaPaused: HandleGamePausedExit(); break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -241,7 +234,7 @@ namespace Systems.Arena
 
         private void HandleGamePreludeEnter()
         { 
-            _onGameStateChangeRequested.Raise(GameState.Arena);
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.Arena);
         }
         
         private void HandleGamePreludeExit() => Debug.Log("GameStateManager: Exiting GamePrelude State.");
@@ -266,13 +259,13 @@ namespace Systems.Arena
 
         private void HandleGameWonEnter()
         { 
-            _onGameStateChangeRequested.Raise(GameState.ArenaVictory);
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.ArenaVictory);
         }
         private void HandleGameWonExit() => Debug.Log("GameStateManager: Exiting GameWon State.");
 
         private void HandleGameOverEnter()
         { 
-            _onGameStateChangeRequested.Raise(GameState.ArenaDefeat);
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.ArenaDefeat);
         }
         private void HandleGameOverExit() => Debug.Log("GameStateManager: Exiting GameOver State.");
 

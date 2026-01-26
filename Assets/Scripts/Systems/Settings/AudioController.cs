@@ -3,6 +3,7 @@ using Constants;
 using Data.Settings;
 using Databases;
 using Events;
+using Events.Registries;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -25,13 +26,7 @@ namespace Systems.Settings
         [SerializeField] private AudioSettingsConfig audioSettings;
         
         [Header("Audio Database")]
-        [SerializeField] private AudioClipDatabase _audioDatabase;
-
-        [Header("Audio Events")] 
-        [SerializeField] private StringEventChannel _onUISfxRequested;
-        [SerializeField] private StringEventChannel _onMusicRequested;
-        [SerializeField] private StringEventChannel _onMusicFadeRequested;
-        [SerializeField] private StringEventChannel _onAmbienceRequested;
+        [SerializeField] private AudioClipDatabase audioDatabase;
 
         private const float MusicFadeDuration = 2.5f;
         private Coroutine _musicFadeRoutine;
@@ -87,7 +82,7 @@ namespace Systems.Settings
         
         private AudioClip GetClip(string key)
         {
-            var entry = _audioDatabase.Get(key);
+            var entry = audioDatabase.Get(key);
             if (entry != null) return entry.Clip;
             Debug.LogWarning($"AudioController: Audio clip not found for key '{key}'");
             return null;
@@ -109,7 +104,7 @@ namespace Systems.Settings
 
         private void PlayBlendedMusic(string key)
         {
-            if (_audioDatabase == null || musicASource == null || musicBSource == null)
+            if (audioDatabase == null || musicASource == null || musicBSource == null)
                 return;
 
             var clip = GetClip(key);
@@ -141,7 +136,7 @@ namespace Systems.Settings
 
         private void PlayAmbience(string key)
         {
-            if (_audioDatabase == null || ambienceSource == null) return;
+            if (audioDatabase == null || ambienceSource == null) return;
             var clip = GetClip(key);
             
             if (clip == null) return;
@@ -150,9 +145,9 @@ namespace Systems.Settings
             ambienceSource.Play();
         }
 
-        private void PlaySfx(string key)
+        private void PlayUISfx(string key)
         {
-            if (_audioDatabase == null || uiSfxSource == null) return;
+            if (audioDatabase == null || uiSfxSource == null) return;
 
             var clip = GetClip(key);
             if (clip == null) return;
@@ -170,10 +165,10 @@ namespace Systems.Settings
 
         private void SubscribeEvents()
         {
-            _onUISfxRequested.Subscribe(PlaySfx);
-            _onMusicRequested.Subscribe(PlayMusic);
-            _onAmbienceRequested.Subscribe(PlayAmbience);
-            _onMusicFadeRequested.Subscribe(PlayBlendedMusic);
+            AudioEvents.AmbienceRequested.Subscribe(PlayAmbience);
+            AudioEvents.UISfxRequested.Subscribe(PlayUISfx);
+            AudioEvents.MusicRequested.Subscribe(PlayMusic);
+            AudioEvents.MusicFadeRequested.Subscribe(PlayBlendedMusic);
             
             audioSettings.MasterVolume.OnValueChanged += SetMasterVolume;
             audioSettings.MusicVolume.OnValueChanged += SetMusicVolume;
@@ -184,10 +179,10 @@ namespace Systems.Settings
 
         private void UnsubscribeEvents()
         {
-            _onUISfxRequested.Unsubscribe(PlaySfx);
-            _onMusicRequested.Unsubscribe(PlayMusic);
-            _onAmbienceRequested.Unsubscribe(PlayAmbience);
-            _onMusicFadeRequested.Unsubscribe(PlayBlendedMusic);
+            AudioEvents.AmbienceRequested.Unsubscribe(PlayAmbience);
+            AudioEvents.UISfxRequested.Unsubscribe(PlayUISfx);
+            AudioEvents.MusicRequested.Unsubscribe(PlayMusic);
+            AudioEvents.MusicFadeRequested.Unsubscribe(PlayBlendedMusic);
             
             audioSettings.MasterVolume.OnValueChanged -= SetMasterVolume;
             audioSettings.MusicVolume.OnValueChanged -= SetMusicVolume;
