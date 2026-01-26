@@ -1,6 +1,7 @@
 using Characters.Base;
 using Constants;
 using Data.Weapons;
+using Interfaces;
 using UnityEngine;
 using Weapons;
 

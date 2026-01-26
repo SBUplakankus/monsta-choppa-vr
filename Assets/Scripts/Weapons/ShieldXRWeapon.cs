@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 
 namespace Weapons
@@ -143,7 +144,7 @@ namespace Weapons
                 var col = _bashBuffer[i];
                 
                 // Apply damage
-                if (col.TryGetComponent<Characters.Base.IDamageable>(out var damageable))
+                if (col.TryGetComponent<IDamageable>(out var damageable))
                 {
                     damageable.TakeDamage(Mathf.RoundToInt(bashDamage));
                 }

@@ -1,5 +1,6 @@
 using Characters.Base;
 using Constants;
+using Interfaces;
 using Pooling;
 using UnityEngine;
 

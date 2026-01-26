@@ -5,7 +5,7 @@ using Events;
 using Pooling;
 using UnityEngine;
 
-namespace Systems
+namespace Systems.Arena
 {
     /// <summary>
     /// Manages the lifecycle of active enemies in the game, including tracking, cleanup, and updates.
@@ -16,11 +16,10 @@ namespace Systems
         #region Fields
 
         [Header("Enemy Events")]
-        [SerializeField] private EnemyEventChannel _onEnemySpawned;
-        [SerializeField] private EnemyEventChannel _onEnemyDespawned;
+        [SerializeField] private EnemyEventChannel onEnemySpawned;
+        [SerializeField] private EnemyEventChannel onEnemyDespawned;
 
-        private readonly HashSet<EnemyController> _activeEnemies = new();
-        // Reusable list to avoid allocations during cleanup
+        private readonly List<EnemyController> _activeEnemies = new();
         private readonly List<EnemyController> _enemyCleanupBuffer = new();
         private GamePoolManager _gamePoolManager;
 
@@ -47,7 +46,6 @@ namespace Systems
         /// </summary>
         public void CleanupEnemies()
         {
-            Debug.Log(_activeEnemies.Count);
             if (_activeEnemies.Count == 0) return;
     
             // Use reusable buffer to avoid allocation
@@ -58,7 +56,7 @@ namespace Systems
             {
                 if (enemy != null)
                 {
-                    enemy.DebugKillEnemy(); // Only interact with valid enemies
+                    enemy.DebugKillEnemy();
                 }
                 else
                 {
@@ -139,8 +137,8 @@ namespace Systems
             if (!_gamePoolManager)
                 _gamePoolManager = GamePoolManager.Instance;
             
-            _onEnemySpawned.Subscribe(HandleEnemyEnable);
-            _onEnemyDespawned.Subscribe(HandleEnemyDisable);
+            onEnemySpawned.Subscribe(HandleEnemyEnable);
+            onEnemyDespawned.Subscribe(HandleEnemyDisable);
         }
 
         /// <summary>
@@ -149,8 +147,8 @@ namespace Systems
         private void OnDisable()
         {
             GameUpdateManager.Instance.Unregister(this);
-            _onEnemySpawned.Unsubscribe(HandleEnemyEnable);
-            _onEnemyDespawned.Unsubscribe(HandleEnemyDisable);
+            onEnemySpawned.Unsubscribe(HandleEnemyEnable);
+            onEnemyDespawned.Unsubscribe(HandleEnemyDisable);
         }
 
         #endregion

@@ -1,5 +1,6 @@
 using Characters.Base;
 using Data.Weapons;
+using Interfaces;
 using Pooling;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;

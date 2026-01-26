@@ -1,7 +1,9 @@
 using Characters.Base;
 using Data.Weapons;
+using Interfaces;
 using Pooling;
 using UnityEngine;
+using IDamageable = Interfaces.IDamageable;
 
 namespace Weapons.Projectiles
 {

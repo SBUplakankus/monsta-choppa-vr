@@ -1,6 +1,7 @@
 using Characters.Base;
 using Characters.Enemies;
 using Constants;
+using Interfaces;
 using UnityEngine;
 
 namespace Weapons
