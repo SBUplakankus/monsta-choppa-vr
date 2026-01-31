@@ -65,7 +65,6 @@ public class WeaponData : ScriptableObject
     public int sellPrice;
     public bool isPurchasable;
     
-    // Calculated properties
     public int TotalDamage
     {
         get
@@ -174,7 +173,7 @@ public abstract class XRWeaponBase : MonoBehaviour
 Close-range weapons using physics-based hit detection.
 
 - Uses WeaponHitbox for collision detection
-- Damage based on swing velocity
+- Damage scales with swing velocity
 - Haptic feedback on hit
 
 ### BowXRWeapon

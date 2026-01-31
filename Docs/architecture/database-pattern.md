@@ -1,4 +1,4 @@
-# Database System
+# Database Pattern
 
 Generic ScriptableObject-based database pattern for storing and retrieving game data with O(1) lookups.
 
@@ -20,7 +20,7 @@ GameDatabases (static access)
 
 ---
 
-## DatabaseBase<T>
+## DatabaseBase<T\>
 
 Generic base class for all databases.
 
@@ -61,7 +61,7 @@ public abstract class DatabaseBase<T> : ScriptableObject where T : ScriptableObj
 
 ---
 
-## Database Implementations
+## Implementations
 
 ### WeaponDatabase
 
@@ -121,16 +121,18 @@ public static class GameDatabases
 
 ## Usage
 
-### Retrieving Data
+### Safe Retrieval
 
 ```csharp
-// Safe retrieval with null check
 if (GameDatabases.WeaponDatabase.TryGet("sword_fire", out var weapon))
 {
     SpawnWeapon(weapon);
 }
+```
 
-// Direct retrieval (returns null if not found)
+### Direct Retrieval
+
+```csharp
 var enemy = GameDatabases.EnemyDatabase.Get("goblin_melee");
 if (enemy != null)
 {
@@ -141,7 +143,6 @@ if (enemy != null)
 ### With Pooling
 
 ```csharp
-// Get data from database, spawn from pool
 var enemyData = GameDatabases.EnemyDatabase.Get(enemyId);
 var instance = GamePoolManager.Instance.GetEnemyPrefab(enemyData, position, rotation);
 ```
@@ -150,26 +151,19 @@ var instance = GamePoolManager.Instance.GetEnemyPrefab(enemyData, position, rota
 
 ## Data Flow
 
-```
 1. Designer creates ScriptableObject asset (e.g., WeaponData)
 2. Asset added to database entries array
 3. Database builds lookup dictionary on first access
 4. Runtime systems query via GameDatabases static class
 5. Retrieved data used to configure pooled instances
-```
 
 ---
 
 ## Adding New Database Types
 
-1. Create data ScriptableObject with unique ID field
-2. Create database class extending DatabaseBase<T>
-3. Override GetKey to return the ID field
-4. Add property to GameDatabases
-5. Assign in bootstrap scene
+### Step 1: Create Data ScriptableObject
 
 ```csharp
-// Step 1: Data class
 [CreateAssetMenu(menuName = "Scriptable Objects/Abilities/Ability Data")]
 public class AbilityData : ScriptableObject
 {
@@ -178,15 +172,21 @@ public class AbilityData : ScriptableObject
     public float cooldown;
     public GameObject effectPrefab;
 }
+```
 
-// Step 2: Database class
+### Step 2: Create Database Class
+
+```csharp
 [CreateAssetMenu(menuName = "Scriptable Objects/Databases/Ability Database")]
 public class AbilityDatabase : DatabaseBase<AbilityData>
 {
     protected override string GetKey(AbilityData entry) => entry.abilityId;
 }
+```
 
-// Step 3: Add to GameDatabases
+### Step 3: Add to GameDatabases
+
+```csharp
 public static AbilityDatabase AbilityDatabase { get; set; }
 ```
 
@@ -195,7 +195,7 @@ public static AbilityDatabase AbilityDatabase { get; set; }
 ## Best Practices
 
 | Practice | Reason |
-|----------|--------|
+|:---------|:-------|
 | Use TryGet over Get | Handles missing entries gracefully |
 | Normalize keys (lowercase, trimmed) | Prevents lookup failures from formatting |
 | Keep databases read-only at runtime | Maintains data consistency |

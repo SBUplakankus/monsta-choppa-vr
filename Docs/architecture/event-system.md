@@ -1,4 +1,4 @@
-# Event Channel System
+# Event System
 
 ScriptableObject-based publish/subscribe system for decoupled communication between game systems.
 
@@ -16,7 +16,7 @@ Sender  →  Event Channel (ScriptableObject)  →  Subscribers
 
 ## Base Classes
 
-### TypeEventChannelBase<T>
+### TypeEventChannelBase<T\>
 
 Generic base class for typed events.
 
@@ -42,7 +42,7 @@ public abstract class TypeEventChannelBase<T> : ScriptableObject
     
     private void OnDisable()
     {
-        _handlers = null;  // Clear all handlers on disable
+        _handlers = null;
     }
 }
 ```
@@ -67,7 +67,7 @@ public class VoidEventChannel : ScriptableObject
 ## Event Channel Types
 
 | Type | Payload | Example Usage |
-|------|---------|---------------|
+|:-----|:--------|:--------------|
 | VoidEventChannel | None | Pause requested, game over trigger |
 | IntEventChannel | int | Damage dealt, gold changed, experience gained |
 | FloatEventChannel | float | Volume changed, timer tick |
@@ -151,10 +151,7 @@ public class EnemyHealth : MonoBehaviour
 ### Requesting Audio
 
 ```csharp
-// Request sound effect by ID
 GameEvents.OnSfxRequested.Raise("sword_hit");
-
-// Request music track
 GameEvents.OnMusicRequested.Raise("combat_theme");
 ```
 
@@ -163,7 +160,7 @@ GameEvents.OnMusicRequested.Raise("combat_theme");
 ## Rules
 
 | Rule | Reason |
-|------|--------|
+|:-----|:-------|
 | Always unsubscribe in OnDisable | Prevents memory leaks and null reference errors |
 | Keep handlers lightweight | Long handlers block other subscribers |
 | Use null-conditional invoke | Handlers may be null if no subscribers |
@@ -171,15 +168,19 @@ GameEvents.OnMusicRequested.Raise("combat_theme");
 
 ---
 
-## Common Pattern: Method Reference
+## Correct Pattern: Method Reference
 
 ```csharp
 // Correct - same method reference for subscribe and unsubscribe
 private void OnEnable() => GameEvents.OnGoldChanged.Subscribe(HandleGoldChanged);
 private void OnDisable() => GameEvents.OnGoldChanged.Unsubscribe(HandleGoldChanged);
 private void HandleGoldChanged(int gold) { /* ... */ }
+```
 
-// Incorrect - lambda creates new delegate each time
+### Incorrect Pattern (Memory Leak)
+
+```csharp
+// Lambda creates new delegate each time - cannot unsubscribe
 private void OnEnable() => GameEvents.OnGoldChanged.Subscribe(g => UpdateUI(g));
-// Cannot unsubscribe - different delegate instance
+// This will NOT work - different delegate instance
 ```

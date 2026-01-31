@@ -4,7 +4,7 @@ The UI system uses Unity's UI Toolkit with a Factory-View-Host-Controller archit
 
 ---
 
-## Architecture Overview
+## Architecture
 
 ```
 Controller (game logic)
@@ -27,19 +27,17 @@ Factory (element builders, styling)
 
 Static factory class that creates pre-configured UI Toolkit elements with consistent styling and localization.
 
-**Core Methods:**
-
 | Method | Returns | Purpose |
-|--------|---------|---------|
-| `CreateElement<T>()` | T | Generic element with class names |
-| `CreateContainer()` | VisualElement | Styled container |
-| `CreateButton()` | Button | Localized button with click handler |
-| `CreateLabel()` | Label | Localized label |
-| `CreateBoundLabel()` | Label | Data-bound label (auto-updates) |
-| `CreateSlider()` | Slider | Range input with callback |
-| `CreateToggle()` | Toggle | Boolean input |
-| `CreateDropdown()` | DropdownField | Selection input |
-| `CreateHealthBar()` | HealthBarElements | Container, background, fill |
+|:-------|:--------|:--------|
+| CreateElement<T\>() | T | Generic element with class names |
+| CreateContainer() | VisualElement | Styled container |
+| CreateButton() | Button | Localized button with click handler |
+| CreateLabel() | Label | Localized label |
+| CreateBoundLabel() | Label | Data-bound label (auto-updates) |
+| CreateSlider() | Slider | Range input with callback |
+| CreateToggle() | Toggle | Boolean input |
+| CreateDropdown() | DropdownField | Selection input |
+| CreateHealthBar() | HealthBarElements | Container, background, fill |
 
 **Fluent Extensions:**
 
@@ -74,12 +72,14 @@ public abstract class BasePanelView : IDisposable
 ```
 
 **View Responsibilities:**
+
 - Create UI element hierarchy using Factory
 - Expose elements as properties for Host binding
 - Expose events for user interactions
 - Implement Dispose for cleanup
 
 **View Restrictions:**
+
 - No game logic
 - No external event subscriptions
 - No references to game systems
@@ -123,6 +123,7 @@ public abstract class BasePanelHost : MonoBehaviour
 ```
 
 **Host Responsibilities:**
+
 - Create and destroy Views
 - Subscribe to View events
 - Forward events to Controllers
@@ -172,13 +173,12 @@ public class StartMenuController : MonoBehaviour
 
 ### Automatic Binding
 
-Use `CreateBoundLabel` for labels that auto-update when data changes.
+Use CreateBoundLabel for labels that auto-update when data changes.
 
 ```csharp
-// Label automatically updates when playerGold.Value changes
 var goldLabel = UIToolkitFactory.CreateBoundLabel(
-    playerGold,                    // INotifyBindablePropertyChanged source
-    nameof(playerGold.Value),      // Property path
+    playerGold,
+    nameof(playerGold.Value),
     UIToolkitStyles.StatValue
 );
 ```
@@ -188,11 +188,10 @@ var goldLabel = UIToolkitFactory.CreateBoundLabel(
 For complex formatting or conditional display.
 
 ```csharp
-// Subscribe to attribute changes
 private void BindData()
 {
     playerGold.OnValueChanged += UpdateGoldDisplay;
-    UpdateGoldDisplay(playerGold.Value);  // Initial value
+    UpdateGoldDisplay(playerGold.Value);
 }
 
 private void UnbindData()
@@ -245,9 +244,7 @@ public class AudioSettingsPanelHost : BasePanelHost
 
 ## Animation System
 
-Hosts use `ITweenable` components for show/hide animations.
-
-**TweenTransform** - Scale animations for panels:
+Hosts use ITweenable components for show/hide animations.
 
 ```csharp
 public class TweenTransform : MonoBehaviour, ITweenable
@@ -273,23 +270,23 @@ public class TweenTransform : MonoBehaviour, ITweenable
 
 ## Existing Panels
 
-| Panel | View | Host | Controller | Status |
-|-------|------|------|------------|--------|
-| Start Menu | StartMenuPanelView | StartMenuPanelHost | StartMenuController | Complete |
-| Settings | SettingsPanelView | SettingsPanelHost | - | Complete |
-| Audio Settings | AudioSettingsPanelView | AudioSettingsPanelHost | - | Complete |
-| Video Settings | VideoSettingsPanelView | VideoSettingsPanelHost | - | Complete |
-| Loading Screen | LoadingScreenView | LoadingScreenHost | LoadingScreenController | Complete |
-| Arena Intro | ArenaIntroView | ArenaIntroHost | - | Complete |
-| Boss Intro | BossIntroView | BossIntroHost | - | Complete |
-| Enemy Health Bar | - | EnemyHealthBar | - | Complete |
+| Panel | View | Host | Status |
+|:------|:-----|:-----|:-------|
+| Start Menu | StartMenuPanelView | StartMenuPanelHost | Complete |
+| Settings | SettingsPanelView | SettingsPanelHost | Complete |
+| Audio Settings | AudioSettingsPanelView | AudioSettingsPanelHost | Complete |
+| Video Settings | VideoSettingsPanelView | VideoSettingsPanelHost | Complete |
+| Loading Screen | LoadingScreenView | LoadingScreenHost | Complete |
+| Arena Intro | ArenaIntroView | ArenaIntroHost | Complete |
+| Boss Intro | BossIntroView | BossIntroHost | Complete |
+| Enemy Health Bar | - | EnemyHealthBar | Complete |
 
 ---
 
 ## Memory Safety Rules
 
 | Rule | Implementation |
-|------|----------------|
+|:-----|:---------------|
 | Always dispose Views | Call Dispose in Host.OnDisable |
 | Unsubscribe all events | Use _unbindAll pattern or explicit unsubscribe |
 | No lambda event handlers | Store callback references for unsubscription |
