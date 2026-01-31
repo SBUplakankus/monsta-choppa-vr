@@ -2,7 +2,7 @@
 
 Player persistence using ESave for JSON-based save files with event-driven architecture.
 
-> **Source**: [`Assets/Scripts/Saves/`](../../Assets/Scripts/Saves/)
+> **Source**: [`Assets/Scripts/Saves/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Saves/)
 
 ---
 
@@ -22,7 +22,7 @@ graph TD
 
 Abstract base class for save file managers.
 
-> **Source**: [`SaveFileManagerBase.cs`](../../Assets/Scripts/Saves/SaveFileManagerBase.cs)
+> **Source**: [`SaveFileManagerBase.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Saves/SaveFileManagerBase.cs)
 
 ```csharp
 [RequireComponent(typeof(SaveFileSetup))]
@@ -50,7 +50,7 @@ public abstract class SaveFileManagerBase : MonoBehaviour
 
 Manages player progression persistence.
 
-> **Source**: [`PlayerSaveFileManager.cs`](../../Assets/Scripts/Saves/PlayerSaveFileManager.cs)
+> **Source**: [`PlayerSaveFileManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Saves/PlayerSaveFileManager.cs)
 
 ```csharp
 public class PlayerSaveFileManager : SaveFileManagerBase
@@ -93,7 +93,7 @@ public class PlayerSaveFileManager : SaveFileManagerBase
 
 ScriptableObject storing player progression multipliers.
 
-> **Source**: [`MetaProgressionData.cs`](../../Assets/Scripts/Data/Progression/MetaProgressionData.cs)
+> **Source**: [`MetaProgressionData.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Data/Progression/MetaProgressionData.cs)
 
 ```csharp
 [CreateAssetMenu(menuName = "Scriptable Objects/Data/Progression/Meta Progression")]
@@ -118,7 +118,7 @@ public class MetaProgressionData : ScriptableObject
 
 All save keys are defined in GameConstants.
 
-> **Source**: [`GameConstants.cs`](../../Assets/Scripts/Constants/GameConstants.cs)
+> **Source**: [`GameConstants.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Constants/GameConstants.cs)
 
 ```csharp
 public static class GameConstants

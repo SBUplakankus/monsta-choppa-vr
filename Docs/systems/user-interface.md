@@ -2,7 +2,7 @@
 
 The UI system uses Unity's UI Toolkit with a Factory-View-Host architecture for clean separation of concerns and memory safety.
 
-> **Source**: [`Assets/Scripts/UI/`](../../Assets/Scripts/UI/)
+> **Source**: [`Assets/Scripts/UI/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/UI/)
 
 ---
 
@@ -23,7 +23,7 @@ graph TD
 
 Static factory class that creates pre-configured UI Toolkit elements with consistent styling and localization.
 
-> **Source**: [`UIToolkitFactory.cs`](../../Assets/Scripts/Factories/UIToolkitFactory.cs)
+> **Source**: [`UIToolkitFactory.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Factories/UIToolkitFactory.cs)
 
 | Method | Returns | Purpose |
 |:-------|:--------|:--------|
@@ -53,7 +53,7 @@ var panel = UIToolkitFactory.CreateContainer()
 
 Abstract base class for all UI views. Views define visual structure only.
 
-> **Source**: [`BasePanelView.cs`](../../Assets/Scripts/UI/Views/BasePanelView.cs)
+> **Source**: [`BasePanelView.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/UI/Views/BasePanelView.cs)
 
 ```csharp
 public abstract class BasePanelView : IDisposable
@@ -90,7 +90,7 @@ public abstract class BasePanelView : IDisposable
 
 MonoBehaviour that manages View lifecycle and animations.
 
-> **Source**: [`BasePanelHost.cs`](../../Assets/Scripts/UI/Hosts/BasePanelHost.cs)
+> **Source**: [`BasePanelHost.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/UI/Hosts/BasePanelHost.cs)
 
 ```csharp
 public abstract class BasePanelHost : MonoBehaviour

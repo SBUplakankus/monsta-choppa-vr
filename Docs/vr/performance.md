@@ -82,7 +82,7 @@ Frame budget at 72 FPS: **13.9ms per frame**
 
 Centralized update system with priority-based throttling.
 
-> **Source**: [`GameUpdateManager.cs`](../../Assets/Scripts/Systems/Core/GameUpdateManager.cs)
+> **Source**: [`GameUpdateManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Systems/Core/GameUpdateManager.cs)
 
 ```csharp
 public enum UpdatePriority { High, Medium, Low }
@@ -137,7 +137,7 @@ public class GameUpdateManager : MonoBehaviour
 
 All spawned objects use GamePoolManager to avoid runtime allocations.
 
-> **Source**: [`GamePoolManager.cs`](../../Assets/Scripts/Pooling/GamePoolManager.cs)
+> **Source**: [`GamePoolManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Pooling/GamePoolManager.cs)
 
 ```csharp
 public class GamePoolManager : MonoBehaviour

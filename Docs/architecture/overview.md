@@ -2,7 +2,7 @@
 
 This document describes the high-level architecture of the Monsta Choppa VR project. The system is built on Unity's XR Interaction Toolkit with custom layers for gameplay, data management, and UI.
 
-> **Source**: [`Assets/Scripts/`](../../Assets/Scripts/)
+> **Source**: [`Assets/Scripts/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/)
 
 ---
 
@@ -115,7 +115,7 @@ graph TD
 
 ### Object Pooling
 
-> **Source**: [`GamePoolManager.cs`](../../Assets/Scripts/Pooling/GamePoolManager.cs)
+> **Source**: [`GamePoolManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Pooling/GamePoolManager.cs)
 
 ```mermaid
 graph TD

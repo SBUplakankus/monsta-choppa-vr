@@ -2,7 +2,7 @@
 
 Centralized string keys and configuration values to eliminate magic strings and improve maintainability.
 
-> **Source**: [`Assets/Scripts/Constants/`](../../Assets/Scripts/Constants/)
+> **Source**: [`Assets/Scripts/Constants/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Constants/)
 
 ---
 
@@ -25,7 +25,7 @@ All string literals used for lookups, save keys, and style classes are defined a
 
 Core game configuration and save data keys.
 
-> **Source**: [`GameConstants.cs`](../../Assets/Scripts/Constants/GameConstants.cs)
+> **Source**: [`GameConstants.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Constants/GameConstants.cs)
 
 ```csharp
 public static class GameConstants
@@ -65,7 +65,7 @@ public static class GameConstants
 
 Audio mixer groups and clip identifiers.
 
-> **Source**: [`AudioKeys.cs`](../../Assets/Scripts/Constants/AudioKeys.cs)
+> **Source**: [`AudioKeys.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Constants/AudioKeys.cs)
 
 ```csharp
 public static class AudioKeys
@@ -95,7 +95,7 @@ public static class AudioKeys
 
 UI text localization keys.
 
-> **Source**: [`LocalizationKeys.cs`](../../Assets/Scripts/Constants/LocalizationKeys.cs)
+> **Source**: [`LocalizationKeys.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Constants/LocalizationKeys.cs)
 
 ```csharp
 public static class LocalizationKeys
@@ -134,7 +134,7 @@ public static class LocalizationKeys
 
 USS class names for UI Toolkit styling.
 
-> **Source**: [`UIToolkitStyles.cs`](../../Assets/Scripts/Constants/UIToolkitStyles.cs)
+> **Source**: [`UIToolkitStyles.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Constants/UIToolkitStyles.cs)
 
 ```csharp
 public static class UIToolkitStyles

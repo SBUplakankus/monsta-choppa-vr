@@ -2,7 +2,7 @@
 
 Generic ScriptableObject-based database pattern for storing and retrieving game data with O(1) lookups.
 
-> **Source**: [`Assets/Scripts/Databases/`](../../Assets/Scripts/Databases/)
+> **Source**: [`Assets/Scripts/Databases/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Databases/)
 
 ---
 
@@ -27,7 +27,7 @@ GameDatabases (static access)
 
 Generic base class for all databases. Uses ordinal string comparison for better performance.
 
-> **Source**: [`DatabaseBase.cs`](../../Assets/Scripts/Databases/DatabaseBase.cs)
+> **Source**: [`DatabaseBase.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Databases/DatabaseBase.cs)
 
 ```csharp
 public abstract class DatabaseBase<T> : ScriptableObject
@@ -77,7 +77,7 @@ public abstract class DatabaseBase<T> : ScriptableObject
 
 ## Implementations
 
-> **Source**: [`Assets/Scripts/Databases/`](../../Assets/Scripts/Databases/)
+> **Source**: [`Assets/Scripts/Databases/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Databases/)
 
 ### WeaponDatabase
 
@@ -105,7 +105,7 @@ public class EnemyDatabase : DatabaseBase<EnemyData>
 
 Global access point for all databases. Assigned during bootstrap.
 
-> **Source**: [`GameDatabases.cs`](../../Assets/Scripts/Databases/GameDatabases.cs)
+> **Source**: [`GameDatabases.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Databases/GameDatabases.cs)
 
 ```csharp
 public static class GameDatabases

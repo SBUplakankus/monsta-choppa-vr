@@ -2,7 +2,7 @@
 
 Lightweight publish/subscribe system for decoupled communication between game systems.
 
-> **Source**: [`Assets/Scripts/Events/`](../../Assets/Scripts/Events/)
+> **Source**: [`Assets/Scripts/Events/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Events/)
 
 ---
 
@@ -24,7 +24,7 @@ flowchart LR
 
 The project uses simple C# classes (not ScriptableObjects) for events.
 
-> **Source**: [`EventChannel.cs`](../../Assets/Scripts/Events/Channels/EventChannel.cs)
+> **Source**: [`EventChannel.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Events/Channels/EventChannel.cs)
 
 ### EventChannel<T\>
 
@@ -64,7 +64,7 @@ public class EventChannel
 
 Events are organized into static registry classes by category.
 
-> **Source**: [`Assets/Scripts/Events/Registries/`](../../Assets/Scripts/Events/Registries/)
+> **Source**: [`Assets/Scripts/Events/Registries/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Events/Registries/)
 
 ### GameplayEvents
 

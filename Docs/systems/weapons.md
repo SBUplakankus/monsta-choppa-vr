@@ -2,7 +2,7 @@
 
 Data-driven weapon system for VR combat with XR Interaction Toolkit integration, modular modifiers, and object pooling.
 
-> **Source**: [`Assets/Scripts/Weapons/`](../../Assets/Scripts/Weapons/) and [`Assets/Scripts/Data/Weapons/`](../../Assets/Scripts/Data/Weapons/)
+> **Source**: [`Assets/Scripts/Weapons/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Weapons/) and [`Assets/Scripts/Data/Weapons/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Data/Weapons/)
 
 ---
 
@@ -25,7 +25,7 @@ graph TD
 
 ScriptableObject defining all weapon properties.
 
-> **Source**: [`WeaponData.cs`](../../Assets/Scripts/Data/Weapons/WeaponData.cs)
+> **Source**: [`WeaponData.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Data/Weapons/WeaponData.cs)
 
 ```csharp
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/Data/Weapons/Weapon")]
@@ -136,7 +136,7 @@ public class WeaponModifierData : ScriptableObject
 
 Abstract base class for all VR weapons.
 
-> **Source**: [`XRWeaponBase.cs`](../../Assets/Scripts/Weapons/XRWeaponBase.cs)
+> **Source**: [`XRWeaponBase.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Weapons/XRWeaponBase.cs)
 
 ```csharp
 [RequireComponent(typeof(XRGrabInteractable))]
@@ -227,7 +227,7 @@ Magic weapon with spell casting.
 
 Defensive weapon with blocking and bashing.
 
-> **Source**: [`ShieldXRWeapon.cs`](../../Assets/Scripts/Weapons/ShieldXRWeapon.cs)
+> **Source**: [`ShieldXRWeapon.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Weapons/ShieldXRWeapon.cs)
 
 ```csharp
 public class ShieldXRWeapon : XRWeaponBase
@@ -284,7 +284,7 @@ Throwable weapons that return to pool on impact.
 
 Component for melee damage detection with velocity-based multipliers.
 
-> **Source**: [`WeaponHitbox.cs`](../../Assets/Scripts/Weapons/WeaponHitbox.cs)
+> **Source**: [`WeaponHitbox.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Weapons/WeaponHitbox.cs)
 
 ```csharp
 public class WeaponHitbox : MonoBehaviour

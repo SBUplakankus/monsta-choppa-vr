@@ -2,7 +2,7 @@
 
 Modular enemy system with component-based architecture, object pooling, and data-driven configuration.
 
-> **Source**: [`Assets/Scripts/Characters/Enemies/`](../../Assets/Scripts/Characters/Enemies/)
+> **Source**: [`Assets/Scripts/Characters/Enemies/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Characters/Enemies/)
 
 ---
 
@@ -25,7 +25,7 @@ graph TD
 
 ScriptableObject defining enemy configuration.
 
-> **Source**: [`EnemyData.cs`](../../Assets/Scripts/Data/Core/EnemyData.cs)
+> **Source**: [`EnemyData.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Data/Core/EnemyData.cs)
 
 ```csharp
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/Data/Core/Enemy")]
@@ -67,7 +67,7 @@ public class EnemyData : ScriptableObject
 
 Main coordinator that manages all enemy components.
 
-> **Source**: [`EnemyController.cs`](../../Assets/Scripts/Characters/Enemies/EnemyController.cs)
+> **Source**: [`EnemyController.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Characters/Enemies/EnemyController.cs)
 
 ```csharp
 public class EnemyController : MonoBehaviour
@@ -131,7 +131,7 @@ public class EnemyController : MonoBehaviour
 
 Health component implementing IDamageable with VR-optimized effects.
 
-> **Source**: [`EnemyHealth.cs`](../../Assets/Scripts/Characters/Enemies/EnemyHealth.cs)
+> **Source**: [`EnemyHealth.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Characters/Enemies/EnemyHealth.cs)
 
 ```csharp
 public class EnemyHealth : HealthComponent
@@ -183,7 +183,7 @@ public class EnemyHealth : HealthComponent
 
 NavMesh-based navigation with AI state machine.
 
-> **Source**: [`EnemyMovement.cs`](../../Assets/Scripts/Characters/Enemies/EnemyMovement.cs)
+> **Source**: [`EnemyMovement.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Characters/Enemies/EnemyMovement.cs)
 
 ```csharp
 public enum EnemyAIState { Idle, Chasing, Attacking, Dead }
@@ -243,7 +243,7 @@ public class EnemyMovement : MonoBehaviour
 
 Animation state management using layered approach for combat and locomotion.
 
-> **Source**: [`EnemyAnimator.cs`](../../Assets/Scripts/Characters/Enemies/EnemyAnimator.cs)
+> **Source**: [`EnemyAnimator.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Characters/Enemies/EnemyAnimator.cs)
 
 ```csharp
 public class EnemyAnimator : AnimatorComponent
@@ -295,7 +295,7 @@ public class EnemyAnimator : AnimatorComponent
 
 Enemies are spawned and returned via GamePoolManager.
 
-> **Source**: [`GamePoolManager.cs`](../../Assets/Scripts/Pooling/GamePoolManager.cs)
+> **Source**: [`GamePoolManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Pooling/GamePoolManager.cs)
 
 ```csharp
 // Spawn enemy
@@ -326,7 +326,7 @@ GameplayEvents.EnemyDespawned.Raise(this);
 
 WaveSpawner creates enemies during arena combat.
 
-> **Source**: [`WaveSpawner.cs`](../../Assets/Scripts/Systems/Arena/WaveSpawner.cs)
+> **Source**: [`WaveSpawner.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Systems/Arena/WaveSpawner.cs)
 
 ```csharp
 [RequireComponent(typeof(EnemyManager))]
