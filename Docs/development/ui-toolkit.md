@@ -16,7 +16,7 @@ View (element creation, layout)
 Factory (element builders)
 ```
 
-See [User Interface](User_Interface.md) for full architecture details.
+See [User Interface](../systems/user-interface.md) for full architecture details.
 
 ---
 
@@ -25,7 +25,7 @@ See [User Interface](User_Interface.md) for full architecture details.
 ### Common Leak Sources
 
 | Source | Problem | Solution |
-|--------|---------|----------|
+|:-------|:--------|:---------|
 | Lambda event handlers | Cannot unsubscribe | Use method references |
 | Missing unsubscribe | Handler keeps reference | Always unsubscribe in OnDisable |
 | View not disposed | Elements remain in tree | Call Dispose before regenerate |
@@ -34,7 +34,6 @@ See [User Interface](User_Interface.md) for full architecture details.
 ### Correct Event Pattern
 
 ```csharp
-// Store callback reference
 private EventCallback<ChangeEvent<float>> _sliderCallback;
 
 void Bind()
@@ -126,7 +125,7 @@ Always dispose before regenerating:
 ```csharp
 public override void Generate()
 {
-    Dispose();  // Clean up existing
+    Dispose();
     
     _view = new MyPanelView(root, styleSheet);
     BindEvents();
@@ -174,7 +173,7 @@ public virtual void Dispose()
 ## Common Mistakes
 
 | Mistake | Fix |
-|---------|-----|
+|:--------|:----|
 | View regenerated without Dispose | Always Dispose first |
 | Double event subscription | Unsubscribe before subscribe |
 | External events not cleaned | Unsubscribe in OnDisable |
@@ -186,7 +185,6 @@ public virtual void Dispose()
 ## Quick Reference
 
 ```csharp
-// Subscribe pattern
 private void OnEnable()
 {
     GameEvents.OnGoldChanged.Subscribe(HandleGold);

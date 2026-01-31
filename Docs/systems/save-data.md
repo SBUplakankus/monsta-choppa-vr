@@ -1,6 +1,6 @@
 # Save Data System
 
-Player persistence using Esper.ESave for JSON-based save files with event-driven architecture.
+Player persistence using ESave for JSON-based save files with event-driven architecture.
 
 ---
 
@@ -117,7 +117,7 @@ public class MetaProgressionData : ScriptableObject
 
 ## Save Keys
 
-All save keys defined in GameConstants.
+All save keys are defined in GameConstants.
 
 ```csharp
 public static class GameConstants
@@ -137,13 +137,13 @@ public static class GameConstants
 ### Manual Save
 
 ```csharp
-// Trigger save via event channel
 GameEvents.OnSaveRequested.Raise();
 ```
 
 ### Automatic Save Points
 
 Save occurs on:
+
 - Arena completion (victory or defeat)
 - Returning to hub
 - Purchasing upgrades
@@ -189,23 +189,20 @@ public class SettingsSaveFileManager : SaveFileManagerBase
 
 ---
 
-## ESave Integration
-
-The project uses Esper.ESave for serialization.
-
-**SaveFile API:**
+## ESave API
 
 | Method | Purpose |
-|--------|---------|
-| `AddOrUpdateData(key, value)` | Store data by key |
-| `GetData<T>(key)` | Retrieve typed data |
-| `HasData(key)` | Check if key exists |
-| `Save()` | Write to disk |
-| `Load()` | Read from disk |
-| `Delete(key)` | Remove specific key |
-| `DeleteAll()` | Clear all data |
+|:-------|:--------|
+| AddOrUpdateData(key, value) | Store data by key |
+| GetData<T\>(key) | Retrieve typed data |
+| HasData(key) | Check if key exists |
+| Save() | Write to disk |
+| Load() | Read from disk |
+| Delete(key) | Remove specific key |
+| DeleteAll() | Clear all data |
 
-**File Location:**
+**File Locations:**
+
 - Windows: `%USERPROFILE%/AppData/LocalLow/[Company]/[Product]/`
 - Android: `/data/data/[package]/files/`
 
@@ -213,7 +210,8 @@ The project uses Esper.ESave for serialization.
 
 ## Data Flow
 
-```
+**Save:**
+
 1. Game event occurs (enemy killed, gold collected)
 2. PlayerAttributes updates IntAttribute values
 3. Event channels notify subscribers
@@ -221,19 +219,19 @@ The project uses Esper.ESave for serialization.
 5. SaveFileManager serializes data
 6. ESave writes to disk
 
-Load:
+**Load:**
+
 1. Game starts or load requested
 2. SaveFileManager reads from ESave
 3. Data applied to ScriptableObjects/Attributes
 4. Event channels notify UI to refresh
-```
 
 ---
 
 ## Best Practices
 
 | Practice | Reason |
-|----------|--------|
+|:---------|:-------|
 | Use constants for keys | Prevents typos, enables refactoring |
 | Validate loaded data | Handle missing or corrupted saves |
 | Save on significant events | Don't lose player progress |

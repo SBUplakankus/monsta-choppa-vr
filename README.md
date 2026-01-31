@@ -1,79 +1,42 @@
-# Monsta Choppa
+# Monsta Choppa VR
 
-A VR roguelike arena combat game built with Unity's XR Interaction Toolkit. Fight waves of enemies in arenas, earn gold and experience, upgrade your equipment, and progress through increasingly difficult challenges.
+A VR roguelike arena combat game built with Unity's XR Interaction Toolkit. Fight waves of enemies in arenas, earn gold and experience, upgrade equipment, and progress through increasingly difficult challenges.
 
----
+## Project Status
+
+This portfolio project was shelved in January 2026. See the [full documentation](Docs/index.md) for details.
 
 ## Documentation
 
-### Architecture
+Full documentation is available in the `Docs/` folder, structured for MkDocs Material.
 
-| Document | Description |
-|----------|-------------|
-| [Architecture](Docs/Architecture.md) | System overview, data-driven ScriptableObject patterns |
-| [Event Channels](Docs/Event_Channels.md) | ScriptableObject-based publish/subscribe system |
-| [Databases](Docs/Databases.md) | Generic database pattern for game data lookup |
-| [Constants](Docs/Constants.md) | Centralized string keys and configuration |
+| Section | Description |
+|:--------|:------------|
+| [Architecture](Docs/architecture/overview.md) | System design, event channels, database patterns |
+| [Game Systems](Docs/systems/weapons.md) | Weapons, enemies, UI, save data |
+| [VR Development](Docs/vr/performance.md) | Performance optimization, comfort, SpaceWarp |
+| [Future Plans](Docs/future/roadmap.md) | Roadmap and project status |
 
-### Game Systems
+## Technical Highlights
 
-| Document | Description |
-|----------|-------------|
-| [User Interface](Docs/User_Interface.md) | Factory-View-Host-Controller UI pattern |
-| [Weapons](Docs/Weapons.md) | Weapon data, modifiers, XR integration |
-| [Enemies](Docs/Enemies.md) | Enemy components, spawning, pooling |
-| [Save Data](Docs/Save_Data.md) | Player persistence with ESave |
-
-### Development
-
-| Document | Description |
-|----------|-------------|
-| [Game Development](Docs/Game_Development_Guide.md) | Game loop, progression, economy design |
-| [VR Development](Docs/VR_Development_Guide.md) | Performance targets, optimization, Quest settings |
-| [Meta SpaceWarp](Docs/Meta_SpaceWarp_Guide.md) | Application SpaceWarp implementation for Quest |
-| [Bootstrap and Loading](Docs/Bootstrap_Loading_Guide.md) | Initialization, async scene loading |
-| [UI Toolkit Practices](Docs/UI_Toolkit_Best_Practices.md) | Memory safety, cleanup patterns |
-| [TODO](Docs/TODO.md) | Development roadmap and task list |
-
----
-
-## Tutorials
-
-### VR Development
-
-| Title | Creator |
-|-------|---------|
-| [World Space UI Toolkit for VR](https://www.youtube.com/watch?v=XJRxGHENrjc) | Valem Tutorials |
-| [Starter Assets and Hand Tracking](https://www.youtube.com/watch?v=6DcwHPxCE54) | Dilmer Valecillos |
-| [XR Rig Setup - Quest 3 and Unity 6](https://www.youtube.com/watch?v=I1JcytXwXM4) | Justin P. Barnett |
-
-### UI Toolkit
-
-| Title | Creator |
-|-------|---------|
-| [Building Runtime UI with UI Toolkit](https://www.youtube.com/watch?v=-z3wNeYlJV4) | Game Dev Guide |
-| [UI Toolkit Primer](https://www.youtube.com/watch?v=acQd7yr6eWg) | Tarodev |
-
----
+- **ScriptableObject-driven architecture** with generic database patterns
+- **Event channel system** for decoupled communication
+- **Object pooling** with priority routing for VR performance
+- **UI Toolkit** with Factory-View-Host pattern
+- **XR Interaction Toolkit** integration for VR input
 
 ## Dependencies
 
 | Asset | Purpose |
-|-------|---------|
+|:------|:--------|
 | PrimeTween | Allocation-free animation |
-| Auto VR Optimizer | Runtime performance adjustment |
-| Mesh Combiner | Draw call reduction |
-| Synty Dungeon Realms | Environment art |
-| Volumetric Light Beam | Atmospheric lighting |
-| Ovanisound | Sound effects |
 | ESave | Save file serialization |
+| XR Interaction Toolkit | VR input and interaction |
+| Synty Dungeon Realms | Environment art |
 
----
+## Building the Documentation
 
-## Quick Start
-
-1. Open the Bootstrapper scene
-2. Enter Play mode or build to Quest
-3. Start menu loads automatically
-4. Press Play to enter hub world
-5. Approach arena portals to start combat
+```bash
+pip install mkdocs-material
+mkdocs serve
+```

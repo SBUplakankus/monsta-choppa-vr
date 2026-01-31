@@ -118,3 +118,6 @@ crashlytics-build.properties
 # Ignore temporary build directories
 **/Monsta Choppa_BackUpThisFolder_ButDontShipItWithYourGame/
 **/MONSTA CHOPPA_BurstDebugInformation_DoNotShip/
+
+# MkDocs build output
+/site/

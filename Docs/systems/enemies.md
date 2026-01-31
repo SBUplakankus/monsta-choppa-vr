@@ -49,7 +49,6 @@ public class EnemyData : ScriptableObject
     [Header("Effects")]
     public ParticleData deathVFX;
     
-    // Random audio selection
     public WorldAudioData GetHitSfx()
     {
         if (hitSfx == null || hitSfx.Length == 0) return null;

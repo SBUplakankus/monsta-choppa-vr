@@ -6,7 +6,14 @@ Centralized string keys and configuration values to eliminate magic strings and 
 
 ## Overview
 
-All string literals used for lookups, save keys, and style classes are defined as constants. This provides compile-time checking and single-source-of-truth for values used across the codebase.
+All string literals used for lookups, save keys, and style classes are defined as constants. This provides compile-time checking and a single source of truth for values used across the codebase.
+
+| Benefit | Explanation |
+|:--------|:------------|
+| Compile-time checking | Typos caught at build time, not runtime |
+| Refactoring safety | Change value in one place |
+| Autocomplete support | IDE suggests available constants |
+| Self-documenting | Clear naming indicates purpose |
 
 ---
 
@@ -117,14 +124,12 @@ public static class UIToolkitStyles
 ### Scene Loading
 
 ```csharp
-// Use constant instead of magic string
 SceneManager.LoadScene(GameConstants.Hub);
 ```
 
 ### Save Data
 
 ```csharp
-// Consistent keys for save/load
 saveFile.AddOrUpdateData(GameConstants.PlayerGoldKey, goldValue);
 var gold = saveFile.GetData<int>(GameConstants.PlayerGoldKey);
 ```
@@ -132,7 +137,6 @@ var gold = saveFile.GetData<int>(GameConstants.PlayerGoldKey);
 ### Audio
 
 ```csharp
-// Request audio by key
 GameEvents.OnSfxRequested.Raise(AudioKeys.ButtonClick);
 audioMixer.SetFloat(AudioKeys.MixerMaster, volume);
 ```
@@ -140,24 +144,12 @@ audioMixer.SetFloat(AudioKeys.MixerMaster, volume);
 ### UI Styling
 
 ```csharp
-// Apply USS classes
 var button = UIToolkitFactory.CreateButton(
     LocalizationKeys.Play,
     HandlePlay,
     UIToolkitStyles.MenuButton
 );
 ```
-
----
-
-## Benefits
-
-| Benefit | Explanation |
-|---------|-------------|
-| Compile-time checking | Typos caught at build time, not runtime |
-| Refactoring safety | Change value in one place |
-| Autocomplete support | IDE suggests available constants |
-| Self-documenting | Clear naming indicates purpose |
 
 ---
 
@@ -169,7 +161,6 @@ var button = UIToolkitFactory.CreateButton(
 4. Replace all magic string usages
 
 ```csharp
-// Adding a new save key
 public static class GameConstants
 {
     // Existing keys...

@@ -1,4 +1,4 @@
-# Meta Application SpaceWarp Guide
+# Application SpaceWarp
 
 Implementation guide for Meta Application SpaceWarp (ASW) for Quest VR performance optimization.
 
@@ -40,7 +40,8 @@ Result: Player sees 72 FPS, GPU renders 36 FPS
 
 ### Hybrid Approach
 
-Toggle dynamically:
+Toggle dynamically based on game state:
+
 - Enable during hub, menus, exploration
 - Disable during intense combat
 
@@ -56,7 +57,7 @@ Toggle dynamically:
 ### Software
 
 | Requirement | Version |
-|-------------|---------|
+|:------------|:--------|
 | Unity | 2021.3+ LTS |
 | URP | 12.0+ |
 | Meta XR Core SDK | 60.0+ |
@@ -64,22 +65,22 @@ Toggle dynamically:
 
 ### Project Settings
 
-```
-Player Settings:
+**Player Settings:**
+
 - Graphics API: Vulkan (not OpenGL ES)
 - Color Space: Linear
 - Scripting Backend: IL2CPP
 - Target Architecture: ARM64
 
-Quality Settings:
+**Quality Settings:**
+
 - Anti-Aliasing: 4x MSAA (required)
-```
 
 ---
 
-## Setup Steps
+## Setup
 
-### 1. XR Settings
+### XR Settings
 
 ```
 Edit -> Project Settings -> XR Plug-in Management -> Oculus:
@@ -88,7 +89,7 @@ Edit -> Project Settings -> XR Plug-in Management -> Oculus:
 - Application SpaceWarp: Enabled
 ```
 
-### 2. URP Motion Vectors
+### URP Motion Vectors
 
 ```
 URP Asset Settings:
@@ -96,7 +97,7 @@ URP Asset Settings:
 2. Enable "Motion Vectors" in Rendering section
 ```
 
-### 3. Vulkan Graphics API
+### Vulkan Graphics API
 
 ```
 Edit -> Project Settings -> Player -> Other Settings:
@@ -196,19 +197,16 @@ public class SpaceWarpGameIntegration : MonoBehaviour
     
     private void OnHubEntered()
     {
-        // Hub is low-intensity, enable SpaceWarp
         SpaceWarpManager.Instance?.EnableSpaceWarp();
     }
     
     private void OnArenaStarted()
     {
-        // Combat requires full frame rate
         SpaceWarpManager.Instance?.DisableSpaceWarp();
     }
     
     private void OnArenaEnded()
     {
-        // After combat, can re-enable
         SpaceWarpManager.Instance?.EnableSpaceWarp();
     }
 }
@@ -258,7 +256,7 @@ public class MotionVectorForcer : MonoBehaviour
 ## Common Issues
 
 | Issue | Cause | Solution |
-|-------|-------|----------|
+|:------|:------|:---------|
 | Ghosting on moving objects | Missing motion vectors | Add MotionVectorForcer component |
 | UI appears blurry | UI interpolated by SpaceWarp | Use screen-space overlay or disable motion vectors on UI |
 | Frame rate unstable | Scene too heavy | Profile and optimize, or disable SpaceWarp |
@@ -270,21 +268,12 @@ public class MotionVectorForcer : MonoBehaviour
 ## Best Practices
 
 | Do | Don't |
-|----|-------|
+|:---|:------|
 | Use in controlled scenarios | Leave always on |
 | Test on device | Trust editor previews |
 | Add motion vectors to movers | Forget skinned mesh motion vectors |
 | Provide user toggle | Force without option |
 | Use transitions when toggling | Instantly switch state |
-
----
-
-## Performance Tips
-
-1. Profile first - SpaceWarp is not a fix for poor optimization
-2. Target consistent 36 FPS - Budget 27.8ms per frame
-3. Combine with foveated rendering for maximum performance
-4. Consider as enhancement, not crutch
 
 ---
 
@@ -300,10 +289,3 @@ public enum PerformanceMode
     Performance   // Always SpaceWarp (36 FPS interpolated)
 }
 ```
-
----
-
-## Resources
-
-- [Meta Quest Developer Documentation - Application SpaceWarp](https://developer.oculus.com/documentation/unity/unity-asw/)
-- [Unity XR Documentation - Motion Vectors](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest)

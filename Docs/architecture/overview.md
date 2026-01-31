@@ -1,4 +1,4 @@
-# Project Architecture
+# Architecture Overview
 
 This document describes the high-level architecture of the Monsta Choppa VR project. The system is built on Unity's XR Interaction Toolkit with custom layers for gameplay, data management, and UI.
 
@@ -7,7 +7,7 @@ This document describes the high-level architecture of the Monsta Choppa VR proj
 ## Core Design Principles
 
 | Principle | Implementation |
-|-----------|----------------|
+|:----------|:---------------|
 | Decoupled Systems | Event channels for communication, no direct references |
 | Data-Driven Design | ScriptableObjects define all game content |
 | VR Performance | Object pooling, priority updates, minimal allocations |
@@ -17,44 +17,53 @@ This document describes the high-level architecture of the Monsta Choppa VR proj
 
 ## System Layers
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Presentation Layer                    │
-│         UI Hosts, Views, Audio, Visual Effects          │
-└─────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│                    Gameplay Layer                        │
-│      Weapons, Enemies, Combat, Arena Management          │
-└─────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│                    Event Layer                           │
-│         Event Channels, GameEvents Registry              │
-└─────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│                    Data Layer                            │
-│     ScriptableObject Databases, Pooling, Constants       │
-└─────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────┐
-│                    VR Template Layer                     │
-│       XR Origin, Controllers, Locomotion, Input          │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph Presentation["Presentation Layer"]
+        A1[UI Hosts]
+        A2[Views]
+        A3[Audio]
+        A4[Visual Effects]
+    end
+    
+    subgraph Gameplay["Gameplay Layer"]
+        B1[Weapons]
+        B2[Enemies]
+        B3[Combat]
+        B4[Arena Management]
+    end
+    
+    subgraph Events["Event Layer"]
+        C1[Event Channels]
+        C2[GameEvents Registry]
+    end
+    
+    subgraph Data["Data Layer"]
+        D1[ScriptableObject Databases]
+        D2[Object Pooling]
+        D3[Constants]
+    end
+    
+    subgraph VR["VR Template Layer"]
+        E1[XR Origin]
+        E2[Controllers]
+        E3[Locomotion]
+        E4[Input Actions]
+    end
+    
+    Presentation --> Gameplay
+    Gameplay --> Events
+    Events --> Data
+    Data --> VR
 ```
 
 ---
 
-## Data-Driven ScriptableObject Architecture
+## Data-Driven ScriptableObject Pattern
 
 The project uses a consistent pattern where ScriptableObjects define configuration and MonoBehaviours handle runtime logic.
 
-### Pattern Overview
+### Pattern Flow
 
 ```
 ScriptableObject (Data)  →  MonoBehaviour (Controller)  →  Components (Behavior)
@@ -64,10 +73,10 @@ ScriptableObject (Data)  →  MonoBehaviour (Controller)  →  Components (Behav
    ParticleData            ParticleController         ParticleSystem
 ```
 
-### Why This Pattern
+### Benefits
 
 | Benefit | Explanation |
-|---------|-------------|
+|:--------|:------------|
 | Designer-friendly | Configure in Inspector without code changes |
 | Runtime immutable | Data assets are read-only, no accidental modifications |
 | Easy balancing | Tweak stats by editing assets, not code |
@@ -83,67 +92,25 @@ All data ScriptableObjects follow this structure:
 public class TypeData : ScriptableObject
 {
     [Header("Identity")]
-    public string id;           // Unique lookup key
-    public string displayName;  // Localized display name
+    public string id;
+    public string displayName;
     
     [Header("Configuration")]
     // Type-specific fields...
     
     [Header("References")]
-    public GameObject prefab;   // Associated prefab
+    public GameObject prefab;
     
     // Calculated properties
     public int CalculatedValue => baseValue + modifier;
 }
 ```
 
-### Database Pattern
-
-All databases inherit from a generic base:
-
-```csharp
-public abstract class DatabaseBase<T> : ScriptableObject where T : ScriptableObject
-{
-    [SerializeField] private T[] entries;
-    private Dictionary<string, T> _lookup;
-    
-    public bool TryGet(string id, out T entry)
-    {
-        BuildLookup();
-        return _lookup.TryGetValue(id.ToLower().Trim(), out entry);
-    }
-    
-    protected abstract string GetKey(T entry);
-    
-    private void BuildLookup()
-    {
-        if (_lookup != null) return;
-        _lookup = new Dictionary<string, T>();
-        foreach (var entry in entries)
-            _lookup[GetKey(entry).ToLower().Trim()] = entry;
-    }
-}
-```
-
-### Static Access Layer
-
-Global access to databases and events through static classes:
-
-```csharp
-// GameDatabases - centralized database access
-GameDatabases.WeaponDatabase.TryGet("sword_fire", out var weapon);
-GameDatabases.EnemyDatabase.TryGet("goblin_melee", out var enemy);
-
-// GameEvents - centralized event access
-GameEvents.OnPlayerDamaged.Raise(damage);
-GameEvents.OnEnemySpawned.Subscribe(HandleEnemySpawn);
-```
-
 ---
 
 ## Key System Relationships
 
-### Weapon System Flow
+### Weapon System
 
 ```
 WeaponData (ScriptableObject)
@@ -159,7 +126,7 @@ WeaponData (ScriptableObject)
             └── WeaponModifierData[] (stackable modifiers)
 ```
 
-### Enemy System Flow
+### Enemy System
 
 ```
 EnemyData (ScriptableObject)
@@ -174,7 +141,7 @@ EnemyData (ScriptableObject)
             └── EnemyAttack (WeaponData reference)
 ```
 
-### Pooling Flow
+### Object Pooling
 
 ```
 GamePoolManager (Singleton)
@@ -183,9 +150,15 @@ GamePoolManager (Singleton)
     ├── Weapon Pools (keyed by WeaponData)
     ├── Particle Pools (keyed by ParticleData)
     └── Audio Pools (keyed by WorldAudioData)
-    
-Spawn: GamePoolManager.Instance.GetEnemyPrefab(enemyData, position, rotation)
-Return: GamePoolManager.Instance.ReturnEnemyPrefab(enemyData, gameObject)
+```
+
+**Usage:**
+```csharp
+// Spawn
+GamePoolManager.Instance.GetEnemyPrefab(enemyData, position, rotation);
+
+// Return
+GamePoolManager.Instance.ReturnEnemyPrefab(enemyData, gameObject);
 ```
 
 ---
@@ -203,10 +176,26 @@ All systems are ready before any gameplay scene loads.
 
 ---
 
+## Static Access Layer
+
+Global access to databases and events through static classes:
+
+```csharp
+// GameDatabases - centralized database access
+GameDatabases.WeaponDatabase.TryGet("sword_fire", out var weapon);
+GameDatabases.EnemyDatabase.TryGet("goblin_melee", out var enemy);
+
+// GameEvents - centralized event access
+GameEvents.OnPlayerDamaged.Raise(damage);
+GameEvents.OnEnemySpawned.Subscribe(HandleEnemySpawn);
+```
+
+---
+
 ## Best Practices
 
 | Rule | Reason |
-|------|--------|
+|:-----|:-------|
 | Always unsubscribe in OnDisable | Prevents memory leaks and null references |
 | Never modify ScriptableObjects at runtime | Breaks data consistency |
 | Use TryGet for database lookups | Handles missing entries gracefully |

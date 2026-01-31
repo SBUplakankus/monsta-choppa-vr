@@ -1,4 +1,4 @@
-# Bootstrap and Loading Guide
+# Bootstrap and Loading
 
 Game initialization, loading screens, and async scene management for VR.
 
@@ -7,8 +7,9 @@ Game initialization, loading screens, and async scene management for VR.
 ## Why Bootstrap Matters
 
 In VR, any frame drop causes:
+
 - Tracking freeze
-- Disorientation
+- Disorientation  
 - Motion sickness
 
 Bootstrap ensures all systems initialize before gameplay, with loading screens covering any heavy operations.
@@ -124,15 +125,12 @@ public class GameBootstrap : MonoBehaviour
 ```csharp
 public IEnumerator LoadSceneAsync(string sceneName)
 {
-    // Show loading
     loadingScreen.Show();
     loadingScreen.UpdateProgress(0, "Loading...");
     
-    // Unload current
     yield return SceneManager.UnloadSceneAsync(currentScene);
     yield return Resources.UnloadUnusedAssets();
     
-    // Load new
     var operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     operation.allowSceneActivation = false;
     
@@ -145,7 +143,6 @@ public IEnumerator LoadSceneAsync(string sceneName)
     operation.allowSceneActivation = true;
     yield return operation;
     
-    // Hide loading
     loadingScreen.UpdateProgress(1, "Ready!");
     yield return loadingScreen.FadeOut(0.3f);
 }
@@ -180,7 +177,7 @@ public IEnumerator PrewarmPools()
             if (instantiated >= batchSize)
             {
                 instantiated = 0;
-                yield return null;  // Yield to prevent freeze
+                yield return null;
             }
         }
     }
@@ -201,6 +198,7 @@ void Awake()
 ```
 
 Typical persistent objects:
+
 - GameBootstrap
 - AudioManager
 - SaveDataManager
@@ -212,7 +210,7 @@ Typical persistent objects:
 ## Best Practices
 
 | Practice | Reason |
-|----------|--------|
+|:---------|:-------|
 | Show loading for operations over 100ms | Player knows game is responding |
 | Pre-warm pools during loading | No instantiation spikes in gameplay |
 | Fade transitions | Hide loading artifacts |
