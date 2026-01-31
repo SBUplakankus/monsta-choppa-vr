@@ -1,6 +1,7 @@
 site_name: Monsta Choppa VR
 site_description: A VR roguelike arena combat game built with Unity's XR Interaction Toolkit
-site_author: SBUplakankus
+site_author: Seán Burke
+site_url: https://sbuplakankus.github.io/monsta-choppa-vr/
 docs_dir: Docs
 
 theme:
@@ -93,6 +94,6 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/SBUplakankus/VR_Game
+      link: https://github.com/SBUplakankus
 
-copyright: Copyright &copy; 2026 SBUplakankus
+copyright: Copyright &copy; 2026 Seán Burke

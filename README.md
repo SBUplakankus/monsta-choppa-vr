@@ -4,7 +4,7 @@ A VR roguelike arena combat game built with Unity's XR Interaction Toolkit. Figh
 
 ## Project Status
 
-This portfolio project was shelved in January 2026. See the [full documentation](Docs/index.md) for details.
+This portfolio project was shelved in January 2026. See the [full documentation](https://sbuplakankus.github.io/monsta-choppa-vr/) for details.
 
 ## Documentation
 
@@ -33,10 +33,3 @@ Full documentation is available in the `Docs/` folder, structured for MkDocs Mat
 | ESave | Save file serialization |
 | XR Interaction Toolkit | VR input and interaction |
 | Synty Dungeon Realms | Environment art |
-
-## Building the Documentation
-
-```bash
-pip install mkdocs-material
-mkdocs serve
-```
