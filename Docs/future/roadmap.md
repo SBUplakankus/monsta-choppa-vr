@@ -1,6 +1,6 @@
 # Development Roadmap
 
-Tasks that were planned for completion before the project was shelved. Organized by priority and system.
+Tasks that were planned for completion before the project was shelved in January 2025. Organized by priority and system.
 
 ---
 
