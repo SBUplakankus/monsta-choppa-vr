@@ -82,39 +82,51 @@ Frame budget at 72 FPS: **13.9ms per frame**
 
 Centralized update system with priority-based throttling.
 
+> **Source**: [`GameUpdateManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Systems/Core/GameUpdateManager.cs)
+
 ```csharp
+public enum UpdatePriority { High, Medium, Low }
+
+[DefaultExecutionOrder(-99)]
 public class GameUpdateManager : MonoBehaviour
 {
+    public static GameUpdateManager Instance { get; private set; }
+    
+    private readonly List<IUpdateable> _highPriorityUpdates = new();
+    private readonly List<IUpdateable> _mediumPriorityUpdates = new(); 
+    private readonly List<IUpdateable> _lowPriorityUpdates = new();
+
     private const float MediumPriorityInterval = 0.2f;
     private const float LowPriorityInterval = 0.4f;
     
-    private List<IUpdateable> _highPriority;
-    private List<IUpdateable> _mediumPriority;
-    private List<IUpdateable> _lowPriority;
-    
     private void Update()
     {
-        float deltaTime = Time.deltaTime;
-        
-        // High priority: every frame
-        for (int i = 0; i < _highPriority.Count; i++)
-            _highPriority[i].OnUpdate(deltaTime);
-        
-        // Medium priority: every 0.2s
-        if (Time.time >= _lastMediumUpdate + MediumPriorityInterval)
+        UpdateHighPriority();    // Every frame
+        UpdateMediumPriority();  // Every 0.2s
+        UpdateLowPriority();     // Every 0.4s
+    }
+    
+    public void Register(IUpdateable updateable, UpdatePriority priority)
+    {
+        switch (priority)
         {
-            for (int i = 0; i < _mediumPriority.Count; i++)
-                _mediumPriority[i].OnUpdate(MediumPriorityInterval);
-            _lastMediumUpdate = Time.time;
+            case UpdatePriority.High:
+                _highPriorityUpdates.Add(updateable);
+                break;
+            case UpdatePriority.Medium:
+                _mediumPriorityUpdates.Add(updateable);
+                break;
+            case UpdatePriority.Low:
+                _lowPriorityUpdates.Add(updateable);
+                break;
         }
-        
-        // Low priority: every 0.4s
-        if (Time.time >= _lastLowUpdate + LowPriorityInterval)
-        {
-            for (int i = 0; i < _lowPriority.Count; i++)
-                _lowPriority[i].OnUpdate(LowPriorityInterval);
-            _lastLowUpdate = Time.time;
-        }
+    }
+    
+    public void Unregister(IUpdateable updateable)
+    {
+        if (_highPriorityUpdates.Remove(updateable)) return;
+        if (_mediumPriorityUpdates.Remove(updateable)) return;
+        _lowPriorityUpdates.Remove(updateable);
     }
 }
 ```
@@ -125,29 +137,36 @@ public class GameUpdateManager : MonoBehaviour
 
 All spawned objects use GamePoolManager to avoid runtime allocations.
 
+> **Source**: [`GamePoolManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Pooling/GamePoolManager.cs)
+
 ```csharp
 public class GamePoolManager : MonoBehaviour
 {
-    private Dictionary<EnemyData, ObjectPool<GameObject>> _enemyPools;
-    private Dictionary<ParticleData, ObjectPool<GameObject>> _particlePools;
+    public static GamePoolManager Instance { get; private set; }
+    
+    private readonly Dictionary<EnemyData, ObjectPool<GameObject>> _enemyPoolDictionary = new();
+    private readonly Dictionary<ParticleData, ObjectPool<GameObject>> _particlePoolDictionary = new();
     
     public GameObject GetEnemyPrefab(EnemyData data, Vector3 position, Quaternion rotation)
     {
-        if (!_enemyPools.TryGetValue(data, out var pool))
-        {
-            pool = CreatePool(data.prefab);
-            _enemyPools[data] = pool;
-        }
+        if (!_enemyPoolDictionary.TryGetValue(data, out var pool))
+            return null;
         
-        var instance = pool.Get();
-        instance.transform.SetPositionAndRotation(position, rotation);
-        return instance;
+        var obj = pool.Get();
+        obj.transform.SetPositionAndRotation(position, rotation);
+        obj.GetComponent<EnemyController>()?.OnSpawn(data);
+        obj.SetActive(true);
+        return obj;
     }
     
-    public void ReturnEnemyPrefab(EnemyData data, GameObject instance)
+    public void ReturnEnemyPrefab(EnemyController enemy)
     {
-        instance.SetActive(false);
-        _enemyPools[data].Release(instance);
+        if (!enemy) return;
+        
+        if (_enemyPoolDictionary.TryGetValue(enemy.Data, out var pool))
+            pool.Release(enemy.gameObject);
+        else
+            Destroy(enemy.gameObject);
     }
 }
 ```

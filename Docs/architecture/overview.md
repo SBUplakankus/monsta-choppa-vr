@@ -2,6 +2,8 @@
 
 This document describes the high-level architecture of the Monsta Choppa VR project. The system is built on Unity's XR Interaction Toolkit with custom layers for gameplay, data management, and UI.
 
+> **Source**: [`Assets/Scripts/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/)
+
 ---
 
 ## Core Design Principles
@@ -18,7 +20,7 @@ This document describes the high-level architecture of the Monsta Choppa VR proj
 ## System Layers
 
 ```mermaid
-graph TB
+flowchart TB
     subgraph Presentation["Presentation Layer"]
         A1[UI Hosts]
         A2[Views]
@@ -34,8 +36,9 @@ graph TB
     end
     
     subgraph Events["Event Layer"]
-        C1[Event Channels]
-        C2[GameEvents Registry]
+        C1[GameplayEvents]
+        C2[AudioEvents]
+        C3[SystemEvents]
     end
     
     subgraph Data["Data Layer"]
@@ -48,7 +51,6 @@ graph TB
         E1[XR Origin]
         E2[Controllers]
         E3[Locomotion]
-        E4[Input Actions]
     end
     
     Presentation --> Gameplay
@@ -65,12 +67,13 @@ The project uses a consistent pattern where ScriptableObjects define configurati
 
 ### Pattern Flow
 
-```
-ScriptableObject (Data)  →  MonoBehaviour (Controller)  →  Components (Behavior)
-       ↓                            ↓                            ↓
-   WeaponData              XRWeaponBase               Rigidbody, Collider
-   EnemyData               EnemyController            EnemyHealth, EnemyMovement
-   ParticleData            ParticleController         ParticleSystem
+```mermaid
+flowchart LR
+    A[ScriptableObject Data] --> B[MonoBehaviour Controller]
+    B --> C[Components]
+    
+    A1[WeaponData] --> B1[XRWeaponBase]
+    A2[EnemyData] --> B2[EnemyController]
 ```
 
 ### Benefits
@@ -81,30 +84,6 @@ ScriptableObject (Data)  →  MonoBehaviour (Controller)  →  Components (Behav
 | Runtime immutable | Data assets are read-only, no accidental modifications |
 | Easy balancing | Tweak stats by editing assets, not code |
 | Pooling compatible | Same data drives multiple pooled instances |
-| Serialization ready | ScriptableObjects serialize naturally |
-
-### Data Class Structure
-
-All data ScriptableObjects follow this structure:
-
-```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Category/TypeData")]
-public class TypeData : ScriptableObject
-{
-    [Header("Identity")]
-    public string id;
-    public string displayName;
-    
-    [Header("Configuration")]
-    // Type-specific fields...
-    
-    [Header("References")]
-    public GameObject prefab;
-    
-    // Calculated properties
-    public int CalculatedValue => baseValue + modifier;
-}
-```
 
 ---
 
@@ -112,67 +91,50 @@ public class TypeData : ScriptableObject
 
 ### Weapon System
 
-```
-WeaponData (ScriptableObject)
-    │
-    ├── WeaponDatabase (lookup)
-    │
-    └── XRWeaponBase (MonoBehaviour)
-            │
-            ├── MeleeXRWeapon / BowXRWeapon / StaffXRWeapon
-            │
-            ├── WeaponHitbox (damage detection)
-            │
-            └── WeaponModifierData[] (stackable modifiers)
+```mermaid
+graph TD
+    A[WeaponData] --> B[WeaponDatabase]
+    A --> C[XRWeaponBase]
+    C --> D[MeleeXRWeapon]
+    C --> E[ShieldXRWeapon]
+    C --> F[BowXRWeapon]
+    D --> G[WeaponHitbox]
 ```
 
 ### Enemy System
 
-```
-EnemyData (ScriptableObject)
-    │
-    ├── EnemyDatabase (lookup)
-    │
-    └── EnemyController (MonoBehaviour coordinator)
-            │
-            ├── EnemyHealth (IDamageable, health bar)
-            ├── EnemyMovement (NavMesh navigation)
-            ├── EnemyAnimator (state machine)
-            └── EnemyAttack (WeaponData reference)
+```mermaid
+graph TD
+    A[EnemyData] --> B[EnemyDatabase]
+    A --> C[EnemyController]
+    C --> D[EnemyHealth]
+    C --> E[EnemyMovement]
+    C --> F[EnemyAnimator]
+    C --> G[EnemyAttack]
 ```
 
 ### Object Pooling
 
-```
-GamePoolManager (Singleton)
-    │
-    ├── Enemy Pools (keyed by EnemyData)
-    ├── Weapon Pools (keyed by WeaponData)
-    ├── Particle Pools (keyed by ParticleData)
-    └── Audio Pools (keyed by WorldAudioData)
+> **Source**: [`GamePoolManager.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Pooling/GamePoolManager.cs)
+
+```mermaid
+graph TD
+    A[GamePoolManager] --> B[Enemy Pools]
+    A --> C[Particle Pools]
+    A --> D[WorldAudio Pools]
+    B --> E[keyed by EnemyData]
+    C --> F[keyed by ParticleData]
+    D --> G[keyed by WorldAudioData]
 ```
 
 **Usage:**
 ```csharp
 // Spawn
-GamePoolManager.Instance.GetEnemyPrefab(enemyData, position, rotation);
+var enemy = GamePoolManager.Instance.GetEnemyPrefab(enemyData, position, rotation);
 
 // Return
-GamePoolManager.Instance.ReturnEnemyPrefab(enemyData, gameObject);
+GamePoolManager.Instance.ReturnEnemyPrefab(enemyController);
 ```
-
----
-
-## Initialization
-
-The GameBootstrap MonoBehaviour initializes all static references on startup:
-
-1. **Event Channels** - Assigned to GameEvents static fields
-2. **Databases** - Assigned to GameDatabases static fields
-3. **Pool Manager** - Pre-warms object pools
-4. **Save System** - Loads player data via ESave
-
-All systems are ready before any gameplay scene loads.
 
 ---
 
@@ -183,11 +145,12 @@ Global access to databases and events through static classes:
 ```csharp
 // GameDatabases - centralized database access
 GameDatabases.WeaponDatabase.TryGet("sword_fire", out var weapon);
-GameDatabases.EnemyDatabase.TryGet("goblin_melee", out var enemy);
+GameDatabases.EnemyDatabase.Get("goblin_melee");
 
-// GameEvents - centralized event access
-GameEvents.OnPlayerDamaged.Raise(damage);
-GameEvents.OnEnemySpawned.Subscribe(HandleEnemySpawn);
+// Event Registries - centralized event access
+GameplayEvents.GoldChanged.Raise(newGold);
+GameplayEvents.EnemySpawned.Subscribe(HandleEnemySpawn);
+AudioEvents.SfxRequested.Raise("hit_sound");
 ```
 
 ---
@@ -208,15 +171,28 @@ GameEvents.OnEnemySpawned.Subscribe(HandleEnemySpawn);
 
 ```
 Assets/Scripts/
-├── Data/                   # ScriptableObject data classes
-│   ├── Core/              # EnemyData, ParticleData
-│   └── Weapons/           # WeaponData, WeaponModifierData
-├── Databases/             # DatabaseBase<T>, GameDatabases
-├── Events/                # Event channels, GameEvents
-├── Characters/            # Enemy components
-├── Weapons/               # Weapon components
-├── Pooling/               # GamePoolManager
-├── Saves/                 # ESave integration
-├── UI/                    # Views, Hosts, Controllers
-└── Factories/             # UIToolkitFactory
+├── Attributes/            # FloatAttribute, IntAttribute
+├── Audio/                 # Audio controllers
+├── Characters/            # Base and Enemy components
+│   ├── Base/             # HealthComponent, AnimatorComponent
+│   └── Enemies/          # EnemyController, EnemyHealth, etc.
+├── Constants/            # GameConstants, AudioKeys, etc.
+├── Data/                 # ScriptableObject data classes
+│   ├── Core/             # EnemyData, ParticleData
+│   ├── Progression/      # MetaProgressionData
+│   └── Weapons/          # WeaponData, WeaponModifierData
+├── Databases/            # DatabaseBase<T>, GameDatabases
+├── Events/               # Event channels and registries
+│   ├── Channels/         # EventChannel<T>
+│   └── Registries/       # GameplayEvents, AudioEvents
+├── Factories/            # UIToolkitFactory
+├── Interfaces/           # IDamageable, IUpdateable
+├── Pooling/              # GamePoolManager
+├── Saves/                # SaveFileManagerBase
+├── Systems/              # Arena, Hub systems
+│   └── Arena/            # WaveSpawner, EnemyManager
+├── UI/                   # Views, Hosts, Controllers
+│   ├── Views/            # BasePanelView
+│   └── Hosts/            # BasePanelHost
+└── Weapons/              # Weapon components
 ```

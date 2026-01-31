@@ -2,6 +2,8 @@
 
 Generic ScriptableObject-based database pattern for storing and retrieving game data with O(1) lookups.
 
+> **Source**: [`Assets/Scripts/Databases/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Databases/)
+
 ---
 
 ## Overview
@@ -15,46 +17,58 @@ GameDatabases (static access)
     ├── EnemyDatabase   →  EnemyData[]
     ├── AudioClipDatabase → AudioClipData[]
     ├── WorldAudioDatabase → WorldAudioData[]
-    └── ParticleDatabase → ParticleData[]
+    ├── ParticleDatabase → ParticleData[]
+    └── ArenaDatabase → ArenaData[]
 ```
 
 ---
 
 ## DatabaseBase<T\>
 
-Generic base class for all databases.
+Generic base class for all databases. Uses ordinal string comparison for better performance.
+
+> **Source**: [`DatabaseBase.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Databases/DatabaseBase.cs)
 
 ```csharp
-public abstract class DatabaseBase<T> : ScriptableObject where T : ScriptableObject
+public abstract class DatabaseBase<T> : ScriptableObject
 {
     [SerializeField] private T[] entries;
+    
     private Dictionary<string, T> _lookup;
+    private bool _isLookupBuilt;
+    
+    public T[] Entries => entries;
+    
+    protected abstract string GetKey(T entry);
+    
+    private static string NormalizeKey(string id) => id.Trim().ToLowerInvariant();
+    
+    private void BuildLookup()
+    {
+        if (_isLookupBuilt) return;
+        
+        _lookup = new Dictionary<string, T>(entries.Length, StringComparer.Ordinal);
+        
+        for (var i = 0; i < entries.Length; i++)
+        {
+            var entry = entries[i];
+            var key = NormalizeKey(GetKey(entry));
+            _lookup[key] = entry;
+        }
+        
+        _isLookupBuilt = true;
+    }
     
     public bool TryGet(string id, out T entry)
     {
-        BuildLookup();
-        var key = id?.ToLower().Trim() ?? string.Empty;
-        return _lookup.TryGetValue(key, out entry);
+        if (!_isLookupBuilt) BuildLookup();
+        return _lookup.TryGetValue(NormalizeKey(id), out entry);
     }
     
     public T Get(string id)
     {
-        return TryGet(id, out var entry) ? entry : null;
-    }
-    
-    protected abstract string GetKey(T entry);
-    
-    private void BuildLookup()
-    {
-        if (_lookup != null) return;
-        
-        _lookup = new Dictionary<string, T>();
-        foreach (var entry in entries)
-        {
-            var key = GetKey(entry)?.ToLower().Trim();
-            if (!string.IsNullOrEmpty(key))
-                _lookup[key] = entry;
-        }
+        if (!_isLookupBuilt) BuildLookup();
+        return _lookup[NormalizeKey(id)];
     }
 }
 ```
@@ -63,10 +77,12 @@ public abstract class DatabaseBase<T> : ScriptableObject where T : ScriptableObj
 
 ## Implementations
 
+> **Source**: [`Assets/Scripts/Databases/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/Databases/)
+
 ### WeaponDatabase
 
 ```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Weapon Database")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Weapon")]
 public class WeaponDatabase : DatabaseBase<WeaponData>
 {
     protected override string GetKey(WeaponData entry) => entry.WeaponID;
@@ -76,20 +92,10 @@ public class WeaponDatabase : DatabaseBase<WeaponData>
 ### EnemyDatabase
 
 ```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Enemy Database")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Enemy")]
 public class EnemyDatabase : DatabaseBase<EnemyData>
 {
     protected override string GetKey(EnemyData entry) => entry.EnemyId;
-}
-```
-
-### ParticleDatabase
-
-```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Databases/Particle Database")]
-public class ParticleDatabase : DatabaseBase<ParticleData>
-{
-    protected override string GetKey(ParticleData entry) => entry.ID;
 }
 ```
 
@@ -99,20 +105,28 @@ public class ParticleDatabase : DatabaseBase<ParticleData>
 
 Global access point for all databases. Assigned during bootstrap.
 
+> **Source**: [`GameDatabases.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Databases/GameDatabases.cs)
+
 ```csharp
 public static class GameDatabases
 {
-    public static WeaponDatabase WeaponDatabase { get; set; }
-    public static EnemyDatabase EnemyDatabase { get; set; }
-    public static AudioClipDatabase AudioClipDatabase { get; set; }
-    public static WorldAudioDatabase WorldAudioDatabase { get; set; }
-    public static ParticleDatabase ParticleDatabase { get; set; }
+    public static AudioClipDatabase AudioClipDatabase { get; internal set; }
+    public static WorldAudioDatabase WorldAudioDatabase { get; internal set; }
+    public static WeaponDatabase WeaponDatabase { get; internal set; }
+    public static EnemyDatabase EnemyDatabase { get; internal set; }
+    public static ParticleDatabase ParticleDatabase { get; internal set; }
+    public static UpgradeDatabase UpgradeDatabase { get; internal set; }
+    public static ArenaDatabase ArenaDatabase { get; internal set; }
     
     public static void Clear()
     {
+        AudioClipDatabase = null;
+        WorldAudioDatabase = null;
         WeaponDatabase = null;
         EnemyDatabase = null;
-        // ... clear all references
+        ParticleDatabase = null;
+        ArenaDatabase = null;
+        UpgradeDatabase = null;
     }
 }
 ```
@@ -133,11 +147,9 @@ if (GameDatabases.WeaponDatabase.TryGet("sword_fire", out var weapon))
 ### Direct Retrieval
 
 ```csharp
+// Note: Throws KeyNotFoundException if entry doesn't exist
 var enemy = GameDatabases.EnemyDatabase.Get("goblin_melee");
-if (enemy != null)
-{
-    SpawnEnemy(enemy);
-}
+SpawnEnemy(enemy);
 ```
 
 ### With Pooling

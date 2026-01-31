@@ -2,21 +2,18 @@
 
 Memory-safe patterns for creating UI panels in VR using Unity's UI Toolkit.
 
+> See [User Interface](../systems/user-interface.md) for full architecture details.
+
 ---
 
 ## Architecture Summary
 
+```mermaid
+graph TD
+    A[Controller] -->|game logic| B[Host]
+    B -->|lifecycle| C[View]
+    C -->|elements| D[Factory]
 ```
-Controller (game logic)
-    |
-Host (MonoBehaviour, lifecycle)
-    |
-View (element creation, layout)
-    |
-Factory (element builders)
-```
-
-See [User Interface](../systems/user-interface.md) for full architecture details.
 
 ---
 
@@ -48,13 +45,6 @@ void Unbind()
 }
 ```
 
-### Incorrect Pattern (Memory Leak)
-
-```csharp
-// Lambda creates new delegate - cannot unsubscribe
-slider.RegisterValueChangedCallback(evt => OnValueChanged(evt.newValue));
-```
-
 ---
 
 ## Cleanup Checklist
@@ -71,7 +61,7 @@ In Host.Dispose() or OnDisable():
 protected override void Dispose()
 {
     // External events
-    GameEvents.OnGoldChanged.Unsubscribe(HandleGoldChanged);
+    GameplayEvents.GoldChanged.Unsubscribe(HandleGoldChanged);
     
     // View events
     if (_view != null)
@@ -187,12 +177,12 @@ public virtual void Dispose()
 ```csharp
 private void OnEnable()
 {
-    GameEvents.OnGoldChanged.Subscribe(HandleGold);
+    GameplayEvents.GoldChanged.Subscribe(HandleGold);
 }
 
 private void OnDisable()
 {
-    GameEvents.OnGoldChanged.Unsubscribe(HandleGold);
+    GameplayEvents.GoldChanged.Unsubscribe(HandleGold);
 }
 
 private void HandleGold(int value)

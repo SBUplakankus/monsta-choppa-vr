@@ -1,22 +1,18 @@
 # User Interface System
 
-The UI system uses Unity's UI Toolkit with a Factory-View-Host-Controller architecture for clean separation of concerns and memory safety.
+The UI system uses Unity's UI Toolkit with a Factory-View-Host architecture for clean separation of concerns and memory safety.
+
+> **Source**: [`Assets/Scripts/UI/`](https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/UI/)
 
 ---
 
 ## Architecture
 
-```
-Controller (game logic)
-    │
-    ▼
-Host (MonoBehaviour lifecycle, animations)
-    │
-    ▼
-View (UI element creation, layout)
-    │
-    ▼
-Factory (element builders, styling)
+```mermaid
+graph TD
+    A[Controller] -->|game logic| B[Host]
+    B -->|lifecycle, animations| C[View]
+    C -->|element creation| D[UIToolkitFactory]
 ```
 
 ---
@@ -27,9 +23,11 @@ Factory (element builders, styling)
 
 Static factory class that creates pre-configured UI Toolkit elements with consistent styling and localization.
 
+> **Source**: [`UIToolkitFactory.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Factories/UIToolkitFactory.cs)
+
 | Method | Returns | Purpose |
 |:-------|:--------|:--------|
-| CreateElement<T\>() | T | Generic element with class names |
+| CreateElement<T\>() | T | Generic element with CSS classes |
 | CreateContainer() | VisualElement | Styled container |
 | CreateButton() | Button | Localized button with click handler |
 | CreateLabel() | Label | Localized label |
@@ -37,7 +35,7 @@ Static factory class that creates pre-configured UI Toolkit elements with consis
 | CreateSlider() | Slider | Range input with callback |
 | CreateToggle() | Toggle | Boolean input |
 | CreateDropdown() | DropdownField | Selection input |
-| CreateHealthBar() | HealthBarElements | Container, background, fill |
+| CreateHealthBar() | BarElements | Container, background, fill |
 
 **Fluent Extensions:**
 
@@ -55,12 +53,14 @@ var panel = UIToolkitFactory.CreateContainer()
 
 Abstract base class for all UI views. Views define visual structure only.
 
+> **Source**: [`BasePanelView.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/UI/Views/BasePanelView.cs)
+
 ```csharp
 public abstract class BasePanelView : IDisposable
 {
-    public VisualElement Container { get; protected set; }
+    protected VisualElement Container;
     
-    protected abstract void GenerateUI(VisualElement root);
+    protected virtual void GenerateUI(VisualElement root) {}
     
     public virtual void Dispose()
     {
@@ -90,6 +90,8 @@ public abstract class BasePanelView : IDisposable
 
 MonoBehaviour that manages View lifecycle and animations.
 
+> **Source**: [`BasePanelHost.cs`](https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/UI/Hosts/BasePanelHost.cs)
+
 ```csharp
 public abstract class BasePanelHost : MonoBehaviour
 {
@@ -100,24 +102,23 @@ public abstract class BasePanelHost : MonoBehaviour
     private ITweenable[] _tweenables;
     
     public abstract void Generate();
+    protected abstract void Dispose();
     
-    public virtual void Show()
+    public void Show()
     {
+        if(_tweenables == null) return;
         foreach (var tween in _tweenables)
-            tween.Show();
+            tween?.Show();
     }
     
-    public virtual void Hide()
+    public void Hide()
     {
+        if(_tweenables == null) return;
         foreach (var tween in _tweenables)
-            tween.Hide();
+            tween?.Hide();
     }
     
-    protected virtual void Dispose()
-    {
-        // Override to cleanup View
-    }
-    
+    private void Awake() => _tweenables = GetComponents<ITweenable>();
     private void OnDisable() => Dispose();
 }
 ```
