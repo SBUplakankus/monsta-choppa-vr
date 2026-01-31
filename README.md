@@ -4,7 +4,7 @@ A VR roguelike arena combat game built with Unity's XR Interaction Toolkit. Figh
 
 ## Project Status
 
-This portfolio project was shelved in January 2025. See the [full documentation](Docs/index.md) for details.
+This portfolio project was shelved in January 2026. See the [full documentation](Docs/index.md) for details.
 
 ## Documentation
 

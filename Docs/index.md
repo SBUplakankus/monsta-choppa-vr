@@ -7,7 +7,7 @@ A VR roguelike arena combat game built with Unity's XR Interaction Toolkit. Figh
 ## Project Status
 
 !!! warning "Project Shelved"
-    This portfolio project was shelved in January 2025. I started a new position working with Meta's native SDK rather than OpenXR, making context-switching between the two SDKs impractical for continued development.
+    This portfolio project was shelved in January 2026. I started a new position working with Meta's native SDK rather than OpenXR, making context-switching between the two SDKs impractical for continued development.
 
     See [Project Status](future/project-status.md) for what was completed and what was planned next.
 

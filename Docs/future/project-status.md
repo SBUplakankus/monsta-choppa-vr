@@ -6,7 +6,7 @@ This document explains the current state of the project, why development was pau
 
 ## Why the Project Was Shelved
 
-In January 2025, I started a new position working with **Meta's native SDK** rather than OpenXR. The two SDKs have fundamentally different approaches:
+In January 2026, I started a new position working with **Meta's native SDK** rather than OpenXR. The two SDKs have fundamentally different approaches:
 
 | Aspect | OpenXR (This Project) | Meta Native SDK (Work) |
 |:-------|:----------------------|:-----------------------|
