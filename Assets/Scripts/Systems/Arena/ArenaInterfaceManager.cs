@@ -2,6 +2,7 @@ using System;
 using Events;
 using Events.Registries;
 using PrimeTween;
+using Systems.Core;
 using UI.Hosts;
 using UnityEngine;
 using Utilities;
@@ -11,9 +12,6 @@ namespace Systems.Arena
     public class ArenaInterfaceManager : MonoBehaviour, IUpdateable
     {
         #region Fields
-
-        [Header("Canvas Groups")]
-        [SerializeField] private CanvasGroup fadeToBlackCanvasGroup;
         
         [Header("Hosts")]
         [SerializeField] private ArenaIntroHost arenaIntroHost;
@@ -23,16 +21,10 @@ namespace Systems.Arena
 
         private const int IntroDisplayDuration = 8;
         private const int FadeInAlpha = 1;
-        private const int FadeOutAlpha = 0;
-        private const float FadeDuration = 2f;
-        private const Ease FadeEase = Ease.Linear;
         
         #endregion
         
         #region Methods
-
-        private void FadeIn() => Tween.Alpha(fadeToBlackCanvasGroup, FadeInAlpha, FadeDuration, FadeEase);
-        private void FadeOut() => Tween.Alpha(fadeToBlackCanvasGroup, FadeOutAlpha, FadeDuration, FadeEase);
 
         private void ShowArenaIntro()
         { 
@@ -66,10 +58,10 @@ namespace Systems.Arena
                 case ArenaState.BossComplete:
                     break;
                 case ArenaState.ArenaVictory:
-                    FadeIn();
+                    UIEvents.FadeIn.Raise();
                     break;
                 case ArenaState.ArenaDefeat:
-                    FadeIn();
+                    UIEvents.FadeIn.Raise();
                     break;
                 case ArenaState.ArenaPaused:
                     break;
@@ -86,8 +78,6 @@ namespace Systems.Arena
         {
             GameplayEvents.ArenaStateChanged.Subscribe(HandleGameStateChange);
             GameUpdateManager.Instance.Register(this, UpdatePriority.High);
-            fadeToBlackCanvasGroup.alpha = FadeInAlpha;
-            FadeOut();
         }
 
         private void OnDisable()

@@ -1,4 +1,5 @@
 using Constants;
+using Systems.Core;
 using UI.Hosts;
 using UI.Views;
 using UnityEngine;
@@ -52,7 +53,7 @@ namespace UI.Controllers
         
         private void HandlePlay()
         {
-            SceneManager.LoadScene(GameConstants.Hub);
+            BootstrapManager.Instance.LoadScene(GameConstants.Hub);
         }
 
         private void HandleSettings()
@@ -62,7 +63,7 @@ namespace UI.Controllers
 
         private void HandleControls()
         {
-            SceneManager.LoadScene(GameConstants.GoblinCampDay);
+            BootstrapManager.Instance.LoadScene(GameConstants.GoblinCampDay);
         }
 
         private void HandleQuit()

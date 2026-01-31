@@ -15,4 +15,4 @@ MonoBehaviour:
   waveData:
   - enemy: {fileID: 11400000, guid: 42a0ba61212c3564e881d8ebd695d845, type: 2}
     spawnAmount: 3
-    spawnInterval: 1
+    spawnInterval: 3

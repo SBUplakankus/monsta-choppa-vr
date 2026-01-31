@@ -23,7 +23,7 @@ namespace Systems.Core
         [SerializeField] private SettingsSaveFileManager settingsSaveFileManager;
 
         [Header("Configuration")]
-        [SerializeField] private float minimumLoadTime = 3f;
+        [SerializeField] private float minimumLoadTime = 1.5f;
         [SerializeField] private float fadeWaitTime = 1.5f;
         [SerializeField] private float stepDelay = 0.5f;
 
@@ -102,6 +102,7 @@ namespace Systems.Core
             UpdateLoadingProgress(LocalizationKeys.LoadingGame);
             yield return _stepWait;
             UpdateLoadingProgress(LocalizationKeys.LoadingComplete);
+            HideLoadingScreen();
             yield return _fadeWait;
             SceneManager.LoadScene(GameConstants.StartMenu);
         }
@@ -117,19 +118,13 @@ namespace Systems.Core
 
         private IEnumerator LoadSceneRoutine(string sceneName)
         {
-            ShowLoadingScreen(LocalizationKeys.LoadingScene);
-            GameplayEvents.GameStateChangeRequested.Raise(GameState.Loading);
-
-            // Fake loading for minimum time
-            yield return _minimumLoadWait;
-
-            UpdateLoadingProgress(LocalizationKeys.LoadingSceneComplete);
-            HideLoadingScreen();
-
-            // Wait a bit before switching scene for smooth fade-out
+            UIEvents.FadeIn.Raise();
             yield return _fadeWait;
-
-            // Load new scene synchronously
+            
+            GameplayEvents.GameStateChangeRequested.Raise(GameState.Loading);
+            UpdateLoadingProgress(LocalizationKeys.LoadingSceneComplete);
+            yield return _fadeWait;
+            
             SceneManager.LoadScene(sceneName);
         }
 
@@ -155,12 +150,12 @@ namespace Systems.Core
         private void CompleteBootstrapSequence()
         {
             _isInitialized = true;
-            HideLoadingScreen();
             GameplayEvents.GameStateChangeRequested.Raise(GameState.StartMenu);
         }
 
         private void ShowLoadingScreen(string message)
         {
+            UIEvents.FadeOut.Raise();
             loadingScreen?.Show(message);
         }
 
@@ -171,6 +166,7 @@ namespace Systems.Core
 
         private void HideLoadingScreen()
         {
+            UIEvents.FadeIn.Raise();
             loadingScreen?.Hide();
         }
 

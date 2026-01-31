@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Waves.ArenaWavesData
   arenaWaves:
   - {fileID: 11400000, guid: a2f3a6cd1cc2eec4eb9182b37e9f225d, type: 2}
+  - {fileID: 11400000, guid: a2f3a6cd1cc2eec4eb9182b37e9f225d, type: 2}
   arenaBoss: {fileID: 11400000, guid: a2f3a6cd1cc2eec4eb9182b37e9f225d, type: 2}

@@ -1,11 +1,14 @@
 using System;
+using Systems.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Systems.Capture_Mode
 {
-    public class CaptureModeCamera : MonoBehaviour, IUpdateable
+    public class CaptureModeCamera : MonoBehaviour
     {
+        public static CaptureModeCamera Instance { get; private set; }
+        
         [Header("Capture Components")]
         public Camera captureCamera;
         public GameObject captureCanvas;
@@ -18,12 +21,6 @@ namespace Systems.Capture_Mode
         private void OnEnable()
         {
             SetCaptureMode(false);
-            GameUpdateManager.Instance.Register(this, UpdatePriority.High);
-        }
-
-        private void OnDisable()
-        {
-            GameUpdateManager.Instance.Unregister(this);
         }
 
         private void SetCaptureMode(bool toggle)
@@ -37,7 +34,20 @@ namespace Systems.Capture_Mode
                 captureCanvas.SetActive(toggle);
         }
 
-        public void OnUpdate(float deltaTime)
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public void Update()
         {
             if (Keyboard.current != null &&
                 Keyboard.current[toggleKey].wasPressedThisFrame)
