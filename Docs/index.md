@@ -61,11 +61,26 @@ A VR roguelike arena combat game built with Unity's XR Interaction Toolkit. Figh
 The project uses a layered architecture separating presentation, gameplay, events, and data concerns.
 
 ```mermaid
-graph TB
-    A[Presentation Layer<br/>UI Hosts, Views, Audio, VFX] --> B[Gameplay Layer<br/>Weapons, Enemies, Combat, Arena]
-    B --> C[Event Layer<br/>Event Channels, GameEvents Registry]
-    C --> D[Data Layer<br/>ScriptableObject Databases, Pooling]
-    D --> E[VR Template Layer<br/>XR Origin, Controllers, Locomotion]
+flowchart TB
+    A[Presentation Layer] --> B[Gameplay Layer]
+    B --> C[Event Layer]
+    C --> D[Data Layer]
+    D --> E[VR Template Layer]
+    
+    A --- A1[UI Hosts & Views]
+    A --- A2[Audio & VFX]
+    
+    B --- B1[Weapons & Combat]
+    B --- B2[Enemies & AI]
+    
+    C --- C1[GameplayEvents]
+    C --- C2[AudioEvents]
+    
+    D --- D1[Databases]
+    D --- D2[Object Pooling]
+    
+    E --- E1[XR Origin]
+    E --- E2[Controllers & Input]
 ```
 
 ---

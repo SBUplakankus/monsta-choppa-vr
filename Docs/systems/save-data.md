@@ -2,16 +2,18 @@
 
 Player persistence using ESave for JSON-based save files with event-driven architecture.
 
+> **Source**: [`Assets/Scripts/Saves/`](../../Assets/Scripts/Saves/)
+
 ---
 
 ## Architecture
 
-```
-SaveFileManagerBase (abstract)
-    │
-    ├── PlayerSaveFileManager (progression data)
-    │
-    └── SettingsSaveFileManager (user preferences)
+```mermaid
+graph TD
+    A[SaveFileManagerBase] --> B[PlayerSaveFileManager]
+    A --> C[SettingsSaveFileManager]
+    D[SystemEvents] --> B
+    D --> C
 ```
 
 ---
@@ -20,20 +22,25 @@ SaveFileManagerBase (abstract)
 
 Abstract base class for save file managers.
 
+> **Source**: [`SaveFileManagerBase.cs`](../../Assets/Scripts/Saves/SaveFileManagerBase.cs)
+
 ```csharp
+[RequireComponent(typeof(SaveFileSetup))]
 public abstract class SaveFileManagerBase : MonoBehaviour
 {
-    protected SaveFile saveFile;
-    
-    protected virtual void Awake()
-    {
-        saveFile = GetComponent<SaveFile>();
-    }
+    private SaveFileSetup _saveFileSetup;
+    protected SaveFile SaveFile;
     
     protected abstract void HandleSaveRequested();
     protected abstract void HandleSaveCompleted();
     protected abstract void HandleLoadRequested();
     protected abstract void HandleLoadCompleted();
+    
+    protected void GetSaveFile()
+    { 
+        _saveFileSetup = GetComponent<SaveFileSetup>();
+        SaveFile = _saveFileSetup.GetSaveFile();
+    }
 }
 ```
 
@@ -43,73 +50,65 @@ public abstract class SaveFileManagerBase : MonoBehaviour
 
 Manages player progression persistence.
 
+> **Source**: [`PlayerSaveFileManager.cs`](../../Assets/Scripts/Saves/PlayerSaveFileManager.cs)
+
 ```csharp
 public class PlayerSaveFileManager : SaveFileManagerBase
 {
-    [SerializeField] private MetaProgressionData metaProgression;
-    [SerializeField] private VoidEventChannel onSaveRequested;
-    [SerializeField] private VoidEventChannel onSaveCompleted;
-    [SerializeField] private VoidEventChannel onLoadRequested;
-    [SerializeField] private VoidEventChannel onLoadCompleted;
+    [SerializeField] private MetaProgressionData metaProgressionData;
     
     private void OnEnable()
     {
-        onSaveRequested.Subscribe(HandleSaveRequested);
-        onLoadRequested.Subscribe(HandleLoadRequested);
+        SystemEvents.PlayerSaveRequested.Subscribe(HandleSaveRequested);
+        SystemEvents.PlayerLoadRequested.Subscribe(HandleLoadRequested);
     }
     
     private void OnDisable()
     {
-        onSaveRequested.Unsubscribe(HandleSaveRequested);
-        onLoadRequested.Unsubscribe(HandleLoadRequested);
+        SystemEvents.PlayerSaveRequested.Unsubscribe(HandleSaveRequested);
+        SystemEvents.PlayerLoadRequested.Unsubscribe(HandleLoadRequested);
     }
     
     protected override void HandleSaveRequested()
     {
-        saveFile.AddOrUpdateData(GameConstants.MetaProgressionKey, metaProgression);
-        saveFile.Save();
+        SaveFile.AddOrUpdateData(GameConstants.MetaProgressionKey, metaProgressionData);
+        HandleSaveCompleted();
     }
     
     protected override void HandleLoadRequested()
     {
-        if (saveFile.HasData(GameConstants.MetaProgressionKey))
-        {
-            var loaded = saveFile.GetData<MetaProgressionData>(GameConstants.MetaProgressionKey);
-            // Apply loaded data to metaProgression
-        }
-        onLoadCompleted.Raise();
+        if(SaveFile.HasData(GameConstants.MetaProgressionKey))
+            metaProgressionData = SaveFile.GetData<MetaProgressionData>(
+                GameConstants.MetaProgressionKey);
+        
+        HandleLoadCompleted();
     }
 }
+```
 ```
 
 ---
 
 ## MetaProgressionData
 
-ScriptableObject storing player progression.
+ScriptableObject storing player progression multipliers.
+
+> **Source**: [`MetaProgressionData.cs`](../../Assets/Scripts/Data/Progression/MetaProgressionData.cs)
 
 ```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Progression/Meta Progression")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Data/Progression/Meta Progression")]
 public class MetaProgressionData : ScriptableObject
 {
-    [Header("Currency")]
-    public int gold;
-    public int gems;
+    [Header("Meta Progression Attributes")] 
+    [SerializeField] private FloatAttribute expGain;
+    [SerializeField] private FloatAttribute goldGain;
+    [SerializeField] private FloatAttribute health;
+    [SerializeField] private FloatAttribute armour;
     
-    [Header("Experience")]
-    public int experience;
-    public int level;
-    
-    [Header("Multipliers")]
-    public float expGainMultiplier = 1f;
-    public float goldGainMultiplier = 1f;
-    public float healthMultiplier = 1f;
-    public float armorMultiplier = 1f;
-    
-    [Header("Unlocks")]
-    public List<string> unlockedWeapons;
-    public List<string> unlockedArenas;
-    public List<string> purchasedUpgrades;
+    public float ExpGain => expGain.Value;
+    public float GoldGain => goldGain.Value;
+    public int Health => (int)health.Value;
+    public float Armour => armour.Value;
 }
 ```
 
@@ -119,15 +118,23 @@ public class MetaProgressionData : ScriptableObject
 
 All save keys are defined in GameConstants.
 
+> **Source**: [`GameConstants.cs`](../../Assets/Scripts/Constants/GameConstants.cs)
+
 ```csharp
 public static class GameConstants
 {
+    // Save Keys
     public const string MetaProgressionKey = "MetaProgression";
+    public const string AudioSettingsKey = "AudioSettings";
+    public const string VideoSettingsKey = "VideoSettings";
+    public const string LocalizationSettingsKey = "LocalizationSettings";
+    
+    // Attribute Keys
     public const string PlayerGoldKey = "PlayerGold";
     public const string PlayerExperienceKey = "PlayerExperience";
     public const string PlayerLevelKey = "PlayerLevel";
-    public const string SettingsKey = "Settings";
 }
+```
 ```
 
 ---
@@ -137,7 +144,7 @@ public static class GameConstants
 ### Manual Save
 
 ```csharp
-GameEvents.OnSaveRequested.Raise();
+SystemEvents.PlayerSaveRequested.Raise();
 ```
 
 ### Automatic Save Points
@@ -154,35 +161,7 @@ private void OnApplicationPause(bool paused)
 {
     if (paused)
     {
-        GameEvents.OnSaveRequested.Raise();
-    }
-}
-```
-
----
-
-## Settings Save
-
-SettingsSaveFileManager handles user preferences separately from progression.
-
-```csharp
-public class SettingsSaveFileManager : SaveFileManagerBase
-{
-    [SerializeField] private FloatAttribute masterVolume;
-    [SerializeField] private FloatAttribute musicVolume;
-    [SerializeField] private FloatAttribute sfxVolume;
-    
-    protected override void HandleSaveRequested()
-    {
-        var settings = new SettingsData
-        {
-            masterVolume = masterVolume.Value,
-            musicVolume = musicVolume.Value,
-            sfxVolume = sfxVolume.Value
-        };
-        
-        saveFile.AddOrUpdateData(GameConstants.SettingsKey, settings);
-        saveFile.Save();
+        SystemEvents.PlayerSaveRequested.Raise();
     }
 }
 ```
@@ -197,34 +176,11 @@ public class SettingsSaveFileManager : SaveFileManagerBase
 | GetData<T\>(key) | Retrieve typed data |
 | HasData(key) | Check if key exists |
 | Save() | Write to disk |
-| Load() | Read from disk |
-| Delete(key) | Remove specific key |
-| DeleteAll() | Clear all data |
 
 **File Locations:**
 
 - Windows: `%USERPROFILE%/AppData/LocalLow/[Company]/[Product]/`
 - Android: `/data/data/[package]/files/`
-
----
-
-## Data Flow
-
-**Save:**
-
-1. Game event occurs (enemy killed, gold collected)
-2. PlayerAttributes updates IntAttribute values
-3. Event channels notify subscribers
-4. Save trigger fires (manual or automatic)
-5. SaveFileManager serializes data
-6. ESave writes to disk
-
-**Load:**
-
-1. Game starts or load requested
-2. SaveFileManager reads from ESave
-3. Data applied to ScriptableObjects/Attributes
-4. Event channels notify UI to refresh
 
 ---
 
@@ -236,4 +192,3 @@ public class SettingsSaveFileManager : SaveFileManagerBase
 | Validate loaded data | Handle missing or corrupted saves |
 | Save on significant events | Don't lose player progress |
 | Separate settings from progression | Settings apply globally, progression per-save |
-| Handle save failures gracefully | Disk full, permissions, etc. |

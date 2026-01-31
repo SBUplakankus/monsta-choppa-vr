@@ -2,22 +2,21 @@
 
 Modular enemy system with component-based architecture, object pooling, and data-driven configuration.
 
+> **Source**: [`Assets/Scripts/Characters/Enemies/`](../../Assets/Scripts/Characters/Enemies/)
+
 ---
 
 ## Architecture
 
-```
-EnemyData (ScriptableObject)
-    │
-    ├── EnemyDatabase (lookup)
-    │
-    └── EnemyController (MonoBehaviour coordinator)
-            │
-            ├── EnemyHealth (damage, death)
-            ├── EnemyMovement (NavMesh navigation)
-            ├── EnemyAnimator (animation states)
-            ├── EnemyAttack (combat behavior)
-            └── EnemyId (unique identifier)
+```mermaid
+graph TD
+    A[EnemyData] --> B[EnemyDatabase]
+    A --> C[EnemyController]
+    C --> D[EnemyHealth]
+    C --> E[EnemyMovement]
+    C --> F[EnemyAnimator]
+    C --> G[EnemyAttack]
+    C --> H[EnemyId]
 ```
 
 ---
@@ -26,41 +25,40 @@ EnemyData (ScriptableObject)
 
 ScriptableObject defining enemy configuration.
 
+> **Source**: [`EnemyData.cs`](../../Assets/Scripts/Data/Core/EnemyData.cs)
+
 ```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Characters/Enemy Data")]
+[CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/Data/Core/Enemy")]
 public class EnemyData : ScriptableObject
 {
     [Header("Identity")]
-    public string enemyId;
-    public GameObject prefab;
-    
+    [SerializeField] private string enemyId;
+
     [Header("Stats")]
-    public int maxHealth;
-    public float moveSpeed;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private float moveSpeed = 3.5f;
+
+    [Header("Presentation")]
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private WorldAudioData[] ambientSfx;
+    [SerializeField] private WorldAudioData[] hitSfx;
+    [SerializeField] private WorldAudioData[] deathSfx;
+    [SerializeField] private ParticleData deathVFX;
+
+    [Header("Combat")] 
+    [SerializeField] private WeaponData weapon;
     
-    [Header("Combat")]
-    public WeaponData weapon;
-    
-    [Header("Audio")]
-    public WorldAudioData[] ambientSfx;
-    public WorldAudioData[] hitSfx;
-    public WorldAudioData[] deathSfx;
-    
-    [Header("Effects")]
-    public ParticleData deathVFX;
-    
-    public WorldAudioData GetHitSfx()
-    {
-        if (hitSfx == null || hitSfx.Length == 0) return null;
-        return hitSfx[Random.Range(0, hitSfx.Length)];
-    }
-    
-    public WorldAudioData GetDeathSfx()
-    {
-        if (deathSfx == null || deathSfx.Length == 0) return null;
-        return deathSfx[Random.Range(0, deathSfx.Length)];
-    }
+    // Properties
+    public string EnemyId => enemyId;
+    public int MaxHealth => maxHealth;
+    public float MoveSpeed => moveSpeed;
+    public GameObject Prefab => prefab;
+    public WeaponData Weapon => weapon;
+    public WorldAudioData HitSfx => GetHitSfx();  // Returns random SFX
+    public WorldAudioData DeathSfx => GetDeathSfx();
+    public ParticleData DeathVFX => deathVFX;
 }
+```
 ```
 
 ---
@@ -69,162 +67,226 @@ public class EnemyData : ScriptableObject
 
 Main coordinator that manages all enemy components.
 
+> **Source**: [`EnemyController.cs`](../../Assets/Scripts/Characters/Enemies/EnemyController.cs)
+
 ```csharp
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private EnemyMovement movement;
-    [SerializeField] private EnemyAnimator animator;
-    [SerializeField] private EnemyHealth health;
-    [SerializeField] private EnemyAttack attack;
-    [SerializeField] private EnemyId enemyId;
+    [SerializeField] private EnemyData enemyData;
+
+    private EnemyMovement _enemyMovement;
+    private EnemyAnimator _enemyAnimator;
+    private EnemyHealth _enemyHealth;
+    private EnemyAttack _enemyAttack;
+    private EnemyId _enemyId;
+
+    public EnemyData Data { get => enemyData; set => enemyData = value; }
+    public Action OnDeath { get; set; }
+    public EnemyAnimator Animator => _enemyAnimator;
+    public EnemyMovement Movement => _enemyMovement;
     
-    private EnemyData _data;
-    
-    public EnemyData Data => _data;
-    public EnemyMovement Movement => movement;
-    public EnemyAnimator Animator => animator;
-    public EnemyHealth Health => health;
-    
-    public event Action OnDeath;
-    
-    public void Initialize(EnemyData data)
+    public void OnSpawn(EnemyData data)
     {
-        _data = data;
-        health.Initialize(data.maxHealth);
-        movement.SetSpeed(data.moveSpeed);
-        attack.SetWeapon(data.weapon);
+        enemyData = data;
+        _enemyId.ID = enemyData.EnemyId;
+        _enemyHealth.OnSpawn(enemyData.MaxHealth, HandleEnemyDeath);
+        _enemyHealth.DeathVFX = enemyData.DeathVFX;
+        _enemyAnimator.OnSpawn();
+        _enemyMovement.OnSpawn(enemyData.MoveSpeed, _enemyAnimator);
+        _enemyAttack?.InitAttack(enemyData.Weapon, _enemyAnimator, _enemyMovement);
+        GameplayEvents.EnemySpawned.Raise(this);
     }
     
-    public void HandleEnemyDeath()
+    public void OnDespawn()
     {
+        _enemyAnimator.OnDespawn();
+        _enemyMovement.OnDespawn();
+        _enemyAttack?.ResetAttack();
+        _enemyHealth.OnDespawn(HandleEnemyDeath);
+        GameplayEvents.EnemyDespawned.Raise(this);
+    }
+    
+    private void HandleEnemyDeath()
+    {
+        _enemyMovement.SetDead();
+        _enemyAttack.ResetAttack();
+        GamePoolManager.Instance.ReturnEnemyPrefab(this);
+        GamePoolManager.Instance.GetWorldAudioPrefab(enemyData?.DeathSfx, transform.position);
         OnDeath?.Invoke();
-        SpawnDeathEffects();
-        GameEvents.OnEnemyDespawned.Raise(this);
-        ReturnToPool();
     }
     
-    private void ReturnToPool()
+    public void HighPriorityUpdate()
     {
-        GamePoolManager.Instance.ReturnEnemyPrefab(_data, gameObject);
+        _enemyMovement?.UpdateAI();
+        if (_enemyMovement && _enemyMovement.IsInAttackRange)
+            TryAttack();
     }
 }
+```
 ```
 
 ---
 
 ## EnemyHealth
 
-Health component implementing IDamageable.
+Health component implementing IDamageable with VR-optimized effects.
+
+> **Source**: [`EnemyHealth.cs`](../../Assets/Scripts/Characters/Enemies/EnemyHealth.cs)
 
 ```csharp
 public class EnemyHealth : HealthComponent
 {
     [SerializeField] private EnemyHealthBar healthBar;
-    [SerializeField] private EnemyAnimator animator;
+    [SerializeField] private ParticleData hitVFX;
     
-    private EnemyData _data;
+    private EnemyAnimator _animator;
     
-    public float HealthBarValue => (float)CurrentHealth / MaxHealth;
+    public ParticleData DeathVFX { get; set; }
     
-    public override void TakeDamage(int damage)
+    private void OnEnable()
     {
-        base.TakeDamage(damage);
+        OnDeath += HandleDeath;
+        OnDamageTaken += HandleDamageTaken;
+        OnDamageTakenWithDirection += HandleDirectionalDamage;
+    }
+    
+    private void HandleDamageTaken()
+    {
+        healthBar?.UpdateHealthBarValue(HealthBarValue);
+    }
+    
+    private void HandleDirectionalDamage(Vector3 hitDirection)
+    {
+        _animator?.PlayHitReaction(hitDirection);
         
-        healthBar?.UpdateValue(HealthBarValue);
-        animator?.PlayHitReaction();
-        PlayHitSound();
-        
-        if (CurrentHealth <= 0)
+        if (hitVFX != null)
         {
-            GetComponent<EnemyController>().HandleEnemyDeath();
+            var hitPosition = transform.position + Vector3.up;
+            GamePoolManager.Instance?.GetParticlePrefab(hitVFX, hitPosition, 
+                Quaternion.LookRotation(-hitDirection));
         }
     }
     
-    private void PlayHitSound()
+    private void HandleDeath()
     {
-        var sfx = _data?.GetHitSfx();
-        if (sfx != null)
-        {
-            GamePoolManager.Instance.GetWorldAudioPrefab(sfx, transform.position);
-        }
+        if (DeathVFX != null)
+            GamePoolManager.Instance?.GetParticlePrefab(DeathVFX, transform.position, 
+                transform.rotation);
     }
 }
+```
 ```
 
 ---
 
 ## EnemyMovement
 
-NavMesh-based navigation.
+NavMesh-based navigation with AI state machine.
+
+> **Source**: [`EnemyMovement.cs`](../../Assets/Scripts/Characters/Enemies/EnemyMovement.cs)
 
 ```csharp
+public enum EnemyAIState { Idle, Chasing, Attacking, Dead }
+
+[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private float attackRange = GameConstants.DefaultMeleeAttackRange;
+    [SerializeField] private float stoppingDistance = 1.5f;
     [SerializeField] private float pathUpdateInterval = 0.2f;
-    
+
+    private NavMeshAgent _navMeshAgent;
+    private EnemyAIState _currentState = EnemyAIState.Idle;
     private Transform _target;
-    private float _lastPathUpdate;
     
-    public void SetTarget(Transform target)
+    public EnemyAIState CurrentState => _currentState;
+    public bool IsInAttackRange => _target && 
+        Vector3.Distance(transform.position, _target.position) <= attackRange;
+    
+    public void OnSpawn(float speed, EnemyAnimator animator)
     {
-        _target = target;
+        _navMeshAgent.enabled = true;
+        _navMeshAgent.speed = speed;
+        _currentState = EnemyAIState.Idle;
+        FindTarget();
     }
     
-    public void SetSpeed(float speed)
+    public void UpdateAI()
     {
-        agent.speed = speed;
-    }
-    
-    private void Update()
-    {
-        if (_target == null) return;
+        if (_currentState == EnemyAIState.Dead) return;
         
-        if (Time.time >= _lastPathUpdate + pathUpdateInterval)
+        if (IsInAttackRange)
         {
-            _lastPathUpdate = Time.time;
-            agent.SetDestination(_target.position);
+            SetState(EnemyAIState.Attacking);
+            StopMovement();
+            RotateTowardsTarget();
+        }
+        else
+        {
+            SetState(EnemyAIState.Chasing);
+            ChaseTarget();
         }
     }
+    
+    public void SetDead()
+    {
+        SetState(EnemyAIState.Dead);
+        StopMovement();
+    }
 }
+```
 ```
 
 ---
 
 ## EnemyAnimator
 
-Animation state management.
+Animation state management using layered approach for combat and locomotion.
+
+> **Source**: [`EnemyAnimator.cs`](../../Assets/Scripts/Characters/Enemies/EnemyAnimator.cs)
 
 ```csharp
-public class EnemyAnimator : MonoBehaviour
+public class EnemyAnimator : AnimatorComponent
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] private int upperBodyLayerIndex = 1;
     
-    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    private static readonly int Attack = Animator.StringToHash("Attack");
-    private static readonly int Hit = Animator.StringToHash("Hit");
-    private static readonly int Death = Animator.StringToHash("Death");
+    public bool IsAttacking => Animator && Animator.GetBool(IsAttackingHash);
     
-    public void SetMoving(bool moving)
+    public void OnSpawn()
     {
-        animator.SetBool(IsMoving, moving);
+        Animator.enabled = true;
+        Animator.Rebind();
+        // Set up layer weights for Mixamo combat animations
+        if (Animator.layerCount > upperBodyLayerIndex)
+            Animator.SetLayerWeight(upperBodyLayerIndex, 1f);
     }
     
-    public void PlayAttack()
+    public void UpdateMovementSpeed(float normalizedSpeed)
     {
-        animator.SetTrigger(Attack);
+        SetSpeed(normalizedSpeed);
+        SetBool(IsMovingHash, normalizedSpeed > 0.01f);
     }
     
-    public void PlayHitReaction()
+    public void PlayLightAttack()
     {
-        animator.SetTrigger(Hit);
+        Animator.SetInteger(LightAttackIndexHash, Random.Range(0, 3));
+        Animator.SetBool(IsAttackingHash, true);
+        Animator.SetTrigger(LightAttackHash);
     }
     
-    public void PlayDeath()
+    public void PlayHitReaction(Vector3 hitDirection)
     {
-        animator.SetTrigger(Death);
+        var localDir = transform.InverseTransformDirection(hitDirection);
+        
+        if (localDir.x < -0.3f)
+            Animator.SetTrigger(HitLeftHash);
+        else if (localDir.x > 0.3f)
+            Animator.SetTrigger(HitRightHash);
+        else
+            Animator.SetTrigger(HitFrontHash);
     }
 }
+```
 ```
 
 ---
@@ -233,15 +295,15 @@ public class EnemyAnimator : MonoBehaviour
 
 Enemies are spawned and returned via GamePoolManager.
 
+> **Source**: [`GamePoolManager.cs`](../../Assets/Scripts/Pooling/GamePoolManager.cs)
+
 ```csharp
 // Spawn enemy
 var enemyData = GameDatabases.EnemyDatabase.Get(enemyId);
 var instance = GamePoolManager.Instance.GetEnemyPrefab(enemyData, spawnPoint.position, spawnPoint.rotation);
-var controller = instance.GetComponent<EnemyController>();
-controller.Initialize(enemyData);
 
-// Return enemy (called on death)
-GamePoolManager.Instance.ReturnEnemyPrefab(enemyData, gameObject);
+// Return enemy (called on death via EnemyController)
+GamePoolManager.Instance.ReturnEnemyPrefab(enemyController);
 ```
 
 ---
@@ -251,15 +313,11 @@ GamePoolManager.Instance.ReturnEnemyPrefab(enemyData, gameObject);
 Enemies communicate through event channels.
 
 ```csharp
-// Raised when enemy spawns
-GameEvents.OnEnemySpawned.Raise(controller);
+// Raised when enemy spawns (in EnemyController.OnSpawn)
+GameplayEvents.EnemySpawned.Raise(this);
 
-// Raised when enemy dies
-GameEvents.OnEnemyDespawned.Raise(controller);
-
-// Subscribers
-waveManager.Subscribe(GameEvents.OnEnemyDespawned, HandleEnemyDeath);
-scoreManager.Subscribe(GameEvents.OnEnemyDespawned, AwardPoints);
+// Raised when enemy despawns (in EnemyController.OnDespawn)
+GameplayEvents.EnemyDespawned.Raise(this);
 ```
 
 ---
@@ -268,26 +326,41 @@ scoreManager.Subscribe(GameEvents.OnEnemyDespawned, AwardPoints);
 
 WaveSpawner creates enemies during arena combat.
 
+> **Source**: [`WaveSpawner.cs`](../../Assets/Scripts/Systems/Arena/WaveSpawner.cs)
+
 ```csharp
+[RequireComponent(typeof(EnemyManager))]
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private int maxActiveEnemies = 8;
+    [SerializeField] private Transform bossSpawnPoint;
+    [SerializeField] private int maxEnemies = 6;
+
+    public event Action OnWaveEnemiesDefeated;
+    public event Action OnBossDefeated;
     
-    public void SpawnWave(WaveData wave)
+    public void SpawnWave(WaveData waveData)
     {
-        StartCoroutine(SpawnWaveCoroutine(wave));
+        _waveType = WaveType.Main;
+        _enemiesRemaining = waveData.EnemyCount;
+        StartCoroutine(SpawnEnemies(waveData));
     }
     
-    private IEnumerator SpawnWaveCoroutine(WaveData wave)
+    private IEnumerator SpawnEnemies(WaveData waveData)
     {
-        foreach (var spawn in wave.spawns)
+        foreach (var enemyData in waveData.Wave)
         {
-            while (activeEnemies >= maxActiveEnemies)
-                yield return null;
-            
-            SpawnEnemy(spawn.enemyData, GetRandomSpawnPoint());
-            yield return new WaitForSeconds(spawn.delay);
+            for (var i = 0; i < enemyData.spawnAmount; i++)
+            {
+                while (_enemyManager.ActiveEnemiesCount >= maxEnemies)
+                    yield return null;
+                
+                var spawnPoint = GetRandomSpawnPoint();
+                _gamePoolManager.GetEnemyPrefab(enemyData.enemy, 
+                    spawnPoint.position, spawnPoint.rotation);
+                
+                yield return new WaitForSeconds(enemyData.spawnInterval);
+            }
         }
     }
 }
@@ -305,6 +378,7 @@ public class WaveSpawner : MonoBehaviour
    - EnemyMovement (with NavMeshAgent)
    - EnemyAnimator (with Animator)
    - EnemyAttack
+   - EnemyId
    - Collider for damage detection
 4. Assign prefab to EnemyData
 5. Add to EnemyDatabase

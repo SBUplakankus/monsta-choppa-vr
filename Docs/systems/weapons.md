@@ -2,22 +2,21 @@
 
 Data-driven weapon system for VR combat with XR Interaction Toolkit integration, modular modifiers, and object pooling.
 
+> **Source**: [`Assets/Scripts/Weapons/`](../../Assets/Scripts/Weapons/) and [`Assets/Scripts/Data/Weapons/`](../../Assets/Scripts/Data/Weapons/)
+
 ---
 
 ## Architecture
 
-```
-WeaponData (ScriptableObject)
-    │
-    ├── WeaponDatabase (lookup)
-    │
-    └── XRWeaponBase (MonoBehaviour)
-            │
-            ├── MeleeXRWeapon
-            ├── BowXRWeapon
-            ├── StaffXRWeapon
-            ├── ShieldXRWeapon
-            └── ThrowableXRWeapon
+```mermaid
+graph TD
+    A[WeaponData] --> B[WeaponDatabase]
+    A --> C[XRWeaponBase]
+    C --> D[MeleeXRWeapon]
+    C --> E[BowXRWeapon]
+    C --> F[StaffXRWeapon]
+    C --> G[ShieldXRWeapon]
+    C --> H[ThrowableXRWeapon]
 ```
 
 ---
@@ -26,56 +25,74 @@ WeaponData (ScriptableObject)
 
 ScriptableObject defining all weapon properties.
 
+> **Source**: [`WeaponData.cs`](../../Assets/Scripts/Data/Weapons/WeaponData.cs)
+
 ```csharp
-[CreateAssetMenu(menuName = "Scriptable Objects/Weapons/Weapon Data")]
+[CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/Data/Weapons/Weapon")]
 public class WeaponData : ScriptableObject
 {
     [Header("Identity")]
-    public string weaponID;
-    public string displayName;
-    public WeaponCategory category;
-    public WeaponRarity rarity;
-    public GameObject weaponPrefab;
-    public Sprite icon;
+    [SerializeField] private string weaponID;
+    [SerializeField] private string displayName;
+    [SerializeField] private WeaponCategory category;
+    [SerializeField] private WeaponRarity rarity;
+    [SerializeField] private GameObject weaponPrefab;
+    [SerializeField] private Sprite icon;
     
-    [Header("Stats")]
-    public int baseDamage;
-    public float attackCooldown;
-    public float range;
-    public int staminaCost;
-    public DamageType damageType;
+    [Header("Base Stats")]
+    [SerializeField] private int baseDamage = 10;
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float range = 2;
+    [SerializeField] private int staminaCost = 10;
+    [SerializeField] private DamageType damageType;
     
     [Header("VR Settings")]
-    public Vector3 gripPositionOffset;
-    public Vector3 gripRotationOffset;
-    public float hapticStrength;
-    public float hapticDuration;
+    [SerializeField] private Vector3 gripPositionOffset;
+    [SerializeField] private Vector3 gripRotationOffset;
+    [SerializeField] private float hapticStrength = 0.5f;
+    [SerializeField] private float hapticDuration = 0.1f;
     
-    [Header("Effects")]
-    public WorldAudioData[] hitSfx;
-    public ParticleData hitVFX;
-    public GameObject trailEffect;
-    public Color trailColor;
+    [Header("Visual / Audio")]
+    [SerializeField] private WorldAudioData[] hitSfx;
+    [SerializeField] private ParticleData hitVFX;
+    [SerializeField] private GameObject trailEffect;
+    [SerializeField] private Color trailColor = Color.white;
     
     [Header("Modifiers")]
-    public List<WeaponModifierData> activeModifiers;
+    [SerializeField] private List<WeaponModifierData> activeModifiers = new();
     
     [Header("Economy")]
-    public int purchasePrice;
-    public int sellPrice;
-    public bool isPurchasable;
+    [SerializeField] private int purchasePrice = 100;
+    [SerializeField] private int sellPrice = 50;
+    [SerializeField] private bool isPurchasable = true;
+    
+    // Properties expose serialized fields
+    public string WeaponID => weaponID;
+    public int BaseDamage => baseDamage;
+    public float AttackCooldown => attackCooldown;
+    // ... other properties
     
     public int TotalDamage
     {
         get
         {
             int total = baseDamage;
-            foreach (var mod in activeModifiers)
-                total += mod.damageBonus;
-            return total;
+            float multiplier = 1f;
+            
+            if (activeModifiers != null)
+            {
+                foreach (var mod in activeModifiers)
+                {
+                    if (mod == null) continue;
+                    total += mod.damageBonus;
+                    multiplier += mod.damageMultiplier;
+                }
+            }
+            return Mathf.RoundToInt(total * multiplier);
         }
     }
 }
+```
 ```
 
 ---
@@ -119,49 +136,64 @@ public class WeaponModifierData : ScriptableObject
 
 Abstract base class for all VR weapons.
 
+> **Source**: [`XRWeaponBase.cs`](../../Assets/Scripts/Weapons/XRWeaponBase.cs)
+
 ```csharp
+[RequireComponent(typeof(XRGrabInteractable))]
 public abstract class XRWeaponBase : MonoBehaviour
 {
     [SerializeField] protected WeaponData data;
+    [SerializeField] protected bool enableHaptics = true;
     
-    protected XRGrabInteractable grabInteractable;
-    protected Rigidbody rb;
-    
+    private XRGrabInteractable _grab;
+    private XRBaseInteractor _currentInteractor;
+    protected bool IsHeld;
     private float _lastAttackTime;
-    private bool _isHeld;
     
     public WeaponData Data => data;
-    public bool IsActive => _isHeld;
-    public bool CanAttack => Time.time >= _lastAttackTime + data.attackCooldown;
+    public bool IsActive => IsHeld;
+    public bool CanAttack => Time.time >= _lastAttackTime + data.AttackCooldown;
     
     protected virtual void OnGrab(SelectEnterEventArgs args)
     {
-        _isHeld = true;
+        IsHeld = true;
+        _currentInteractor = args.interactorObject as XRBaseInteractor;
+        OnEquipped();
     }
     
     protected virtual void OnRelease(SelectExitEventArgs args)
     {
-        _isHeld = false;
+        IsHeld = false;
+        _currentInteractor = null;
+        OnUnequipped();
     }
     
-    public virtual void ProcessHit(IDamageable target, Vector3 hitPoint, Quaternion hitRotation)
+    public void ProcessHit(IDamageable target, Vector3 hitPoint, 
+                           Quaternion hitRotation, float damageMultiplier = 1f)
     {
         if (!CanAttack) return;
         
         _lastAttackTime = Time.time;
         
-        int damage = CalculateDamage();
-        target.TakeDamage(damage);
+        var finalDamage = Mathf.RoundToInt(data.TotalDamage * damageMultiplier);
+        finalDamage = Mathf.Max(1, finalDamage);
+        target.TakeDamage(finalDamage);
         
-        SpawnHitEffects(hitPoint, hitRotation);
-        SendHapticFeedback();
+        // Spawn VFX and audio via pool
+        if (data.HitVFX != null)
+            GamePoolManager.Instance?.GetParticlePrefab(data.HitVFX, hitPoint, hitRotation);
+        if (data.HitSfx != null)
+            GamePoolManager.Instance?.GetWorldAudioPrefab(data.HitSfx, hitPoint);
+        
+        TriggerHapticFeedback();
     }
     
-    protected int CalculateDamage()
-    {
-        return data.TotalDamage;
-    }
+    public abstract void PrimaryAction();
+    public abstract void SecondaryAction();
+    protected virtual void OnEquipped() { }
+    protected virtual void OnUnequipped() { }
 }
+```
 ```
 
 ---
@@ -195,34 +227,47 @@ Magic weapon with spell casting.
 
 Defensive weapon with blocking and bashing.
 
+> **Source**: [`ShieldXRWeapon.cs`](../../Assets/Scripts/Weapons/ShieldXRWeapon.cs)
+
 ```csharp
 public class ShieldXRWeapon : XRWeaponBase
 {
-    [Header("Block Settings")]
-    public float blockAngle = 60f;
-    public float damageReduction = 0.75f;
+    [Header("Shield Settings")]
+    [SerializeField] private float blockAngle = 60f;
+    [SerializeField] private float blockDamageReduction = 0.75f;
+    [SerializeField] private float perfectBlockWindow = 0.2f;
     
-    [Header("Parry Settings")]
-    public float parryWindow = 0.2f;
+    [Header("Shield Bash")]
+    [SerializeField] private float bashDamage = 10f;
+    [SerializeField] private float bashCooldown = 1f;
+    [SerializeField] private float bashForce = 500f;
+    [SerializeField] private float bashRadius = 0.5f;
     
-    [Header("Bash Settings")]
-    public float bashCooldown = 1f;
-    public float bashDamage = 10f;
-    public float bashForce = 500f;
-    public float bashRadius = 1.5f;
+    // Pre-allocated buffer for non-allocating physics
+    private readonly Collider[] _bashBuffer = new Collider[4];
     
-    public bool TryBlock(Vector3 attackDirection, out float reduction)
+    public bool CanBlockAttack(Vector3 attackDirection)
     {
-        float angle = Vector3.Angle(transform.forward, -attackDirection);
-        if (angle <= blockAngle)
+        if (!_isBlocking) return false;
+        var angle = Vector3.Angle(-attackDirection, transform.forward);
+        return angle <= blockAngle;
+    }
+    
+    public void ShieldBash()
+    {
+        if (!CanBash) return;
+        
+        var bashPoint = transform.position + transform.forward * 0.5f;
+        var hitCount = Physics.OverlapSphereNonAlloc(bashPoint, bashRadius, _bashBuffer);
+        
+        for (int i = 0; i < hitCount; i++)
         {
-            reduction = damageReduction;
-            return true;
+            if (_bashBuffer[i].TryGetComponent<IDamageable>(out var target))
+                target.TakeDamage(Mathf.RoundToInt(bashDamage));
         }
-        reduction = 0;
-        return false;
     }
 }
+```
 ```
 
 ### ThrowableXRWeapon
@@ -237,21 +282,44 @@ Throwable weapons that return to pool on impact.
 
 ## WeaponHitbox
 
-Component for melee damage detection.
+Component for melee damage detection with velocity-based multipliers.
+
+> **Source**: [`WeaponHitbox.cs`](../../Assets/Scripts/Weapons/WeaponHitbox.cs)
 
 ```csharp
 public class WeaponHitbox : MonoBehaviour
 {
-    private XRWeaponBase _weapon;
+    [SerializeField] private XRWeaponBase weapon;
+    [SerializeField] private float hitCooldown = 0.2f;
+    
+    private float _lastHitTime;
+    private Collider _lastHitCollider;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!_weapon.IsActive) return;
+        ProcessHit(other);
+    }
+    
+    private void ProcessHit(Collider other)
+    {
+        if (!weapon || !weapon.IsActive || !weapon.CanAttack)
+            return;
         
-        if (other.TryGetComponent<IDamageable>(out var target))
-        {
-            _weapon.ProcessHit(target, other.ClosestPoint(transform.position), transform.rotation);
-        }
+        if (!other.TryGetComponent<IDamageable>(out var target))
+            return;
+        
+        var hitPoint = other.ClosestPoint(transform.position);
+        var hitDirection = CalculateHitDirection(other.transform);
+        
+        // Get velocity-based damage multiplier for melee weapons
+        var damageMultiplier = 1f;
+        if (weapon is MeleeXRWeapon melee)
+            damageMultiplier = melee.VelocityDamageMultiplier;
+        
+        weapon.ProcessHit(target, hitPoint, Quaternion.LookRotation(hitDirection), damageMultiplier);
+        
+        _lastHitTime = Time.time;
+        _lastHitCollider = other;
     }
 }
 ```

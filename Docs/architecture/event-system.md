@@ -1,6 +1,8 @@
 # Event System
 
-ScriptableObject-based publish/subscribe system for decoupled communication between game systems.
+Lightweight publish/subscribe system for decoupled communication between game systems.
+
+> **Source**: [`Assets/Scripts/Events/`](../../Assets/Scripts/Events/)
 
 ---
 
@@ -8,100 +10,116 @@ ScriptableObject-based publish/subscribe system for decoupled communication betw
 
 Event channels allow systems to communicate without direct references. A sender raises an event, and any number of subscribers receive it.
 
-```
-Sender  →  Event Channel (ScriptableObject)  →  Subscribers
+```mermaid
+flowchart LR
+    A[Sender] --> B[Event Channel]
+    B --> C[Subscriber 1]
+    B --> D[Subscriber 2]
+    B --> E[Subscriber N]
 ```
 
 ---
 
-## Base Classes
+## Event Channel Classes
 
-### TypeEventChannelBase<T\>
+The project uses simple C# classes (not ScriptableObjects) for events.
 
-Generic base class for typed events.
+> **Source**: [`EventChannel.cs`](../../Assets/Scripts/Events/Channels/EventChannel.cs)
+
+### EventChannel<T\>
+
+Generic event channel for typed events.
 
 ```csharp
-public abstract class TypeEventChannelBase<T> : ScriptableObject
+public class EventChannel<T>
 {
-    private event Action<T> _handlers;
+    private event Action<T> Handlers;
     
-    public void Raise(T value)
-    {
-        _handlers?.Invoke(value);
-    }
-    
-    public void Subscribe(Action<T> handler)
-    {
-        _handlers += handler;
-    }
-    
-    public void Unsubscribe(Action<T> handler)
-    {
-        _handlers -= handler;
-    }
-    
-    private void OnDisable()
-    {
-        _handlers = null;
-    }
+    public void Raise(T value) => Handlers?.Invoke(value);
+    public void Subscribe(Action<T> handler) => Handlers += handler;
+    public void Unsubscribe(Action<T> handler) => Handlers -= handler;
+    public void Clear() => Handlers = null;
 }
 ```
 
-### VoidEventChannel
+### EventChannel (Void)
 
 For events with no payload.
 
 ```csharp
-public class VoidEventChannel : ScriptableObject
+public class EventChannel
 {
-    private event Action _handlers;
+    private event Action Handlers;
     
-    public void Raise() => _handlers?.Invoke();
-    public void Subscribe(Action handler) => _handlers += handler;
-    public void Unsubscribe(Action handler) => _handlers -= handler;
+    public void Raise() => Handlers?.Invoke();
+    public void Subscribe(Action handler) => Handlers += handler;
+    public void Unsubscribe(Action handler) => Handlers -= handler;
+    public void Clear() => Handlers = null;
 }
 ```
 
 ---
 
-## Event Channel Types
+## Event Registries
 
-| Type | Payload | Example Usage |
-|:-----|:--------|:--------------|
-| VoidEventChannel | None | Pause requested, game over trigger |
-| IntEventChannel | int | Damage dealt, gold changed, experience gained |
-| FloatEventChannel | float | Volume changed, timer tick |
-| StringEventChannel | string | Audio clip request, message display |
-| EnemyEventChannel | EnemyController | Enemy spawned, enemy despawned |
-| ArenaStateEventChannel | ArenaState | Arena state transitions |
-| LocaleEventChannel | Locale | Language changed |
+Events are organized into static registry classes by category.
 
----
+> **Source**: [`Assets/Scripts/Events/Registries/`](../../Assets/Scripts/Events/Registries/)
 
-## GameEvents Registry
-
-Static class providing global access to all event channels. Assigned during bootstrap.
+### GameplayEvents
 
 ```csharp
-public static class GameEvents
+public static class GameplayEvents
 {
-    // Player Events
-    public static IntEventChannel OnPlayerDamaged;
-    public static IntEventChannel OnGoldChanged;
-    public static IntEventChannel OnExperienceGained;
-    public static IntEventChannel OnLevelChanged;
+    // Arena
+    public static readonly EventChannel<int> PlayerDamaged = new();
+    public static readonly EventChannel<int> PlayerHealed = new();
+    public static readonly EventChannel<EnemyController> EnemySpawned = new();
+    public static readonly EventChannel<EnemyController> EnemyDespawned = new();
+    public static readonly EventChannel ArenaDefeatSequenceRequested = new();
+    public static readonly EventChannel ArenaVictorySequenceRequested = new();
     
-    // Audio Events
-    public static StringEventChannel OnMusicRequested;
-    public static StringEventChannel OnSfxRequested;
+    // Stats
+    public static readonly EventChannel<int> GoldChanged = new();
+    public static readonly EventChannel<int> ExperienceChanged = new();
+    public static readonly EventChannel<int> LevelChanged = new();
     
-    // Game Events
-    public static EnemyEventChannel OnEnemySpawned;
-    public static EnemyEventChannel OnEnemyDespawned;
-    public static ArenaStateEventChannel OnArenaStateChanged;
-    public static VoidEventChannel OnPauseRequested;
-    public static VoidEventChannel OnGameOverSequenceRequested;
-    public static VoidEventChannel OnGameWonSequenceRequested;
+    // State
+    public static readonly EventChannel GamePaused = new();
+    public static readonly EventChannel GameResumed = new();
+    public static readonly EventChannel<GameState> GameStateChanged = new();
+    public static readonly EventChannel<ArenaState> ArenaStateChanged = new();
+    
+    public static void Clear() { /* clears all events */ }
+}
+```
+
+### AudioEvents
+
+```csharp
+public static class AudioEvents
+{
+    public static readonly EventChannel<string> MusicRequested = new();
+    public static readonly EventChannel<string> SfxRequested = new();
+    public static readonly EventChannel<string> UISfxRequested = new();
+    public static readonly EventChannel<string> AmbienceRequested = new();
+    
+    public static void Clear() { /* clears all events */ }
+}
+```
+
+### SystemEvents
+
+```csharp
+public static class SystemEvents
+{
+    public static readonly EventChannel SettingsSaveRequested = new();
+    public static readonly EventChannel SettingsLoadRequested = new();
+    public static readonly EventChannel PlayerSaveRequested = new();
+    public static readonly EventChannel PlayerLoadRequested = new();
+    public static readonly EventChannel<Locale> LocaleChangeRequested = new();
+    
+    public static void Clear() { /* clears all events */ }
 }
 ```
 
@@ -116,12 +134,12 @@ public class GoldDisplay : MonoBehaviour
 {
     private void OnEnable()
     {
-        GameEvents.OnGoldChanged.Subscribe(UpdateDisplay);
+        GameplayEvents.GoldChanged.Subscribe(UpdateDisplay);
     }
     
     private void OnDisable()
     {
-        GameEvents.OnGoldChanged.Unsubscribe(UpdateDisplay);
+        GameplayEvents.GoldChanged.Unsubscribe(UpdateDisplay);
     }
     
     private void UpdateDisplay(int newGold)
@@ -134,36 +152,28 @@ public class GoldDisplay : MonoBehaviour
 ### Raising Events
 
 ```csharp
-public class EnemyHealth : MonoBehaviour
-{
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        
-        if (currentHealth <= 0)
-        {
-            GameEvents.OnEnemyDespawned.Raise(controller);
-        }
-    }
-}
+// When enemy dies
+GameplayEvents.EnemyDespawned.Raise(controller);
+
+// When gold changes
+GameplayEvents.GoldChanged.Raise(newGoldAmount);
 ```
 
 ### Requesting Audio
 
 ```csharp
-GameEvents.OnSfxRequested.Raise("sword_hit");
-GameEvents.OnMusicRequested.Raise("combat_theme");
+AudioEvents.SfxRequested.Raise("sword_hit");
+AudioEvents.MusicRequested.Raise("combat_theme");
 ```
 
 ---
 
-## Rules
+## Best Practices
 
 | Rule | Reason |
 |:-----|:-------|
 | Always unsubscribe in OnDisable | Prevents memory leaks and null reference errors |
 | Keep handlers lightweight | Long handlers block other subscribers |
-| Use null-conditional invoke | Handlers may be null if no subscribers |
 | Match subscribe/unsubscribe methods | Using different method references causes leaks |
 
 ---
@@ -172,8 +182,8 @@ GameEvents.OnMusicRequested.Raise("combat_theme");
 
 ```csharp
 // Correct - same method reference for subscribe and unsubscribe
-private void OnEnable() => GameEvents.OnGoldChanged.Subscribe(HandleGoldChanged);
-private void OnDisable() => GameEvents.OnGoldChanged.Unsubscribe(HandleGoldChanged);
+private void OnEnable() => GameplayEvents.GoldChanged.Subscribe(HandleGoldChanged);
+private void OnDisable() => GameplayEvents.GoldChanged.Unsubscribe(HandleGoldChanged);
 private void HandleGoldChanged(int gold) { /* ... */ }
 ```
 
@@ -181,6 +191,6 @@ private void HandleGoldChanged(int gold) { /* ... */ }
 
 ```csharp
 // Lambda creates new delegate each time - cannot unsubscribe
-private void OnEnable() => GameEvents.OnGoldChanged.Subscribe(g => UpdateUI(g));
+private void OnEnable() => GameplayEvents.GoldChanged.Subscribe(g => UpdateUI(g));
 // This will NOT work - different delegate instance
 ```
