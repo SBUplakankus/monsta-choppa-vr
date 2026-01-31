@@ -93,7 +93,6 @@ public class WeaponData : ScriptableObject
     }
 }
 ```
-```
 
 ---
 
@@ -194,7 +193,6 @@ public abstract class XRWeaponBase : MonoBehaviour
     protected virtual void OnUnequipped() { }
 }
 ```
-```
 
 ---
 
@@ -267,7 +265,6 @@ public class ShieldXRWeapon : XRWeaponBase
         }
     }
 }
-```
 ```
 
 ### ThrowableXRWeapon
