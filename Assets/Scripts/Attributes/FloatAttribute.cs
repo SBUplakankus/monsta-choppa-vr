@@ -16,7 +16,7 @@ namespace Attributes
     {
         #region Fields
 
-        private float value;
+        [SerializeField] private float value;
 
         /// <inheritdoc cref="INotifyBindablePropertyChanged.propertyChanged"/>
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;

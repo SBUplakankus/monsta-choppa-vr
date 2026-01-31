@@ -209,7 +209,9 @@ namespace Systems.Settings
             SubscribeEvents();
             SetInitialValues();
         }
-
+        
+        private void Awake() => SetInitialValues();
+        private void Start() => SetInitialValues();  
         private void OnDisable() => UnsubscribeEvents();
 
         #endregion

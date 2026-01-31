@@ -6,6 +6,9 @@ repo_name: Monsta Choppa
 repo_url: https://github.com/SBUplakankus/monsta-choppa-vr
 docs_dir: Docs
 
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: material
   palette:
