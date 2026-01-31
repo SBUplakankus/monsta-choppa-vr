@@ -1344,11 +1344,26 @@ I don't usually do this but I wanted to clean up the documents before shelving a
 <hr />
 <h2 id="system-architecture">System Architecture</h2>
 <p>The project uses a layered architecture separating presentation, gameplay, events, and data concerns.</p>
-<pre class="mermaid"><code>graph TB
-    A[Presentation Layer&lt;br/&gt;UI Hosts, Views, Audio, VFX] --&gt; B[Gameplay Layer&lt;br/&gt;Weapons, Enemies, Combat, Arena]
-    B --&gt; C[Event Layer&lt;br/&gt;Event Channels, GameEvents Registry]
-    C --&gt; D[Data Layer&lt;br/&gt;ScriptableObject Databases, Pooling]
-    D --&gt; E[VR Template Layer&lt;br/&gt;XR Origin, Controllers, Locomotion]</code></pre>
+<pre class="mermaid"><code>flowchart TB
+    A[Presentation Layer] --&gt; B[Gameplay Layer]
+    B --&gt; C[Event Layer]
+    C --&gt; D[Data Layer]
+    D --&gt; E[VR Template Layer]
+
+    A --- A1[UI Hosts &amp; Views]
+    A --- A2[Audio &amp; VFX]
+
+    B --- B1[Weapons &amp; Combat]
+    B --- B2[Enemies &amp; AI]
+
+    C --- C1[GameplayEvents]
+    C --- C2[AudioEvents]
+
+    D --- D1[Databases]
+    D --- D2[Object Pooling]
+
+    E --- E1[XR Origin]
+    E --- E2[Controllers &amp; Input]</code></pre>
 <hr />
 <h2 id="core-design-patterns">Core Design Patterns</h2>
 <table>

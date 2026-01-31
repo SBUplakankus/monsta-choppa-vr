@@ -595,17 +595,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#data-class-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Class Structure
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -658,17 +647,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#initialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Initialization
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1407,6 +1385,9 @@
 
 <h1 id="architecture-overview">Architecture Overview</h1>
 <p>This document describes the high-level architecture of the Monsta Choppa VR project. The system is built on Unity's XR Interaction Toolkit with custom layers for gameplay, data management, and UI.</p>
+<blockquote>
+<p><strong>Source</strong>: <a href="https://github.com/SBUplakankus/monsta-choppa-vr/tree/main/Assets/Scripts/"><code>Assets/Scripts/</code></a></p>
+</blockquote>
 <hr />
 <h2 id="core-design-principles">Core Design Principles</h2>
 <table>
@@ -1437,7 +1418,7 @@
 </table>
 <hr />
 <h2 id="system-layers">System Layers</h2>
-<pre class="mermaid"><code>graph TB
+<pre class="mermaid"><code>flowchart TB
     subgraph Presentation["Presentation Layer"]
         A1[UI Hosts]
         A2[Views]
@@ -1453,8 +1434,9 @@
     end
 
     subgraph Events["Event Layer"]
-        C1[Event Channels]
-        C2[GameEvents Registry]
+        C1[GameplayEvents]
+        C2[AudioEvents]
+        C3[SystemEvents]
     end
 
     subgraph Data["Data Layer"]
@@ -1467,7 +1449,6 @@
         E1[XR Origin]
         E2[Controllers]
         E3[Locomotion]
-        E4[Input Actions]
     end
 
     Presentation --&gt; Gameplay
@@ -1478,12 +1459,12 @@
 <h2 id="data-driven-scriptableobject-pattern">Data-Driven ScriptableObject Pattern</h2>
 <p>The project uses a consistent pattern where ScriptableObjects define configuration and MonoBehaviours handle runtime logic.</p>
 <h3 id="pattern-flow">Pattern Flow</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ScriptableObject (Data)  →  MonoBehaviour (Controller)  →  Components (Behavior)
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>       ↓                            ↓                            ↓
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   WeaponData              XRWeaponBase               Rigidbody, Collider
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   EnemyData               EnemyController            EnemyHealth, EnemyMovement
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   ParticleData            ParticleController         ParticleSystem
-</span></code></pre></div>
+<pre class="mermaid"><code>flowchart LR
+    A[ScriptableObject Data] --&gt; B[MonoBehaviour Controller]
+    B --&gt; C[Components]
+
+    A1[WeaponData] --&gt; B1[XRWeaponBase]
+    A2[EnemyData] --&gt; B2[EnemyController]</code></pre>
 <h3 id="benefits">Benefits</h3>
 <table>
 <thead>
@@ -1509,93 +1490,55 @@
 <td style="text-align: left;">Pooling compatible</td>
 <td style="text-align: left;">Same data drives multiple pooled instances</td>
 </tr>
-<tr>
-<td style="text-align: left;">Serialization ready</td>
-<td style="text-align: left;">ScriptableObjects serialize naturally</td>
-</tr>
 </tbody>
 </table>
-<h3 id="data-class-structure">Data Class Structure</h3>
-<p>All data ScriptableObjects follow this structure:</p>
-<div class="language-csharp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">[CreateAssetMenu(menuName = &quot;Scriptable Objects/Category/TypeData&quot;)]</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">TypeData</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ScriptableObject</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">{</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="na">[Header(&quot;Identity&quot;)]</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">displayName</span><span class="p">;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="na">[Header(&quot;Configuration&quot;)]</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="c1">// Type-specific fields...</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="na">[Header(&quot;References&quot;)]</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">GameObject</span><span class="w"> </span><span class="n">prefab</span><span class="p">;</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="c1">// Calculated properties</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">CalculatedValue</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">baseValue</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">modifier</span><span class="p">;</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
-</span></code></pre></div>
 <hr />
 <h2 id="key-system-relationships">Key System Relationships</h2>
 <h3 id="weapon-system">Weapon System</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>WeaponData (ScriptableObject)
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    │
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    ├── WeaponDatabase (lookup)
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    │
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    └── XRWeaponBase (MonoBehaviour)
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            │
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            ├── MeleeXRWeapon / BowXRWeapon / StaffXRWeapon
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            │
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            ├── WeaponHitbox (damage detection)
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            │
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            └── WeaponModifierData[] (stackable modifiers)
-</span></code></pre></div>
+<pre class="mermaid"><code>graph TD
+    A[WeaponData] --&gt; B[WeaponDatabase]
+    A --&gt; C[XRWeaponBase]
+    C --&gt; D[MeleeXRWeapon]
+    C --&gt; E[ShieldXRWeapon]
+    C --&gt; F[BowXRWeapon]
+    D --&gt; G[WeaponHitbox]</code></pre>
 <h3 id="enemy-system">Enemy System</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>EnemyData (ScriptableObject)
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    │
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    ├── EnemyDatabase (lookup)
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    │
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    └── EnemyController (MonoBehaviour coordinator)
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>            │
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>            ├── EnemyHealth (IDamageable, health bar)
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            ├── EnemyMovement (NavMesh navigation)
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            ├── EnemyAnimator (state machine)
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>            └── EnemyAttack (WeaponData reference)
-</span></code></pre></div>
+<pre class="mermaid"><code>graph TD
+    A[EnemyData] --&gt; B[EnemyDatabase]
+    A --&gt; C[EnemyController]
+    C --&gt; D[EnemyHealth]
+    C --&gt; E[EnemyMovement]
+    C --&gt; F[EnemyAnimator]
+    C --&gt; G[EnemyAttack]</code></pre>
 <h3 id="object-pooling">Object Pooling</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>GamePoolManager (Singleton)
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    │
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    ├── Enemy Pools (keyed by EnemyData)
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    ├── Weapon Pools (keyed by WeaponData)
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    ├── Particle Pools (keyed by ParticleData)
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    └── Audio Pools (keyed by WorldAudioData)
-</span></code></pre></div>
+<blockquote>
+<p><strong>Source</strong>: <a href="https://github.com/SBUplakankus/monsta-choppa-vr/blob/main/Assets/Scripts/Pooling/GamePoolManager.cs"><code>GamePoolManager.cs</code></a></p>
+</blockquote>
+<pre class="mermaid"><code>graph TD
+    A[GamePoolManager] --&gt; B[Enemy Pools]
+    A --&gt; C[Particle Pools]
+    A --&gt; D[WorldAudio Pools]
+    B --&gt; E[keyed by EnemyData]
+    C --&gt; F[keyed by ParticleData]
+    D --&gt; G[keyed by WorldAudioData]</code></pre>
 <p><strong>Usage:</strong>
-<div class="language-csharp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Spawn</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">GamePoolManager</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">GetEnemyPrefab</span><span class="p">(</span><span class="n">enemyData</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="p">);</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// Return</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">GamePoolManager</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">ReturnEnemyPrefab</span><span class="p">(</span><span class="n">enemyData</span><span class="p">,</span><span class="w"> </span><span class="n">gameObject</span><span class="p">);</span>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Spawn</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kt">var</span><span class="w"> </span><span class="n">enemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GamePoolManager</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">GetEnemyPrefab</span><span class="p">(</span><span class="n">enemyData</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// Return</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">GamePoolManager</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">ReturnEnemyPrefab</span><span class="p">(</span><span class="n">enemyController</span><span class="p">);</span>
 </span></code></pre></div></p>
-<hr />
-<h2 id="initialization">Initialization</h2>
-<p>The GameBootstrap MonoBehaviour initializes all static references on startup:</p>
-<ol>
-<li><strong>Event Channels</strong> - Assigned to GameEvents static fields</li>
-<li><strong>Databases</strong> - Assigned to GameDatabases static fields</li>
-<li><strong>Pool Manager</strong> - Pre-warms object pools</li>
-<li><strong>Save System</strong> - Loads player data via ESave</li>
-</ol>
-<p>All systems are ready before any gameplay scene loads.</p>
 <hr />
 <h2 id="static-access-layer">Static Access Layer</h2>
 <p>Global access to databases and events through static classes:</p>
-<div class="language-csharp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// GameDatabases - centralized database access</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">GameDatabases</span><span class="p">.</span><span class="n">WeaponDatabase</span><span class="p">.</span><span class="n">TryGet</span><span class="p">(</span><span class="s">&quot;sword_fire&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">weapon</span><span class="p">);</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">GameDatabases</span><span class="p">.</span><span class="n">EnemyDatabase</span><span class="p">.</span><span class="n">TryGet</span><span class="p">(</span><span class="s">&quot;goblin_melee&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">enemy</span><span class="p">);</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">// GameEvents - centralized event access</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">GameEvents</span><span class="p">.</span><span class="n">OnPlayerDamaged</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span><span class="n">damage</span><span class="p">);</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">GameEvents</span><span class="p">.</span><span class="n">OnEnemySpawned</span><span class="p">.</span><span class="n">Subscribe</span><span class="p">(</span><span class="n">HandleEnemySpawn</span><span class="p">);</span>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// GameDatabases - centralized database access</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">GameDatabases</span><span class="p">.</span><span class="n">WeaponDatabase</span><span class="p">.</span><span class="n">TryGet</span><span class="p">(</span><span class="s">&quot;sword_fire&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">weapon</span><span class="p">);</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">GameDatabases</span><span class="p">.</span><span class="n">EnemyDatabase</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="s">&quot;goblin_melee&quot;</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// Event Registries - centralized event access</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">GameplayEvents</span><span class="p">.</span><span class="n">GoldChanged</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span><span class="n">newGold</span><span class="p">);</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">GameplayEvents</span><span class="p">.</span><span class="n">EnemySpawned</span><span class="p">.</span><span class="n">Subscribe</span><span class="p">(</span><span class="n">HandleEnemySpawn</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">AudioEvents</span><span class="p">.</span><span class="n">SfxRequested</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span><span class="s">&quot;hit_sound&quot;</span><span class="p">);</span>
 </span></code></pre></div>
 <hr />
 <h2 id="best-practices">Best Practices</h2>
@@ -1631,18 +1574,31 @@
 </table>
 <hr />
 <h2 id="file-organization">File Organization</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Assets/Scripts/
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── Data/                   # ScriptableObject data classes
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│   ├── Core/              # EnemyData, ParticleData
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│   └── Weapons/           # WeaponData, WeaponModifierData
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>├── Databases/             # DatabaseBase&lt;T&gt;, GameDatabases
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>├── Events/                # Event channels, GameEvents
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>├── Characters/            # Enemy components
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>├── Weapons/               # Weapon components
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>├── Pooling/               # GamePoolManager
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>├── Saves/                 # ESave integration
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>├── UI/                    # Views, Hosts, Controllers
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>└── Factories/             # UIToolkitFactory
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Assets/Scripts/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── Attributes/            # FloatAttribute, IntAttribute
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── Audio/                 # Audio controllers
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>├── Characters/            # Base and Enemy components
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   ├── Base/             # HealthComponent, AnimatorComponent
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   └── Enemies/          # EnemyController, EnemyHealth, etc.
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>├── Constants/            # GameConstants, AudioKeys, etc.
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>├── Data/                 # ScriptableObject data classes
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   ├── Core/             # EnemyData, ParticleData
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   ├── Progression/      # MetaProgressionData
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   └── Weapons/          # WeaponData, WeaponModifierData
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>├── Databases/            # DatabaseBase&lt;T&gt;, GameDatabases
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>├── Events/               # Event channels and registries
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│   ├── Channels/         # EventChannel&lt;T&gt;
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│   └── Registries/       # GameplayEvents, AudioEvents
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>├── Factories/            # UIToolkitFactory
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>├── Interfaces/           # IDamageable, IUpdateable
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>├── Pooling/              # GamePoolManager
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>├── Saves/                # SaveFileManagerBase
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>├── Systems/              # Arena, Hub systems
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>│   └── Arena/            # WaveSpawner, EnemyManager
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>├── UI/                   # Views, Hosts, Controllers
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>│   ├── Views/            # BasePanelView
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>│   └── Hosts/            # BasePanelHost
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>└── Weapons/              # Weapon components
 </span></code></pre></div>
 
 
